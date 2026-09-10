@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Presentación del módulo · IASP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/iasp.css">
+</head>
+<body>
+<deck-stage width="1920" height="1080">
+
+<!-- 01 Portada del módulo -->
+<section class="portada" data-label="Portada del módulo" data-notas="Primera sesión del curso. Presentarse y dejar claro desde el principio que este módulo se aprende haciendo." style="position:relative;padding:0;overflow:hidden;background:var(--bg)">
+  <img src="../assets/mancha-coral.svg" alt="" style="position:absolute;right:0;top:0;width:480px;height:auto">
+  <img src="../assets/mancha-azul.svg" alt="" style="position:absolute;left:0;bottom:0;width:760px;height:auto">
+  <img src="img/portada.webp" alt="Bombilla, portátil con las fases del Design Thinking, tablero Kanban, libros de metodologías y piezas de construcción" style="position:absolute;right:-25px;bottom:-127px;height:1121px;width:auto">
+  <div style="position:absolute;left:var(--pad-x);top:64px;width:1000px">
+    <div style="display:flex;align-items:center;gap:20px">
+      <span style="width:20px;height:20px;border-radius:50%;background:var(--coral);display:block"></span>
+      <span style="font-size:var(--type-small);font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--navy)">Ciclo Formativo de Grado Medio</span>
+    </div>
+    <p style="margin-top:84px;font-size:36px;font-weight:700;color:var(--coral)">Módulo profesional CL32</p>
+    <h1 style="margin-top:14px;font-size:88px;font-weight:800;line-height:1.02;letter-spacing:-.03em;color:var(--navy)">Innovación<br>Aplicada al<br>Sector Productivo</h1>
+    <p style="margin-top:36px;font-size:36px;line-height:1.3;font-weight:500;color:var(--muted);max-width:560px">De las ideas a la acción · Metodologías, proyectos y soluciones reales</p>
+  </div>
+  <div style="position:absolute;left:var(--pad-x);bottom:72px;font-size:22px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;line-height:1.3;color:var(--navy)">
+    <span style="display:block;width:70px;height:6px;border-radius:3px;background:var(--coral);margin-bottom:22px"></span>
+    Contenidos actualizados<br>para el curso 2026 / 2027
+  </div>
+</section>
+
+<!-- 02 Pregunta: qué es innovar -->
+<section data-label="¿Qué es innovar?" data-notas="Lanzar la pregunta antes de explicar nada. Recoger tres o cuatro respuestas en la pizarra y revelar. La idea que tiene que quedar: innovar no es inventar, es llevar algo nuevo o mejorado a quien lo va a usar." style="display:grid;grid-template-columns:1fr 1.1fr;gap:96px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);align-items:center">
+  <div>
+    <img class="icono" src="../assets/question.png" alt="">
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;margin-top:var(--gap-item)">Pregunta a la clase</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.12;margin-top:20px;color:var(--navy);text-wrap:balance">¿Qué es innovar?</h2>
+    <p style="font-size:var(--type-small);line-height:1.5;color:var(--muted);margin-top:var(--gap-item)">Es la primera palabra del nombre del módulo. ¿Es lo mismo que inventar? ¿Hace falta tecnología?</p>
+  </div>
+  <div class="revela">
+    <div class="revela-cuerpo">
+      <p style="font-size:var(--type-caption);font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Ideas</p>
+      <ul style="list-style:none;padding:0;margin-top:24px;display:flex;flex-direction:column;gap:22px;font-size:var(--type-small);line-height:1.35">
+        <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">●</span><span><b>Innovar no es inventar.</b> Inventar es crear algo que no existía. Innovar es llevar algo nuevo o mejorado al mercado o a la empresa, y que alguien lo use y lo valore.</span></li>
+        <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">●</span><span><b>No hace falta tecnología nueva.</b> Vender de otra forma, organizar el trabajo de otra forma o cambiar el modelo de negocio también es innovar.</span></li>
+        <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">●</span><span><b>Qué haremos aquí.</b> Aprender a detectar oportunidades, generar ideas con método, convertirlas en propuestas y defenderlas. En equipo y con casos reales.</span></li>
+      </ul>
+    </div>
+    <button class="btn btn-primary revela-btn">Ver ideas</button>
+  </div>
+</section>
+
+<!-- 03 Pregunta: qué os ha cambiado la vida -->
+<section data-label="¿Qué os ha cambiado la vida?" data-notas="Que cada uno diga una cosa. Apuntarlas: servirán en la UT1 para clasificar tipos de innovación. Las ideas del panel son ejemplos para animar, no respuestas correctas." style="display:grid;grid-template-columns:1fr 1.1fr;gap:96px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);align-items:center">
+  <div>
+    <img class="icono" src="../assets/question.png" alt="">
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;margin-top:var(--gap-item)">Pregunta a la clase</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.12;margin-top:20px;color:var(--navy);text-wrap:balance">¿Qué producto o servicio os ha cambiado la vida en los últimos cinco años?</h2>
+    <p style="font-size:var(--type-small);line-height:1.5;color:var(--muted);margin-top:var(--gap-item)">Algo que hoy usáis a diario y que hace cinco años no existía o no usabais.</p>
+  </div>
+  <div class="revela">
+    <div class="revela-cuerpo">
+      <p style="font-size:var(--type-caption);font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Ideas</p>
+      <ul style="list-style:none;padding:0;margin-top:24px;display:flex;flex-direction:column;gap:22px;font-size:var(--type-small);line-height:1.35">
+        <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">●</span><span><b>Pagar con el móvil</b> y enviar dinero al instante: la cartera se queda en casa.</span></li>
+        <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">●</span><span><b>Asistentes de inteligencia artificial</b> para escribir, resumir, traducir o programar.</span></li>
+        <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">●</span><span><b>Comprar hoy y tenerlo hoy</b>: la logística que hay detrás es una de las innovaciones más grandes que no se ven.</span></li>
+        <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">●</span><span><b>Vídeo corto</b>: ha cambiado cómo se descubre música, noticias y productos, y cómo venden las empresas.</span></li>
+      </ul>
+    </div>
+    <button class="btn btn-primary revela-btn">Ver ideas</button>
+  </div>
+</section>
+
+<!-- 04 Qué dice el currículo -->
+<section data-label="Qué es este módulo" data-notas="Currículo: ORDEN EDU/411/2025, de 15 de abril, módulo optativo CL32, 34 horas. Las orientaciones pedagógicas piden clases principalmente prácticas, aprendizaje basado en proyectos y en retos en equipo sobre problemas reales, y que la actitud hacia la innovación se evalúe." style="display:grid;grid-template-columns:1fr 1.2fr;gap:96px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);align-items:center">
+  <div>
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Presentación del módulo</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy);text-wrap:balance">Qué es este módulo, según el currículo oficial</h2>
+    <p style="font-size:var(--type-small);line-height:1.5;color:var(--muted);margin-top:var(--gap-item)">Lo que se enseña no lo decide el profesor: está publicado. Este módulo es optativo, dura 34 horas y su currículo es la ORDEN EDU/411/2025 de Castilla y León.</p>
+    <p style="font-size:var(--type-caption);line-height:1.45;color:var(--ink);margin-top:var(--gap-item);border-left:5px solid var(--yellow);padding-left:20px">"Este módulo profesional tiene como objetivo principal introducir al alumnado en los conceptos básicos de la innovación aplicada al ámbito empresarial del sector productivo relacionado. Además, busca desarrollar habilidades prácticas para identificar oportunidades de mejora e innovación en empresas de dicho sector." <span style="color:var(--muted)">Orientaciones pedagógicas, módulo CL32.</span></p>
+  </div>
+  <div style="background:var(--white);border-radius:24px;padding:48px 56px;box-shadow:0 2px 0 var(--line)">
+    <p style="font-size:var(--type-caption);font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Cómo se trabaja, según el currículo</p>
+    <ol style="list-style:none;padding:0;margin-top:24px;display:flex;flex-direction:column;gap:22px;font-size:var(--type-small);line-height:1.4">
+      <li style="display:flex;gap:20px"><span style="font-weight:800;color:var(--blue)">1.</span><span><b>Clases principalmente prácticas.</b> La teoría es el mínimo para poder hacer la práctica; estas diapositivas son también el material de estudio.</span></li>
+      <li style="display:flex;gap:20px"><span style="font-weight:800;color:var(--blue)">2.</span><span><b>Proyectos y retos en equipo</b> sobre problemas reales de empresas del sector informático y del entorno.</span></li>
+      <li style="display:flex;gap:20px"><span style="font-weight:800;color:var(--blue)">3.</span><span><b>Se defiende en clase.</b> Lo que hacéis se presenta y se explica delante de los demás.</span></li>
+      <li style="display:flex;gap:20px"><span style="font-weight:800;color:var(--blue)">4.</span><span><b>La actitud cuenta.</b> El currículo pide evaluar la actitud hacia la innovación: participar, proponer, escuchar y construir sobre las ideas de los demás.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 05 Los cuatro resultados de aprendizaje -->
+<section data-label="Resultados de aprendizaje" data-notas="Explicar qué es un RA y que la nota se calcula por RA. Cada RA tiene sus criterios de evaluación en la orden del currículo. Los nombres cortos son nuestros." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Presentación del módulo</p>
+  <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Los cuatro resultados de aprendizaje</h2>
+  <p style="font-size:var(--type-small);line-height:1.5;color:var(--muted);margin-top:20px;max-width:1500px">Un <b>resultado de aprendizaje (RA)</b> es algo que tienes que saber hacer al terminar el módulo. Cada RA tiene una lista de <b>criterios de evaluación</b>, que es lo que se comprueba en las prácticas y en las pruebas. La nota se calcula por RA.</p>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:32px">
+    <div style="background:var(--white);border-radius:20px;padding:36px 32px;display:flex;flex-direction:column;gap:16px;box-shadow:0 2px 0 var(--line)">
+      <span style="width:64px;height:64px;border-radius:16px;background:var(--coral);color:var(--white);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800">RA1</span>
+      <p style="font-size:var(--type-small);font-weight:700;line-height:1.25;color:var(--navy)">Entiendes qué es innovar</p>
+      <p style="font-size:22px;color:var(--muted);line-height:1.45">Sabes qué es una innovación, de qué tipos hay, por qué hace a una empresa más competitiva y qué aporta a su sostenibilidad.</p>
+    </div>
+    <div style="background:var(--white);border-radius:20px;padding:36px 32px;display:flex;flex-direction:column;gap:16px;box-shadow:0 2px 0 var(--line)">
+      <span style="width:64px;height:64px;border-radius:16px;background:var(--teal);color:var(--navy);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800">RA2</span>
+      <p style="font-size:var(--type-small);font-weight:700;line-height:1.25;color:var(--navy)">Ves cómo cambia las empresas</p>
+      <p style="font-size:22px;color:var(--muted);line-height:1.45">Reconoces el impacto de la innovación en eficiencia, calidad, sostenibilidad y estrategia, y las tecnologías emergentes que están transformando los sectores.</p>
+    </div>
+    <div style="background:var(--white);border-radius:20px;padding:36px 32px;display:flex;flex-direction:column;gap:16px;box-shadow:0 2px 0 var(--line)">
+      <span style="width:64px;height:64px;border-radius:16px;background:var(--yellow);color:var(--navy);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800">RA3</span>
+      <p style="font-size:var(--type-small);font-weight:700;line-height:1.25;color:var(--navy)">Propones ideas con método</p>
+      <p style="font-size:22px;color:var(--muted);line-height:1.45">Usas Design Thinking, Lean Startup y el lienzo Canvas para generar ideas, planificarlas y valorar de forma sencilla si son viables.</p>
+    </div>
+    <div style="background:var(--white);border-radius:20px;padding:36px 32px;display:flex;flex-direction:column;gap:16px;box-shadow:0 2px 0 var(--line)">
+      <span style="width:64px;height:64px;border-radius:16px;background:var(--pink);color:var(--navy);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800">RA4</span>
+      <p style="font-size:var(--type-small);font-weight:700;line-height:1.25;color:var(--navy)">Analizas empresas reales</p>
+      <p style="font-size:22px;color:var(--muted);line-height:1.45">Detectas oportunidades de mejora en casos de empresas del sector, diseñas una propuesta, valoras si se puede implantar y la presentas.</p>
+    </div>
+  </div>
+  <p style="font-size:var(--type-caption);color:var(--muted);margin-top:24px">Los nombres cortos son nuestros. Los enunciados completos y sus criterios están en la ORDEN EDU/411/2025, de 15 de abril, módulo CL32.</p>
+</section>
+
+<!-- 06 Las cuatro unidades -->
+<section data-label="Las cuatro unidades" data-notas="Una unidad por RA. El módulo ocupa la primera evaluación entera y la mitad de la segunda, a dos horas por semana: 17 sesiones." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Presentación del módulo</p>
+  <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Las cuatro unidades de trabajo</h2>
+  <table style="width:100%;border-collapse:collapse;margin-top:32px;font-size:var(--type-caption);background:var(--white);border-radius:20px;overflow:hidden">
+    <thead>
+      <tr style="background:var(--teal);color:var(--navy);text-align:left">
+        <th style="padding:16px 28px;font-weight:700;width:80px">UT</th>
+        <th style="padding:16px 28px;font-weight:700">Unidad de trabajo</th>
+        <th style="padding:16px 28px;font-weight:700;width:110px">RA</th>
+        <th style="padding:16px 28px;font-weight:700;width:130px">Sesiones</th>
+        <th style="padding:16px 28px;font-weight:700;width:150px">Evaluación</th>
+        <th style="padding:16px 28px;font-weight:700;width:620px">Práctica principal</th>
+      </tr>
+    </thead>
+    <tbody style="line-height:1.3">
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:16px 28px;font-weight:800;color:var(--coral)">1</td><td style="padding:16px 28px;font-weight:700;color:var(--navy)">La innovación</td><td style="padding:16px 28px">RA1</td><td style="padding:16px 28px">3 (6 h)</td><td style="padding:16px 28px">1.ª</td><td style="padding:16px 28px">Taller de ideas y ficha de innovación sobre un producto informático, con defensa</td></tr>
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:16px 28px;font-weight:800;color:var(--coral)">2</td><td style="padding:16px 28px;font-weight:700;color:var(--navy)">Innovación, sostenibilidad y transformación digital</td><td style="padding:16px 28px">RA2</td><td style="padding:16px 28px">3 (6 h)</td><td style="padding:16px 28px">1.ª</td><td style="padding:16px 28px">Presentación en equipo sobre una tecnología emergente, con exposición oral</td></tr>
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:16px 28px;font-weight:800;color:var(--coral)">3</td><td style="padding:16px 28px;font-weight:700;color:var(--navy)">Metodologías y herramientas de innovación</td><td style="padding:16px 28px">RA3</td><td style="padding:16px 28px">6 (12 h)</td><td style="padding:16px 28px">1.ª</td><td style="padding:16px 28px">The Wallet Project y proyecto de equipo con Design Thinking, Lean Startup y Canvas, con defensa</td></tr>
+      <tr><td style="padding:16px 28px;font-weight:800;color:var(--coral)">4</td><td style="padding:16px 28px;font-weight:700;color:var(--navy)">Análisis de casos y propuestas de innovación</td><td style="padding:16px 28px">RA4</td><td style="padding:16px 28px">5 (10 h)</td><td style="padding:16px 28px">2.ª</td><td style="padding:16px 28px">Caso real de una empresa del sector: análisis, propuesta y pitch final</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:var(--type-caption);color:var(--muted);margin-top:20px">34 horas, 17 sesiones de dos horas. El módulo termina a mitad de la segunda evaluación. De las 17 sesiones, 9 son de práctica en equipo y 2 de defensas.</p>
+</section>
+
+<!-- 07 Cómo se calcula la nota -->
+<section data-label="Cómo se calcula la nota" data-notas="Cada RA vale un porcentaje fijo de la nota final. Hay que sacar al menos un 5 en cada RA: si uno queda por debajo, el módulo no se aprueba aunque la media salga. Pesos pendientes de confirmar en la programación." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Presentación del módulo</p>
+  <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Cuánto pesa cada cosa en la nota final</h2>
+  <table style="width:100%;border-collapse:collapse;margin-top:32px;font-size:var(--type-small);background:var(--white);border-radius:20px;overflow:hidden;text-align:center">
+    <thead>
+      <tr style="background:var(--teal);color:var(--navy)">
+        <th style="padding:18px 28px;font-weight:700;text-align:left">Resultado de aprendizaje</th>
+        <th style="padding:18px 20px;font-weight:700">UT1</th><th style="padding:18px 20px;font-weight:700">UT2</th><th style="padding:18px 20px;font-weight:700">UT3</th><th style="padding:18px 20px;font-weight:700">UT4</th>
+        <th style="padding:18px 28px;font-weight:700;background:var(--yellow)">% de la nota</th>
+      </tr>
+    </thead>
+    <tbody style="line-height:1.3">
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:16px 28px;text-align:left;font-weight:700;color:var(--navy)">RA1 Entiendes qué es innovar</td><td>15</td><td></td><td></td><td></td><td style="background:#FFF6D1;font-weight:800;color:var(--navy)">15 %</td></tr>
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:16px 28px;text-align:left;font-weight:700;color:var(--navy)">RA2 Ves cómo cambia las empresas</td><td></td><td>20</td><td></td><td></td><td style="background:#FFF6D1;font-weight:800;color:var(--navy)">20 %</td></tr>
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:16px 28px;text-align:left;font-weight:700;color:var(--navy)">RA3 Propones ideas con método</td><td></td><td></td><td>40</td><td></td><td style="background:#FFF6D1;font-weight:800;color:var(--navy)">40 %</td></tr>
+      <tr style="border-bottom:3px solid var(--navy)"><td style="padding:16px 28px;text-align:left;font-weight:700;color:var(--navy)">RA4 Analizas empresas reales</td><td></td><td></td><td></td><td>25</td><td style="background:#FFF6D1;font-weight:800;color:var(--navy)">25 %</td></tr>
+      <tr style="border-bottom:2px solid var(--line);background:var(--bg)"><td style="padding:16px 28px;text-align:left;font-weight:700;color:var(--navy)">Horas</td><td>6</td><td>6</td><td>12</td><td>10</td><td style="font-weight:700">34</td></tr>
+      <tr><td style="padding:16px 28px;text-align:left;font-weight:700;color:var(--navy)">Evaluación</td><td>1.ª</td><td>1.ª</td><td>1.ª</td><td>2.ª</td><td></td></tr>
+    </tbody>
+  </table>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:24px;font-size:var(--type-caption);line-height:1.4;color:var(--muted)">
+    <p><b style="color:var(--navy)">Cómo leerla.</b> Cada unidad aporta la nota de su resultado de aprendizaje. La UT3 pesa más porque tiene el doble de sesiones y el proyecto principal del módulo.</p>
+    <p><b style="color:var(--navy)">Mínimo 5 en cada RA.</b> Si un resultado de aprendizaje queda por debajo de 5, el módulo no se aprueba aunque la media salga. Se recupera solo ese RA.</p>
+  </div>
+</section>
+
+<!-- 08 Cómo se evalúa -->
+<section data-label="Cómo se evalúa" data-notas="Norma general del módulo: práctica 60 %, prueba 40 %, dentro de cada RA. La actitud hacia la innovación va dentro de la rúbrica de la práctica. Política de IA: en clase no, salvo que se indique; los deberes o son para usar IA a propósito o son práctica para una prueba que se hace en clase." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Presentación del módulo</p>
+  <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Cómo se evalúa</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:var(--gap-item)">
+    <div style="background:var(--white);border-radius:20px;padding:40px 44px;display:flex;flex-direction:column;gap:18px;box-shadow:0 2px 0 var(--line)">
+      <p style="font-size:110px;font-weight:800;line-height:1;color:var(--coral);letter-spacing:-.03em">60 %</p>
+      <p style="font-size:var(--type-body);font-weight:700;line-height:1.25;color:var(--navy)">Práctica</p>
+      <p style="font-size:var(--type-small);color:var(--muted);line-height:1.45">Lo que hacéis en el aula, en equipo, y defendéis delante de la clase: talleres, fichas, prototipos, lienzos y presentaciones. Con rúbrica, que incluye la actitud hacia la innovación.</p>
+    </div>
+    <div style="background:var(--white);border-radius:20px;padding:40px 44px;display:flex;flex-direction:column;gap:18px;box-shadow:0 2px 0 var(--line)">
+      <p style="font-size:110px;font-weight:800;line-height:1;color:var(--coral);letter-spacing:-.03em">40 %</p>
+      <p style="font-size:var(--type-body);font-weight:700;line-height:1.25;color:var(--navy)">Prueba</p>
+      <p style="font-size:var(--type-small);color:var(--muted);line-height:1.45">Una prueba corta al final de cada unidad, en clase, sobre estas diapositivas. Preguntas de opción múltiple y casos para clasificar o analizar.</p>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:var(--gap-item)">
+    <div style="display:flex;gap:24px;align-items:center;background:#FFF6D1;border-radius:20px;padding:24px 32px">
+      <img src="../assets/exclamation.png" alt="" style="width:64px;height:64px;object-fit:contain;flex:none">
+      <p style="font-size:var(--type-caption);line-height:1.45;color:var(--navy)"><b>Norma general.</b> Estos porcentajes se aplican dentro de cada resultado de aprendizaje. Lo que no se entrega en el plazo no se recoge.</p>
+    </div>
+    <div style="display:flex;gap:24px;align-items:center;background:rgba(83,210,206,.18);border-radius:20px;padding:24px 32px">
+      <img src="../assets/exclamation.png" alt="" style="width:64px;height:64px;object-fit:contain;flex:none">
+      <p style="font-size:var(--type-caption);line-height:1.45;color:var(--navy)"><b>Inteligencia artificial.</b> En clase no se usa, salvo que se indique expresamente. Los deberes son de dos tipos: para usar IA a propósito, y entonces se entrega también el prompt, o para practicar algo que después se prueba en clase.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 09 Material y herramientas -->
+<section data-label="Material y herramientas" data-notas="Dónde está todo. La dirección web de las presentaciones se da cuando esté publicada. Material de taller: notas adhesivas, rotuladores, cartulinas y piezas de construcción para prototipar." style="display:grid;grid-template-columns:1fr 1.3fr;gap:96px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);align-items:center">
+  <div>
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Presentación del módulo</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy);text-wrap:balance">Con qué vamos a trabajar</h2>
+    <p style="font-size:var(--type-small);line-height:1.5;color:var(--muted);margin-top:var(--gap-item)">No hay libro. Todo el material de estudio está en estas presentaciones, que se abren en cualquier navegador: en el aula, en casa o en el móvil.</p>
+  </div>
+  <ul style="padding:0;list-style:none;display:flex;flex-direction:column;font-size:var(--type-small);line-height:1.4">
+    <li style="display:grid;grid-template-columns:280px 1fr;gap:32px;padding:24px 0;border-bottom:2px solid var(--line)"><span style="font-weight:700;color:var(--blue)">Presentaciones</span><span>Una por unidad, con ejercicios interactivos para practicar en casa. Flechas para avanzar, Ctrl+P para guardar en PDF.</span></li>
+    <li style="display:grid;grid-template-columns:280px 1fr;gap:32px;padding:24px 0;border-bottom:2px solid var(--line)"><span style="font-weight:700;color:var(--blue)">Classroom</span><span>Entregas, avisos, plantillas de las prácticas y calificaciones.</span></li>
+    <li style="display:grid;grid-template-columns:280px 1fr;gap:32px;padding:24px 0;border-bottom:2px solid var(--line)"><span style="font-weight:700;color:var(--blue)">Material de taller</span><span>Notas adhesivas, rotuladores, cartulinas y piezas de construcción. Buena parte de la innovación se hace con las manos antes que con el ordenador.</span></li>
+    <li style="display:grid;grid-template-columns:280px 1fr;gap:32px;padding:24px 0;border-bottom:2px solid var(--line)"><span style="font-weight:700;color:var(--blue)">Documentos y presentaciones</span><span>Google Docs y Slides o Canva para las fichas, los lienzos y las exposiciones, compartidos con el profesor.</span></li>
+    <li style="display:grid;grid-template-columns:280px 1fr;gap:32px;padding:24px 0"><span style="font-weight:700;color:var(--blue)">Inteligencia artificial</span><span>No está permitida en clase, salvo que se indique lo contrario.</span></li>
+  </ul>
+</section>
+
+<!-- 10 Cierre -->
+<section data-label="Empezamos" data-notas="Pasar a la UT1." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden">
+  <span class="mancha arriba-dcha" style="width:560px;color:var(--coral)"></span>
+  <span class="mancha abajo-izq" style="width:760px;color:var(--teal)"></span>
+  <div style="display:flex;align-items:center;gap:20px;position:relative">
+    <span style="width:20px;height:20px;border-radius:50%;background:var(--coral);display:block"></span>
+    <span style="font-size:var(--type-small);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--navy)">Presentación del módulo</span>
+  </div>
+  <h1 style="font-size:var(--type-hero);font-weight:800;line-height:1.02;letter-spacing:-.02em;max-width:1400px;position:relative;color:var(--navy)">¿Dudas? Empezamos.</h1>
+  <div style="display:flex;gap:56px;font-size:var(--type-caption);color:var(--navy);font-weight:600;position:relative">
+    <span>A continuación: UT1. La innovación</span>
+    <span>Classroom · Materiales del módulo</span>
+  </div>
+</section>
+
+</deck-stage>
+<script src="../assets/deck-stage.js"></script>
+<script src="../assets/iasp.js"></script>
+</body>
+</html>

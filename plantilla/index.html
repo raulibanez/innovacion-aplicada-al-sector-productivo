@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plantilla · Innovación Aplicada al Sector Productivo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/iasp.css">
+</head>
+<body>
+<deck-stage width="1920" height="1080">
+
+<!-- 01 Portada de módulo -->
+<section class="portada" data-label="Portada módulo" data-notas="Portada del módulo. Sustituir curso y subtítulo. La imagen es un WebP transparente en ut00/img/portada.webp; las manchas de color van en CSS." style="position:relative;padding:0;overflow:hidden;background:var(--bg)">
+  <img src="../assets/mancha-coral.svg" alt="" style="position:absolute;right:0;top:0;width:480px;height:auto">
+  <img src="../assets/mancha-azul.svg" alt="" style="position:absolute;left:0;bottom:0;width:760px;height:auto">
+  <img src="../ut00/img/portada.webp" alt="" style="position:absolute;right:-25px;bottom:-127px;height:1121px;width:auto">
+  <div style="position:absolute;left:var(--pad-x);top:64px;width:1000px">
+    <div style="display:flex;align-items:center;gap:20px">
+      <span style="width:20px;height:20px;border-radius:50%;background:var(--coral);display:block"></span>
+      <span style="font-size:var(--type-small);font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--navy)">Ciclo Formativo de Grado Medio</span>
+    </div>
+    <p style="margin-top:84px;font-size:36px;font-weight:700;color:var(--coral)">Módulo profesional CL32</p>
+    <h1 style="margin-top:14px;font-size:88px;font-weight:800;line-height:1.02;letter-spacing:-.03em;color:var(--navy)">Innovación<br>Aplicada al<br>Sector Productivo</h1>
+    <p style="margin-top:36px;font-size:36px;line-height:1.3;font-weight:500;color:var(--muted);max-width:560px">De las ideas a la acción · Metodologías, proyectos y soluciones reales</p>
+  </div>
+  <div style="position:absolute;left:var(--pad-x);bottom:72px;font-size:22px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;line-height:1.3;color:var(--navy)">
+    <span style="display:block;width:70px;height:6px;border-radius:3px;background:var(--coral);margin-bottom:22px"></span>
+    Contenidos actualizados<br>para el curso 2026 / 2027
+  </div>
+</section>
+
+<!-- 02 Portada de unidad -->
+<section data-label="Portada unidad" data-notas="Separador de unidad de trabajo. Cambiar número, título y subtítulo." style="display:flex;flex-direction:column;justify-content:flex-end;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);position:relative;overflow:hidden">
+  <span class="mancha arriba-dcha" style="width:640px;color:var(--coral)"></span>
+  <span class="mancha abajo-izq" style="width:720px;color:var(--teal)"></span>
+  <span class="mancha abajo-izq volteada" style="width:420px;color:var(--yellow)"></span>
+  <p style="position:relative;font-size:180px;font-weight:800;line-height:1;color:var(--coral);letter-spacing:-.04em">UT 3</p>
+  <h1 style="position:relative;font-size:var(--type-title);font-weight:800;line-height:1.12;max-width:1200px;margin-top:24px;color:var(--navy);text-wrap:balance">Metodologías y herramientas de innovación</h1>
+  <p style="position:relative;font-size:var(--type-body);color:var(--muted);margin-top:32px;max-width:1100px;line-height:1.4">Design Thinking, Lean Startup y Business Model Canvas para pasar de un problema real a una propuesta defendible.</p>
+</section>
+
+<!-- 03 Índice -->
+<section data-label="Índice" data-notas="Índice de contenidos de la unidad. Las sesiones de práctica van intercaladas entre los bloques." style="display:grid;grid-template-columns:1fr 1.4fr;gap:120px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+  <div>
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Unidad 3</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Contenidos de la unidad</h2>
+    <p style="font-size:var(--type-small);color:var(--muted);line-height:1.5;margin-top:var(--gap-title)">Seis sesiones: tres de práctica en equipo, dos de teoría y una de defensa. La teoría va justo antes de la práctica que la necesita.</p>
+  </div>
+  <ol style="list-style:none;padding:0;display:flex;flex-direction:column">
+    <li style="display:grid;grid-template-columns:96px 1fr;align-items:center;padding:26px 0;border-bottom:2px solid var(--line);font-size:var(--type-body)"><span style="font-weight:800;color:var(--blue)">01</span><span>The Wallet Project: Design Thinking en una hora</span></li>
+    <li style="display:grid;grid-template-columns:96px 1fr;align-items:center;padding:26px 0;border-bottom:2px solid var(--line);font-size:var(--type-body)"><span style="font-weight:800;color:var(--blue)">02</span><span>Técnicas de pensamiento creativo</span></li>
+    <li style="display:grid;grid-template-columns:96px 1fr;align-items:center;padding:26px 0;border-bottom:2px solid var(--line);font-size:var(--type-body)"><span style="font-weight:800;color:var(--blue)">03</span><span>Las cinco fases del Design Thinking</span></li>
+    <li style="display:grid;grid-template-columns:96px 1fr;align-items:center;padding:26px 0;border-bottom:2px solid var(--line);font-size:var(--type-body)"><span style="font-weight:800;color:var(--blue)">04</span><span>Lean Startup: crear, medir, aprender</span></li>
+    <li style="display:grid;grid-template-columns:96px 1fr;align-items:center;padding:26px 0;border-bottom:2px solid var(--line);font-size:var(--type-body)"><span style="font-weight:800;color:var(--blue)">05</span><span>Business Model Canvas</span></li>
+    <li style="display:grid;grid-template-columns:96px 1fr;align-items:center;padding:26px 0;font-size:var(--type-body)"><span style="font-weight:800;color:var(--blue)">06</span><span>Plan de implementación y viabilidad sencilla</span></li>
+  </ol>
+</section>
+
+<!-- 04 Objetivos -->
+<section data-label="Objetivos" data-notas="Criterios del RA3 en lenguaje de alumno." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Resultado de aprendizaje 3</p>
+  <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Qué vas a saber hacer</h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:var(--gap-title)">
+    <div style="background:var(--white);border-radius:20px;padding:48px 44px;display:flex;flex-direction:column;gap:24px;box-shadow:0 2px 0 var(--line)">
+      <span style="width:64px;height:64px;border-radius:16px;background:var(--coral);color:var(--white);display:grid;place-items:center;font-size:var(--type-small);font-weight:800">1</span>
+      <p style="font-size:var(--type-body);font-weight:700;line-height:1.25;color:var(--navy)">Usar Design Thinking, Lean Startup y Canvas para generar ideas</p>
+      <p style="font-size:var(--type-small);color:var(--muted);line-height:1.45">Con un reto real, en equipo y con entregables hechos en clase.</p>
+    </div>
+    <div style="background:var(--white);border-radius:20px;padding:48px 44px;display:flex;flex-direction:column;gap:24px;box-shadow:0 2px 0 var(--line)">
+      <span style="width:64px;height:64px;border-radius:16px;background:var(--teal);color:var(--navy);display:grid;place-items:center;font-size:var(--type-small);font-weight:800">2</span>
+      <p style="font-size:var(--type-body);font-weight:700;line-height:1.25;color:var(--navy)">Detectar oportunidades de innovación en una empresa del sector</p>
+      <p style="font-size:var(--type-small);color:var(--muted);line-height:1.45">Entrevistar, observar y definir el problema antes de buscar la solución.</p>
+    </div>
+    <div style="background:var(--white);border-radius:20px;padding:48px 44px;display:flex;flex-direction:column;gap:24px;box-shadow:0 2px 0 var(--line)">
+      <span style="width:64px;height:64px;border-radius:16px;background:var(--yellow);color:var(--navy);display:grid;place-items:center;font-size:var(--type-small);font-weight:800">3</span>
+      <p style="font-size:var(--type-body);font-weight:700;line-height:1.25;color:var(--navy)">Planificar la propuesta y valorar si es viable</p>
+      <p style="font-size:var(--type-small);color:var(--muted);line-height:1.45">Un plan de implementación básico y una cuenta sencilla de ingresos y gastos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 05 Texto + imagen -->
+<section data-label="Texto + imagen" data-notas="Plantilla estándar de contenido con una figura a la derecha. La figura lleva crédito al pasar el ratón y se amplía con clic." style="display:grid;grid-template-columns:1fr 760px;gap:100px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+  <div style="display:flex;flex-direction:column">
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">3.1 Empatizar</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy);text-wrap:balance">Antes de la solución, el problema</h2>
+    <p style="font-size:var(--type-body);line-height:1.5;margin-top:var(--gap-title)">La fase de empatía sirve para entender qué necesita la persona para la que diseñas, no qué te gustaría venderle. Se pregunta, se observa y se anota sin juzgar.</p>
+    <ul style="padding:0;list-style:none;display:flex;flex-direction:column;gap:var(--gap-item);margin-top:var(--gap-item);font-size:var(--type-body);line-height:1.4">
+      <li style="display:flex;gap:24px"><span style="color:var(--yellow);font-weight:800">—</span><span>Entrevista en profundidad: preguntar por qué, no solo qué</span></li>
+      <li style="display:flex;gap:24px"><span style="color:var(--yellow);font-weight:800">—</span><span>Observación directa de cómo usa el producto o servicio</span></li>
+      <li style="display:flex;gap:24px"><span style="color:var(--yellow);font-weight:800">—</span><span>Mapa de empatía: qué piensa, oye, ve, dice y hace</span></li>
+    </ul>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:20px;min-height:0">
+    <figure class="foto" style="flex:1">
+      <img src="img/mapa-empatia.jpg" alt="Mapa de empatía rellenado en una sesión de trabajo" title="Imagen de muestra · elaboración propia">
+      <figcaption class="credito"><b>Mapa de empatía</b>. Imagen de muestra, elaboración propia. Sustituir por la foto real con su crédito y licencia.</figcaption>
+    </figure>
+    <p style="font-size:var(--type-caption);color:var(--muted);line-height:1.4">Figura 3.1. Mapa de empatía de un equipo. Haz clic en la foto para verla en grande.</p>
+  </div>
+</section>
+
+<!-- 06 Definición -->
+<section data-label="Definición" data-notas="Concepto clave en grande. Definición de la RAE en una tarjeta tipo nota adhesiva; la fuente va debajo." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:grid;grid-template-columns:1fr 1fr;gap:120px;align-items:center;position:relative;overflow:hidden">
+  <span class="mancha abajo-izq volteada" style="width:520px;color:var(--teal)"></span>
+  <div style="position:relative">
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--coral);text-transform:uppercase;letter-spacing:.06em">Concepto clave</p>
+    <h2 style="font-size:var(--type-hero);font-weight:800;line-height:1.02;margin-top:24px;letter-spacing:-.02em;color:var(--navy)">Innovación</h2>
+  </div>
+  <div style="position:relative;background:var(--yellow);color:var(--navy);border-radius:8px;padding:64px 60px;transform:rotate(-1.5deg);box-shadow:0 18px 40px rgba(23,36,51,.14)">
+    <p style="font-size:var(--type-subtitle);font-weight:700;line-height:1.3">Creación o modificación de un producto, y su introducción en un mercado.</p>
+    <p style="font-size:var(--type-caption);line-height:1.5;margin-top:var(--gap-item);color:rgba(23,36,51,.7)">Real Academia Española, <em>Diccionario de la lengua española</em>, entrada «innovación», acepción 2.</p>
+  </div>
+</section>
+
+<!-- 07 Pasos -->
+<section data-label="Pasos" data-notas="Procedimiento en pasos numerados. Aquí, las cinco fases del Design Thinking." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">3.2 Design Thinking</p>
+  <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Las cinco fases</h2>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:32px;margin-top:var(--gap-title)">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;align-items:center;gap:20px"><span style="width:72px;height:72px;border-radius:50%;background:var(--coral);color:var(--white);display:grid;place-items:center;font-size:var(--type-small);font-weight:800;flex:none">1</span><span style="flex:1;height:4px;background:var(--line)"></span></div>
+      <p style="font-size:var(--type-body);font-weight:700;color:var(--navy);line-height:1.25">Empatizar</p>
+      <p style="font-size:var(--type-small);color:var(--muted);line-height:1.45">Entrevistar y observar a las personas.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;align-items:center;gap:20px"><span style="width:72px;height:72px;border-radius:50%;background:var(--orange);color:var(--white);display:grid;place-items:center;font-size:var(--type-small);font-weight:800;flex:none">2</span><span style="flex:1;height:4px;background:var(--line)"></span></div>
+      <p style="font-size:var(--type-body);font-weight:700;color:var(--navy);line-height:1.25">Definir</p>
+      <p style="font-size:var(--type-small);color:var(--muted);line-height:1.45">Escribir el problema como un reto concreto.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;align-items:center;gap:20px"><span style="width:72px;height:72px;border-radius:50%;background:var(--yellow);color:var(--navy);display:grid;place-items:center;font-size:var(--type-small);font-weight:800;flex:none">3</span><span style="flex:1;height:4px;background:var(--line)"></span></div>
+      <p style="font-size:var(--type-body);font-weight:700;color:var(--navy);line-height:1.25">Idear</p>
+      <p style="font-size:var(--type-small);color:var(--muted);line-height:1.45">Muchas ideas, sin filtrar todavía.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;align-items:center;gap:20px"><span style="width:72px;height:72px;border-radius:50%;background:var(--teal);color:var(--navy);display:grid;place-items:center;font-size:var(--type-small);font-weight:800;flex:none">4</span><span style="flex:1;height:4px;background:var(--line)"></span></div>
+      <p style="font-size:var(--type-body);font-weight:700;color:var(--navy);line-height:1.25">Prototipar</p>
+      <p style="font-size:var(--type-small);color:var(--muted);line-height:1.45">Construir algo barato que se pueda tocar.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;align-items:center;gap:20px"><span style="width:72px;height:72px;border-radius:50%;background:var(--pink);color:var(--navy);display:grid;place-items:center;font-size:var(--type-small);font-weight:800;flex:none">5</span></div>
+      <p style="font-size:var(--type-body);font-weight:700;color:var(--navy);line-height:1.25">Testear</p>
+      <p style="font-size:var(--type-small);color:var(--muted);line-height:1.45">Probarlo con el usuario y anotar qué cambiar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 08 Tabla -->
+<section data-label="Tabla" data-notas="Plantilla de tabla. Los datos de la tabla se citan en el pie." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">3.3 Idear</p>
+  <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Técnicas de pensamiento creativo</h2>
+  <table style="width:100%;border-collapse:collapse;margin-top:var(--gap-title);font-size:var(--type-small);background:var(--white);border-radius:20px;overflow:hidden">
+    <thead>
+      <tr style="background:var(--teal);color:var(--navy);text-align:left">
+        <th style="padding:26px 36px;font-weight:700">Técnica</th>
+        <th style="padding:26px 36px;font-weight:700">Qué se hace</th>
+        <th style="padding:26px 36px;font-weight:700">Cuándo usarla</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:26px 36px;font-weight:700;color:var(--navy)">Lluvia de ideas</td><td style="padding:26px 36px">Todas las ideas valen, se anotan sin discutirlas</td><td style="padding:26px 36px">Al empezar, para abrir opciones</td></tr>
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:26px 36px;font-weight:700;color:var(--navy)">SCAMPER</td><td style="padding:26px 36px">Siete preguntas sobre un producto que ya existe</td><td style="padding:26px 36px">Para mejorar algo conocido</td></tr>
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:26px 36px;font-weight:700;color:var(--navy)">Seis sombreros</td><td style="padding:26px 36px">Cada persona mira la idea desde un punto de vista</td><td style="padding:26px 36px">Para evaluar una idea sin discutir</td></tr>
+      <tr><td style="padding:26px 36px;font-weight:700;color:var(--navy)">Crazy 8s</td><td style="padding:26px 36px">Ocho bocetos en ocho minutos, uno por minuto</td><td style="padding:26px 36px">Para forzar cantidad y rapidez</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:var(--type-caption);color:var(--muted);margin-top:28px">Tabla 3.1. Resumen de las técnicas vistas en clase.</p>
+</section>
+
+<!-- 09 Comparativa -->
+<section data-label="Comparativa" data-notas="Dos columnas enfrentadas, una de color y otra blanca." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">3.4 Lean Startup</p>
+  <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Prototipo frente a producto mínimo viable</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:var(--gap-title);flex:1">
+    <div style="background:var(--teal);color:var(--navy);border-radius:24px;padding:56px">
+      <h3 style="font-size:var(--type-subtitle);font-weight:800">Prototipo</h3>
+      <ul style="padding:0;list-style:none;display:flex;flex-direction:column;gap:var(--gap-item);margin-top:40px;font-size:var(--type-small);line-height:1.4">
+        <li style="display:flex;gap:20px"><span style="color:var(--white)">●</span><span>Sirve para probar una idea con usuarios</span></li>
+        <li style="display:flex;gap:20px"><span style="color:var(--white)">●</span><span>Puede ser de papel, cartón o piezas de Lego</span></li>
+        <li style="display:flex;gap:20px"><span style="color:var(--white)">●</span><span>No se vende: se enseña y se tira</span></li>
+      </ul>
+    </div>
+    <div style="background:var(--white);border:3px solid var(--line);border-radius:24px;padding:56px">
+      <h3 style="font-size:var(--type-subtitle);font-weight:800;color:var(--navy)">Producto mínimo viable</h3>
+      <ul style="padding:0;list-style:none;display:flex;flex-direction:column;gap:var(--gap-item);margin-top:40px;font-size:var(--type-small);line-height:1.4">
+        <li style="display:flex;gap:20px"><span style="color:var(--coral)">●</span><span>Versión mínima que llega a clientes reales</span></li>
+        <li style="display:flex;gap:20px"><span style="color:var(--coral)">●</span><span>Funciona de verdad, aunque haga poco</span></li>
+        <li style="display:flex;gap:20px"><span style="color:var(--coral)">●</span><span>Se mide su uso y se decide si seguir o cambiar</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 10 Código: plantilla de texto -->
+<section data-label="Código" data-notas="Bloque monoespaciado oscuro (como la pantalla del portátil de la portada) para fórmulas o plantillas de texto que se rellenan. Aquí, la frase de punto de vista de The Wallet Project." style="display:grid;grid-template-columns:1fr 1.25fr;gap:96px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+  <div>
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">3.2 Definir</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy);text-wrap:balance">La frase de punto de vista</h2>
+    <p style="font-size:var(--type-small);line-height:1.5;color:var(--muted);margin-top:var(--gap-title)">Resume lo que has aprendido en la entrevista en una sola frase. La <code style="font-family:'JetBrains Mono',monospace;background:rgba(83,210,206,.25);padding:2px 12px;border-radius:8px;color:var(--navy)">necesidad</code> es un verbo, no una solución. El <code style="font-family:'JetBrains Mono',monospace;background:rgba(83,210,206,.25);padding:2px 12px;border-radius:8px;color:var(--navy)">hallazgo</code> es algo que te ha sorprendido.</p>
+  </div>
+  <div style="background:var(--dark);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 18px 40px rgba(23,36,51,.18)">
+    <div style="display:flex;align-items:center;gap:16px;padding:20px 32px;background:rgba(255,255,255,.06);font-size:var(--type-caption);color:#9FB8C2">
+      <span style="width:16px;height:16px;border-radius:50%;background:var(--coral);display:block"></span>
+      <span style="width:16px;height:16px;border-radius:50%;background:var(--yellow);display:block;margin-left:-6px"></span>
+      <span style="width:16px;height:16px;border-radius:50%;background:var(--teal);display:block;margin-left:-6px"></span>
+      <span style="margin-left:12px">plantilla — punto de vista</span>
+    </div>
+    <pre style="margin:0;padding:40px;font-family:'JetBrains Mono',monospace;font-size:var(--type-small);line-height:1.6;color:#EAF2F4;white-space:pre-wrap"><span style="color:var(--yellow)">[Nombre]</span> necesita una forma de
+<span style="color:var(--yellow)">[necesidad, con verbo]</span>
+porque / pero / sorprendentemente
+<span style="color:var(--yellow)">[hallazgo de la entrevista]</span>.
+
+<span style="color:var(--teal)">Ejemplo:</span> Marta necesita una forma de
+llevar solo lo imprescindible
+porque odia notar la cartera en el bolsillo.</pre>
+  </div>
+</section>
+
+<!-- 11 Imagen completa -->
+<section data-label="Imagen completa" data-notas="Foto a sangre con título en placa. El crédito está en la figura, a la derecha para no quedar bajo la placa." style="position:relative;padding:0;overflow:hidden;background:var(--dark)">
+  <figure class="foto credito-dcha" style="position:absolute;inset:0;border-radius:0">
+    <img src="img/sesion.jpg" alt="Sesión de prototipado en el aula" title="Imagen de muestra · elaboración propia">
+    <figcaption class="credito"><b>Sesión de prototipado</b>. Imagen de muestra, elaboración propia.</figcaption>
+  </figure>
+  <div style="position:absolute;left:var(--pad-x);bottom:var(--pad-bottom);background:var(--dark);color:var(--white);padding:40px 56px;border-radius:20px;max-width:1000px;pointer-events:none">
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--yellow);text-transform:uppercase;letter-spacing:.06em">Figura 3.4</p>
+    <h2 style="font-size:var(--type-subtitle);font-weight:800;line-height:1.15;margin-top:12px">Sesión de prototipado en el aula</h2>
+  </div>
+</section>
+
+<!-- 12 Dos imágenes -->
+<section data-label="Dos imágenes" data-notas="Dos figuras con pie, cada una con su crédito." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">3.2 Prototipar</p>
+  <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Baja y alta fidelidad</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:var(--gap-title);flex:1;min-height:0">
+    <div style="display:flex;flex-direction:column;gap:20px;min-height:0">
+      <figure class="foto" style="flex:1">
+        <img src="img/prototipo-papel.jpg" alt="Prototipo de una aplicación dibujado en papel" title="Imagen de muestra · elaboración propia">
+        <figcaption class="credito"><b>Prototipo en papel</b>. Imagen de muestra, elaboración propia.</figcaption>
+      </figure>
+      <p style="font-size:var(--type-small);line-height:1.4"><strong style="color:var(--navy)">Baja fidelidad.</strong> Papel, cartulina o Lego. Se hace en minutos y se cambia sin pena.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px;min-height:0">
+      <figure class="foto" style="flex:1">
+        <img src="img/prototipo-digital.jpg" alt="Prototipo digital de una aplicación en pantalla" title="Imagen de muestra · elaboración propia">
+        <figcaption class="credito"><b>Prototipo digital</b>. Imagen de muestra, elaboración propia.</figcaption>
+      </figure>
+      <p style="font-size:var(--type-small);line-height:1.4"><strong style="color:var(--navy)">Alta fidelidad.</strong> Pantallas navegables hechas con una herramienta de diseño. Solo cuando la idea ya está probada.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 13 Galería -->
+<section data-label="Galería" data-notas="Varias fotos en el mismo hueco. Cada elemento de la lista con data-ir salta a su foto." style="display:grid;grid-template-columns:1fr 760px;gap:96px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+  <div style="display:flex;flex-direction:column;min-width:0">
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">3.1 Empatizar</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy);text-wrap:balance">Tres herramientas para conocer al usuario</h2>
+    <p style="font-size:var(--type-small);line-height:1.5;color:var(--muted);margin-top:var(--gap-item)">Pulsa cada herramienta para ver su foto.</p>
+    <div style="display:flex;flex-direction:column;gap:22px;margin-top:var(--gap-item)">
+      <div data-ir="1" style="display:flex;gap:28px;align-items:flex-start;padding:10px 14px;margin:-10px -14px">
+        <span style="width:64px;height:64px;border-radius:50%;background:var(--blue);color:var(--white);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800;flex:none">1</span>
+        <div><p style="font-size:var(--type-small);font-weight:700;color:var(--navy);line-height:1.25">Entrevista en profundidad</p><p style="font-size:var(--type-caption);color:var(--muted);line-height:1.45;margin-top:6px">Preguntas abiertas, silencios y muchos porqués. Se graba con permiso.</p></div>
+      </div>
+      <div data-ir="2" style="display:flex;gap:28px;align-items:flex-start;padding:10px 14px;margin:-10px -14px">
+        <span style="width:64px;height:64px;border-radius:50%;background:var(--blue);color:var(--white);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800;flex:none">2</span>
+        <div><p style="font-size:var(--type-small);font-weight:700;color:var(--navy);line-height:1.25">Los cinco porqués</p><p style="font-size:var(--type-caption);color:var(--muted);line-height:1.45;margin-top:6px">Preguntar por qué cinco veces seguidas hasta llegar a la causa de fondo.</p></div>
+      </div>
+      <div data-ir="3" style="display:flex;gap:28px;align-items:flex-start;padding:10px 14px;margin:-10px -14px">
+        <span style="width:64px;height:64px;border-radius:50%;background:var(--blue);color:var(--white);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800;flex:none">3</span>
+        <div><p style="font-size:var(--type-small);font-weight:700;color:var(--navy);line-height:1.25">Mapa de empatía</p><p style="font-size:var(--type-caption);color:var(--muted);line-height:1.45;margin-top:6px">Qué piensa, oye, ve, dice y hace, y qué le cuesta y qué quiere conseguir.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="galeria">
+    <figure class="foto" data-pie="<b>Figura 3.5.</b> Entrevista en profundidad: dos personas preguntan, una toma notas.">
+      <img src="img/entrevista.jpg" alt="Entrevista en profundidad a un usuario" title="Imagen de muestra · elaboración propia">
+      <figcaption class="credito"><b>Entrevista</b>. Imagen de muestra, elaboración propia.</figcaption>
+    </figure>
+    <figure class="foto" data-pie="<b>Figura 3.6.</b> Los cinco porqués encadenados en una hoja.">
+      <img src="img/cinco-porques.jpg" alt="Hoja con la cadena de los cinco porqués" title="Imagen de muestra · elaboración propia">
+      <figcaption class="credito"><b>Cinco porqués</b>. Imagen de muestra, elaboración propia.</figcaption>
+    </figure>
+    <figure class="foto" data-pie="<b>Figura 3.7.</b> Mapa de empatía con sus seis zonas rellenadas con notas adhesivas.">
+      <img src="img/mapa-empatia.jpg" alt="Mapa de empatía rellenado con notas adhesivas" title="Imagen de muestra · elaboración propia">
+      <figcaption class="credito"><b>Mapa de empatía</b>. Imagen de muestra, elaboración propia.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 14 Vídeo -->
+<section data-label="Vídeo" data-notas="Vídeo embebido. Sustituir la URL del iframe y anotar duración y hasta qué minuto se ve." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:grid;grid-template-columns:minmax(0,1fr) 560px;gap:80px">
+  <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
+    <div style="flex:1;background:var(--dark);border-radius:20px;overflow:hidden;position:relative">
+      <iframe src="https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ" title="Vídeo de la unidad" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+    </div>
+    <p style="font-size:var(--type-caption);color:var(--muted)">Vídeo 3.1. Sustituir por el enlace de inserción del vídeo (YouTube, Vimeo o archivo propio).</p>
+  </div>
+  <div>
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">3.2 Vídeo</p>
+    <h2 style="font-size:var(--type-subtitle);font-weight:800;line-height:1.15;margin-top:20px;color:var(--navy);text-wrap:balance">Un equipo prototipa en cinco minutos</h2>
+    <p style="font-size:var(--type-small);line-height:1.5;color:var(--muted);margin-top:var(--gap-item)">Fíjate en cuántas veces cambian el prototipo después de enseñárselo al usuario. Al terminar lo comentamos.</p>
+    <ul style="padding:0;list-style:none;display:flex;flex-direction:column;gap:20px;margin-top:var(--gap-title);font-size:var(--type-small);line-height:1.4">
+      <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">—</span><span>Duración: 5 min</span></li>
+      <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">—</span><span>Ver hasta el minuto 3:40</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 15 Quiz -->
+<section data-label="Quiz" data-notas="Pregunta de opción múltiple. data-correct es el índice de la opción correcta, empezando en 0." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:grid;grid-template-columns:1fr 1.2fr;gap:96px;align-items:center;position:relative;overflow:hidden">
+  <span class="mancha arriba-dcha" style="width:380px;color:var(--pink)"></span>
+  <div class="quiz" data-correct="2" data-ok="Correcto. En la fase de prototipado se construye algo que el usuario pueda probar." data-ko="No. Piensa en qué fase se construye algo con las manos." style="display:contents">
+    <div style="position:relative">
+      <span class="pill">Comprueba lo aprendido</span>
+      <h2 style="font-size:var(--type-subtitle);font-weight:800;line-height:1.2;margin-top:32px;color:var(--navy);text-wrap:balance">¿En qué fase del Design Thinking se construye algo que el usuario pueda probar?</h2>
+      <p class="quiz-fb">Selecciona una opción.</p>
+      <button class="btn btn-ghost quiz-reset" style="margin-top:var(--gap-item)">Reiniciar</button>
+    </div>
+    <div class="quiz-opts" style="position:relative">
+      <button class="quiz-opt"><span class="letra">A</span><span>Empatizar</span></button>
+      <button class="quiz-opt"><span class="letra">B</span><span>Definir</span></button>
+      <button class="quiz-opt"><span class="letra">C</span><span>Prototipar</span></button>
+      <button class="quiz-opt"><span class="letra">D</span><span>Testear</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- 16 Pregunta a la clase (texto) -->
+<section data-label="Pregunta a la clase" data-notas="Lanzar la pregunta, dejar que respondan y revelar las ideas del profesor. Las ideas del panel son opiniones para el debate, no materia de examen." style="display:grid;grid-template-columns:1fr 1.1fr;gap:96px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);align-items:center">
+  <div>
+    <img class="icono" src="../assets/question.png" alt="">
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;margin-top:var(--gap-item)">Pregunta a la clase</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.12;margin-top:20px;color:var(--navy);text-wrap:balance">¿Qué producto o servicio os ha cambiado la vida en los últimos cinco años?</h2>
+    <p style="font-size:var(--type-small);line-height:1.5;color:var(--muted);margin-top:var(--gap-item)">Pensad en algo que ahora usáis a diario y que hace cinco años no existía o no usabais.</p>
+  </div>
+  <div class="revela">
+    <div class="revela-cuerpo">
+      <p style="font-size:var(--type-caption);font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Ideas</p>
+      <ul style="list-style:none;padding:0;margin-top:24px;display:flex;flex-direction:column;gap:22px;font-size:var(--type-body);line-height:1.35">
+        <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">●</span><span><b>Pagar con el móvil</b>: la cartera se queda en casa.</span></li>
+        <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">●</span><span><b>Asistentes de IA</b>: escribir, resumir y programar con ayuda.</span></li>
+        <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">●</span><span><b>Entrega en el mismo día</b>: comprar hoy y tenerlo hoy.</span></li>
+        <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">●</span><span><b>Vídeo corto</b>: la forma en que se descubre música, noticias y productos.</span></li>
+      </ul>
+    </div>
+    <button class="btn btn-primary revela-btn">Ver ideas</button>
+  </div>
+</section>
+
+<!-- 17 Pregunta a la clase (imagen) -->
+<section data-label="Pregunta a la clase (imagen)" data-notas="Variante con una cifra o imagen como respuesta. Dato de la guía del facilitador de The Wallet Project (d.school, Stanford)." style="display:flex;flex-direction:column;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);gap:var(--gap-title)">
+  <div style="display:flex;align-items:center;gap:40px">
+    <img class="icono" src="../assets/question.png" alt="" style="flex:none;width:120px;height:120px">
+    <div>
+      <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Pregunta a la clase</p>
+      <h2 style="font-size:var(--type-subtitle);font-weight:800;line-height:1.15;margin-top:12px;color:var(--navy);text-wrap:balance">¿Cuánto se tarda en recorrer las cinco fases con The Wallet Project?</h2>
+    </div>
+  </div>
+  <div class="revela" style="flex:1;min-height:0">
+    <div class="revela-cuerpo" style="height:100%;display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:center">
+      <figure class="foto">
+        <img src="img/prototipo-papel.jpg" alt="Prototipo de cartera hecho con papel y cinta" title="Imagen de muestra · elaboración propia">
+        <figcaption class="credito"><b>Prototipo de cartera</b>. Imagen de muestra, elaboración propia.</figcaption>
+      </figure>
+      <div>
+        <p style="font-size:var(--type-hero);font-weight:800;color:var(--navy);line-height:1;letter-spacing:-.02em">1 hora</p>
+        <p style="font-size:var(--type-small);color:var(--muted);line-height:1.5;margin-top:20px">Nueve pasos cronometrados, 56 minutos en total, más la puesta en común. Es lo primero que haremos en esta unidad.</p>
+      </div>
+    </div>
+    <button class="btn btn-primary revela-btn">Revelar</button>
+  </div>
+</section>
+
+<!-- 18 Cifra destacada -->
+<section data-label="Cifra destacada" data-notas="Dato destacado en grande, con dos datos secundarios." style="display:grid;grid-template-columns:1fr 1fr;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);align-items:center;gap:120px">
+  <div>
+    <p style="font-size:220px;font-weight:800;line-height:1;color:var(--blue);letter-spacing:-.04em">9</p>
+    <p style="font-size:var(--type-subtitle);font-weight:700;color:var(--navy);margin-top:16px">Bloques del Business Model Canvas</p>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:var(--gap-item)">
+    <p style="font-size:var(--type-body);line-height:1.5">Un lienzo de una página que describe cómo una empresa crea valor, a quién se lo entrega y cómo gana dinero con ello.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+      <div style="background:var(--white);border-radius:20px;padding:36px;box-shadow:0 2px 0 var(--line)"><p style="font-size:var(--type-title);font-weight:800;color:var(--navy)">5</p><p style="font-size:var(--type-caption);color:var(--muted);margin-top:8px">Fases del Design Thinking</p></div>
+      <div style="background:var(--white);border-radius:20px;padding:36px;box-shadow:0 2px 0 var(--line)"><p style="font-size:var(--type-title);font-weight:800;color:var(--navy)">3</p><p style="font-size:var(--type-caption);color:var(--muted);margin-top:8px">Pasos del ciclo Lean: crear, medir, aprender</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 19 Cita -->
+<section data-label="Cita" data-notas="Cita literal con su fuente. Aquí, las orientaciones metodológicas del currículo." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden">
+  <span class="mancha abajo-izq" style="width:560px;color:var(--yellow)"></span>
+  <span class="mancha arriba-dcha" style="width:360px;color:var(--teal)"></span>
+  <span style="position:relative;font-size:200px;line-height:.6;color:var(--coral);font-weight:800">“</span>
+  <p style="position:relative;font-size:var(--type-subtitle);font-weight:600;line-height:1.35;max-width:1500px;margin-top:40px;color:var(--navy);text-wrap:pretty">Se recomienda que el desarrollo de las clases sea principalmente práctico.</p>
+  <p style="position:relative;font-size:var(--type-small);color:var(--muted);margin-top:var(--gap-title)">ORDEN EDU/411/2025, de 15 de abril · Currículo del módulo Innovación Aplicada al Sector Productivo, orientaciones pedagógicas</p>
+</section>
+
+<!-- 20 Ejercicio -->
+<section data-label="Ejercicio" data-notas="Sesión de práctica. Enunciado para el alumno y ficha con duración, modalidad, entrega y material." style="display:grid;grid-template-columns:1fr 1fr;gap:96px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+  <div>
+    <span class="pill">Práctica 3.2</span>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:32px;color:var(--navy);text-wrap:balance">Design Thinking, parte 1: empatizar y definir</h2>
+    <p style="font-size:var(--type-body);line-height:1.5;margin-top:var(--gap-title)">Con vuestro reto elegido, entrevistad a dos personas que lo vivan, rellenad el mapa de empatía y escribid el reto como una pregunta que empiece por «¿Cómo podríamos…?».</p>
+  </div>
+  <div style="background:var(--white);border-radius:24px;padding:56px;display:flex;flex-direction:column;gap:40px;box-shadow:0 2px 0 var(--line)">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;font-size:var(--type-small)">
+      <div><p style="color:var(--muted);font-size:var(--type-caption)">Duración</p><p style="font-weight:700;color:var(--navy);margin-top:6px">1 sesión (2 h)</p></div>
+      <div><p style="color:var(--muted);font-size:var(--type-caption)">Modalidad</p><p style="font-weight:700;color:var(--navy);margin-top:6px">Equipos de 3 o 4</p></div>
+      <div><p style="color:var(--muted);font-size:var(--type-caption)">Entrega</p><p style="font-weight:700;color:var(--navy);margin-top:6px">Mapa de empatía y reto definido</p></div>
+      <div><p style="color:var(--muted);font-size:var(--type-caption)">Material</p><p style="font-weight:700;color:var(--navy);margin-top:6px">Plantilla, notas adhesivas y rotuladores</p></div>
+    </div>
+    <div style="height:2px;background:var(--line)"></div>
+    <ol style="padding:0;list-style:none;display:flex;flex-direction:column;gap:20px;font-size:var(--type-small);line-height:1.4">
+      <li style="display:flex;gap:20px"><span style="font-weight:800;color:var(--blue)">1.</span><span>Entrevistad a dos personas, 10 minutos cada una</span></li>
+      <li style="display:flex;gap:20px"><span style="font-weight:800;color:var(--blue)">2.</span><span>Rellenad el mapa de empatía con lo que habéis oído</span></li>
+      <li style="display:flex;gap:20px"><span style="font-weight:800;color:var(--blue)">3.</span><span>Escribid el reto y enseñádselo al profesor antes de idear</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 21 Nota -->
+<section data-label="Nota" data-notas="Advertencia o norma importante." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
+  <img class="icono" src="../assets/exclamation.png" alt="">
+  <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:var(--gap-title);color:var(--navy);max-width:1300px;text-wrap:balance">En esta práctica las ideas las genera el equipo</h2>
+  <p style="font-size:var(--type-body);line-height:1.5;color:var(--muted);margin-top:var(--gap-item);max-width:1200px;text-wrap:pretty">La inteligencia artificial no se usa en clase salvo que se indique expresamente. Si se pide, se dice en el enunciado y se entrega también el prompt.</p>
+</section>
+
+<!-- 22 Resumen -->
+<section data-label="Resumen" data-notas="Ideas clave de la unidad, una tarjeta por idea." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Unidad 3</p>
+  <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Resumen de la unidad</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:var(--gap-title)">
+    <div style="display:flex;gap:28px;align-items:flex-start;background:var(--white);border-radius:20px;padding:36px 40px;box-shadow:0 2px 0 var(--line)"><span style="width:64px;height:64px;border-radius:16px;background:var(--coral);color:var(--white);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800;flex:none">01</span><p style="font-size:var(--type-body);line-height:1.35;color:var(--navy)">Design Thinking empieza por la persona: empatizar y definir antes de idear.</p></div>
+    <div style="display:flex;gap:28px;align-items:flex-start;background:var(--white);border-radius:20px;padding:36px 40px;box-shadow:0 2px 0 var(--line)"><span style="width:64px;height:64px;border-radius:16px;background:var(--teal);color:var(--navy);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800;flex:none">02</span><p style="font-size:var(--type-body);line-height:1.35;color:var(--navy)">Un prototipo barato y probado vale más que una idea perfecta sin probar.</p></div>
+    <div style="display:flex;gap:28px;align-items:flex-start;background:var(--white);border-radius:20px;padding:36px 40px;box-shadow:0 2px 0 var(--line)"><span style="width:64px;height:64px;border-radius:16px;background:var(--yellow);color:var(--navy);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800;flex:none">03</span><p style="font-size:var(--type-body);line-height:1.35;color:var(--navy)">Lean Startup: crear un producto mínimo, medir su uso y aprender antes de invertir más.</p></div>
+    <div style="display:flex;gap:28px;align-items:flex-start;background:var(--white);border-radius:20px;padding:36px 40px;box-shadow:0 2px 0 var(--line)"><span style="width:64px;height:64px;border-radius:16px;background:var(--pink);color:var(--navy);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800;flex:none">04</span><p style="font-size:var(--type-body);line-height:1.35;color:var(--navy)">El Business Model Canvas resume en una página cómo la idea crea valor y gana dinero.</p></div>
+  </div>
+</section>
+
+<!-- 23 Recursos -->
+<section data-label="Recursos" data-notas="Bibliografía y enlaces." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:grid;grid-template-columns:1fr 1.4fr;gap:120px">
+  <div>
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Para ampliar</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Recursos y bibliografía</h2>
+  </div>
+  <ul style="padding:0;list-style:none;display:flex;flex-direction:column;font-size:var(--type-small);line-height:1.4">
+    <li style="display:grid;grid-template-columns:200px 1fr;gap:32px;padding:28px 0;border-bottom:2px solid var(--line)"><span style="font-weight:700;color:var(--blue)">Taller</span><span>The Wallet Project, guía del facilitador y hoja del participante. d.school, Universidad de Stanford. CC BY-NC-SA.</span></li>
+    <li style="display:grid;grid-template-columns:200px 1fr;gap:32px;padding:28px 0;border-bottom:2px solid var(--line)"><span style="font-weight:700;color:var(--blue)">Lienzo</span><span>Business Model Canvas. Strategyzer AG. CC BY-SA 3.0.</span></li>
+    <li style="display:grid;grid-template-columns:200px 1fr;gap:32px;padding:28px 0"><span style="font-weight:700;color:var(--blue)">Normativa</span><span>ORDEN EDU/411/2025, de 15 de abril. Currículo del módulo CL32.</span></li>
+  </ul>
+</section>
+
+<!-- 24 Cierre -->
+<section data-label="Cierre" data-notas="Cierre de sesión." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden">
+  <span class="mancha arriba-dcha" style="width:560px;color:var(--coral)"></span>
+  <span class="mancha abajo-izq" style="width:760px;color:var(--teal)"></span>
+  <div style="display:flex;align-items:center;gap:20px;position:relative">
+    <span style="width:20px;height:20px;border-radius:50%;background:var(--coral);display:block"></span>
+    <span style="font-size:var(--type-small);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--navy)">Fin de la unidad 3</span>
+  </div>
+  <h1 style="font-size:var(--type-hero);font-weight:800;line-height:1.02;letter-spacing:-.02em;max-width:1400px;position:relative;color:var(--navy)">Dudas y preguntas</h1>
+  <div style="display:flex;gap:56px;font-size:var(--type-caption);color:var(--navy);font-weight:600;position:relative">
+    <span>Próxima sesión: UT 4. Análisis de casos y propuestas de innovación</span>
+    <span>Classroom · Materiales de la unidad</span>
+  </div>
+</section>
+
+</deck-stage>
+<script src="../assets/deck-stage.js"></script>
+<script src="../assets/iasp.js"></script>
+</body>
+</html>
