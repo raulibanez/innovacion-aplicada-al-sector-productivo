@@ -42,15 +42,14 @@ Todas las fotografías proceden de Wikimedia Commons. Los datos de autor y licen
 - **Tamaño final:** 262 KB (268.248 bytes)
 - **Descripción:** Cadena de montaje de motores en la factoría de Renault en Valladolid. Fotograma de un vídeo de la Junta de Castilla y León (2018).
 
-## agricultura-precision.jpg
+## exoesqueleto-marsi.jpg
 
-- **Título original en Commons:** File:Tractor, Trijueque.jpg
-- **Autor:** Gobierno de Castilla-La Mancha
-- **Página del archivo:** https://commons.wikimedia.org/wiki/File:Tractor,_Trijueque.jpg
-- **Licencia:** CC BY-SA 2.0 — https://creativecommons.org/licenses/by-sa/2.0
-- **Tratamiento:** Reducida de 5712×4284 px a 1600×1200 px; sin recortar; recomprimida (JPEG calidad 74).
-- **Tamaño final:** 375 KB (383.625 bytes)
-- **Descripción:** Tractor en una explotación de Trijueque (Guadalajara) beneficiaria de la línea de ayudas de Agricultura de Precisión de la JCCM (24-04-2024). No hay en Commons con licencia libre imágenes de agricultura de precisión (dron/GPS) localizadas en Castilla y León.
+- **Origen:** imagen de producto del exoesqueleto pediátrico ATLAS 2030 publicada por Marsi Bionics en su web (https://marsibionics.com/wp-content/uploads/2023/12/atlas2.png).
+- **Autor:** Marsi Bionics (imagen promocional).
+- **Licencia:** ninguna licencia libre. © Marsi Bionics. Se usa con fines educativos sin ánimo de lucro y así se indica en la figura; no está cubierta por la licencia CC BY-SA de la presentación.
+- **Tratamiento:** PNG con fondo transparente (595×829 px) colocado centrado sobre un lienzo blanco de 1600×1200 px y guardado como JPEG (calidad 90).
+- **Tamaño final:** 98 KB (100.722 bytes)
+- **Descripción:** Exoesqueleto ATLAS 2030 con su andador, sin niño. Sustituye a agricultura-precision.jpg (caso Tabuenca) desde el 12/09/2026.
 
 ## mercadona.jpg
 
@@ -95,6 +94,6 @@ Todas las fotografías proceden de Wikimedia Commons. Los datos de autor y licen
 
 ## Observaciones
 
-- **agricultura-precision.jpg:** no es un dron ni un tractor con GPS visible; es la imagen más cercana al tema localizada en España con licencia libre (visita oficial a una explotación subvencionada por la línea de Agricultura de Precisión). Alternativas libres pero fuera de España: `File:Agricultural drone spraying on paddy field.jpg` (CC BY-SA 4.0, India) o `File:Secretary Vilsack at Farm Progress Show (20220831-OSEC-LSC-0246).jpg` (dominio público, USDA, tractor autónomo).
+- **exoesqueleto-marsi.jpg:** en Wikimedia Commons no hay ninguna foto del exoesqueleto; solo retratos de Elena García Armada (`File:Elena García Armada.jpg`, Jon Jauregi, CC BY-SA 4.0, sin el aparato). La sala de prensa de Marsi Bionics tiene fotos de niños usándolo (https://marsibionics.com/media-center/), descartadas por mostrar a menores identificables. Se usa la imagen de producto, como con el AI Pin.
 - **renault-valladolid.jpg:** la única imagen del interior de la factoría es un fotograma de vídeo de 1100×731 px (no llega a 1600 px). Para el exterior existe `File:Valladolid - Renault 2.jpg` (CC BY 4.0, Mirix202, 1505×541 px, acceso a la fábrica).
 - **hp-impresora.jpg:** también hay imágenes del Parque Tecnológico de León (CC BY-SA 4.0, autores Derwydd y Pablox) por si se prefiere el enfoque local.

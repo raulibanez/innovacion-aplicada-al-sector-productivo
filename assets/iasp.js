@@ -68,7 +68,7 @@
       por: 'Es un producto nuevo que pretendía cambiar el mercado, aunque fracasara: radical no significa que tenga éxito.' },
     { texto: 'Google Stadia permite jugar a videojuegos en la nube sin consola ni ordenador potente (2019). Cierra en 2023.',
       area: ['Producto o servicio'], impacto: ['Disruptiva', 'Radical'], objetivo: ['Tecnológica'],
-      por: 'Proponía un modelo de negocio distinto, jugar por suscripción sin comprar hardware; tampoco tuvo éxito.' },
+      por: 'Proponía un modelo distinto: jugar en la nube sin comprar consola ni ordenador potente. Tampoco tuvo éxito.' },
     { texto: 'Una tienda de informática de barrio empieza a vender por WhatsApp, con catálogo y pago dentro del chat.',
       area: ['Marketing y canal'], impacto: ['Incremental'], objetivo: ['Tecnológica'],
       por: 'El producto es el mismo; cambia cómo se vende y por dónde; es una mejora pequeña apoyada en tecnología.' },
