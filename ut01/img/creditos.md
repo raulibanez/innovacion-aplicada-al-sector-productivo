@@ -88,6 +88,16 @@ Todas las fotografías proceden de Wikimedia Commons. Los datos de autor y licen
 - **Licencia:** ninguna licencia libre. © Humane. Se usa con fines educativos sin ánimo de lucro y así se indica en la figura; no está cubierta por la licencia CC BY-SA de la presentación.
 - **Tratamiento:** reducida a 1600 px de ancho y recomprimida.
 
+## john-deere-r41.jpg
+
+- **Título original en Commons:** File:John Deere, Agritechnica 2023, Hanover (P1160403-RR).jpg
+- **Autor:** Matti Blume
+- **Página del archivo:** https://commons.wikimedia.org/wiki/File:John_Deere,_Agritechnica_2023,_Hanover_(P1160403-RR).jpg
+- **Licencia:** CC BY-SA 4.0 — https://creativecommons.org/licenses/by-sa/4.0
+- **Tratamiento:** Reducida de 4608×3456 px a 1600×1200 px; sin recortar; recomprimida (JPEG calidad 72); sin EXIF.
+- **Tamaño final:** 444 KB
+- **Descripción:** Pulverizador autopropulsado John Deere R41 en el stand de John Deere en Agritechnica 2023 (Hannover). Ilustra el caso See & Spray (quinta tarjeta de la galería, figura 1.6). No hay en Commons fotos del sistema See & Spray en uso; el R41 es uno de los modelos en los que se monta.
+
 ## No conseguidas con licencia libre
 
 - **aipin.jpg (Humane AI Pin):** no existe en Wikimedia Commons ninguna fotografía del Humane AI Pin con licencia libre (búsquedas «Humane», «AI Pin», «Humane AI Pin wearable», intitle:"Ai Pin"; ninguna coincidencia). No se ha descargado nada.

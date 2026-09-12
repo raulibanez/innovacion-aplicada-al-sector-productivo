@@ -78,6 +78,9 @@
     { texto: 'Una empresa reacondiciona ordenadores usados y los vende con garantía de dos años.',
       area: ['Producto o servicio', 'Proceso'], impacto: ['Incremental'], objetivo: ['Ambiental', 'Tecnológica'],
       por: 'Ofrece un producto nuevo (el reacondicionado) con un proceso propio; su objetivo principal es alargar la vida de los equipos.' },
+    { texto: 'John Deere vende un pulverizador con cámaras e inteligencia artificial que solo fumiga donde detecta mala hierba: la mitad de herbicida (2025).',
+      area: ['Producto o servicio'], impacto: ['Incremental', 'Radical'], objetivo: ['Ambiental', 'Tecnológica'],
+      por: 'Es una función nueva de un producto que ya existía, el pulverizador; para el agricultor cambia mucho, por eso vale radical; su objetivo principal es gastar menos herbicida.' },
     { texto: 'Un centro de salud permite hacer la consulta por videollamada en vez de ir presencialmente.',
       area: ['Producto o servicio', 'Proceso'], impacto: ['Incremental'], objetivo: ['Social', 'Tecnológica'],
       por: 'Cambia el servicio que recibe el paciente y cómo se organiza la consulta; busca el bienestar de las personas.' }
