@@ -30,7 +30,7 @@ En `assets/iasp.js` están los generadores de ejercicios. Se insertan en una dia
 
 Cada ejercicio tiene los botones Comprobar, Pista, Resolver y Otro ejercicio, y cuenta los aciertos seguidos. Tipos disponibles:
 
-- `clasificar`: un caso al azar y tres desplegables (según el área, el impacto y el objetivo).
+- `clasificar`: un caso al azar y tres desplegables (según el área, el impacto y el objetivo). Con `data-banco` y `data-campos` se le dan otro banco y otros campos de `IASP.campos` (en la UT2: `data-banco="tecnologia" data-campos="tecnologia,efecto,areaEmpresa"`); `data-enunciado` y `data-consejo` cambian el enunciado y el consejo que se muestra al fallar.
 - `emparejar`: siete casos y las siete fuentes de oportunidad de Drucker.
 - `caso`: un caso breve, la pauta de éxito o fracaso que se cumple y una respuesta razonada que se revela.
 

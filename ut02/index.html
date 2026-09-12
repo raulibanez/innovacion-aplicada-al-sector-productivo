@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UT2 · Innovación, sostenibilidad y transformación digital · IASP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/iasp.css">
+</head>
+<body>
+<deck-stage width="1920" height="1080">
+
+<!-- 01 Portada de unidad -->
+<section data-label="UT2 · Portada" data-notas="Sesión 1. Tres sesiones: hoy teoría (efectos, estrategia y tecnologías emergentes) y sorteo de tecnologías al final; la segunda entera de práctica (montaje de la presentación); la tercera, exposiciones, transformación digital y prueba corta. Si las sesiones 2 y 3 son conjuntas con el otro grupo, los equipos son mixtos: decirlo hoy para que vengan con la idea. No se nombra ningún ciclo en las diapositivas." style="display:flex;flex-direction:column;justify-content:flex-end;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);position:relative;overflow:hidden">
+  <span class="mancha arriba-dcha" style="width:640px;color:var(--coral)"></span>
+  <span class="mancha abajo-izq" style="width:720px;color:var(--teal)"></span>
+  <span class="mancha abajo-izq volteada" style="width:420px;color:var(--yellow)"></span>
+  <p style="position:relative;font-size:180px;font-weight:800;line-height:1;color:var(--coral);letter-spacing:-.04em">UT 2</p>
+  <h1 style="position:relative;font-size:var(--type-title);font-weight:800;line-height:1.12;max-width:1100px;margin-top:24px;color:var(--navy);text-wrap:balance">Innovación, sostenibilidad y transformación digital</h1>
+  <p style="position:relative;font-size:var(--type-body);color:var(--muted);margin-top:32px;max-width:1000px;line-height:1.4">Qué cambia la innovación en una empresa, quién lo decide y con qué tecnologías.</p>
+  <p class="pista-teclas" style="position:relative;margin-top:72px"><kbd>←</kbd><kbd>→</kbd> para moverte <span class="sep">·</span> <kbd>P</kbd> pantalla completa <span class="sep">·</span> rueda del ratón o clic en el índice</p>
+</section>
+
+<!-- 02 Índice -->
+<section data-label="Índice" data-notas="Recorrido de la unidad. Insistir en que la segunda sesión es entera de práctica y que la tercera se va casi toda en exposiciones y prueba. Las tecnologías se sortean al final de la primera sesión." style="display:grid;grid-template-columns:1fr 1.4fr;gap:120px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+  <div>
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Unidad 2</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Contenidos de la unidad</h2>
+    <p style="font-size:var(--type-small);color:var(--muted);line-height:1.5;margin-top:var(--gap-title)">Tres sesiones: la primera de teoría, la segunda entera de práctica en equipo y la tercera de exposiciones, un bloque corto de teoría y la prueba.</p>
+  </div>
+  <ol style="list-style:none;padding:0;display:flex;flex-direction:column">
+    <li style="border-bottom:2px solid var(--line);font-size:var(--type-body)"><a class="indice-enlace" href="#efectos"><span style="font-weight:800;color:var(--blue)">2.1</span><span>Qué cambia la innovación: eficiencia, calidad y sostenibilidad</span></a></li>
+    <li style="border-bottom:2px solid var(--line);font-size:var(--type-body)"><a class="indice-enlace" href="#estrategia"><span style="font-weight:800;color:var(--blue)">2.2</span><span>Estrategia, áreas de la empresa y adaptación al cambio</span></a></li>
+    <li style="border-bottom:2px solid var(--line);font-size:var(--type-body)"><a class="indice-enlace" href="#tecnologias"><span style="font-weight:800;color:var(--blue)">2.3</span><span>Tecnologías emergentes</span></a></li>
+    <li style="border-bottom:2px solid var(--line);font-size:var(--type-body)"><a class="indice-enlace" href="#practica-2-4"><span style="font-weight:800;color:var(--blue)">2.4</span><span><span class="pill-mini">Práctica</span>Presentación de una tecnología emergente</span></a></li>
+    <li style="border-bottom:2px solid var(--line);font-size:var(--type-body)"><a class="indice-enlace" href="#practica-2-5"><span style="font-weight:800;color:var(--blue)">2.5</span><span><span class="pill-mini">Práctica</span>Exposiciones</span></a></li>
+    <li style="border-bottom:2px solid var(--line);font-size:var(--type-body)"><a class="indice-enlace" href="#transformacion"><span style="font-weight:800;color:var(--blue)">2.6</span><span>Transformación digital e Industria 5.0</span></a></li>
+    <li style="font-size:var(--type-body)"><a class="indice-enlace" href="#prueba"><span style="font-weight:800;color:var(--blue)">2.7</span><span><span class="pill-mini">Prueba</span>Prueba corta</span></a></li>
+  </ol>
+</section>
+
+<!-- 03 Objetivos -->
+<section data-label="Qué vas a saber hacer" data-notas="Los cuatro criterios de evaluación del RA2 en lenguaje de alumno. Son las seis preguntas de la práctica: a) eficiencia, calidad y sostenibilidad; b) área y estrategia; c) qué pasa si no se adopta; d) qué es la tecnología y un caso real." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Resultado de aprendizaje 2</p>
+  <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Qué vas a saber hacer</h2>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:var(--gap-title)">
+    <div style="background:var(--white);border-radius:20px;padding:40px 36px;display:flex;flex-direction:column;gap:20px;box-shadow:0 2px 0 var(--line)">
+      <span style="width:64px;height:64px;border-radius:16px;background:var(--coral);color:var(--white);display:grid;place-items:center;font-size:var(--type-small);font-weight:800">a</span>
+      <p style="font-size:var(--type-small);font-weight:700;line-height:1.25;color:var(--navy)">Decir qué mejora una innovación en una empresa</p>
+      <p style="font-size:22px;color:var(--muted);line-height:1.45">Si hace las cosas con menos (eficiencia), mejor (calidad) o más limpias (sostenibilidad), y cómo se mide.</p>
+    </div>
+    <div style="background:var(--white);border-radius:20px;padding:40px 36px;display:flex;flex-direction:column;gap:20px;box-shadow:0 2px 0 var(--line)">
+      <span style="width:64px;height:64px;border-radius:16px;background:var(--teal);color:var(--navy);display:grid;place-items:center;font-size:var(--type-small);font-weight:800">b</span>
+      <p style="font-size:var(--type-small);font-weight:700;line-height:1.25;color:var(--navy)">Explicar cómo cambia la innovación la estrategia y las áreas de una empresa</p>
+      <p style="font-size:22px;color:var(--muted);line-height:1.45">Dirección, personas, producción, ventas y administración.</p>
+    </div>
+    <div style="background:var(--white);border-radius:20px;padding:40px 36px;display:flex;flex-direction:column;gap:20px;box-shadow:0 2px 0 var(--line)">
+      <span style="width:64px;height:64px;border-radius:16px;background:var(--yellow);color:var(--navy);display:grid;place-items:center;font-size:var(--type-small);font-weight:800">c</span>
+      <p style="font-size:var(--type-small);font-weight:700;line-height:1.25;color:var(--navy)">Explicar por qué una empresa que no cambia pierde competitividad</p>
+      <p style="font-size:22px;color:var(--muted);line-height:1.45">Y cómo se adapta a los cambios de clientes, tecnología, competencia y normas.</p>
+    </div>
+    <div style="background:var(--white);border-radius:20px;padding:40px 36px;display:flex;flex-direction:column;gap:20px;box-shadow:0 2px 0 var(--line)">
+      <span style="width:64px;height:64px;border-radius:16px;background:var(--pink);color:var(--navy);display:grid;place-items:center;font-size:var(--type-small);font-weight:800">d</span>
+      <p style="font-size:var(--type-small);font-weight:700;line-height:1.25;color:var(--navy)">Reconocer las tecnologías emergentes y decir qué pueden cambiar en una empresa</p>
+      <p style="font-size:22px;color:var(--muted);line-height:1.45">Doce tecnologías, con un caso real de 2025-26 cada una.</p>
+    </div>
+  </div>
+  <p style="font-size:var(--type-caption);color:var(--muted);margin-top:24px">Son los cuatro criterios de evaluación del RA2 (ORDEN EDU/411/2025), en nuestras palabras.</p>
+</section>
+
+<!-- 04 Pregunta a la clase: qué es ser eficiente -->
+<section data-label="2.1 · ¿Qué hace eficiente a una empresa?" data-seccion="2.1" data-deck-id="efectos" data-deck-section="2.1" data-notas="Recoger respuestas en la pizarra. Eficiente es conseguir el mismo resultado con menos recursos: rápida y barata son partes de eso. Que no falle es calidad, que es otra cosa y se ve en la diapositiva 8." style="display:grid;grid-template-columns:1fr 1.1fr;gap:96px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);align-items:center">
+  <div>
+    <img class="icono" src="../assets/question.png" alt="">
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;margin-top:var(--gap-item)">Pregunta a la clase</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.12;margin-top:20px;color:var(--navy);text-wrap:balance">¿Qué hace que una empresa sea «eficiente»?</h2>
+    <p style="font-size:var(--type-small);line-height:1.5;color:var(--muted);margin-top:var(--gap-item)">Pensad en una tienda, un taller o una residencia que conozcáis. ¿Qué diríais de ella si fuera eficiente?</p>
+  </div>
+  <div class="revela">
+    <div class="revela-cuerpo">
+      <p style="font-size:var(--type-caption);font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Respuestas típicas</p>
+      <ul style="list-style:none;padding:0;margin-top:24px;display:flex;flex-direction:column;gap:22px;font-size:var(--type-body);line-height:1.35">
+        <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">●</span><span><b>«Que sea rápida».</b> Es una parte: hacer lo mismo en menos tiempo.</span></li>
+        <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">●</span><span><b>«Que sea barata».</b> Otra parte: hacer lo mismo gastando menos dinero, energía o material.</span></li>
+        <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">●</span><span><b>«Que no falle».</b> Eso es calidad, que es otra cosa. Una empresa puede ser rápida y barata y hacerlo mal.</span></li>
+      </ul>
+      <p style="font-size:var(--type-small);line-height:1.45;margin-top:24px;color:var(--navy)"><b>Eficiente</b> es conseguir el mismo resultado con menos recursos.</p>
+    </div>
+    <button class="btn btn-primary revela-btn">Ver respuestas</button>
+  </div>
+</section>
+
+<!-- 05 Tabla: los sectores productivos -->
+<section data-label="2.1 · Los sectores productivos" data-seccion="2.1" data-notas="La UT1 remitió aquí la clasificación de sectores. Los tres clásicos son los de cualquier manual de economía; el cuaternario y el quinario los añaden algunos autores y el libro. El sector informático se coloca en el terciario (servicios) o en el cuaternario (tecnología e información) según la clasificación; los cuidados, en el terciario (servicios sociales y sanitarios). No se examina la frontera entre cuaternario y quinario." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Eficiencia, calidad y sostenibilidad</p>
+  <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Los sectores productivos</h2>
+  <table style="width:100%;border-collapse:collapse;margin-top:var(--gap-item);font-size:var(--type-caption);background:var(--white);border-radius:20px;overflow:hidden">
+    <thead>
+      <tr style="background:var(--teal);color:var(--navy);text-align:left">
+        <th style="padding:20px 28px;font-weight:700;width:240px">Sector</th>
+        <th style="padding:20px 28px;font-weight:700">Qué incluye</th>
+        <th style="padding:20px 28px;font-weight:700;width:560px">Ejemplo visto en la UT1</th>
+      </tr>
+    </thead>
+    <tbody style="line-height:1.3">
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:18px 28px;font-weight:700;color:var(--navy)">Primario</td><td style="padding:18px 28px">Agricultura, ganadería, pesca y explotación forestal: obtener recursos de la naturaleza</td><td style="padding:18px 28px">John Deere, pulverizador See &amp; Spray</td></tr>
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:18px 28px;font-weight:700;color:var(--navy)">Secundario</td><td style="padding:18px 28px">Industria, energía y construcción: transformar materias primas en productos</td><td style="padding:18px 28px">Horse, fábrica de motores de Valladolid</td></tr>
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:18px 28px;font-weight:700;color:var(--navy)">Terciario</td><td style="padding:18px 28px">Servicios: comercio, transporte, hostelería, sanidad, educación, cuidados, informática</td><td style="padding:18px 28px">Mercadona; una residencia o un servicio de ayuda a domicilio</td></tr>
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:18px 28px;font-weight:700;color:var(--navy)">Cuaternario</td><td style="padding:18px 28px">Información, investigación, consultoría y tecnología: servicios basados en el conocimiento</td><td style="padding:18px 28px">HP en León, desarrollo del firmware de impresoras</td></tr>
+      <tr><td style="padding:18px 28px;font-weight:700;color:var(--navy)">Quinario</td><td style="padding:18px 28px">Cultura, sanidad y educación de alto nivel, y organizaciones sin ánimo de lucro</td><td style="padding:18px 28px">Marsi Bionics, exoesqueleto nacido de la investigación pública</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:var(--type-caption);color:var(--muted);margin-top:20px;line-height:1.4">Los tres primeros son la clasificación clásica. El cuaternario y el quinario los añaden algunos autores para separar los servicios de conocimiento del resto. La informática está en el terciario o en el cuaternario según la clasificación; los cuidados, en el terciario.</p>
+</section>
+
+<!-- 06 Comparativa: tres efectos de la innovación -->
+<section data-label="2.1 · Tres efectos de la innovación" data-seccion="2.1" data-notas="Criterio a. Los tres efectos que pide el currículo. La productividad es lo que se produce dividido entre lo que se gasta (horas, euros, kilovatios). Calidad interna es cómo se hace; externa, cómo lo ve el cliente. Sostenibilidad en los dos sentidos de la UT1: que dure y que dure sin hacer daño. Los ejemplos vienen por parejas, uno de informática y otro de cuidados, para que cada grupo vea el suyo y el del otro." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Eficiencia, calidad y sostenibilidad</p>
+  <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Tres efectos de la innovación en una empresa</h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:var(--gap-item);flex:1">
+    <div style="background:var(--coral);color:var(--white);border-radius:24px;padding:40px 40px;display:flex;flex-direction:column;gap:16px">
+      <p style="font-size:var(--type-caption);font-weight:700;text-transform:uppercase;letter-spacing:.06em;opacity:.85">Con menos</p>
+      <p style="font-size:var(--type-subtitle);font-weight:800;line-height:1.15">Eficiencia</p>
+      <p style="font-size:var(--type-caption);line-height:1.45">El mismo resultado con menos tiempo, dinero, energía o materiales. Se mide con la <b>productividad</b>: lo que se produce dividido entre lo que se gasta.</p>
+      <ul style="padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:22px;line-height:1.35;margin-top:auto">
+        <li style="display:flex;gap:14px"><span style="font-weight:800">—</span><span>Un script que hace las copias de seguridad solo, cada noche</span></li>
+        <li style="display:flex;gap:14px"><span style="font-weight:800">—</span><span>Una app de partes de trabajo que ahorra a las auxiliares de ayuda a domicilio el papel de cada visita</span></li>
+      </ul>
+    </div>
+    <div style="background:var(--yellow);color:var(--navy);border-radius:24px;padding:40px 40px;display:flex;flex-direction:column;gap:16px">
+      <p style="font-size:var(--type-caption);font-weight:700;text-transform:uppercase;letter-spacing:.06em;opacity:.75">Mejor</p>
+      <p style="font-size:var(--type-subtitle);font-weight:800;line-height:1.15">Calidad</p>
+      <p style="font-size:var(--type-caption);line-height:1.45">Que el producto o el servicio cumpla lo que el cliente espera. Calidad <b>interna</b>: cómo se hace. Calidad <b>externa</b>: cómo lo ve quien lo recibe.</p>
+      <ul style="padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:22px;line-height:1.35;margin-top:auto">
+        <li style="display:flex;gap:14px"><span style="font-weight:800">—</span><span>Un sistema de tickets en el que ninguna incidencia se pierde</span></li>
+        <li style="display:flex;gap:14px"><span style="font-weight:800">—</span><span>Un registro digital de medicación que avisa si una toma no se ha anotado</span></li>
+      </ul>
+    </div>
+    <div style="background:var(--teal);color:var(--navy);border-radius:24px;padding:40px 40px;display:flex;flex-direction:column;gap:16px">
+      <p style="font-size:var(--type-caption);font-weight:700;text-transform:uppercase;letter-spacing:.06em;opacity:.75">Más limpio y más duradero</p>
+      <p style="font-size:var(--type-subtitle);font-weight:800;line-height:1.15">Sostenibilidad</p>
+      <p style="font-size:var(--type-caption);line-height:1.45">Hacerlo gastando menos energía y materiales y generando menos residuos, y que la empresa <b>dure</b>. Incluye el efecto en las personas.</p>
+      <ul style="padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:22px;line-height:1.35;margin-top:auto">
+        <li style="display:flex;gap:14px"><span style="font-weight:800">—</span><span>Alargar la vida de los equipos: reparar y reacondicionar en vez de tirar</span></li>
+        <li style="display:flex;gap:14px"><span style="font-weight:800">—</span><span>Una residencia que sustituye pañales y guantes por productos con menos residuo</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 07 Texto + imagen: Iveco Valladolid -->
+<section data-label="2.1 · Un caso con los tres efectos: Iveco" data-seccion="2.1" data-notas="Fuente: eldiario.es, 13/04/2026, la Junta declara proyecto prioritario la inversión de Iveco en Valladolid: 233,76 millones de euros hasta 2027, 92 robots nuevos para soldar cabinas (192 en total), nave de pintura automatizada, nuevo almacén logístico, depuración de emisiones y de aguas; capacidad de 111.000 cabinas al año y unos 1.000 empleos directos. Respuesta a la consigna: eficiencia, más cabinas con la misma plantilla y menos gas y electricidad; calidad, menos retrabajos con la soldadura robotizada; sostenibilidad, menos emisiones de compuestos orgánicos volátiles, NOx y CO y depuración de aguas. Foto: fábrica de Iveco en Valladolid, Zarateman, Wikimedia Commons, CC0, mayo de 2026." style="display:grid;grid-template-columns:1fr 720px;gap:96px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+  <div style="display:flex;flex-direction:column">
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Eficiencia, calidad y sostenibilidad</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy);text-wrap:balance">Un caso con los tres efectos: Iveco Valladolid, 2026</h2>
+    <p style="font-size:var(--type-small);line-height:1.5;margin-top:var(--gap-item)">Iveco invierte <b>233,76 millones de euros</b> hasta 2027 en su fábrica de camiones de Valladolid, la única de la marca en España para vehículos pesados. La Junta la ha declarado proyecto prioritario.</p>
+    <ul style="padding:0;list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:var(--gap-item);font-size:var(--type-small);line-height:1.4">
+      <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">—</span><span>92 robots nuevos para soldar cabinas (192 en total) y una nave de pintura automatizada</span></li>
+      <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">—</span><span>Nuevo almacén logístico</span></li>
+      <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">—</span><span>Sistemas de depuración de emisiones y de aguas</span></li>
+      <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">—</span><span>Capacidad de 111.000 cabinas al año y unos 1.000 empleos directos</span></li>
+    </ul>
+    <div style="margin-top:auto;background:#FFF6D1;border-radius:20px;padding:24px 32px;font-size:var(--type-small);font-weight:700;line-height:1.35;color:var(--navy)">¿Dónde está la eficiencia, dónde la calidad y dónde la sostenibilidad?</div>
+    <p style="font-size:var(--type-caption);color:var(--muted);margin-top:20px">Fuente: eldiario.es, 13/04/2026.</p>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:20px;min-height:0">
+    <figure class="foto" style="flex:1">
+      <img src="img/iveco-valladolid.jpg" alt="Entrada de la fábrica de Iveco en Valladolid con un camión expuesto" title="Foto: Zarateman · Wikimedia Commons · CC0" style="object-position:right center">
+      <figcaption class="credito"><b>Fábrica de Iveco en Valladolid</b>, 2026. Foto: Zarateman, <a href="https://commons.wikimedia.org/wiki/File:Valladolid_-_F%C3%A1brica_de_Iveco_2.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.es" target="_blank" rel="noopener">CC0</a>. Reducida.</figcaption>
+    </figure>
+    <p style="font-size:var(--type-caption);color:var(--muted);line-height:1.4">Figura 2.1. La fábrica de Iveco en Valladolid. Haz clic en la foto para verla en grande.</p>
+  </div>
+</section>
+
+<!-- 08 Texto: calidad es lo que el cliente nota -->
+<section data-label="2.1 · Calidad es lo que el cliente nota" data-seccion="2.1" data-notas="Libro, apartados 2.3 y 2.4, muy reducidos. ISO 9001 es la norma internacional de sistemas de gestión de la calidad; muchas empresas se certifican para poder vender a otras. Los cinco niveles de calidad del libro (de pésimo a extraordinario) quedan fuera. Los dos ejemplos: un servicio técnico y una residencia, para que cada grupo vea el suyo." style="display:grid;grid-template-columns:1fr 1fr;gap:80px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+  <div>
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Eficiencia, calidad y sostenibilidad</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy);text-wrap:balance">Calidad es lo que el cliente nota</h2>
+    <p style="font-size:var(--type-body);line-height:1.5;margin-top:var(--gap-title)">La calidad percibida es la diferencia entre lo que el cliente <b>esperaba</b> y lo que <b>recibe</b>. Para mejorarla se innova por dentro y por fuera.</p>
+    <ul style="padding:0;list-style:none;display:flex;flex-direction:column;gap:18px;margin-top:var(--gap-item);font-size:var(--type-small);line-height:1.4">
+      <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">—</span><span><b>Por dentro:</b> procesos que no fallan. La norma ISO 9001 describe cómo organizar una empresa para asegurar la calidad, y muchas se certifican.</span></li>
+      <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">—</span><span><b>Por fuera:</b> cómo se atiende al cliente, que es lo que él ve.</span></li>
+    </ul>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:24px">
+    <div style="background:var(--white);border-radius:24px;padding:36px 44px;box-shadow:0 2px 0 var(--line)">
+      <p style="font-size:var(--type-caption);font-weight:700;color:var(--coral);text-transform:uppercase;letter-spacing:.06em">Cinco formas de innovar en la atención al cliente</p>
+      <ul style="padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:16px;font-size:var(--type-caption);line-height:1.4;color:var(--navy)">
+        <li style="display:flex;gap:16px"><span style="color:var(--coral);font-weight:800">1.</span><span>Atender por varios canales: teléfono, chat, redes, app</span></li>
+        <li style="display:flex;gap:16px"><span style="color:var(--coral);font-weight:800">2.</span><span>Respuestas automáticas para lo repetitivo, con asistentes de inteligencia artificial</span></li>
+        <li style="display:flex;gap:16px"><span style="color:var(--coral);font-weight:800">3.</span><span>Anticiparse: avisar antes de que algo falle o caduque</span></li>
+        <li style="display:flex;gap:16px"><span style="color:var(--coral);font-weight:800">4.</span><span>Dejar que el cliente se ayude solo: tutoriales y preguntas frecuentes</span></li>
+        <li style="display:flex;gap:16px"><span style="color:var(--coral);font-weight:800">5.</span><span>Pedirle su opinión y usarla</span></li>
+      </ul>
+    </div>
+    <div style="background:var(--teal);color:var(--navy);border-radius:24px;padding:32px 44px">
+      <p style="font-size:var(--type-caption);font-weight:700;text-transform:uppercase;letter-spacing:.06em">Dos ejemplos</p>
+      <p style="font-size:var(--type-caption);line-height:1.45;margin-top:12px">Un servicio técnico avisa por WhatsApp de que la reparación está lista y, días después, pregunta si todo va bien. Una residencia manda a las familias un mensaje semanal con cómo está la persona y les pide una valoración de 0 a 10.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 09 Cifra: 21,1 % -->
+<section data-label="2.1 · Cifra: empresas que usan IA" data-seccion="2.1" data-notas="INE, Encuesta sobre el uso de TIC y del comercio electrónico en las empresas 2024-primer trimestre 2025, datos definitivos, nota de prensa de 22/10/2025: 21,1 % de las empresas de diez o más empleados usan inteligencia artificial (+8,7 puntos); 44,3 % compran servicios de nube (+6,6 puntos); 13,4 % de las microempresas usan IA (+5,9 puntos); 26,6 % vendieron por internet en 2024. La encuesta del año siguiente sale en octubre de 2026: comprobar antes de dar la unidad y actualizar la diapositiva." style="display:grid;grid-template-columns:1fr 1fr;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);align-items:center;gap:120px">
+  <div>
+    <p style="font-size:200px;font-weight:800;line-height:1;color:var(--blue);letter-spacing:-.04em">21,1<span style="font-size:var(--type-title);color:var(--navy);margin-left:16px">%</span></p>
+    <p style="font-size:var(--type-subtitle);font-weight:700;color:var(--navy);margin-top:16px">de las empresas españolas de diez o más empleados usaban inteligencia artificial a principios de 2025</p>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:var(--gap-item)">
+    <p style="font-size:var(--type-body);line-height:1.5">Son 8,7 puntos más que un año antes. La tecnología llega a las empresas más deprisa de lo que parece desde fuera.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px">
+      <div style="background:var(--white);border-radius:20px;padding:32px;box-shadow:0 2px 0 var(--line)"><p style="font-size:var(--type-subtitle);font-weight:800;color:var(--navy);white-space:nowrap">44,3 %</p><p style="font-size:var(--type-caption);color:var(--muted);margin-top:8px;line-height:1.35">compran servicios en la nube</p></div>
+      <div style="background:var(--white);border-radius:20px;padding:32px;box-shadow:0 2px 0 var(--line)"><p style="font-size:var(--type-subtitle);font-weight:800;color:var(--navy);white-space:nowrap">13,4 %</p><p style="font-size:var(--type-caption);color:var(--muted);margin-top:8px;line-height:1.35">de las microempresas usan IA</p></div>
+      <div style="background:var(--white);border-radius:20px;padding:32px;box-shadow:0 2px 0 var(--line)"><p style="font-size:var(--type-subtitle);font-weight:800;color:var(--navy);white-space:nowrap">26,6 %</p><p style="font-size:var(--type-caption);color:var(--muted);margin-top:8px;line-height:1.35">vendieron por internet en 2024</p></div>
+    </div>
+    <p style="font-size:var(--type-caption);color:var(--muted);line-height:1.4">Fuente: INE, Encuesta sobre el uso de TIC y del comercio electrónico en las empresas 2024-2025 (22/10/2025).</p>
+  </div>
+</section>
+
+<!-- 10 Texto: indicadores -->
+<section data-label="2.1 · Cómo se sabe si ha funcionado: indicadores" data-seccion="2.1" data-notas="Libro 2.6, reducido: qué es un KPI y cinco que puede medir cualquier técnico. Las cuatro categorías del libro (capacidad, estructura, liderazgo, cultura) quedan fuera. Regla para la pizarra: el indicador se elige antes de innovar, no después, y se compara con el mismo periodo anterior. Enlaza con el ciclo PDCA de la UT1: comprobar es medir." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Eficiencia, calidad y sostenibilidad</p>
+  <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Cómo se sabe si una innovación ha funcionado: los indicadores</h2>
+  <p style="font-size:var(--type-small);line-height:1.5;color:var(--muted);margin-top:16px;max-width:1500px">Un <b style="color:var(--navy)">indicador</b> (KPI, por sus siglas en inglés) es un número que se mide antes y después de la innovación. Cinco que puede medir cualquier técnico:</p>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:24px;margin-top:var(--gap-item)">
+    <div style="background:var(--white);border-radius:20px;padding:32px 28px;box-shadow:0 2px 0 var(--line);display:flex;flex-direction:column;gap:14px"><span style="width:56px;height:56px;border-radius:14px;background:var(--coral);color:var(--white);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800">1</span><p style="font-size:var(--type-small);font-weight:800;color:var(--navy);line-height:1.2">Tiempo</p><p style="font-size:22px;line-height:1.4;color:var(--muted)">Por tarea, por pedido o por visita</p></div>
+    <div style="background:var(--white);border-radius:20px;padding:32px 28px;box-shadow:0 2px 0 var(--line);display:flex;flex-direction:column;gap:14px"><span style="width:56px;height:56px;border-radius:14px;background:var(--yellow);color:var(--navy);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800">2</span><p style="font-size:var(--type-small);font-weight:800;color:var(--navy);line-height:1.2">Coste</p><p style="font-size:22px;line-height:1.4;color:var(--muted)">Por unidad producida o por servicio prestado</p></div>
+    <div style="background:var(--white);border-radius:20px;padding:32px 28px;box-shadow:0 2px 0 var(--line);display:flex;flex-direction:column;gap:14px"><span style="width:56px;height:56px;border-radius:14px;background:var(--teal);color:var(--navy);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800">3</span><p style="font-size:var(--type-small);font-weight:800;color:var(--navy);line-height:1.2">Errores</p><p style="font-size:22px;line-height:1.4;color:var(--muted)">Incidencias, devoluciones, caídas, tomas olvidadas</p></div>
+    <div style="background:var(--white);border-radius:20px;padding:32px 28px;box-shadow:0 2px 0 var(--line);display:flex;flex-direction:column;gap:14px"><span style="width:56px;height:56px;border-radius:14px;background:var(--pink);color:var(--navy);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800">4</span><p style="font-size:var(--type-small);font-weight:800;color:var(--navy);line-height:1.2">Satisfacción</p><p style="font-size:22px;line-height:1.4;color:var(--muted)">Una pregunta de 0 a 10 al cliente o a la familia</p></div>
+    <div style="background:var(--white);border-radius:20px;padding:32px 28px;box-shadow:0 2px 0 var(--line);display:flex;flex-direction:column;gap:14px"><span style="width:56px;height:56px;border-radius:14px;background:var(--orange);color:var(--white);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800">5</span><p style="font-size:var(--type-small);font-weight:800;color:var(--navy);line-height:1.2">Consumo</p><p style="font-size:22px;line-height:1.4;color:var(--muted)">Energía, agua o material por unidad</p></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:var(--gap-item)">
+    <div style="background:#FFF6D1;border-radius:20px;padding:28px 36px;font-size:var(--type-small);line-height:1.4;color:var(--navy)"><b>Regla.</b> El indicador se elige <b>antes</b> de innovar, no después. Y se compara con el mismo periodo anterior: el mes de marzo con el mes de marzo, no con agosto.</div>
+    <div style="background:var(--white);border-radius:20px;padding:28px 36px;box-shadow:0 2px 0 var(--line);font-size:var(--type-small);line-height:1.4;color:var(--navy)"><b>Ejemplos.</b> Iveco medirá retrabajos por cabina y kilovatios hora por cabina. Una residencia con sensores en las camas medirá caídas por mes.</div>
+  </div>
+</section>
+
+<!-- 11 Texto + imagen: sostenibilidad, ODS y economía circular -->
+<section data-label="2.1 · Sostenibilidad: ODS y economía circular" data-seccion="2.1" data-notas="Los 17 ODS ya se vieron en la UT1; aquí solo los tres que más tocan a una empresa. Centro de datos de Torrelobatón: El Día de Valladolid, 07/08/2026, proyecto de 160 MW promovido por un grupo eólico de Castilla y León (Vapat), energía de origen principalmente renovable, refrigeración por agua en circuito cerrado, en evaluación de impacto ambiental; unos 140 empleos directos. Contraste para la pizarra: un centro de datos consume tanta electricidad como una ciudad; la innovación está en cómo se alimenta y se refrigera. Los bancos de productos de apoyo prestan sillas, camas articuladas y grúas que otras personas ya no usan (Cruz Roja, ayuntamientos, asociaciones). La foto es del centro de datos del CERN porque el de Torrelobatón no está construido." style="display:grid;grid-template-columns:1fr 680px;gap:80px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+  <div style="display:flex;flex-direction:column">
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Eficiencia, calidad y sostenibilidad</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy);text-wrap:balance">Sostenibilidad: ODS y economía circular</h2>
+    <p style="font-size:var(--type-small);line-height:1.5;margin-top:var(--gap-item)">De los 17 Objetivos de Desarrollo Sostenible de la ONU, tres tocan de lleno a las empresas: el <b>8</b> (trabajo decente y crecimiento económico), el <b>9</b> (industria, innovación e infraestructura) y el <b>12</b> (producción y consumo responsables).</p>
+    <div style="margin-top:var(--gap-item);background:var(--yellow);border-radius:8px;padding:24px 32px;transform:rotate(-1deg);box-shadow:0 12px 30px rgba(23,36,51,.12)">
+      <p style="font-size:var(--type-caption);font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:rgba(23,36,51,.7)">Economía circular</p>
+      <p style="font-size:var(--type-small);font-weight:700;line-height:1.35;color:var(--navy);margin-top:6px">Diseñar los productos para repararlos, reutilizarlos y reciclarlos, en vez de fabricar, usar y tirar.</p>
+    </div>
+    <ul style="padding:0;list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:var(--gap-item);font-size:var(--type-caption);line-height:1.4">
+      <li style="display:flex;gap:16px"><span style="color:var(--yellow);font-weight:800">—</span><span><b>Informática:</b> equipos reacondicionados con garantía; el centro de datos proyectado en Torrelobatón (Valladolid), de 160 MW, con energía de origen principalmente renovable y agua de refrigeración en circuito cerrado (2026, en evaluación ambiental).</span></li>
+      <li style="display:flex;gap:16px"><span style="color:var(--yellow);font-weight:800">—</span><span><b>Cuidados:</b> bancos de productos de apoyo que prestan sillas de ruedas, camas articuladas y grúas que otra persona ya no usa.</span></li>
+    </ul>
+    <p style="font-size:var(--type-caption);color:var(--muted);margin-top:auto;line-height:1.4">Un centro de datos consume mucha energía; la innovación está en cómo se alimenta y cómo se refrigera. Fuente: El Día de Valladolid, 07/08/2026.</p>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:20px;min-height:0">
+    <figure class="foto" style="flex:1">
+      <img src="img/cern-centro-datos.jpg" alt="Pasillos de armarios de servidores en un centro de datos" title="Foto: Hugovanmeijeren · Wikimedia Commons · CC BY-SA 3.0">
+      <figcaption class="credito"><b>Centro de datos del CERN</b>, Ginebra, 2010. Foto: Hugovanmeijeren, <a href="https://commons.wikimedia.org/wiki/File:Cern_datacenter.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.es" target="_blank" rel="noopener">CC BY-SA 3.0</a>. Reducida.</figcaption>
+    </figure>
+    <p style="font-size:var(--type-caption);color:var(--muted);line-height:1.4">Figura 2.2. Un centro de datos: filas de armarios con servidores que hay que alimentar y refrigerar sin parar.</p>
+  </div>
+</section>
+
+<!-- 12 Vídeo: economía circular -->
+<section data-label="2.1 · Vídeo: economía circular" data-seccion="2.1" data-notas="Telefónica, 2:55, enero de 2025, castellano de España. Es un vídeo didáctico de empresa; no vende nada. Al acabar, dos minutos: una medida circular por sector, en la pizarra." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:grid;grid-template-columns:minmax(0,1fr) 560px;gap:80px">
+  <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
+    <div style="flex:1;background:var(--dark);border-radius:20px;overflow:hidden;position:relative">
+      <iframe src="https://www.youtube-nocookie.com/embed/PvAXgnM9H_A" title="Economía circular: qué es y principales retos" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+    </div>
+    <p style="font-size:var(--type-caption);color:var(--muted)">Vídeo 2.1. Economía circular: qué es y principales retos. Canal de Telefónica, 2025.</p>
+  </div>
+  <div>
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Eficiencia, calidad y sostenibilidad</p>
+    <h2 style="font-size:var(--type-subtitle);font-weight:800;line-height:1.15;margin-top:20px;color:var(--navy);text-wrap:balance">Economía circular en tres minutos</h2>
+    <p style="font-size:var(--type-small);line-height:1.5;color:var(--muted);margin-top:var(--gap-item)">Mientras lo ves, apunta <b>una medida circular</b> que podría aplicar una empresa de vuestro sector: una tienda de informática, una residencia, un servicio de ayuda a domicilio. La ponemos en común al terminar.</p>
+    <ul style="padding:0;list-style:none;display:flex;flex-direction:column;gap:20px;margin-top:var(--gap-title);font-size:var(--type-small);line-height:1.4">
+      <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">—</span><span>Duración: 2:55</span></li>
+      <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">—</span><span>Se ve entero</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 13 Quiz: eficiencia, calidad o sostenibilidad -->
+<section data-label="2.1 · Quiz: qué efecto es" data-seccion="2.1" data-notas="Respuesta: calidad. No gasta menos ni contamina menos; el servicio cumple mejor lo que la persona y su familia esperan. Caso informático equivalente por si se quiere alternar: un taller comprueba cada equipo con una lista antes de entregarlo y las devoluciones bajan a la mitad (también calidad)." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:grid;grid-template-columns:1fr 1.2fr;gap:96px;align-items:center;position:relative;overflow:hidden">
+  <span class="mancha arriba-dcha" style="width:380px;color:var(--pink)"></span>
+  <div class="quiz" data-correct="1" data-ok="Correcto. No gasta menos ni contamina menos: el servicio cumple mejor lo que la persona y su familia esperan. Eso es calidad." data-ko="No. Pregúntate qué mejora: ¿se gasta menos, se hace mejor o se daña menos?" style="display:contents">
+    <div style="position:relative">
+      <span class="pill">Comprueba lo aprendido</span>
+      <h2 style="font-size:var(--type-subtitle);font-weight:800;line-height:1.2;margin-top:32px;color:var(--navy);text-wrap:balance">Una residencia instala sensores en las camas que avisan al personal de noche si una persona se levanta, y las caídas bajan a la mitad. ¿Qué efecto es, sobre todo?</h2>
+      <p class="quiz-fb">Selecciona una opción.</p>
+      <button class="btn btn-ghost quiz-reset" style="margin-top:var(--gap-item)">Reiniciar</button>
+    </div>
+    <div class="quiz-opts" style="position:relative">
+      <button class="quiz-opt"><span class="letra">A</span><span>Eficiencia</span></button>
+      <button class="quiz-opt"><span class="letra">B</span><span>Calidad</span></button>
+      <button class="quiz-opt"><span class="letra">C</span><span>Sostenibilidad</span></button>
+      <button class="quiz-opt"><span class="letra">D</span><span>Ninguna de las tres</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- 14 Definición: estrategia, misión y visión -->
+<section data-label="2.2 · Estrategia, misión y visión" data-seccion="2.2" data-deck-id="estrategia" data-deck-section="2.2" data-notas="Libro 3.1, reducido. Los tres tipos de estrategia (corporativa, competitiva, funcional) y los objetivos SMART quedan fuera; SMART se ve en la UT3 con el plan de implementación. Ejemplo para la pizarra con Marsi Bionics: misión, que los niños que no pueden andar hagan rehabilitación de marcha; visión, exoesqueletos en hospitales y casas de todo el mundo; estrategia, empezar por la sanidad pública española y abrir mercado en América (México, 2026); táctica, la sede de México, el modelo para casa." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:grid;grid-template-columns:1fr 1.3fr;gap:100px;align-items:center;position:relative;overflow:hidden">
+  <span class="mancha abajo-izq volteada" style="width:520px;color:var(--teal)"></span>
+  <div style="position:relative">
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--coral);text-transform:uppercase;letter-spacing:.06em">Conceptos clave</p>
+    <h2 style="font-size:var(--type-hero);font-weight:800;line-height:1.02;margin-top:24px;letter-spacing:-.02em;color:var(--navy)">Estrategia</h2>
+    <p style="font-size:var(--type-small);line-height:1.5;color:var(--muted);margin-top:var(--gap-item)">Del griego <em>strategos</em>, el que dirige el ejército. En la empresa, el plan a largo plazo.</p>
+  </div>
+  <div style="position:relative;display:flex;flex-direction:column;gap:24px">
+    <div style="background:var(--yellow);color:var(--navy);border-radius:8px;padding:32px 40px;transform:rotate(-1deg);box-shadow:0 14px 30px rgba(23,36,51,.12)">
+      <p style="font-size:var(--type-caption);font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:rgba(23,36,51,.7)">Estrategia</p>
+      <p style="font-size:var(--type-small);font-weight:700;line-height:1.35;margin-top:6px">El plan con el que una empresa decide adónde quiere llegar en varios años y cómo. Las acciones concretas de cada mes son la <b>táctica</b>.</p>
+    </div>
+    <div style="background:var(--white);color:var(--navy);border-radius:8px;padding:32px 40px;transform:rotate(.6deg);box-shadow:0 14px 30px rgba(23,36,51,.10)">
+      <p style="font-size:var(--type-caption);font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--coral)">Misión</p>
+      <p style="font-size:var(--type-small);font-weight:700;line-height:1.35;margin-top:6px">A qué se dedica la empresa, para quién y con qué ventaja. Es el presente.</p>
+    </div>
+    <div style="background:var(--white);color:var(--navy);border-radius:8px;padding:32px 40px;transform:rotate(-.6deg);box-shadow:0 14px 30px rgba(23,36,51,.10)">
+      <p style="font-size:var(--type-caption);font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--teal)">Visión</p>
+      <p style="font-size:var(--type-small);font-weight:700;line-height:1.35;margin-top:6px">Dónde quiere estar la empresa dentro de unos años. Es el futuro que guía la estrategia.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 15 Texto: estrategia de innovación y cultura -->
+<section data-label="2.2 · Innovar con un plan" data-seccion="2.2" data-notas="Criterio b. Libro 3.2 y 3.3.1. La cultura de innovación es la mejora continua de la UT1 con apoyo de la dirección. Océano azul, en una línea si sale: buscar un mercado donde todavía no hay competencia en vez de pelear en el que ya existe (Kim y Mauborgne, 2005). Ejemplo de pyme del libro, por si hace falta: el taller que compra una impresora 3D para hacer piezas que antes esperaba semanas." style="display:grid;grid-template-columns:1fr 1fr;gap:80px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+  <div>
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Estrategia y áreas de la empresa</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy);text-wrap:balance">Innovar con un plan: estrategia y cultura de innovación</h2>
+    <p style="font-size:var(--type-body);line-height:1.5;margin-top:var(--gap-title)">La innovación forma parte de la estrategia cuando la dirección decide <b>en qué</b> se innova, <b>con qué dinero</b> y <b>para qué</b>. Si no, son ideas sueltas que dependen de que alguien tenga un buen día.</p>
+    <p style="font-size:var(--type-small);line-height:1.5;margin-top:var(--gap-item);color:var(--muted)"><b style="color:var(--navy)">Cultura de innovación</b> es que proponer mejoras sea lo normal en toda la plantilla, no cosa de un departamento. Es la mejora continua de la UT1 con el apoyo de la dirección.</p>
+  </div>
+  <div style="display:flex;flex-direction:column;justify-content:center;gap:20px">
+    <p style="font-size:var(--type-caption);font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.06em">Tres señales de una empresa con cultura de innovación</p>
+    <div style="background:var(--white);border-radius:20px;padding:32px 36px;box-shadow:0 2px 0 var(--line);display:flex;gap:24px;align-items:flex-start"><span style="width:56px;height:56px;border-radius:14px;background:var(--coral);color:var(--white);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800;flex:none">1</span><div><p style="font-size:var(--type-small);font-weight:800;color:var(--navy)">Tiempo y canal para proponer</p><p style="font-size:22px;line-height:1.4;color:var(--muted);margin-top:6px">Un buzón, una reunión mensual, un rato de la jornada. Las ideas se responden, se acepten o no.</p></div></div>
+    <div style="background:var(--white);border-radius:20px;padding:32px 36px;box-shadow:0 2px 0 var(--line);display:flex;gap:24px;align-items:flex-start"><span style="width:56px;height:56px;border-radius:14px;background:var(--yellow);color:var(--navy);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800;flex:none">2</span><div><p style="font-size:var(--type-small);font-weight:800;color:var(--navy)">Formación</p><p style="font-size:22px;line-height:1.4;color:var(--muted);margin-top:6px">Nadie propone usar una herramienta que no conoce. La empresa enseña antes de pedir.</p></div></div>
+    <div style="background:var(--white);border-radius:20px;padding:32px 36px;box-shadow:0 2px 0 var(--line);display:flex;gap:24px;align-items:flex-start"><span style="width:56px;height:56px;border-radius:14px;background:var(--teal);color:var(--navy);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800;flex:none">3</span><div><p style="font-size:var(--type-small);font-weight:800;color:var(--navy)">Los errores se analizan, no se castigan</p><p style="font-size:22px;line-height:1.4;color:var(--muted);margin-top:6px">Si probar algo nuevo y fallar tiene castigo, nadie vuelve a probar.</p></div></div>
+  </div>
+</section>
+
+<!-- 16 Matriz de Ansoff -->
+<section data-label="2.2 · La matriz de Ansoff" data-seccion="2.2" data-notas="Igor Ansoff, 1957. Se mantiene porque ya se daba y porque la actividad del curso pasado la pedía. Ejemplos: Netflix lanzó el plan con anuncios en 2022 y lo ha ido extendiendo a los países donde ya opera (penetración); Marsi Bionics abre sede en México en mayo de 2026 (desarrollo de mercado); See & Spray es una función nueva sobre los pulverizadores que John Deere ya vendía (desarrollo de producto); Vapat, grupo eólico de Castilla y León, promueve el centro de datos de Torrelobatón, negocio nuevo para clientes nuevos (diversificación, 2026). Cada cuadrante lleva el tipo de innovación de la UT1 que suele acompañarlo." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:grid;grid-template-columns:1fr 1.5fr;gap:80px">
+  <div>
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Estrategia y áreas de la empresa</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy);text-wrap:balance">La matriz de Ansoff: cuatro formas de crecer</h2>
+    <p style="font-size:var(--type-small);line-height:1.5;margin-top:var(--gap-title)">Una empresa que quiere crecer solo puede combinar dos cosas: vender productos <b>actuales o nuevos</b> a clientes <b>actuales o nuevos</b>. Salen cuatro estrategias, y cada una suele ir con un tipo de innovación.</p>
+    <p style="font-size:var(--type-caption);line-height:1.5;margin-top:var(--gap-item);color:var(--muted)">Cuanto más abajo y más a la derecha, más riesgo y más innovación hace falta. Igor Ansoff, 1957. Ejemplos de 2025-26.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:200px 1fr 1fr;grid-template-rows:60px 1fr 1fr;gap:16px;min-height:0">
+    <div></div>
+    <div style="display:grid;place-items:center;font-size:var(--type-caption);font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.04em">Producto actual</div>
+    <div style="display:grid;place-items:center;font-size:var(--type-caption);font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.04em">Producto nuevo</div>
+    <div style="display:grid;place-items:center;font-size:var(--type-caption);font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.04em;text-align:center">Mercado actual</div>
+    <div style="background:var(--teal);color:var(--navy);border-radius:20px;padding:28px 30px;display:flex;flex-direction:column;gap:10px"><p style="font-size:var(--type-small);font-weight:800;line-height:1.15">Penetración de mercado</p><p style="font-size:21px;line-height:1.35">Vender más de lo mismo a los mismos. <b>Netflix</b> ofrece un plan más barato con anuncios en los países donde ya está.</p><p style="font-size:20px;font-weight:700;margin-top:auto;opacity:.8">Innovación incremental (marketing y canal)</p></div>
+    <div style="background:var(--yellow);color:var(--navy);border-radius:20px;padding:28px 30px;display:flex;flex-direction:column;gap:10px"><p style="font-size:var(--type-small);font-weight:800;line-height:1.15">Desarrollo de producto</p><p style="font-size:21px;line-height:1.35">Algo nuevo a los clientes de siempre. <b>John Deere</b> añade See &amp; Spray a los pulverizadores que ya vendía (2025).</p><p style="font-size:20px;font-weight:700;margin-top:auto;opacity:.8">Innovación de producto</p></div>
+    <div style="display:grid;place-items:center;font-size:var(--type-caption);font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.04em;text-align:center">Mercado nuevo</div>
+    <div style="background:var(--white);border:3px solid var(--line);color:var(--navy);border-radius:20px;padding:28px 30px;display:flex;flex-direction:column;gap:10px"><p style="font-size:var(--type-small);font-weight:800;line-height:1.15">Desarrollo de mercado</p><p style="font-size:21px;line-height:1.35">Lo mismo a clientes nuevos. <b>Marsi Bionics</b> abre sede en México para vender allí su exoesqueleto (mayo de 2026).</p><p style="font-size:20px;font-weight:700;margin-top:auto;color:var(--muted)">Innovación incremental (organización, canal)</p></div>
+    <div style="background:var(--coral);color:var(--white);border-radius:20px;padding:28px 30px;display:flex;flex-direction:column;gap:10px"><p style="font-size:var(--type-small);font-weight:800;line-height:1.15">Diversificación</p><p style="font-size:21px;line-height:1.35">Producto nuevo para mercado nuevo. <b>Vapat</b>, grupo eólico de Castilla y León, entra en los centros de datos con el proyecto de Torrelobatón (2026).</p><p style="font-size:20px;font-weight:700;margin-top:auto;opacity:.9">Innovación radical o de modelo de negocio</p></div>
+  </div>
+</section>
+
+<!-- 17 Tabla: qué cambia en cada área -->
+<section data-label="2.2 · Qué cambia en cada área de la empresa" data-seccion="2.2" data-notas="Criterio b: influencia en la estrategia, los recursos humanos y otras áreas. Fuentes: ONTSI y KPMG, informe sobre digitalización de la pyme, 25/08/2026 (casi el 80 % de las pymes no forma a su plantilla en competencias digitales); Iveco Valladolid, eldiario.es 13/04/2026; Horse Valladolid, proyecto 'del digital al data centric', premio de transformación digital 2024; robots sociales Temi y Copito y andadores inteligentes en las residencias públicas de la Junta, 2025 (4 millones de fondos europeos); BEONx, Salamanca, precios de hotel con IA; teleasistencia avanzada de la Junta, 58.000 usuarios, junio de 2025; Mercadona, IA que lee facturas, El Español 15/12/2025. En los cuidados, 'producción' es la atención directa y 'ventas' es la relación con las familias y con la administración que contrata el servicio." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Estrategia y áreas de la empresa</p>
+  <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Qué cambia la innovación en cada área de la empresa</h2>
+  <table style="width:100%;border-collapse:collapse;margin-top:var(--gap-item);font-size:21px;background:var(--white);border-radius:20px;overflow:hidden">
+    <thead>
+      <tr style="background:var(--teal);color:var(--navy);text-align:left">
+        <th style="padding:16px 24px;font-weight:700;width:210px">Área</th>
+        <th style="padding:16px 24px;font-weight:700">Qué cambia</th>
+        <th style="padding:16px 24px;font-weight:700">Ejemplos de 2025-26</th>
+        <th style="padding:16px 24px;font-weight:700;width:330px">Qué tiene que aprender la plantilla</th>
+      </tr>
+    </thead>
+    <tbody style="line-height:1.3">
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:14px 24px;font-weight:700;color:var(--navy)">Dirección</td><td style="padding:14px 24px">Decide la estrategia de innovación y el presupuesto; crea la cultura</td><td style="padding:14px 24px">Iveco decide invertir 233 millones en robotizar Valladolid; una residencia decide pasar toda la medicación a registro digital</td><td style="padding:14px 24px">Leer datos y decidir con ellos</td></tr>
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:14px 24px;font-weight:700;color:var(--navy)">Personas (recursos humanos)</td><td style="padding:14px 24px">Selección, formación continua en herramientas digitales, teletrabajo, plataformas de comunicación</td><td style="padding:14px 24px">Casi el 80 % de las pymes no forma a su plantilla en competencias digitales (ONTSI y KPMG, 2026)</td><td style="padding:14px 24px">Las herramientas nuevas, cada pocos meses</td></tr>
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:14px 24px;font-weight:700;color:var(--navy)">Producción u operaciones<br><span style="font-weight:400;color:var(--muted)">en los cuidados, la atención directa</span></td><td style="padding:14px 24px">Robots, cobots, sensores, gemelos digitales, datos de las máquinas</td><td style="padding:14px 24px">Horse Valladolid, «del digital al data centric»; robots sociales Temi y Copito y andadores inteligentes en las residencias públicas de la Junta (2025)</td><td style="padding:14px 24px">Trabajar junto a la máquina y mantenerla</td></tr>
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:14px 24px;font-weight:700;color:var(--navy)">Marketing y ventas<br><span style="font-weight:400;color:var(--muted)">en los cuidados, la relación con las familias</span></td><td style="padding:14px 24px">Datos de clientes, atención automática, venta y cita en línea</td><td style="padding:14px 24px">BEONx (Salamanca) fija precios de hotel con IA; la teleasistencia avanzada de la Junta atiende a 58.000 personas con teleoperador de referencia (2025)</td><td style="padding:14px 24px">Atender por varios canales y proteger los datos</td></tr>
+      <tr><td style="padding:14px 24px;font-weight:700;color:var(--navy)">Administración</td><td style="padding:14px 24px">Factura electrónica, programas que leen documentos, cobros automáticos</td><td style="padding:14px 24px">Mercadona pone inteligencia artificial a leer las facturas de sus proveedores (2025)</td><td style="padding:14px 24px">Revisar lo que hace el programa, no teclearlo</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 18 Texto + imagen: Antolín y Grupo Lince -->
+<section data-label="2.2 · Dos empresas de Castilla y León" data-seccion="2.2" data-notas="II Premios de Automoción y Movilidad de Castilla y León, entregados el 28/11/2024 (Junta y sector). Antolín, Burgos: premio de sostenibilidad por su sistema de calefacción del habitáculo por radiación infrarroja, que reduce el consumo de energía hasta un 70 % frente a la calefacción por aire; en un coche eléctrico eso es más autonomía. Grupo Lince, Valladolid: premio de captación y fidelización de talento por su centro de fabricación aditiva social, impresión 3D con personas con discapacidad. Respuesta a la pregunta: Antolín, producción y dirección (diferenciarse por eficiencia); Lince, personas (recursos humanos y sostenibilidad social). Foto: sede de Antolín en Burgos, Zarateman, Commons, CC0." style="display:grid;grid-template-columns:1fr 720px;gap:96px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+  <div style="display:flex;flex-direction:column">
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Estrategia y áreas de la empresa</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy);text-wrap:balance">Dos empresas de Castilla y León que innovan en su estrategia</h2>
+    <div style="display:flex;flex-direction:column;gap:20px;margin-top:var(--gap-item)">
+      <div style="background:var(--white);border-radius:20px;padding:28px 36px;box-shadow:0 2px 0 var(--line)">
+        <p style="font-size:var(--type-caption);font-weight:700;color:var(--coral);text-transform:uppercase;letter-spacing:.06em">Antolín · Burgos</p>
+        <p style="font-size:var(--type-caption);line-height:1.45;margin-top:8px;color:var(--navy)">Fabrica interiores de coche para casi todas las marcas. Su sistema de calefacción del habitáculo por <b>radiación infrarroja</b> gasta hasta un 70 % menos energía que la calefacción por aire: en un coche eléctrico, eso es más autonomía. Premio de sostenibilidad en los II Premios de Automoción y Movilidad de Castilla y León (2024).</p>
+        <p style="font-size:21px;line-height:1.4;margin-top:8px;color:var(--muted)"><b>Estrategia:</b> diferenciarse por eficiencia en el coche eléctrico.</p>
+      </div>
+      <div style="background:var(--white);border-radius:20px;padding:28px 36px;box-shadow:0 2px 0 var(--line)">
+        <p style="font-size:var(--type-caption);font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.06em">Grupo Lince · Valladolid</p>
+        <p style="font-size:var(--type-caption);line-height:1.45;margin-top:8px;color:var(--navy)">Empresa social que da empleo a personas con discapacidad. Ha montado un centro de <b>fabricación aditiva</b> (impresión 3D) donde trabajan; fabrica piezas y prototipos para la industria. Premio de captación y fidelización de talento en los mismos premios.</p>
+        <p style="font-size:21px;line-height:1.4;margin-top:8px;color:var(--muted)"><b>Estrategia:</b> personas y sostenibilidad social como ventaja.</p>
+      </div>
+    </div>
+    <p style="font-size:var(--type-small);font-weight:700;color:var(--navy);margin-top:auto;padding-top:20px">¿En qué área de la tabla anterior está cada una?</p>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:20px;min-height:0">
+    <figure class="foto" style="flex:1">
+      <img src="img/antolin-burgos.jpg" alt="Sede del Grupo Antolín en Burgos" title="Foto: Zarateman · Wikimedia Commons · CC0">
+      <figcaption class="credito"><b>Sede del Grupo Antolín</b> en el polígono Este de Burgos, 2024. Foto: Zarateman, <a href="https://commons.wikimedia.org/wiki/File:Burgos_-_Grupo_Antol%C3%ADn_1.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.es" target="_blank" rel="noopener">CC0</a>. Reducida.</figcaption>
+    </figure>
+    <p style="font-size:var(--type-caption);color:var(--muted);line-height:1.4">Figura 2.3. Sede de Antolín en Burgos. Fuente de los premios: Junta de Castilla y León, 28/11/2024.</p>
+  </div>
+</section>
+
+<!-- 19 Pregunta a la clase: qué le pasa a una empresa que no cambia -->
+<section data-label="2.2 · ¿Qué le pasa a una empresa que no cambia?" data-seccion="2.2" data-notas="Criterio c. Debate de cinco minutos. Recordar Nokia y Blockbuster de la UT1. Ejemplo de cuidados: una residencia que sigue con la medicación en papel cuando la inspección y las familias ya piden registro digital. Cierre: adaptarse no es adoptar todo lo que sale; es vigilar, probar y decidir." style="display:grid;grid-template-columns:1fr 1.1fr;gap:96px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);align-items:center">
+  <div>
+    <img class="icono" src="../assets/question.png" alt="">
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;margin-top:var(--gap-item)">Pregunta a la clase</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.12;margin-top:20px;color:var(--navy);text-wrap:balance">¿Qué le pasa a una empresa que no cambia?</h2>
+    <p style="font-size:var(--type-small);line-height:1.5;color:var(--muted);margin-top:var(--gap-item)">Pensad en Nokia y Blockbuster, de la UT1. Y en una residencia que sigue apuntando la medicación en papel cuando la inspección y las familias ya piden un registro digital.</p>
+  </div>
+  <div class="revela">
+    <div class="revela-cuerpo">
+      <p style="font-size:var(--type-caption);font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Ideas</p>
+      <ul style="list-style:none;padding:0;margin-top:24px;display:flex;flex-direction:column;gap:20px;font-size:var(--type-small);line-height:1.35">
+        <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">●</span><span><b>Pierde clientes</b> frente a quien ofrece lo mismo más rápido, más barato o más cómodo.</span></li>
+        <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">●</span><span><b>Sus costes suben</b> en comparación, porque el resto los ha bajado.</span></li>
+        <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">●</span><span><b>No encuentra gente</b> que quiera trabajar con herramientas viejas.</span></li>
+        <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">●</span><span><b>Un día una norma nueva o un competidor nuevo</b> la deja fuera del mercado.</span></li>
+      </ul>
+      <p style="font-size:var(--type-small);line-height:1.45;margin-top:24px;color:var(--navy)">Adaptarse no es adoptar todo lo que sale: es <b>vigilar, probar y decidir</b>.</p>
+    </div>
+    <button class="btn btn-primary revela-btn">Ver ideas</button>
+  </div>
+</section>
+
+<!-- 20 Texto: adaptarse a los cambios del entorno -->
+<section data-label="2.2 · Adaptarse a los cambios del entorno" data-seccion="2.2" data-notas="Criterio c. Libro 3.4.3.1, tabla de ventajas e inconvenientes de las tecnologías emergentes. El Reglamento europeo de inteligencia artificial (Reglamento (UE) 2024/1689) se aplica por fases: prohibiciones desde febrero de 2025, obligaciones de los modelos de uso general desde agosto de 2025 y la mayoría del resto desde agosto de 2026. Una residencia que use IA para decidir cuidados o una empresa que la use para seleccionar personal tienen obligaciones. Innovación abierta: UT1." style="display:grid;grid-template-columns:1fr 1fr;gap:80px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+  <div>
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Estrategia y áreas de la empresa</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy);text-wrap:balance">Adaptarse a los cambios del entorno</h2>
+    <p style="font-size:var(--type-caption);font-weight:700;color:var(--coral);text-transform:uppercase;letter-spacing:.06em;margin-top:var(--gap-title)">Qué cambia alrededor de la empresa</p>
+    <ul style="padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:14px;font-size:var(--type-caption);line-height:1.4">
+      <li style="display:flex;gap:16px"><span style="color:var(--yellow);font-weight:800">—</span><span><b>Los clientes:</b> cómo compran y qué esperan (respuesta inmediata, todo desde el móvil)</span></li>
+      <li style="display:flex;gap:16px"><span style="color:var(--yellow);font-weight:800">—</span><span><b>La tecnología:</b> lo que hoy es caro o raro mañana es normal</span></li>
+      <li style="display:flex;gap:16px"><span style="color:var(--yellow);font-weight:800">—</span><span><b>La competencia:</b> incluida la que viene de otro sector o de otro país</span></li>
+      <li style="display:flex;gap:16px"><span style="color:var(--yellow);font-weight:800">—</span><span><b>Las normas:</b> el Reglamento europeo de inteligencia artificial se aplica por fases desde 2025 y obliga a empresas de todos los sectores</span></li>
+    </ul>
+    <p style="font-size:var(--type-caption);font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.06em;margin-top:var(--gap-item)">Cómo se adapta una empresa</p>
+    <ul style="padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:14px;font-size:var(--type-caption);line-height:1.4">
+      <li style="display:flex;gap:16px"><span style="color:var(--yellow);font-weight:800">—</span><span>Vigilar el sector: ferias, prensa, competidores, proveedores</span></li>
+      <li style="display:flex;gap:16px"><span style="color:var(--yellow);font-weight:800">—</span><span>Formar a la plantilla antes de que haga falta</span></li>
+      <li style="display:flex;gap:16px"><span style="color:var(--yellow);font-weight:800">—</span><span>Probar a pequeña escala antes de invertir: un equipo, una planta, un mes</span></li>
+      <li style="display:flex;gap:16px"><span style="color:var(--yellow);font-weight:800">—</span><span>Colaborar con otros: innovación abierta (UT1)</span></li>
+    </ul>
+  </div>
+  <div style="display:flex;flex-direction:column;justify-content:center;gap:20px">
+    <p style="font-size:var(--type-caption);font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.06em">Adoptar una tecnología emergente</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+      <div style="background:var(--teal);color:var(--navy);border-radius:24px;padding:32px 36px">
+        <p style="font-size:var(--type-small);font-weight:800">Ventajas</p>
+        <ul style="padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:16px;font-size:22px;line-height:1.35">
+          <li style="display:flex;gap:14px"><span style="color:var(--white)">●</span><span>Crea productos y servicios nuevos</span></li>
+          <li style="display:flex;gap:14px"><span style="color:var(--white)">●</span><span>Automatiza tareas repetitivas</span></li>
+          <li style="display:flex;gap:14px"><span style="color:var(--white)">●</span><span>Reduce costes a medio plazo</span></li>
+          <li style="display:flex;gap:14px"><span style="color:var(--white)">●</span><span>Resuelve problemas que antes no tenían solución</span></li>
+        </ul>
+      </div>
+      <div style="background:var(--white);border:3px solid var(--line);border-radius:24px;padding:32px 36px">
+        <p style="font-size:var(--type-small);font-weight:800;color:var(--navy)">Inconvenientes</p>
+        <ul style="padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:16px;font-size:22px;line-height:1.35;color:var(--navy)">
+          <li style="display:flex;gap:14px"><span style="color:var(--coral)">●</span><span>Coste inicial alto</span></li>
+          <li style="display:flex;gap:14px"><span style="color:var(--coral)">●</span><span>Resistencia al cambio de la plantilla</span></li>
+          <li style="display:flex;gap:14px"><span style="color:var(--coral)">●</span><span>Formación constante</span></li>
+          <li style="display:flex;gap:14px"><span style="color:var(--coral)">●</span><span>Seguridad y privacidad de los datos</span></li>
+          <li style="display:flex;gap:14px"><span style="color:var(--coral)">●</span><span>Efecto en el empleo menos cualificado</span></li>
+        </ul>
+      </div>
+    </div>
+    <p style="font-size:var(--type-caption);line-height:1.45;color:var(--muted)">Antes de implantar una tecnología se analizan los pros y los contras <b style="color:var(--navy)">para esa empresa</b>, no en general. Lo que le sale bien a Iveco puede no salirle bien a un taller de tres personas.</p>
+  </div>
+</section>
+
+<!-- 21 Vídeo: estrategias de innovación -->
+<section data-label="2.2 · Vídeo: estrategias de innovación" data-seccion="2.2" data-notas="ECONOSUBLIME, 2:55, febrero de 2025, castellano de España. Verlo entero antes de la clase para confirmar que encaja con el nivel; si no, sustituir por 'Las 3 estrategias competitivas' del mismo canal (4:31, 2020). Respuesta orientativa a la consigna: Antolín sigue una estrategia de diferenciación (producto distinto, más eficiente); Lince, una estrategia basada en las personas y en un nicho." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:grid;grid-template-columns:minmax(0,1fr) 560px;gap:80px">
+  <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
+    <div style="flex:1;background:var(--dark);border-radius:20px;overflow:hidden;position:relative">
+      <iframe src="https://www.youtube-nocookie.com/embed/XSfidiMwQ78" title="Estrategias de innovación" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+    </div>
+    <p style="font-size:var(--type-caption);color:var(--muted)">Vídeo 2.2. Estrategias de innovación. Canal ECONOSUBLIME, 2025.</p>
+  </div>
+  <div>
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Estrategia y áreas de la empresa</p>
+    <h2 style="font-size:var(--type-subtitle);font-weight:800;line-height:1.15;margin-top:20px;color:var(--navy);text-wrap:balance">Estrategias de innovación</h2>
+    <p style="font-size:var(--type-small);line-height:1.5;color:var(--muted);margin-top:var(--gap-item)">Apunta las estrategias que nombra. Al terminar: ¿cuál siguen Antolín y Grupo Lince?</p>
+    <ul style="padding:0;list-style:none;display:flex;flex-direction:column;gap:20px;margin-top:var(--gap-title);font-size:var(--type-small);line-height:1.4">
+      <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">—</span><span>Duración: 2:55</span></li>
+      <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">—</span><span>Se ve entero</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 22 Definición: tecnología emergente -->
+<section data-label="2.3 · Tecnología emergente" data-seccion="2.3" data-deck-id="tecnologias" data-deck-section="2.3" data-notas="Criterio d. Libro 3.4.3: definición y cinco características. Gartner publica cada año su Hype Cycle de tecnologías emergentes; el de 2025 (10/09/2025) recoge 30 tecnologías y pone los agentes de IA en lo más alto de las expectativas. Explicar en una frase qué es el Hype Cycle: las expectativas suben mucho al principio, luego llega la decepción y después el uso real; no entrar en sus fases. Gartner publica el siguiente en agosto o septiembre de 2026: comprobar antes de dar la unidad." style="display:grid;grid-template-columns:1fr 1.2fr;gap:100px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);align-items:center;position:relative;overflow:hidden">
+  <span class="mancha abajo-izq volteada" style="width:520px;color:var(--teal)"></span>
+  <div style="position:relative">
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--coral);text-transform:uppercase;letter-spacing:.06em">Concepto clave</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.05;margin-top:24px;letter-spacing:-.02em;color:var(--navy)">Tecnología emergente</h2>
+    <div style="margin-top:var(--gap-item);background:var(--yellow);color:var(--navy);border-radius:8px;padding:36px 40px;transform:rotate(-1.5deg);box-shadow:0 18px 40px rgba(23,36,51,.14)">
+      <p style="font-size:var(--type-small);font-weight:700;line-height:1.35">Tecnología en sus primeras etapas de desarrollo, que crece deprisa y que puede cambiar de forma importante la sociedad, la economía o la manera de hacer un trabajo. Todavía genera dudas sobre su utilidad.</p>
+    </div>
+  </div>
+  <div style="position:relative;display:flex;flex-direction:column;gap:20px">
+    <p style="font-size:var(--type-caption);font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.06em">Cinco características</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div style="background:var(--white);border-radius:20px;padding:24px 28px;box-shadow:0 2px 0 var(--line)"><p style="font-size:var(--type-small);font-weight:800;color:var(--navy)">Novedad</p><p style="font-size:21px;line-height:1.4;color:var(--muted);margin-top:4px">Hace algo que antes no se podía hacer, o de otra manera.</p></div>
+      <div style="background:var(--white);border-radius:20px;padding:24px 28px;box-shadow:0 2px 0 var(--line)"><p style="font-size:var(--type-small);font-weight:800;color:var(--navy)">Crecimiento rápido</p><p style="font-size:21px;line-height:1.4;color:var(--muted);margin-top:4px">Cada año hay más usuarios, más empresas y más dinero.</p></div>
+      <div style="background:var(--white);border-radius:20px;padding:24px 28px;box-shadow:0 2px 0 var(--line)"><p style="font-size:var(--type-small);font-weight:800;color:var(--navy)">Impacto grande</p><p style="font-size:21px;line-height:1.4;color:var(--muted);margin-top:4px">Puede cambiar sectores enteros, no solo una tarea.</p></div>
+      <div style="background:var(--white);border-radius:20px;padding:24px 28px;box-shadow:0 2px 0 var(--line)"><p style="font-size:var(--type-small);font-weight:800;color:var(--navy)">Permanencia</p><p style="font-size:21px;line-height:1.4;color:var(--muted);margin-top:4px">No es una moda: se queda y evoluciona.</p></div>
+      <div style="background:var(--white);border-radius:20px;padding:24px 28px;box-shadow:0 2px 0 var(--line);grid-column:1 / -1"><p style="font-size:var(--type-small);font-weight:800;color:var(--navy)">Incertidumbre</p><p style="font-size:21px;line-height:1.4;color:var(--muted);margin-top:4px">Nadie sabe seguro cuánto va a servir ni cuándo. Por eso hay que evaluarla antes de adoptarla.</p></div>
+    </div>
+    <p style="font-size:var(--type-caption);line-height:1.45;color:var(--muted)">Referencia actual: el <b style="color:var(--navy)">Hype Cycle de tecnologías emergentes de Gartner 2025</b> recoge 30 tecnologías y sitúa a los agentes de inteligencia artificial en lo más alto de las expectativas (Gartner, 10/09/2025).</p>
+  </div>
+</section>
+
+<!-- 23 Tabla: catálogo 1-6 -->
+<section data-label="2.3 · Catálogo de tecnologías (1-6)" data-seccion="2.3" data-notas="Las doce tecnologías del catálogo son las de la práctica: cada equipo se lleva una por sorteo. Fuentes: Telefónica, IA en telefonía de empresa, 2026; John Deere See & Spray, resultados 2025; teleasistencia avanzada de la Junta, 58.000 usuarios, junio de 2025; INE TIC empresas, 22/10/2025 (44,3 % nube); Horse Valladolid, data centric, premio 2024; Iveco Valladolid, 13/04/2026; robots Temi y Copito en residencias públicas, 4 millones de fondos europeos, 2025; Marsi Bionics, UT1; Grupo Lince, premio 2024. Un agente de IA es un programa que, además de responder, ejecuta tareas encadenadas por su cuenta: reservar, rellenar, enviar." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Tecnologías emergentes</p>
+  <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Catálogo de tecnologías emergentes (1 a 6)</h2>
+  <table style="width:100%;border-collapse:collapse;margin-top:var(--gap-item);font-size:21px;background:var(--white);border-radius:20px;overflow:hidden">
+    <thead>
+      <tr style="background:var(--teal);color:var(--navy);text-align:left">
+        <th style="padding:16px 24px;font-weight:700;width:330px">Tecnología</th>
+        <th style="padding:16px 24px;font-weight:700;width:520px">Qué es</th>
+        <th style="padding:16px 24px;font-weight:700">Ejemplos de 2025-26</th>
+      </tr>
+    </thead>
+    <tbody style="line-height:1.3">
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:14px 24px;font-weight:700;color:var(--navy)"><span style="color:var(--coral)">1</span> Inteligencia artificial y agentes de IA</td><td style="padding:14px 24px">Programas que aprenden de datos para reconocer, predecir o generar. Los agentes, además, ejecutan tareas encadenadas por su cuenta</td><td style="padding:14px 24px">Telefónica transcribe y resume las llamadas de sus clientes de empresa (2026); un chatbot que atiende el soporte de noche</td></tr>
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:14px 24px;font-weight:700;color:var(--navy)"><span style="color:var(--coral)">2</span> Internet de las cosas (IoT)</td><td style="padding:14px 24px">Objetos con sensores conectados a internet que envían datos y reciben órdenes</td><td style="padding:14px 24px">See &amp; Spray de John Deere (2025); la teleasistencia avanzada de Castilla y León, con detectores de caídas, humo, gas e inactividad en 58.000 hogares (2025)</td></tr>
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:14px 24px;font-weight:700;color:var(--navy)"><span style="color:var(--coral)">3</span> Computación en la nube</td><td style="padding:14px 24px">Servidores, almacenamiento y programas alquilados por internet en vez de comprados e instalados</td><td style="padding:14px 24px">El 44,3 % de las empresas españolas de diez o más empleados compra servicios de nube (INE, 2025); una app de partes de trabajo para ayuda a domicilio</td></tr>
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:14px 24px;font-weight:700;color:var(--navy)"><span style="color:var(--coral)">4</span> Big data y analítica</td><td style="padding:14px 24px">Reunir grandes cantidades de datos y decidir con ellos</td><td style="padding:14px 24px">Horse Valladolid, «del digital al data centric»: los datos de todas las líneas guían el mantenimiento (premio 2024); BEONx, precios de hotel</td></tr>
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:14px 24px;font-weight:700;color:var(--navy)"><span style="color:var(--coral)">5</span> Robótica y cobots</td><td style="padding:14px 24px">Robots que trabajan solos (industriales) o junto a personas (colaborativos, cobots) y robots sociales</td><td style="padding:14px 24px">Iveco Valladolid, 92 robots nuevos (2026); robots sociales Temi y Copito en las residencias públicas de la Junta (2025); el exoesqueleto de Marsi Bionics</td></tr>
+      <tr><td style="padding:14px 24px;font-weight:700;color:var(--navy)"><span style="color:var(--coral)">6</span> Impresión 3D</td><td style="padding:14px 24px">Fabricar piezas capa a capa a partir de un modelo digital (fabricación aditiva)</td><td style="padding:14px 24px">Grupo Lince, Valladolid, centro de fabricación aditiva social (2024); férulas y adaptadores de cubiertos a medida en terapia ocupacional</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 24 Tabla: catálogo 7-12 -->
+<section data-label="2.3 · Catálogo de tecnologías (7-12)" data-seccion="2.3" data-notas="Fuentes: Teicon (Palencia), plataforma de gemelos digitales Tokii, sesión con la Cámara de Comercio de Palencia el 27/11/2025; SCAYLE, centro de supercomputación de Castilla y León en León, eje de la computación cuántica en la comunidad dentro de los programas Quantum Spain y Q-CAYLE (Junta, 23/10/2025); INCIBE, Instituto Nacional de Ciberseguridad, con sede en León. Blockchain: registro compartido entre muchos ordenadores en el que cada anotación queda encadenada a la anterior y no se puede borrar; su uso más claro fuera de las criptomonedas es la trazabilidad. En el catálogo hay casos de informática, de cuidados y de otros sectores." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Tecnologías emergentes</p>
+  <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Catálogo de tecnologías emergentes (7 a 12)</h2>
+  <table style="width:100%;border-collapse:collapse;margin-top:var(--gap-item);font-size:21px;background:var(--white);border-radius:20px;overflow:hidden">
+    <thead>
+      <tr style="background:var(--teal);color:var(--navy);text-align:left">
+        <th style="padding:16px 24px;font-weight:700;width:330px">Tecnología</th>
+        <th style="padding:16px 24px;font-weight:700;width:520px">Qué es</th>
+        <th style="padding:16px 24px;font-weight:700">Ejemplos de 2025-26</th>
+      </tr>
+    </thead>
+    <tbody style="line-height:1.3">
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:14px 24px;font-weight:700;color:var(--navy)"><span style="color:var(--coral)">7</span> Gemelos digitales</td><td style="padding:14px 24px">Copia virtual de una máquina, una fábrica o un edificio, conectada con la real, para simular cambios antes de hacerlos</td><td style="padding:14px 24px">Teicon (Palencia) ofrece gemelos digitales de plantas industriales con su plataforma Tokii (2025)</td></tr>
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:14px 24px;font-weight:700;color:var(--navy)"><span style="color:var(--coral)">8</span> Realidad virtual, aumentada y extendida</td><td style="padding:14px 24px">Mundos simulados con gafas (virtual) o capas de información sobre lo que se ve (aumentada)</td><td style="padding:14px 24px">Formación de operarios y mantenimiento guiado en fábricas; estimulación cognitiva y viajes virtuales para personas mayores en residencias</td></tr>
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:14px 24px;font-weight:700;color:var(--navy)"><span style="color:var(--coral)">9</span> Blockchain</td><td style="padding:14px 24px">Registro compartido entre muchos ordenadores en el que nada se puede borrar ni cambiar sin que se note</td><td style="padding:14px 24px">Trazabilidad alimentaria: saber de qué granja viene cada lote; historial de mantenimiento de un equipo que nadie puede alterar</td></tr>
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:14px 24px;font-weight:700;color:var(--navy)"><span style="color:var(--coral)">10</span> 5G y redes privadas</td><td style="padding:14px 24px">Conexión móvil muy rápida y sin cortes; una empresa puede tener su propia red 5G dentro de la fábrica</td><td style="padding:14px 24px">Carretillas autónomas y robots móviles conectados sin cables en una planta; videollamada médica sin cortes desde el domicilio</td></tr>
+      <tr style="border-bottom:2px solid var(--line)"><td style="padding:14px 24px;font-weight:700;color:var(--navy)"><span style="color:var(--coral)">11</span> Computación cuántica</td><td style="padding:14px 24px">Ordenadores que aprovechan la física cuántica para resolver problemas fuera del alcance de los actuales</td><td style="padding:14px 24px">SCAYLE (León), centro de supercomputación de Castilla y León, eje de la computación cuántica en la comunidad: Quantum Spain y Q-CAYLE (Junta, 23/10/2025)</td></tr>
+      <tr><td style="padding:14px 24px;font-weight:700;color:var(--navy)"><span style="color:var(--coral)">12</span> Ciberseguridad</td><td style="padding:14px 24px">Proteger sistemas, redes y datos; hoy con inteligencia artificial en los dos bandos, el que ataca y el que defiende</td><td style="padding:14px 24px">INCIBE, el Instituto Nacional de Ciberseguridad, tiene su sede en León; formar a la plantilla contra el phishing es la medida más barata</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:var(--type-caption);color:var(--muted);margin-top:16px;line-height:1.4">Estas doce son las tecnologías de la práctica: cada equipo se lleva una. Hay casos de informática, de cuidados y de otros sectores (automoción, agricultura, energía).</p>
+</section>
+
+<!-- 25 Vídeo: digitalización y tecnologías emergentes -->
+<section data-label="2.3 · Vídeo: digitalización y tecnologías emergentes" data-seccion="2.3" data-notas="ECONOSUBLIME, 6:53, febrero de 2025, castellano de España. Es el vídeo más largo de la unidad. Al terminar, anotar en la pizarra las tecnologías que nombra y no están en el catálogo, y preguntar cuál elegirían si pudieran." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:grid;grid-template-columns:minmax(0,1fr) 560px;gap:80px">
+  <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
+    <div style="flex:1;background:var(--dark);border-radius:20px;overflow:hidden;position:relative">
+      <iframe src="https://www.youtube-nocookie.com/embed/8HpBeRQ15zg" title="Qué es la digitalización. Tecnologías emergentes" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+    </div>
+    <p style="font-size:var(--type-caption);color:var(--muted)">Vídeo 2.3. Qué es la digitalización. Tecnologías emergentes. Canal ECONOSUBLIME, 2025.</p>
+  </div>
+  <div>
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Tecnologías emergentes</p>
+    <h2 style="font-size:var(--type-subtitle);font-weight:800;line-height:1.15;margin-top:20px;color:var(--navy);text-wrap:balance">Qué es la digitalización y qué tecnologías la empujan</h2>
+    <p style="font-size:var(--type-small);line-height:1.5;color:var(--muted);margin-top:var(--gap-item)">Apunta las tecnologías que nombra y que <b>no</b> están en el catálogo. Y piensa cuál elegiríais para la práctica si pudierais elegir.</p>
+    <ul style="padding:0;list-style:none;display:flex;flex-direction:column;gap:20px;margin-top:var(--gap-title);font-size:var(--type-small);line-height:1.4">
+      <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">—</span><span>Duración: 6:53</span></li>
+      <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">—</span><span>Se ve entero</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 26 Ejemplo resuelto: cómo se presenta una tecnología -->
+<section data-label="2.3 · Cómo se presenta una tecnología: ejemplo resuelto" data-seccion="2.3" data-notas="Es la plantilla de la práctica: las seis preguntas aplicadas a la impresión 3D. Fuentes: Grupo Lince, premio de captación y fidelización de talento, 28/11/2024; el uso de impresión 3D en terapia ocupacional (férulas, adaptadores de cubiertos, engrosadores de mango) está extendido en hospitales y asociaciones. Foto: Ultimaker 3 imprimiendo, Svitlana Lozova, Commons, CC BY-SA 4.0. En equipos mixtos el caso real y la última pregunta se contestan para los dos sectores, como aquí." style="display:grid;grid-template-columns:1fr 560px;gap:72px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+  <div style="display:flex;flex-direction:column;min-width:0">
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Tecnologías emergentes</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy);text-wrap:balance">Cómo se presenta una tecnología: ejemplo resuelto</h2>
+    <p style="font-size:var(--type-caption);line-height:1.45;color:var(--muted);margin-top:12px">Las seis preguntas de la práctica, aplicadas a la impresión 3D. Esta es la estructura que seguirá vuestra presentación.</p>
+    <ol style="padding:0;list-style:none;display:flex;flex-direction:column;gap:11px;font-size:21px;line-height:1.35;margin-top:var(--gap-item)">
+      <li style="display:grid;grid-template-columns:250px 1fr;gap:16px"><span style="font-weight:700;color:var(--coral)">1. Qué es</span><span>Fabricar piezas capa a capa a partir de un archivo digital, sin molde.</span></li>
+      <li style="display:grid;grid-template-columns:250px 1fr;gap:16px"><span style="font-weight:700;color:var(--coral)">2. Eficiencia</span><span>Una pieza de repuesto en horas, sin esperar días al proveedor ni pagar el envío.</span></li>
+      <li style="display:grid;grid-template-columns:250px 1fr;gap:16px"><span style="font-weight:700;color:var(--coral)">3. Calidad</span><span>Piezas a medida de cada cliente o de cada persona, no de serie.</span></li>
+      <li style="display:grid;grid-template-columns:250px 1fr;gap:16px"><span style="font-weight:700;color:var(--coral)">4. Sostenibilidad</span><span>Solo se gasta el material que lleva la pieza, y no hay transporte.</span></li>
+      <li style="display:grid;grid-template-columns:250px 1fr;gap:16px"><span style="font-weight:700;color:var(--coral)">5. Caso real con fuente</span><span>Grupo Lince (Valladolid): centro de fabricación aditiva donde trabajan personas con discapacidad; premio de la Junta, 28/11/2024. En los cuidados: férulas y adaptadores de cubiertos impresos a medida en terapia ocupacional.</span></li>
+      <li style="display:grid;grid-template-columns:250px 1fr;gap:16px"><span style="font-weight:700;color:var(--coral)">6. Área y estrategia</span><span>Producción. En Ansoff, desarrollo de producto: cosas nuevas para los clientes de siempre.</span></li>
+      <li style="display:grid;grid-template-columns:250px 1fr;gap:16px"><span style="font-weight:700;color:var(--coral)">7. Si no se adopta</span><span>El competidor entrega antes y más barato. La residencia sigue esperando semanas una pieza que otra imprime en un día.</span></li>
+    </ol>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:20px;min-height:0">
+    <figure class="foto" style="flex:1">
+      <img src="img/impresora-3d.jpg" alt="Impresora 3D de escritorio imprimiendo una pieza verde" title="Foto: Svitlana Lozova · Wikimedia Commons · CC BY-SA 4.0">
+      <figcaption class="credito"><b>Impresora 3D Ultimaker 3</b> imprimiendo una pieza. Foto: Svitlana Lozova, <a href="https://commons.wikimedia.org/wiki/File:Ultimaker_3_printing_with_Breakaway_support_material.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-SA 4.0</a>. Reducida.</figcaption>
+    </figure>
+    <p style="font-size:var(--type-caption);color:var(--muted);line-height:1.4">Figura 2.4. Impresora 3D de escritorio. Haz clic para verla en grande.</p>
+  </div>
+</section>
+
+<!-- 27 Interactivo: clasifica el caso -->
+<section data-label="2.3 · Clasifica el caso" data-seccion="2.3" data-notas="Interactivo con dieciséis casos al azar: cinco de informática, seis de cuidados y cinco de otros sectores. Es el ensayo de la práctica: tecnología (criterio d), efecto (a) y área (b). Hacer dos o tres en común y dejar que sigan solos cinco minutos. Algunos casos admiten dos respuestas; Resolver lo dice. Al terminar se sortean las doce tecnologías, una por equipo; si hay más de doce equipos, se repite tecnología con la condición de que el caso real sea distinto." style="display:grid;grid-template-columns:1fr 1.5fr;gap:80px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);align-items:stretch">
+  <div>
+    <span class="pill">Ejercicio interactivo</span>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:32px;color:var(--navy);text-wrap:balance">Clasifica el caso: tecnología, efecto y área</h2>
+    <p style="font-size:var(--type-body);line-height:1.5;margin-top:var(--gap-title);color:var(--muted)">Un caso al azar y tres desplegables: qué tecnología usa, qué efecto principal tiene y a qué área de la empresa afecta. Pulsa <b>Comprobar</b> para corregir, <b>Pista</b> si te atascas y <b>Otro ejercicio</b> para seguir.</p>
+    <p style="font-size:var(--type-small);line-height:1.5;margin-top:var(--gap-item);color:var(--muted)">Algunos casos admiten dos respuestas en un desplegable; Resolver te dice cuáles. Al terminar, sorteo de tecnologías.</p>
+  </div>
+  <div class="ej" data-tipo="clasificar" data-banco="tecnologia" data-campos="tecnologia,efecto,areaEmpresa" data-enunciado="Lee el caso y elige la tecnología que usa, el efecto principal que tiene y el área de la empresa a la que afecta. Comprobar corrige cada uno; Pista resuelve uno y lo explica." data-consejo="Piensa: qué herramienta hay detrás, qué mejora sobre todo y quién la usa en la empresa."></div>
+</section>
+
+<!-- 28 Práctica 2.4: presentación de una tecnología emergente -->
+<section data-label="2.4 · Presentación de una tecnología emergente" data-seccion="2.4" data-practica="Práctica" data-deck-id="practica-2-4" data-deck-section="2.4" data-notas="Sesión 2 entera. Si es conjunta con el otro grupo, los equipos son mixtos y el caso real y la pregunta 7 se responden para los dos sectores (una empresa informática y una residencia o un servicio de ayuda a domicilio). Antes de la sesión: dejar en Classroom dos fuentes de partida por tecnología, en castellano y de 2025-26, y la plantilla de Google Slides con las ocho diapositivas ya tituladas (portada, las seis preguntas en orden y fuentes). Tiempos: 20 leer y buscar, 70 montar, 20 ensayar y repartir, 10 entregar. Internet sí; inteligencia artificial generativa no. Pasar por las mesas y comprobar que el caso real tiene fecha y fuente antes de la última media hora." style="display:grid;grid-template-columns:1fr 1fr;gap:96px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+  <div>
+    <span class="pill">Práctica</span>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:32px;color:var(--navy);text-wrap:balance">Presentación de una tecnología emergente</h2>
+    <p style="font-size:var(--type-small);line-height:1.5;margin-top:var(--gap-item)">En equipo de tres, montad una presentación de <b>ocho diapositivas</b> sobre la tecnología que os ha tocado. Tiene que responder, en este orden, a las seis preguntas del ejemplo resuelto:</p>
+    <ol style="padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:20px;font-size:var(--type-caption);line-height:1.35;color:var(--navy)">
+      <li style="display:flex;gap:16px"><span style="font-weight:800;color:var(--coral)">1.</span><span>Qué es, con vuestras palabras</span></li>
+      <li style="display:flex;gap:16px"><span style="font-weight:800;color:var(--coral)">2-4.</span><span>Cómo mejora la eficiencia, la calidad y la sostenibilidad</span></li>
+      <li style="display:flex;gap:16px"><span style="font-weight:800;color:var(--coral)">5.</span><span>Un caso real de 2025 o 2026, con su fuente</span></li>
+      <li style="display:flex;gap:16px"><span style="font-weight:800;color:var(--coral)">6.</span><span>A qué área de la empresa afecta y cómo cambia su estrategia</span></li>
+      <li style="display:flex;gap:16px"><span style="font-weight:800;color:var(--coral)">7.</span><span>Qué le pasa a una empresa de vuestro sector que no la adopta</span></li>
+    </ol>
+  </div>
+  <div style="background:var(--white);border-radius:24px;padding:48px 56px;display:flex;flex-direction:column;gap:32px;box-shadow:0 2px 0 var(--line)">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;font-size:var(--type-small)">
+      <div><p style="color:var(--muted);font-size:var(--type-caption)">Duración</p><p style="font-weight:700;color:var(--navy);margin-top:6px">1 sesión (2 h)</p></div>
+      <div><p style="color:var(--muted);font-size:var(--type-caption)">Modalidad</p><p style="font-weight:700;color:var(--navy);margin-top:6px">Equipos de 3, una tecnología por sorteo</p></div>
+      <div><p style="color:var(--muted);font-size:var(--type-caption)">Entrega</p><p style="font-weight:700;color:var(--navy);margin-top:6px">Plantilla de Google Slides de Classroom, compartida con el profesor, al acabar la sesión</p></div>
+      <div><p style="color:var(--muted);font-size:var(--type-caption)">Material</p><p style="font-weight:700;color:var(--navy);margin-top:6px">Dos fuentes de partida por tecnología en Classroom y buscador. Sin inteligencia artificial generativa</p></div>
+    </div>
+    <div style="height:2px;background:var(--line)"></div>
+    <ol style="padding:0;list-style:none;display:flex;flex-direction:column;gap:16px;font-size:var(--type-small);line-height:1.4">
+      <li style="display:flex;gap:20px"><span style="font-weight:800;color:var(--blue)">1.</span><span>Leed las dos fuentes y buscad el caso real <span style="color:var(--muted)">(20 min)</span></span></li>
+      <li style="display:flex;gap:20px"><span style="font-weight:800;color:var(--blue)">2.</span><span>Montad las ocho diapositivas en la plantilla <span style="color:var(--muted)">(70 min)</span></span></li>
+      <li style="display:flex;gap:20px"><span style="font-weight:800;color:var(--blue)">3.</span><span>Ensayad y repartid quién dice qué <span style="color:var(--muted)">(20 min)</span></span></li>
+      <li style="display:flex;gap:20px"><span style="font-weight:800;color:var(--blue)">4.</span><span>Revisad las fuentes y entregad <span style="color:var(--muted)">(10 min)</span></span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 29 Dónde buscar y cómo citar -->
+<section data-label="2.4 · Dónde buscar y cómo citar" data-seccion="2.4" data-practica="Práctica" data-notas="Sustituye a las referencias en formato IEEE del curso pasado por una cita sencilla: quién, qué, dónde, cuándo, enlace. Regla de la rúbrica: cada dato lleva su fuente en la misma diapositiva; un dato sin fuente no puntúa. Recordar que una web de la propia empresa vale para saber qué hace, pero no para saber si funciona: para eso, prensa o datos oficiales." style="display:grid;grid-template-columns:1fr 1fr;gap:80px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+  <div>
+    <span class="pill">Práctica</span>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:32px;color:var(--navy);text-wrap:balance">Dónde buscar y cómo citar</h2>
+    <p style="font-size:var(--type-caption);font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.06em;margin-top:var(--gap-title)">Fuentes fiables para la práctica</p>
+    <ul style="padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:14px;font-size:var(--type-caption);line-height:1.4;color:var(--navy)">
+      <li style="display:flex;gap:16px"><span style="font-weight:800">—</span><span><b>Datos oficiales:</b> INE (encuestas a empresas), Comisión Europea (Década Digital, Industria 5.0), ONTSI</span></li>
+      <li style="display:flex;gap:16px"><span style="font-weight:800">—</span><span><b>Junta de Castilla y León:</b> comunicacion.jcyl.es y empresas.jcyl.es</span></li>
+      <li style="display:flex;gap:16px"><span style="font-weight:800">—</span><span><b>Prensa de 2025-26:</b> eldiario.es, El Español, El País Tecnología, Xataka, prensa local (El Norte de Castilla, Diario de León)</span></li>
+      <li style="display:flex;gap:16px"><span style="font-weight:800">—</span><span><b>Las propias empresas:</b> notas de prensa y webs. Sirven para saber qué hacen, no para saber si funciona</span></li>
+    </ul>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:24px;justify-content:center">
+    <div style="background:var(--white);border-radius:24px;padding:36px 44px;box-shadow:0 2px 0 var(--line)">
+      <p style="font-size:var(--type-caption);font-weight:700;color:var(--coral);text-transform:uppercase;letter-spacing:.06em">Cómo se cita, en una línea</p>
+      <p style="font-size:var(--type-small);font-weight:700;line-height:1.4;margin-top:12px;color:var(--navy)">Quién lo publica · Título · Medio · Fecha · Enlace</p>
+      <p style="font-size:var(--type-caption);line-height:1.45;margin-top:16px;color:var(--muted)"><b style="color:var(--navy)">Ejemplo.</b> eldiario.es, «La Junta declara proyecto prioritario la inversión de 233 millones de Iveco en Valladolid», 13/04/2026, enlace.</p>
+    </div>
+    <div style="background:#FFF6D1;border-radius:20px;padding:28px 40px;font-size:var(--type-small);font-weight:700;line-height:1.4;color:var(--navy)">Cada dato lleva su fuente en la misma diapositiva. Un dato sin fuente no puntúa.</div>
+  </div>
+</section>
+
+<!-- 30 Nota: cómo se puntúa -->
+<section data-label="2.4 · Cómo se puntúa la práctica" data-seccion="2.4" data-practica="Práctica" data-notas="Rúbrica de la práctica, sobre 60 puntos: seis preguntas 25, caso real 10, exposición 15, actitud 10. La actitud hacia la innovación se evalúa porque lo pide el currículo: participar en el montaje, rellenar las fichas de escucha y preguntar a otros equipos." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
+  <img class="icono" src="../assets/exclamation.png" alt="">
+  <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:var(--gap-title);color:var(--navy);max-width:1300px;text-wrap:balance">Cómo se puntúa la práctica</h2>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:var(--gap-title);width:100%;max-width:1500px">
+    <div style="background:var(--white);border-radius:20px;padding:32px;box-shadow:0 2px 0 var(--line)"><p style="font-size:var(--type-title);font-weight:800;color:var(--coral)">25</p><p style="font-size:var(--type-caption);color:var(--navy);margin-top:8px;line-height:1.35">Las seis preguntas respondidas con sentido y con vuestras palabras</p></div>
+    <div style="background:var(--white);border-radius:20px;padding:32px;box-shadow:0 2px 0 var(--line)"><p style="font-size:var(--type-title);font-weight:800;color:var(--coral)">10</p><p style="font-size:var(--type-caption);color:var(--navy);margin-top:8px;line-height:1.35">Caso real de 2025-26, bien elegido y con fuente citada</p></div>
+    <div style="background:var(--white);border-radius:20px;padding:32px;box-shadow:0 2px 0 var(--line)"><p style="font-size:var(--type-title);font-weight:800;color:var(--coral)">15</p><p style="font-size:var(--type-caption);color:var(--navy);margin-top:8px;line-height:1.35">Exposición clara en cinco minutos, repartida entre los tres, y respuesta a la pregunta</p></div>
+    <div style="background:var(--white);border-radius:20px;padding:32px;box-shadow:0 2px 0 var(--line)"><p style="font-size:var(--type-title);font-weight:800;color:var(--coral)">10</p><p style="font-size:var(--type-caption);color:var(--navy);margin-top:8px;line-height:1.35">Actitud: participar en el montaje, rellenar las fichas de escucha y preguntar a otros equipos</p></div>
+  </div>
+  <p style="font-size:var(--type-small);line-height:1.5;color:var(--muted);margin-top:var(--gap-title);max-width:1200px;text-wrap:pretty">Sesenta puntos de los cien de la unidad. Los otros cuarenta son la prueba corta de la sesión 3. En esta práctica la inteligencia artificial generativa no se usa: el buscador sí.</p>
+</section>
+
+<!-- 31 Práctica 2.5: exposiciones -->
+<section data-label="2.5 · Exposiciones" data-seccion="2.5" data-practica="Práctica" data-deck-id="practica-2-5" data-deck-section="2.5" data-notas="Sesión 3, primera parte (60-70 min con siete u ocho equipos). Orden por sorteo. Cinco minutos por equipo, cronometrados, y una pregunta del profesor o de otro equipo. El resto rellena una ficha de escucha por tecnología (papel o formulario): qué es en una línea, efecto principal, y si la adoptarían en una empresa de su sector y por qué. Las fichas se entregan al final y cuentan en la actitud. Si los equipos son más de ocho, bajar a cuatro minutos o mover la prueba corta al principio de la primera sesión de la UT3." style="display:grid;grid-template-columns:1fr 1fr;gap:96px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+  <div>
+    <span class="pill">Práctica</span>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:32px;color:var(--navy);text-wrap:balance">Exposiciones</h2>
+    <p style="font-size:var(--type-body);line-height:1.5;margin-top:var(--gap-title)">Cinco minutos por equipo. Hablan los tres. Al terminar, una pregunta del profesor o de otro equipo.</p>
+    <p style="font-size:var(--type-small);line-height:1.5;margin-top:var(--gap-item);color:var(--muted)">Mientras escucháis, rellenáis la <b style="color:var(--navy)">ficha de escucha</b> de cada tecnología. Se entrega al final y cuenta en la nota de actitud.</p>
+  </div>
+  <div style="background:var(--white);border-radius:24px;padding:48px 56px;display:flex;flex-direction:column;gap:32px;box-shadow:0 2px 0 var(--line)">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;font-size:var(--type-small)">
+      <div><p style="color:var(--muted);font-size:var(--type-caption)">Duración</p><p style="font-weight:700;color:var(--navy);margin-top:6px">60-70 minutos</p></div>
+      <div><p style="color:var(--muted);font-size:var(--type-caption)">Orden</p><p style="font-weight:700;color:var(--navy);margin-top:6px">Por sorteo</p></div>
+      <div><p style="color:var(--muted);font-size:var(--type-caption)">Cada equipo</p><p style="font-weight:700;color:var(--navy);margin-top:6px">5 minutos y una pregunta</p></div>
+      <div><p style="color:var(--muted);font-size:var(--type-caption)">Los demás</p><p style="font-weight:700;color:var(--navy);margin-top:6px">Ficha de escucha, en papel o formulario</p></div>
+    </div>
+    <div style="height:2px;background:var(--line)"></div>
+    <p style="font-size:var(--type-caption);font-weight:700;color:var(--coral);text-transform:uppercase;letter-spacing:.06em">La ficha de escucha, por cada tecnología</p>
+    <ol style="padding:0;list-style:none;display:flex;flex-direction:column;gap:14px;font-size:var(--type-small);line-height:1.35">
+      <li style="display:flex;gap:20px"><span style="font-weight:800;color:var(--blue)">1.</span><span>Qué es, en una línea</span></li>
+      <li style="display:flex;gap:20px"><span style="font-weight:800;color:var(--blue)">2.</span><span>Qué efecto principal tiene: eficiencia, calidad o sostenibilidad</span></li>
+      <li style="display:flex;gap:20px"><span style="font-weight:800;color:var(--blue)">3.</span><span>Si la adoptaríais en una empresa de vuestro sector (una tienda de informática, una residencia, un servicio de ayuda a domicilio) y por qué</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 32 Definición: digitalización y transformación digital -->
+<section data-label="2.6 · Digitalización y transformación digital" data-seccion="2.6" data-deck-id="transformacion" data-deck-section="2.6" data-notas="Sesión 3, bloque de teoría de 20 minutos. Datos: ONTSI y KPMG, informe sobre la digitalización de la pyme con datos de 2024, publicado el 25/08/2026: el 75,4 % de las pymes españolas tiene al menos un nivel básico de digitalización, por encima de la media europea, pero solo el 5,6 % llega a un nivel muy alto; Comisión Europea, informe de la Década Digital 2025 (junio de 2025). Junta de Castilla y León, convocatoria 2026 de ayudas a proyectos de Industria 4.0 (inteligencia artificial, robots colaborativos, gemelos digitales, ciberseguridad), casi 5 millones de euros. Ejemplo para la pizarra: escanear las facturas es digitalizar; que la factura se genere, se envíe y se cobre sola es transformación digital." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:grid;grid-template-columns:1fr 1.2fr;gap:100px;align-items:center;position:relative;overflow:hidden">
+  <span class="mancha abajo-izq volteada" style="width:520px;color:var(--teal)"></span>
+  <div style="position:relative">
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--coral);text-transform:uppercase;letter-spacing:.06em">Conceptos clave</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.05;margin-top:24px;letter-spacing:-.02em;color:var(--navy);text-wrap:balance">Digitalización y transformación digital no son lo mismo</h2>
+    <p style="font-size:var(--type-caption);line-height:1.5;color:var(--muted);margin-top:var(--gap-item)">El 75,4 % de las pymes españolas tiene al menos un nivel básico de digitalización, por encima de la media europea. Solo el 5,6 % llega a un nivel muy alto (ONTSI y KPMG, datos de 2024, publicados el 25/08/2026). La Junta subvenciona en 2026 proyectos de Industria 4.0 con inteligencia artificial, cobots, gemelos digitales y ciberseguridad, con casi 5 millones de euros.</p>
+  </div>
+  <div style="position:relative;display:flex;flex-direction:column;gap:28px">
+    <div style="background:var(--white);color:var(--navy);border-radius:8px;padding:36px 44px;transform:rotate(.6deg);box-shadow:0 14px 30px rgba(23,36,51,.10)">
+      <p style="font-size:var(--type-caption);font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--teal)">Digitalizar</p>
+      <p style="font-size:var(--type-small);font-weight:700;line-height:1.35;margin-top:8px">Pasar a formato digital lo que estaba en papel o se hacía a mano.</p>
+      <p style="font-size:22px;line-height:1.4;margin-top:8px;color:var(--muted)">Escanear una factura. Pasar el pedido por correo electrónico en vez de por fax. Los partes de trabajo en una hoja de cálculo.</p>
+    </div>
+    <div style="background:var(--yellow);color:var(--navy);border-radius:8px;padding:36px 44px;transform:rotate(-1deg);box-shadow:0 14px 30px rgba(23,36,51,.12)">
+      <p style="font-size:var(--type-caption);font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:rgba(23,36,51,.7)">Transformación digital</p>
+      <p style="font-size:var(--type-small);font-weight:700;line-height:1.35;margin-top:8px">Cambiar cómo trabaja la empresa usando la tecnología: procesos, servicios y forma de relacionarse con el cliente.</p>
+      <p style="font-size:22px;line-height:1.4;margin-top:8px;color:rgba(23,36,51,.75)">La factura se genera, se envía y se cobra sola. La familia ve en una app cómo ha ido el día de la persona y la auxiliar no rellena papel.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 33 Pasos: de la máquina de vapor a la Industria 5.0 -->
+<section data-label="2.6 · De la máquina de vapor a la Industria 5.0" data-seccion="2.6" data-notas="Línea de tiempo de las revoluciones industriales, una línea por paso. Libro 2.2.3, 3.5 y 3.6. Fechas orientativas: 1.0, finales del siglo XVIII; 2.0, finales del XIX y principios del XX; 3.0, desde los años 70; 4.0, término acuñado en Alemania en 2011; 5.0, propuesta de la Comisión Europea en 2021." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Transformación digital e Industria 5.0</p>
+  <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">De la máquina de vapor a la Industria 5.0</h2>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:28px;margin-top:var(--gap-title)">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="display:flex;align-items:center;gap:20px"><span style="width:72px;height:72px;border-radius:50%;background:var(--coral);color:var(--white);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800;flex:none">1.0</span><span style="flex:1;height:4px;background:var(--line)"></span></div>
+      <p style="font-size:var(--type-small);font-weight:700;color:var(--navy);line-height:1.25">Vapor y mecanización</p>
+      <p style="font-size:22px;color:var(--muted);line-height:1.45">Finales del siglo XVIII. La máquina sustituye a la fuerza de los brazos y del agua.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="display:flex;align-items:center;gap:20px"><span style="width:72px;height:72px;border-radius:50%;background:var(--orange);color:var(--white);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800;flex:none">2.0</span><span style="flex:1;height:4px;background:var(--line)"></span></div>
+      <p style="font-size:var(--type-small);font-weight:700;color:var(--navy);line-height:1.25">Electricidad y cadena de montaje</p>
+      <p style="font-size:22px;color:var(--muted);line-height:1.45">Principios del siglo XX. Producción en serie: cada operario hace una parte.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="display:flex;align-items:center;gap:20px"><span style="width:72px;height:72px;border-radius:50%;background:var(--yellow);color:var(--navy);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800;flex:none">3.0</span><span style="flex:1;height:4px;background:var(--line)"></span></div>
+      <p style="font-size:var(--type-small);font-weight:700;color:var(--navy);line-height:1.25">Electrónica e informática</p>
+      <p style="font-size:22px;color:var(--muted);line-height:1.45">Desde los años 70. Autómatas, ordenadores y los primeros robots industriales.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="display:flex;align-items:center;gap:20px"><span style="width:72px;height:72px;border-radius:50%;background:var(--teal);color:var(--navy);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800;flex:none">4.0</span><span style="flex:1;height:4px;background:var(--line)"></span></div>
+      <p style="font-size:var(--type-small);font-weight:700;color:var(--navy);line-height:1.25">Todo conectado y con datos</p>
+      <p style="font-size:22px;color:var(--muted);line-height:1.45">Desde 2011. Internet de las cosas, nube, inteligencia artificial y robots que se comunican entre sí.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="display:flex;align-items:center;gap:20px"><span style="width:72px;height:72px;border-radius:50%;background:var(--pink);color:var(--navy);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800;flex:none">5.0</span></div>
+      <p style="font-size:var(--type-small);font-weight:700;color:var(--navy);line-height:1.25">La tecnología al servicio de las personas</p>
+      <p style="font-size:22px;color:var(--muted);line-height:1.45">Desde 2021. Personas y máquinas colaboran; producción sostenible y capaz de aguantar crisis.</p>
+    </div>
+  </div>
+  <div style="margin-top:var(--gap-title);background:var(--white);border-radius:20px;padding:28px 40px;box-shadow:0 2px 0 var(--line);font-size:var(--type-small);line-height:1.45;color:var(--navy)">Cada revolución no borra la anterior: una fábrica de hoy tiene electricidad, cadena de montaje, autómatas, sensores conectados y cobots, todo a la vez. Lo mismo pasa en una residencia: la grúa, el registro digital y el robot social conviven.</div>
+</section>
+
+<!-- 34 Comparativa: Industria 4.0 frente a 5.0 -->
+<section data-label="2.6 · Industria 4.0 frente a Industria 5.0" data-seccion="2.6" data-notas="Libro 3.6 y 3.6.1, tabla de diferencias. Definición de la Comisión Europea (Industry 5.0, 2021): una industria centrada en las personas, sostenible y resiliente. Ejemplos: Iveco Valladolid es 4.0 (robots que hacen tareas repetitivas, datos en tiempo real); Grupo Lince es 5.0 (la tecnología al servicio de las personas). Foto: cobot UR5 de Universal Robots, GrowSkills Robotics, Commons, CC BY-SA 4.0. Un cobot no lleva jaula: detecta el contacto con una persona y se para." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Transformación digital e Industria 5.0</p>
+  <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Industria 4.0 frente a Industria 5.0</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr 460px;gap:32px;margin-top:var(--gap-item);flex:1;min-height:0">
+    <div style="background:var(--white);border:3px solid var(--line);border-radius:24px;padding:36px 40px;display:flex;flex-direction:column;gap:16px">
+      <p style="font-size:var(--type-subtitle);font-weight:800;color:var(--navy)">Industria 4.0</p>
+      <p style="font-size:var(--type-caption);line-height:1.4;color:var(--muted)">Digitalizar y automatizar. La máquina es el centro.</p>
+      <ul style="padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;font-size:22px;line-height:1.35;color:var(--navy)">
+        <li style="display:flex;gap:14px"><span style="color:var(--coral)">●</span><span>Robots que hacen las tareas repetitivas</span></li>
+        <li style="display:flex;gap:14px"><span style="color:var(--coral)">●</span><span>Máquinas conectadas que envían datos en tiempo real</span></li>
+        <li style="display:flex;gap:14px"><span style="color:var(--coral)">●</span><span>Inteligencia artificial que predice fallos</span></li>
+        <li style="display:flex;gap:14px"><span style="color:var(--coral)">●</span><span>Objetivo: producir más y con menos errores</span></li>
+      </ul>
+      <p style="font-size:21px;line-height:1.4;color:var(--muted);margin-top:auto"><b style="color:var(--navy)">Ejemplo:</b> Iveco Valladolid, 192 robots de soldadura.</p>
+    </div>
+    <div style="background:var(--teal);color:var(--navy);border-radius:24px;padding:36px 40px;display:flex;flex-direction:column;gap:16px">
+      <p style="font-size:var(--type-subtitle);font-weight:800">Industria 5.0</p>
+      <p style="font-size:var(--type-caption);line-height:1.4">Lo mismo que la 4.0, y además la persona es el centro.</p>
+      <ul style="padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;font-size:22px;line-height:1.35">
+        <li style="display:flex;gap:14px"><span style="color:var(--white)">●</span><span>Personas y máquinas colaboran: cobots sin jaula</span></li>
+        <li style="display:flex;gap:14px"><span style="color:var(--white)">●</span><span>Se mide el bienestar de la plantilla</span></li>
+        <li style="display:flex;gap:14px"><span style="color:var(--white)">●</span><span>Producción sostenible: menos energía y residuos</span></li>
+        <li style="display:flex;gap:14px"><span style="color:var(--white)">●</span><span>Resiliente: aguanta una pandemia o un corte de suministro</span></li>
+      </ul>
+      <p style="font-size:21px;line-height:1.4;margin-top:auto"><b>Ejemplo:</b> Grupo Lince, impresión 3D con personas con discapacidad. <b>Definición de la Comisión Europea (2021):</b> industria centrada en las personas, sostenible y resiliente.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px;min-height:0">
+      <figure class="foto" style="flex:1">
+        <img src="img/cobot-ur5.jpg" alt="Brazo robótico colaborativo UR5 montado en una maleta de transporte" title="Foto: GrowSkills Robotics · Wikimedia Commons · CC BY-SA 4.0">
+        <figcaption class="credito"><b>Cobot UR5</b> de Universal Robots. Foto: GrowSkills Robotics, <a href="https://commons.wikimedia.org/wiki/File:Cobot.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-SA 4.0</a>. Reducida.</figcaption>
+      </figure>
+      <p style="font-size:21px;color:var(--muted);line-height:1.4">Figura 2.5. Un cobot: brazo robótico que trabaja junto a una persona sin jaula; si la toca, se para.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 35 Vídeo: Industria 4.0 -->
+<section data-label="2.6 · Vídeo: Industria 4.0" data-seccion="2.6" data-notas="Bosch España, 1:56, octubre de 2024, castellano de España. Vídeo didáctico de empresa; no vende nada. Alternativa más larga, en recursos: Telefónica, 'Qué es la Industria 5.0 y qué diferencias hay con la Industria 4.0', 6:04, 2024. Consigna: qué tecnologías del catálogo aparecen (IoT, nube, big data, IA, robots, gemelos digitales)." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:grid;grid-template-columns:minmax(0,1fr) 560px;gap:80px">
+  <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
+    <div style="flex:1;background:var(--dark);border-radius:20px;overflow:hidden;position:relative">
+      <iframe src="https://www.youtube-nocookie.com/embed/5ezqgylG-us" title="¡La Industria 4.0 es la 4.ª Revolución Industrial!" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+    </div>
+    <p style="font-size:var(--type-caption);color:var(--muted)">Vídeo 2.4. ¡La Industria 4.0 es la 4.ª Revolución Industrial! Canal de Bosch España, 2024.</p>
+  </div>
+  <div>
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Transformación digital e Industria 5.0</p>
+    <h2 style="font-size:var(--type-subtitle);font-weight:800;line-height:1.15;margin-top:20px;color:var(--navy);text-wrap:balance">La Industria 4.0 en dos minutos</h2>
+    <p style="font-size:var(--type-small);line-height:1.5;color:var(--muted);margin-top:var(--gap-item)">Apunta qué tecnologías del catálogo aparecen en el vídeo. ¿Cuántas de las doce salen?</p>
+    <ul style="padding:0;list-style:none;display:flex;flex-direction:column;gap:20px;margin-top:var(--gap-title);font-size:var(--type-small);line-height:1.4">
+      <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">—</span><span>Duración: 1:56</span></li>
+      <li style="display:flex;gap:20px"><span style="color:var(--yellow);font-weight:800">—</span><span>Se ve entero</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 36 Quiz: 4.0 o 5.0 -->
+<section data-label="2.6 · Quiz: ¿4.0 o 5.0?" data-seccion="2.6" data-notas="Respuesta: Industria 5.0. Colaboración persona-máquina y medir el bienestar son las señas de la 5.0; la 4.0 se queda en automatizar." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:grid;grid-template-columns:1fr 1.2fr;gap:96px;align-items:center;position:relative;overflow:hidden">
+  <span class="mancha arriba-dcha" style="width:380px;color:var(--pink)"></span>
+  <div class="quiz" data-correct="1" data-ok="Correcto. Cobots que colaboran con las personas y una empresa que mide el bienestar de su plantilla: eso es Industria 5.0." data-ko="No. Fíjate en quién está en el centro: ¿la máquina o la persona?" style="display:contents">
+    <div style="position:relative">
+      <span class="pill">Comprueba lo aprendido</span>
+      <h2 style="font-size:var(--type-subtitle);font-weight:800;line-height:1.2;margin-top:32px;color:var(--navy);text-wrap:balance">Una fábrica pone cobots que hacen las tareas pesadas para que los operarios se ocupen del control de calidad, y mide el bienestar de la plantilla. ¿Qué es?</h2>
+      <p class="quiz-fb">Selecciona una opción.</p>
+      <button class="btn btn-ghost quiz-reset" style="margin-top:var(--gap-item)">Reiniciar</button>
+    </div>
+    <div class="quiz-opts" style="position:relative">
+      <button class="quiz-opt"><span class="letra">A</span><span>Industria 4.0</span></button>
+      <button class="quiz-opt"><span class="letra">B</span><span>Industria 5.0</span></button>
+      <button class="quiz-opt"><span class="letra">C</span><span>Ninguna de las dos</span></button>
+      <button class="quiz-opt"><span class="letra">D</span><span>Industria 3.0</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- 37 Esto pasa cerca de ti -->
+<section data-label="2.6 · Esto pasa cerca de ti" data-seccion="2.6" data-notas="Criterios c y d. Fuentes: SCAYLE, eje de la computación cuántica en Castilla y León, Quantum Spain y Q-CAYLE (Junta, 23/10/2025); centro de datos de Torrelobatón, 160 MW y unos 140 empleos directos, en evaluación ambiental (El Día de Valladolid, 07/08/2026); Iveco Valladolid, 233,76 millones y 92 robots (eldiario.es, 13/04/2026); robots sociales Temi y Copito y andadores inteligentes en todas las residencias públicas de la Junta desde 2025, con la residencia La Fuencisla de Segovia como último estreno (diciembre de 2025). También en 2026: talleres de digitalización de la Junta y AETICAL para 117 empresas. Pregunta de cierre: ¿en cuál de estos sitios podríais trabajar vosotros? Todos necesitan técnicos de sistemas y todos, personal de atención. Fotos: Caléndula, supercomputador de SCAYLE (Lumunozf, Commons, CC BY-SA 4.0); robot Temi (Tzipi.b, Commons, CC BY-SA 4.0)." style="display:grid;grid-template-columns:1fr 600px;gap:72px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+  <div style="display:flex;flex-direction:column;min-width:0">
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Transformación digital e Industria 5.0</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Esto pasa cerca de ti</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:var(--gap-item);flex:1">
+      <div data-ir="1" style="background:var(--white);border-radius:20px;padding:26px 30px;box-shadow:0 2px 0 var(--line)"><p style="font-size:var(--type-caption);font-weight:800;color:var(--coral)">SCAYLE · León</p><p style="font-size:21px;line-height:1.4;color:var(--navy);margin-top:6px">El centro de supercomputación de Castilla y León es el eje de la computación cuántica en la comunidad, dentro de los programas Quantum Spain y Q-CAYLE (2025).</p></div>
+      <div style="background:var(--white);border-radius:20px;padding:26px 30px;box-shadow:0 2px 0 var(--line)"><p style="font-size:var(--type-caption);font-weight:800;color:var(--coral)">Torrelobatón · Valladolid</p><p style="font-size:21px;line-height:1.4;color:var(--navy);margin-top:6px">Centro de datos de 160 MW y unos 140 empleos directos, en evaluación ambiental (2026).</p></div>
+      <div style="background:var(--white);border-radius:20px;padding:26px 30px;box-shadow:0 2px 0 var(--line)"><p style="font-size:var(--type-caption);font-weight:800;color:var(--coral)">Iveco · Valladolid</p><p style="font-size:21px;line-height:1.4;color:var(--navy);margin-top:6px">233,76 millones de euros y 92 robots nuevos hasta 2027 (2026).</p></div>
+      <div data-ir="2" style="background:var(--white);border-radius:20px;padding:26px 30px;box-shadow:0 2px 0 var(--line)"><p style="font-size:var(--type-caption);font-weight:800;color:var(--coral)">Residencias públicas de la Junta</p><p style="font-size:21px;line-height:1.4;color:var(--navy);margin-top:6px">Robots sociales y andadores inteligentes en todas desde 2025; la última en estrenarlos, La Fuencisla de Segovia (diciembre de 2025).</p></div>
+    </div>
+    <p style="font-size:var(--type-small);font-weight:700;color:var(--navy);margin-top:var(--gap-item)">¿En cuál de estos sitios podríais trabajar vosotros?</p>
+  </div>
+  <div class="galeria">
+    <figure class="foto" data-pie="<b>Figura 2.6.</b> Caléndula, el supercomputador de SCAYLE en León.">
+      <img src="img/calendula-scayle.jpg" alt="Supercomputador Caléndula del Centro de Supercomputación de Castilla y León" title="Imagen: Lumunozf · Wikimedia Commons · CC BY-SA 4.0">
+      <figcaption class="credito"><b>Supercomputador Caléndula</b>, Centro de Supercomputación de Castilla y León. Imagen: Lumunozf, <a href="https://commons.wikimedia.org/wiki/File:Calendula_g.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-SA 4.0</a>. Sin modificaciones.</figcaption>
+    </figure>
+    <figure class="foto" data-pie="<b>Figura 2.7.</b> Un robot social Temi, como los de las residencias de la Junta: pantalla, cámara y ruedas para acompañar y recordar.">
+      <img src="img/robot-temi.jpg" alt="Robot social Temi con pantalla en una sala" title="Foto: Tzipi.b · Wikimedia Commons · CC BY-SA 4.0">
+      <figcaption class="credito"><b>Robot Temi</b>, 2020. Foto: Tzipi.b, <a href="https://commons.wikimedia.org/wiki/File:Robot_temi_v3_with_smiling_faces_221122.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-SA 4.0</a>. Reducida.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 38 Prueba corta -->
+<section data-label="2.7 · Prueba corta" data-seccion="2.7" data-practica="Prueba" data-deck-id="prueba" data-deck-section="2.7" data-notas="Últimos 25 minutos de la sesión 3. Google Forms en Classroom: diez preguntas de opción múltiple (efectos, indicadores, Ansoff, áreas, tecnología emergente, Industria 4.0 y 5.0) y cinco casos breves para identificar tecnología, efecto y área, como en el interactivo. Sin apuntes ni IA. Es el 40 % de la unidad. Cantera: las preguntas tipo test de las págs. 60 y 86 del libro." style="display:grid;grid-template-columns:1fr 1fr;gap:96px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+  <div>
+    <span class="pill">Prueba de la unidad</span>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:32px;color:var(--navy);text-wrap:balance">Prueba corta</h2>
+    <p style="font-size:var(--type-body);line-height:1.5;margin-top:var(--gap-title)">Quince preguntas sobre estas diapositivas, en Classroom. Es el 40 % de la nota de la unidad; el otro 60 % ya lo tenéis hecho con la presentación y la exposición.</p>
+  </div>
+  <div style="background:var(--white);border-radius:24px;padding:56px;display:flex;flex-direction:column;gap:40px;box-shadow:0 2px 0 var(--line)">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;font-size:var(--type-small)">
+      <div><p style="color:var(--muted);font-size:var(--type-caption)">Duración</p><p style="font-weight:700;color:var(--navy);margin-top:6px">25 minutos</p></div>
+      <div><p style="color:var(--muted);font-size:var(--type-caption)">Modalidad</p><p style="font-weight:700;color:var(--navy);margin-top:6px">Individual, en clase</p></div>
+      <div><p style="color:var(--muted);font-size:var(--type-caption)">Formato</p><p style="font-weight:700;color:var(--navy);margin-top:6px">Google Forms en Classroom</p></div>
+      <div><p style="color:var(--muted);font-size:var(--type-caption)">Material</p><p style="font-weight:700;color:var(--navy);margin-top:6px">Sin apuntes ni inteligencia artificial</p></div>
+    </div>
+    <div style="height:2px;background:var(--line)"></div>
+    <ol style="padding:0;list-style:none;display:flex;flex-direction:column;gap:20px;font-size:var(--type-small);line-height:1.4">
+      <li style="display:flex;gap:20px"><span style="font-weight:800;color:var(--blue)">1.</span><span>Diez preguntas de opción múltiple: efectos, indicadores, Ansoff, áreas, tecnología emergente, Industria 4.0 y 5.0</span></li>
+      <li style="display:flex;gap:20px"><span style="font-weight:800;color:var(--blue)">2.</span><span>Cinco casos breves: tecnología, efecto y área, como en el ejercicio interactivo</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 39 Resumen -->
+<section data-label="Resumen" data-deck-id="cierre" data-deck-section="Fin" data-notas="Cinco ideas. Si solo se quedan con una: la innovación se nota en tres cosas, eficiencia, calidad y sostenibilidad, y se comprueba con un número." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Unidad 2</p>
+  <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Resumen de la unidad</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:var(--gap-title)">
+    <div style="display:flex;gap:28px;align-items:flex-start;background:var(--white);border-radius:20px;padding:32px 36px;box-shadow:0 2px 0 var(--line)"><span style="width:64px;height:64px;border-radius:16px;background:var(--coral);color:var(--white);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800;flex:none">01</span><p style="font-size:var(--type-small);line-height:1.35;color:var(--navy)">La innovación cambia tres cosas en una empresa: eficiencia, calidad y sostenibilidad. Se comprueba con indicadores medidos antes y después.</p></div>
+    <div style="display:flex;gap:28px;align-items:flex-start;background:var(--white);border-radius:20px;padding:32px 36px;box-shadow:0 2px 0 var(--line)"><span style="width:64px;height:64px;border-radius:16px;background:var(--teal);color:var(--navy);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800;flex:none">02</span><p style="font-size:var(--type-small);line-height:1.35;color:var(--navy)">Innovar con estrategia es decidir en qué, con qué dinero y para qué. Alcanza a todas las áreas: dirección, personas, producción, ventas y administración.</p></div>
+    <div style="display:flex;gap:28px;align-items:flex-start;background:var(--white);border-radius:20px;padding:32px 36px;box-shadow:0 2px 0 var(--line)"><span style="width:64px;height:64px;border-radius:16px;background:var(--yellow);color:var(--navy);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800;flex:none">03</span><p style="font-size:var(--type-small);line-height:1.35;color:var(--navy)">La empresa que no se adapta al entorno pierde competitividad. Adaptarse es vigilar, probar y decidir, no adoptar todo lo que sale.</p></div>
+    <div style="display:flex;gap:28px;align-items:flex-start;background:var(--white);border-radius:20px;padding:32px 36px;box-shadow:0 2px 0 var(--line)"><span style="width:64px;height:64px;border-radius:16px;background:var(--pink);color:var(--navy);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800;flex:none">04</span><p style="font-size:var(--type-small);line-height:1.35;color:var(--navy)">Las tecnologías emergentes (IA, IoT, nube, datos, robots, 3D, gemelos, realidad extendida, blockchain, 5G, cuántica, ciberseguridad) están en fase temprana: hay que evaluarlas antes de adoptarlas.</p></div>
+    <div style="display:flex;gap:28px;align-items:flex-start;background:var(--white);border-radius:20px;padding:32px 36px;box-shadow:0 2px 0 var(--line);grid-column:1 / -1"><span style="width:64px;height:64px;border-radius:16px;background:var(--orange);color:var(--white);display:grid;place-items:center;font-size:var(--type-caption);font-weight:800;flex:none">05</span><p style="font-size:var(--type-small);line-height:1.35;color:var(--navy)">Transformación digital es cambiar cómo se trabaja, no escanear papeles. La Industria 4.0 conecta y automatiza; la 5.0 pone a las personas y la sostenibilidad en el centro.</p></div>
+  </div>
+</section>
+
+<!-- 40 Recursos -->
+<section data-label="Recursos" data-notas="Todo lo citado en la unidad, con sus fechas. Los datos del INE y de Gartner se renuevan en otoño de 2026: revisar antes de dar la unidad." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:grid;grid-template-columns:1fr 1.6fr;gap:100px">
+  <div>
+    <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Para ampliar</p>
+    <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Recursos y fuentes</h2>
+  </div>
+  <ul style="padding:0;list-style:none;display:flex;flex-direction:column;font-size:var(--type-caption);line-height:1.4">
+    <li style="display:grid;grid-template-columns:190px 1fr;gap:28px;padding:16px 0;border-bottom:2px solid var(--line)"><span style="font-weight:700;color:var(--blue)">Datos</span><span>INE, Encuesta sobre el uso de TIC y del comercio electrónico en las empresas 2024-2025 (22/10/2025). ONTSI y KPMG, digitalización de la pyme (25/08/2026). Comisión Europea, informe de la Década Digital 2025 (junio de 2025) e <em>Industry 5.0</em> (2021). Gartner, Hype Cycle de tecnologías emergentes 2025 (10/09/2025).</span></li>
+    <li style="display:grid;grid-template-columns:190px 1fr;gap:28px;padding:16px 0;border-bottom:2px solid var(--line)"><span style="font-weight:700;color:var(--blue)">Casos</span><span>eldiario.es, Iveco Valladolid (13/04/2026). El Día de Valladolid, centro de datos de Torrelobatón (07/08/2026). Junta de Castilla y León: II Premios de Automoción y Movilidad (28/11/2024), inteligencia artificial y computación cuántica en SCAYLE (23/10/2025), ayudas a la Industria 4.0 (2026), teleasistencia avanzada y robots sociales en residencias (2025). El Español, Mercadona (15/12/2025). Teicon, plataforma Tokii (2025).</span></li>
+    <li style="display:grid;grid-template-columns:190px 1fr;gap:28px;padding:16px 0;border-bottom:2px solid var(--line)"><span style="font-weight:700;color:var(--blue)">Conceptos</span><span>Igor Ansoff, matriz producto-mercado (1957). Norma ISO 9001, sistemas de gestión de la calidad. Reglamento (UE) 2024/1689 de inteligencia artificial.</span></li>
+    <li style="display:grid;grid-template-columns:190px 1fr;gap:28px;padding:16px 0;border-bottom:2px solid var(--line)"><span style="font-weight:700;color:var(--blue)">Vídeos</span><span>Telefónica: economía circular (youtu.be/PvAXgnM9H_A). ECONOSUBLIME: estrategias de innovación (youtu.be/XSfidiMwQ78) y digitalización y tecnologías emergentes (youtu.be/8HpBeRQ15zg). Bosch España: Industria 4.0 (youtu.be/5ezqgylG-us). Opcional: Telefónica, Industria 5.0 frente a 4.0 (6:04, 2024).</span></li>
+    <li style="display:grid;grid-template-columns:190px 1fr;gap:28px;padding:16px 0"><span style="font-weight:700;color:var(--blue)">Normativa</span><span>ORDEN EDU/411/2025, de 15 de abril, currículo del módulo CL32.</span></li>
+  </ul>
+</section>
+
+<!-- 41 Cierre -->
+<section data-label="Cierre" data-notas="Recordar que la presentación y las fichas de escucha quedan en Classroom. La próxima unidad empieza con The Wallet Project: en parejas, sin preparación previa, una hora." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden">
+  <span class="mancha arriba-dcha" style="width:560px;color:var(--coral)"></span>
+  <span class="mancha abajo-izq" style="width:760px;color:var(--teal)"></span>
+  <div style="display:flex;align-items:center;gap:20px;position:relative">
+    <span style="width:20px;height:20px;border-radius:50%;background:var(--coral);display:block"></span>
+    <span style="font-size:var(--type-small);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--navy)">Fin de la unidad 2</span>
+  </div>
+  <h1 style="font-size:var(--type-hero);font-weight:800;line-height:1.02;letter-spacing:-.02em;max-width:1400px;position:relative;color:var(--navy)">Dudas y preguntas</h1>
+  <div style="display:flex;gap:56px;font-size:var(--type-caption);color:var(--navy);font-weight:600;position:relative">
+    <span>Próxima unidad: UT3. Metodologías y herramientas de innovación. Empieza con The Wallet Project, en parejas, sin preparación</span>
+    <span>Classroom · Presentación, fichas de escucha y prueba</span>
+  </div>
+</section>
+
+</deck-stage>
+<script src="../assets/deck-stage.js"></script>
+<script src="../assets/iasp.js"></script>
+</body>
+</html>

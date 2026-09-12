@@ -16,7 +16,10 @@
  *       <div class="ej" data-tipo="clasificar"></div>   un caso y tres desplegables (área, impacto, objetivo)
  *       <div class="ej" data-tipo="emparejar"></div>    siete casos y las siete fuentes de oportunidad de Drucker
  *       <div class="ej" data-tipo="caso"></div>         caso breve, elegir la pauta de éxito o fracaso; respuesta razonada oculta
- *     Los bancos de casos están en IASP.bancos y se pueden ampliar sin tocar el resto.
+ *     El de clasificar admite otro banco y otros campos (UT2: tecnología, efecto y área de la empresa):
+ *       <div class="ej" data-tipo="clasificar" data-banco="tecnologia" data-campos="tecnologia,efecto,areaEmpresa"
+ *            data-enunciado="…" data-consejo="…"></div>
+ *     Los bancos de casos están en IASP.bancos y los campos en IASP.campos; se amplían sin tocar el resto.
  */
 (function () {
   'use strict';
@@ -38,10 +41,67 @@
   IASP.bancos = {};
 
   IASP.campos = {
+    // UT1: tipos de innovación
     area: { etiqueta: 'Según el área', opciones: ['Producto o servicio', 'Proceso', 'Marketing y canal', 'Organización'] },
     impacto: { etiqueta: 'Según el impacto', opciones: ['Incremental', 'Radical', 'Disruptiva'] },
-    objetivo: { etiqueta: 'Según el objetivo', opciones: ['Tecnológica', 'Social', 'Ambiental'] }
+    objetivo: { etiqueta: 'Según el objetivo', opciones: ['Tecnológica', 'Social', 'Ambiental'] },
+    // UT2: tecnología emergente, efecto principal y área de la empresa
+    tecnologia: { etiqueta: 'Qué tecnología usa', opciones: ['Inteligencia artificial', 'Internet de las cosas', 'Computación en la nube', 'Big data y analítica', 'Robótica y cobots', 'Impresión 3D', 'Gemelos digitales', 'Realidad virtual y aumentada', 'Blockchain', '5G y redes privadas', 'Computación cuántica', 'Ciberseguridad'] },
+    efecto: { etiqueta: 'Efecto principal', opciones: ['Eficiencia', 'Calidad', 'Sostenibilidad'] },
+    areaEmpresa: { etiqueta: 'Área de la empresa', opciones: ['Dirección', 'Personas', 'Producción o atención', 'Ventas y clientes', 'Administración'] }
   };
+
+  // UT2. Cada caso: texto, y por campo la lista de respuestas aceptadas (la primera es la principal) y una justificación.
+  IASP.bancos.tecnologia = [
+    { texto: 'Iveco instala 92 robots nuevos para soldar cabinas de camión en su planta de Valladolid y automatiza la nave de pintura (2026).',
+      tecnologia: ['Robótica y cobots'], efecto: ['Eficiencia', 'Calidad'], areaEmpresa: ['Producción o atención'],
+      por: 'Robots industriales en la fábrica: más cabinas con la misma plantilla y menos retrabajos. Cambia cómo se produce.' },
+    { texto: 'Telefónica añade a su telefonía de empresa un servicio que transcribe y resume automáticamente las llamadas (2026).',
+      tecnologia: ['Inteligencia artificial'], efecto: ['Calidad', 'Eficiencia'], areaEmpresa: ['Ventas y clientes'],
+      por: 'La IA entiende el lenguaje de la llamada. El cliente recibe un servicio mejor y la empresa lo usa en la relación con sus clientes.' },
+    { texto: 'Mercadona pone un programa que lee las facturas de sus proveedores y las registra sin que nadie las teclee (2025).',
+      tecnologia: ['Inteligencia artificial'], efecto: ['Eficiencia'], areaEmpresa: ['Administración'],
+      por: 'Leer documentos es una tarea de IA; se ahorra tiempo en una tarea administrativa.' },
+    { texto: 'Un pulverizador agrícola con cámaras solo fumiga donde detecta mala hierba y gasta la mitad de herbicida (John Deere, 2025).',
+      tecnologia: ['Internet de las cosas', 'Inteligencia artificial'], efecto: ['Sostenibilidad', 'Eficiencia'], areaEmpresa: ['Producción o atención'],
+      por: 'Sensores y cámaras conectados en la máquina (también vale IA, que es la que reconoce la hierba). Menos producto químico: sostenibilidad, y también ahorro.' },
+    { texto: 'La fábrica de motores Horse de Valladolid reúne los datos de todas sus líneas para decidir con ellos el mantenimiento y la producción (2024-2026).',
+      tecnologia: ['Big data y analítica'], efecto: ['Eficiencia'], areaEmpresa: ['Producción o atención'],
+      por: 'Decidir con grandes cantidades de datos es big data; el objetivo es producir más con menos paradas.' },
+    { texto: 'Grupo Lince (Valladolid) abre un centro de impresión 3D donde trabajan personas con discapacidad (premio 2024).',
+      tecnologia: ['Impresión 3D'], efecto: ['Sostenibilidad'], areaEmpresa: ['Personas', 'Producción o atención'],
+      por: 'La tecnología es la fabricación aditiva; el efecto principal es social, que forma parte de la sostenibilidad; el área es la de las personas (también vale producción).' },
+    { texto: 'BEONx (Salamanca) vende a los hoteles un programa que fija el precio de cada habitación según la demanda prevista.',
+      tecnologia: ['Big data y analítica', 'Inteligencia artificial'], efecto: ['Eficiencia'], areaEmpresa: ['Ventas y clientes'],
+      por: 'Predice la demanda con datos históricos (analítica, también vale IA) para vender mejor: área de ventas.' },
+    { texto: 'Un grupo eólico proyecta en Torrelobatón (Valladolid) un centro de datos de 160 MW alimentado con renovables y refrigerado en circuito cerrado (2026).',
+      tecnologia: ['Computación en la nube'], efecto: ['Sostenibilidad'], areaEmpresa: ['Dirección'],
+      por: 'Un centro de datos es la base física de la nube. Lo que lo diferencia es cómo se alimenta y refrigera. Entrar en un negocio nuevo es una decisión de la dirección.' },
+    { texto: 'Una tienda de informática pone en su web un asistente que responde de noche a las preguntas sobre pedidos y reparaciones.',
+      tecnologia: ['Inteligencia artificial'], efecto: ['Calidad', 'Eficiencia'], areaEmpresa: ['Ventas y clientes'],
+      por: 'Un chatbot es IA; el cliente recibe respuesta cuando la necesita (calidad) y la tienda ahorra llamadas.' },
+    { texto: 'Una empresa apunta a toda su plantilla a un curso en línea para reconocer correos de phishing y contraseñas débiles.',
+      tecnologia: ['Ciberseguridad'], efecto: ['Calidad'], areaEmpresa: ['Personas'],
+      por: 'Formar a las personas es la medida de ciberseguridad más barata; reduce incidentes, que es calidad del servicio; área de personas.' },
+    { texto: 'La teleasistencia avanzada de Castilla y León pone en casa de 58.000 personas mayores detectores de caídas, humo, gas e inactividad conectados a una central (2025).',
+      tecnologia: ['Internet de las cosas'], efecto: ['Calidad'], areaEmpresa: ['Ventas y clientes', 'Producción o atención'],
+      por: 'Sensores en casa conectados a una central: internet de las cosas. El servicio atiende mejor a la persona y a su familia (también vale atención directa).' },
+    { texto: 'Las residencias públicas de la Junta incorporan robots sociales, Temi y Copito, que acompañan, recuerdan citas y proponen ejercicios (2025).',
+      tecnologia: ['Robótica y cobots'], efecto: ['Calidad'], areaEmpresa: ['Producción o atención'],
+      por: 'Robots que trabajan junto a las personas; mejoran la atención que reciben los residentes, que es el servicio que presta la residencia.' },
+    { texto: 'Un servicio de ayuda a domicilio cambia los partes en papel por una app en el móvil de cada auxiliar, con los datos guardados en un servidor por internet.',
+      tecnologia: ['Computación en la nube'], efecto: ['Eficiencia'], areaEmpresa: ['Personas', 'Producción o atención'],
+      por: 'Los datos viven en la nube y se consultan desde cualquier móvil. Ahorra tiempo de papeleo a la plantilla (también vale atención directa).' },
+    { texto: 'Una residencia ofrece a sus mayores sesiones con gafas de realidad virtual: paseos por su pueblo de origen y ejercicios de memoria.',
+      tecnologia: ['Realidad virtual y aumentada'], efecto: ['Calidad'], areaEmpresa: ['Producción o atención'],
+      por: 'Mundos simulados con gafas: realidad virtual. Mejora la atención que recibe la persona.' },
+    { texto: 'Una fábrica monta una red 5G privada para que sus carretillas autónomas y sus robots móviles se comuniquen sin cables ni cortes.',
+      tecnologia: ['5G y redes privadas'], efecto: ['Eficiencia'], areaEmpresa: ['Producción o atención'],
+      por: 'Red 5G propia dentro de la planta; permite mover material sin paradas: eficiencia en producción.' },
+    { texto: 'Una empresa de Palencia construye una copia virtual en 3D de una planta industrial para simular cambios antes de hacerlos en la real (Teicon, 2025).',
+      tecnologia: ['Gemelos digitales'], efecto: ['Eficiencia'], areaEmpresa: ['Producción o atención'],
+      por: 'Una copia virtual conectada con la instalación real es un gemelo digital; evita pruebas caras en la planta.' }
+  ];
 
   // Cada caso: texto, y por campo la lista de respuestas aceptadas (la primera es la principal) y una justificación.
   IASP.bancos.clasificar = [
@@ -178,14 +238,18 @@
       opciones.map((o, i) => '<option value="' + i + '">' + esc(o) + '</option>').join('') + '</select>';
   }
 
-  /* ---------- 1. clasificar: un caso, tres desplegables ---------- */
+  /* ---------- 1. clasificar: un caso, tres desplegables ----------
+     Por defecto usa el banco 'clasificar' y los campos área, impacto y objetivo (UT1).
+     data-banco, data-campos (separados por comas), data-enunciado y data-consejo permiten otros. */
   function montaClasificar(el) {
-    const st = armazon(el, 'Lee el caso y clasifica la innovación con los tres desplegables. Comprobar corrige cada uno; Pista resuelve uno y lo explica.');
-    const campos = ['area', 'impacto', 'objetivo'];
+    const st = armazon(el, el.dataset.enunciado || 'Lee el caso y clasifica la innovación con los tres desplegables. Comprobar corrige cada uno; Pista resuelve uno y lo explica.');
+    const campos = (el.dataset.campos || 'area,impacto,objetivo').split(',').map((c) => c.trim()).filter((c) => IASP.campos[c]);
+    const banco = IASP.bancos[el.dataset.banco || 'clasificar'] || [];
+    const consejo = el.dataset.consejo || 'Piensa: qué cambia, cuánto cambia y para qué.';
     let caso = null;
 
     function nuevo() {
-      caso = eligeOtro(IASP.bancos.clasificar, caso);
+      caso = eligeOtro(banco, caso);
       st.cuerpo.innerHTML =
         '<p class="ej-caso">' + esc(caso.texto) + '</p>' +
         '<div class="ej-campos">' + campos.map((c) =>
@@ -206,7 +270,7 @@
         marca(c, ok); if (!ok) mal++;
       });
       if (!mal && !vacios) st.acierto('Correcto. ' + caso.por);
-      else st.fallo((vacios ? vacios + ' sin elegir. ' : '') + (mal ? mal + ' mal. ' : '') + 'Piensa: qué cambia, cuánto cambia y para qué.');
+      else st.fallo((vacios ? vacios + ' sin elegir. ' : '') + (mal ? mal + ' mal. ' : '') + consejo);
     }
     function pista() {
       const c = campos.find((k) => { const v = valor(k); return v === null || !caso[k].includes(v); });
