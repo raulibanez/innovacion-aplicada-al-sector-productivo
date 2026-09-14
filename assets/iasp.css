@@ -58,7 +58,11 @@ deck-stage section h3,
 deck-stage section ul,
 deck-stage section ol { margin: 0; }
 
-/* Numeración de diapositivas (la añade som.js) */
+/* Notas del profesor: <aside class="notas"> como primer hijo de cada sección.
+   No se ven en la diapositiva; las muestra la ventana de notas (tecla N, iasp.js). */
+deck-stage section > aside.notas { display: none; }
+
+/* Numeración de diapositivas (la añade iasp.js) */
 [data-slide-num] {
   position: absolute;
   right: 120px;
@@ -288,7 +292,7 @@ deck-stage {
 .quiz-opt:hover { border-color: rgba(255,255,255,.5); }
 .quiz[data-answered] .quiz-opt { cursor: default; }
 .quiz-opt.correct { background: var(--yellow); border-color: var(--yellow); color: var(--navy); }
-.quiz-opt.correct .letra { background: rgba(21,53,107,.15); }
+.quiz-opt.correct .letra { background: rgba(23,36,51,.15); }
 .quiz-opt.wrong { border-color: var(--sky); background: rgba(255,255,255,.06); color: #9FB8C2; }
 .quiz-fb {
   font-size: var(--type-small);
@@ -390,7 +394,7 @@ deck-stage section:has(> .ej) { grid-template-rows: minmax(0, 1fr); }
   place-items: center;
   font-size: 72px;
   font-weight: 800;
-  box-shadow: 0 6px 0 rgba(21,53,107,.18);
+  box-shadow: 0 6px 0 rgba(23,36,51,.18);
 }
 .revela {
   position: relative;
@@ -414,7 +418,7 @@ deck-stage section:has(> .ej) { grid-template-rows: minmax(0, 1fr); }
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 0 10px 30px rgba(11,74,181,.35);
+  box-shadow: 0 10px 30px rgba(252,111,111,.35);
   transition: opacity .3s;
 }
 .revela[data-revelado] .revela-cuerpo { padding-bottom: 64px; }
@@ -437,7 +441,7 @@ deck-stage section:has(> .ej) { grid-template-rows: minmax(0, 1fr); }
 }
 
 /* Iconos 3D (assets/question.png, assets/exclamation.png) */
-.icono { width: 150px; height: 150px; object-fit: contain; display: block; filter: drop-shadow(0 10px 18px rgba(21,53,107,.18)); }
+.icono { width: 150px; height: 150px; object-fit: contain; display: block; filter: drop-shadow(0 10px 18px rgba(23,36,51,.18)); }
 
 /* ---------- Foto con atribución al pasar el ratón ---------- */
 .foto {
@@ -455,7 +459,7 @@ deck-stage section:has(> .ej) { grid-template-rows: minmax(0, 1fr); }
   position: absolute;
   left: 0; right: 0; bottom: 0;
   padding: 20px 28px 20px 84px;
-  background: linear-gradient(to top, rgba(11,31,68,.92), rgba(11,31,68,.75));
+  background: linear-gradient(to top, rgba(23,36,51,.92), rgba(23,36,51,.75));
   color: #EAF2F4;
   font-size: 20px;
   line-height: 1.4;
@@ -471,7 +475,7 @@ deck-stage section:has(> .ej) { grid-template-rows: minmax(0, 1fr); }
   left: 20px; bottom: 16px;
   width: 44px; height: 44px;
   border-radius: 50%;
-  background: rgba(11,31,68,.75);
+  background: rgba(23,36,51,.75);
   color: #fff;
   font-size: 22px;
   font-weight: 700;
@@ -557,8 +561,8 @@ deck-stage section:has(> .ej) { grid-template-rows: minmax(0, 1fr); }
 }
 [data-ir] { cursor: pointer; border-radius: 12px; transition: background .2s; }
 [data-ir]:hover { background: rgba(83, 210, 206, .12); }
-[data-ir].activa { background: rgba(244, 194, 13, .12); }
-[data-ir].activa > span:first-child { box-shadow: 0 0 0 5px rgba(244, 194, 13, .45); }
+[data-ir].activa { background: rgba(252, 201, 8, .12); }
+[data-ir].activa > span:first-child { box-shadow: 0 0 0 5px rgba(252, 201, 8, .45); }
 @media print {
   .galeria-marco { position: static; }
   .galeria-marco > .foto { position: static; opacity: 1; margin-bottom: 12px; height: 360px; }

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notas · IASP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Ventana de notas del profesor. Se abre con la tecla N desde una presentación (iasp.js).
+   Muestra las notas de la diapositiva actual y permite editarlas (pestaña Guion) y llevar
+   una bitácora de clase (pestaña Bitácora). Todo se guarda en localStorage de este navegador
+   y se exporta en JSON con el botón Exportar.
+   El aspecto sigue el de las diapositivas (iasp.css): fondo crema, tarjetas blancas con sombra
+   de línea, pastillas amarillas y botones coral. Sin las manchas de color de las esquinas:
+   en una ventana de trabajo estorban. */
+:root {
+  --navy: #172433; --coral: #FC6F6F; --teal: #53D2CE; --yellow: #FCC908;
+  --bg: #FFF7EE; --ink: #172433; --muted: #5B6470; --line: #EAD9C8; --white: #FFFFFF;
+  --dark: #0F2A3A; --ok: #1E8E5A; --ko: #C0392B;
+  --mono: 'JetBrains Mono', Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--ink); font-size: 16px; line-height: 1.5;
+  display: flex; flex-direction: column;
+}
+button { font: inherit; cursor: pointer; }
+
+/* Cabecera: antetítulo con punto coral, título del deck, estado, contador y reloj */
+header {
+  padding: 22px 28px 0; display: flex; align-items: flex-end; gap: 24px; flex: none;
+}
+header .cabecera { flex: 1; min-width: 0; }
+header .ante {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--coral);
+}
+header .ante::before { content: ''; width: 12px; height: 12px; border-radius: 50%; background: var(--coral); flex: none; }
+header .titulo {
+  font-weight: 800; font-size: 26px; line-height: 1.15; letter-spacing: -.01em; color: var(--navy);
+  margin-top: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+header .estado { font-size: 13px; font-weight: 600; color: var(--muted); padding-bottom: 6px; }
+header .estado.off { color: var(--ko); }
+header .contador {
+  font-weight: 800; font-size: 26px; letter-spacing: -.01em; color: var(--navy);
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+header .reloj {
+  background: var(--yellow); color: var(--navy); font-weight: 800; font-size: 22px;
+  padding: 6px 18px 7px; border-radius: 999px; font-variant-numeric: tabular-nums; line-height: 1.2;
+}
+
+/* Fila de navegación */
+.nav {
+  display: flex; align-items: center; gap: 12px; padding: 18px 28px 0; flex: none; flex-wrap: wrap;
+}
+.nav .flecha {
+  width: 44px; height: 44px; border-radius: 50%; border: 3px solid var(--line); background: var(--white);
+  font-size: 18px; color: var(--navy); padding: 0; line-height: 1; transition: border-color .2s, background .2s;
+}
+.nav .flecha:hover { border-color: var(--teal); background: var(--bg); }
+.nav .pill {
+  background: var(--yellow); color: var(--navy); font-weight: 800; font-size: 14px;
+  padding: 4px 14px 5px; border-radius: 999px; letter-spacing: .02em; line-height: 1.2; white-space: nowrap;
+}
+.nav .pill:empty { display: none; }
+.nav .pill.crit { background: var(--white); color: var(--muted); box-shadow: 0 2px 0 var(--line); }
+.nav .label { font-weight: 800; font-size: 20px; flex: 1; min-width: 200px; color: var(--navy); line-height: 1.2; }
+.nav .acciones { display: flex; align-items: center; gap: 10px; }
+.btn {
+  border: 0; border-radius: 12px; padding: 10px 20px; font-weight: 700; font-size: 14px; font-family: inherit;
+  background: transparent; color: var(--navy); box-shadow: inset 0 0 0 3px var(--line);
+  transition: transform .1s, background .2s, box-shadow .2s;
+}
+.btn:hover { box-shadow: inset 0 0 0 3px var(--teal); }
+.btn:active { transform: scale(.97); }
+.btn.primario { background: var(--coral); color: var(--white); box-shadow: none; }
+.btn.primario:hover { background: var(--navy); }
+.pendientes { font-size: 13px; color: var(--muted); }
+.pendientes b { color: var(--coral); }
+
+/* Pestañas */
+.tabs { display: flex; gap: 6px; padding: 18px 28px 0; flex: none; }
+.tab {
+  border: 0; background: transparent; color: var(--muted);
+  padding: 10px 20px; border-radius: 14px 14px 0 0; font-weight: 700; font-size: 15px;
+}
+.tab:hover { color: var(--navy); }
+.tab[aria-selected="true"] { background: var(--white); color: var(--navy); }
+.tab .n { display: inline-block; min-width: 22px; margin-left: 6px; padding: 0 7px; border-radius: 999px; background: var(--yellow); color: var(--navy); font-size: 12px; font-weight: 800; text-align: center; }
+.tab .n:empty { display: none; }
+
+/* Panel de cada pestaña: tarjeta blanca como las de las diapositivas */
+.panel {
+  flex: 1; min-height: 0; margin: 0 28px 16px; background: var(--white);
+  border-radius: 0 20px 20px 20px; box-shadow: 0 2px 0 var(--line); display: flex; flex-direction: column; overflow: hidden;
+}
+.panel[hidden] { display: none; }
+.barra { display: flex; align-items: center; gap: 6px; padding: 10px 14px; border-bottom: 2px solid var(--line); flex: none; flex-wrap: wrap; }
+.barra button {
+  border: 0; background: transparent; color: var(--navy); border-radius: 10px;
+  min-width: 36px; height: 36px; padding: 0 10px; font-weight: 700;
+}
+.barra button:hover { background: var(--bg); }
+.barra .sep { width: 2px; height: 22px; background: var(--line); margin: 0 6px; border-radius: 1px; }
+.barra .espacio { flex: 1; }
+.barra .editado { font-size: 13px; color: var(--ok); font-weight: 700; }
+.barra .editado:empty { display: none; }
+.editor {
+  flex: 1; min-height: 120px; overflow: auto; padding: 20px 26px; outline: none;
+  font-size: 21px; line-height: 1.55; color: var(--ink);
+}
+.editor:focus { box-shadow: inset 0 0 0 3px var(--teal); }
+.editor:empty::before { content: attr(data-vacio); color: var(--muted); opacity: .6; }
+.editor p { margin: 0 0 .6em; }
+.editor ul, .editor ol { margin: 0 0 .6em; padding-left: 1.4em; }
+.editor li::marker { color: var(--yellow); font-weight: 800; }
+.editor a { color: var(--coral); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.editor a:hover { color: var(--navy); }
+.editor b, .editor strong { color: var(--navy); }
+.editor code { font-family: var(--mono); font-size: .85em; background: var(--bg); padding: 1px 8px; border-radius: 6px; }
+.editor sup { font-size: .7em; }
+.subtitulo { font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--coral); padding: 14px 26px 0; }
+.bitacora { display: grid; grid-template-rows: auto 1fr auto 1fr; flex: 1; min-height: 0; }
+.bitacora .editor { font-size: 18px; }
+.bitacora .editor + .subtitulo { border-top: 2px solid var(--line); }
+
+/* Siguiente diapositiva: como la tarjeta de caso de los ejercicios (borde amarillo a la izquierda) */
+.siguiente {
+  margin: 0 28px 20px; padding: 14px 22px; flex: none;
+  background: var(--white); border-left: 6px solid var(--yellow); border-radius: 0 16px 16px 0; box-shadow: 0 2px 0 var(--line);
+}
+.siguiente .eti { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--coral); }
+.siguiente .lab { font-weight: 800; color: var(--navy); margin-top: 2px; }
+.siguiente .txt { font-size: 14px; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* Aviso de que no hay presentación */
+.aviso { margin: 40px 28px; padding: 28px 32px; background: var(--white); border-radius: 20px; box-shadow: 0 2px 0 var(--line); font-size: 18px; color: var(--navy); }
+.aviso[hidden] { display: none; }
+.aviso kbd {
+  display: inline-flex; align-items: center; justify-content: center; min-width: 34px; height: 34px; padding: 0 10px;
+  margin: 0 2px; border-radius: 8px; border: 2px solid var(--line); border-bottom-width: 4px;
+  background: var(--white); color: var(--navy); font-family: inherit; font-size: 16px; font-weight: 700; vertical-align: middle;
+}
+input[type=file] { display: none; }
+@media (max-width: 640px) {
+  header .titulo { display: none; }
+  header .estado { display: none; }
+  .editor { font-size: 18px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="cabecera">
+    <div class="ante">Notas del profesor</div>
+    <div class="titulo" id="titulo">Notas del profesor</div>
+  </div>
+  <div class="estado" id="estado">Buscando la presentación…</div>
+  <div class="contador" id="contador">— / —</div>
+  <div class="reloj" id="reloj">00:00</div>
+</header>
+
+<div class="aviso" id="aviso" hidden>
+  No hay ninguna presentación conectada. Abre esta ventana pulsando <kbd>N</kbd> desde una presentación.
+</div>
+
+<div class="nav">
+  <button class="flecha" id="ant" title="Diapositiva anterior (←)">◀</button>
+  <button class="flecha" id="sig" title="Diapositiva siguiente (→)">▶</button>
+  <span class="pill" id="seccion"></span>
+  <span class="pill crit" id="criterio" title="Criterio de evaluación del RA"></span>
+  <span class="label" id="label">—</span>
+  <div class="acciones">
+    <span class="pendientes" id="pendientes"></span>
+    <button class="btn" id="importar" title="Cargar un JSON exportado antes y fusionarlo con lo de este navegador">Importar</button>
+    <button class="btn primario" id="exportar" title="Descargar todas las notas y la bitácora de esta unidad en JSON">Exportar</button>
+    <input type="file" id="archivo" accept="application/json,.json">
+  </div>
+</div>
+
+<div class="tabs" role="tablist">
+  <button class="tab" role="tab" aria-selected="true" data-tab="guion">Guion <span class="n" id="n-guion"></span></button>
+  <button class="tab" role="tab" aria-selected="false" data-tab="bitacora">Bitácora <span class="n" id="n-bitacora"></span></button>
+</div>
+
+<section class="panel" id="panel-guion">
+  <div class="barra">
+    <button data-cmd="bold" title="Negrita (Ctrl+B)"><b>B</b></button>
+    <button data-cmd="italic" title="Cursiva (Ctrl+I)"><i>I</i></button>
+    <button data-cmd="insertUnorderedList" title="Lista">•≡</button>
+    <button data-cmd="createLink" title="Enlace">🔗</button>
+    <button data-cmd="removeFormat" title="Quitar formato">Tx</button>
+    <span class="sep"></span>
+    <button id="restaurar" title="Volver a las notas que están en el repositorio">Restaurar original</button>
+    <span class="espacio"></span>
+    <span class="editado" id="editado"></span>
+  </div>
+  <div class="editor" id="ed-guion" contenteditable="true" data-vacio="Sin notas. Escribe aquí el guion de esta diapositiva."></div>
+</section>
+
+<section class="panel bitacora" id="panel-bitacora" hidden>
+  <div class="subtitulo">Esta diapositiva</div>
+  <div class="editor" id="ed-bit-diapo" contenteditable="true" data-vacio="Qué cambiar, qué ha funcionado, qué preguntan…"></div>
+  <div class="subtitulo">Toda la unidad</div>
+  <div class="editor" id="ed-bit-unidad" contenteditable="true" data-vacio="Notas generales de la unidad: ritmo, orden, huecos, ideas…"></div>
+</section>
+
+<div class="siguiente" id="siguiente">
+  <div class="eti">Siguiente</div>
+  <div class="lab" id="sig-label">—</div>
+  <div class="txt" id="sig-txt"></div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  const $ = (id) => document.getElementById(id);
+
+  /* ---------- estado ---------- */
+  let deck = null;          // {deck, titulo, diapos:[{n,label,seccion,notas}]}
+  let index = 0;
+  let datos = null;         // lo guardado en localStorage para este deck
+  let conectado = false;
+  let ultimoMensaje = 0;
+
+  const CLAVE = (id) => 'iasp.notas.' + id;
+  const UNIDAD = '__unidad';
+
+  function carga(id) {
+    try { datos = JSON.parse(localStorage.getItem(CLAVE(id))) || null; } catch (e) { datos = null; }
+    if (!datos || typeof datos !== 'object') datos = {};
+    datos.guion = datos.guion || {};
+    datos.bitacora = datos.bitacora || {};
+    datos.exportado = datos.exportado || 0;
+  }
+  function guarda() {
+    if (!deck) return;
+    try { localStorage.setItem(CLAVE(deck.deck), JSON.stringify(datos)); } catch (e) { $('estado').textContent = 'No se puede guardar (localStorage)'; }
+    pintaPendientes();
+  }
+
+  const actual = () => (deck && deck.diapos[index]) || null;
+  const limpiaHtml = (h) => String(h || '').replace(/^(\s|<br\s*\/?>|&nbsp;)+|(\s|<br\s*\/?>|&nbsp;)+$/g, '').trim();
+  const texto = (h) => { const d = document.createElement('div'); d.innerHTML = String(h || '').replace(/<\/(p|li|div|h\d)>/gi, ' '); return d.textContent.replace(/\s+/g, ' ').trim(); };
+  const guionDe = (d) => (d && datos.guion[d.label]) ? datos.guion[d.label].html : (d ? d.notas : '');
+
+  /* ---------- pintar ---------- */
+  function pintaCabecera() {
+    $('titulo').textContent = deck ? deck.titulo.replace(/\s*·\s*(IASP|Innovación Aplicada al Sector Productivo)\s*$/, '') : 'Notas del profesor';
+    $('contador').textContent = deck ? (index + 1) + ' / ' + deck.diapos.length : '— / —';
+    const d = actual();
+    $('label').textContent = d ? d.label : '—';
+    $('seccion').textContent = d ? d.seccion : '';
+    $('criterio').textContent = d && d.criterio ? 'Criterio ' + d.criterio : '';
+    const s = deck && deck.diapos[index + 1];
+    $('sig-label').textContent = s ? (index + 2) + ' · ' + s.label : 'Fin de la presentación';
+    $('sig-txt').textContent = s ? texto(guionDe(s)) : '';
+  }
+  function pintaEditores() {
+    const d = actual();
+    $('ed-guion').innerHTML = d ? guionDe(d) : '';
+    $('editado').textContent = d && datos.guion[d.label] ? 'Editado en este navegador' : '';
+    $('ed-bit-diapo').innerHTML = d && datos.bitacora[d.label] ? datos.bitacora[d.label].html : '';
+    $('ed-bit-unidad').innerHTML = datos.bitacora[UNIDAD] ? datos.bitacora[UNIDAD].html : '';
+  }
+  function pintaPendientes() {
+    const desde = datos.exportado || 0;
+    const cuenta = (obj) => Object.values(obj).filter((v) => v.t > desde).length;
+    const g = Object.keys(datos.guion).length, b = Object.keys(datos.bitacora).length;
+    $('n-guion').textContent = g ? String(g) : '';
+    $('n-bitacora').textContent = b ? String(b) : '';
+    const p = cuenta(datos.guion) + cuenta(datos.bitacora);
+    $('pendientes').innerHTML = p ? '<b>' + p + '</b> sin exportar' : (g + b ? 'Todo exportado' : '');
+  }
+  function pinta() { pintaCabecera(); pintaEditores(); pintaPendientes(); }
+
+  /* ---------- edición ---------- */
+  const temporizadores = {};   // uno por editor: editar en otro no cancela el guardado pendiente
+  function alEditar(cual) {
+    clearTimeout(temporizadores[cual]);
+    temporizadores[cual] = setTimeout(() => {
+      const d = actual();
+      if (!d) return;
+      const t = Date.now();
+      if (cual === 'guion') {
+        const html = limpiaHtml($('ed-guion').innerHTML);
+        if (html === limpiaHtml(d.notas)) delete datos.guion[d.label];
+        else datos.guion[d.label] = { n: d.n, html, t };
+        $('editado').textContent = datos.guion[d.label] ? 'Editado en este navegador' : '';
+      } else {
+        const clave = cual === 'unidad' ? UNIDAD : d.label;
+        const html = limpiaHtml($(cual === 'unidad' ? 'ed-bit-unidad' : 'ed-bit-diapo').innerHTML);
+        if (!html) delete datos.bitacora[clave];
+        else datos.bitacora[clave] = { n: cual === 'unidad' ? 0 : d.n, html, t };
+      }
+      guarda();
+      if (cual === 'guion') pintaCabecera();
+    }, 300);
+  }
+  $('ed-guion').addEventListener('input', () => alEditar('guion'));
+  $('ed-bit-diapo').addEventListener('input', () => alEditar('diapo'));
+  $('ed-bit-unidad').addEventListener('input', () => alEditar('unidad'));
+
+  // Pegar siempre como texto plano: evita arrastrar estilos de Word o de la web.
+  document.querySelectorAll('.editor').forEach((ed) => {
+    ed.addEventListener('paste', (e) => {
+      e.preventDefault();
+      const t = (e.clipboardData || window.clipboardData).getData('text/plain');
+      document.execCommand('insertText', false, t);
+    });
+  });
+
+  document.querySelectorAll('.barra [data-cmd]').forEach((b) => {
+    b.addEventListener('mousedown', (e) => e.preventDefault()); // no robar el foco al editor
+    b.addEventListener('click', () => {
+      const cmd = b.dataset.cmd;
+      if (cmd === 'createLink') {
+        const url = prompt('Dirección del enlace:');
+        if (url) document.execCommand('createLink', false, url);
+      } else document.execCommand(cmd, false, null);
+      const ed = document.activeElement;
+      if (ed && ed.classList.contains('editor')) ed.dispatchEvent(new Event('input'));
+    });
+  });
+  $('restaurar').addEventListener('click', () => {
+    const d = actual();
+    if (!d || !datos.guion[d.label]) return;
+    if (!confirm('¿Volver a las notas originales de esta diapositiva? Se pierde lo editado aquí.')) return;
+    delete datos.guion[d.label];
+    guarda();
+    pinta();
+  });
+
+  /* ---------- pestañas ---------- */
+  document.querySelectorAll('.tab').forEach((t) => t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach((x) => x.setAttribute('aria-selected', x === t ? 'true' : 'false'));
+    $('panel-guion').hidden = t.dataset.tab !== 'guion';
+    $('panel-bitacora').hidden = t.dataset.tab !== 'bitacora';
+    try { localStorage.setItem('iasp.notas.tab', t.dataset.tab); } catch (e) {}
+  }));
+  try {
+    const t = localStorage.getItem('iasp.notas.tab');
+    if (t === 'bitacora') document.querySelector('.tab[data-tab="bitacora"]').click();
+  } catch (e) {}
+
+  /* ---------- navegación del deck desde aquí ---------- */
+  function envia(msg) {
+    if (!window.opener || window.opener.closed) return;
+    try { window.opener.postMessage(msg, '*'); } catch (e) {}
+  }
+  const ir = (i) => { if (deck && i >= 0 && i < deck.diapos.length) envia({ iasp: 'ir', index: i }); };
+  $('ant').addEventListener('click', () => ir(index - 1));
+  $('sig').addEventListener('click', () => ir(index + 1));
+  window.addEventListener('keydown', (e) => {
+    const t = e.target;
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); ir(index + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); ir(index - 1); }
+  });
+
+  /* ---------- mensajes del deck ---------- */
+  window.addEventListener('message', (e) => {
+    const d = e.data;
+    if (!d || typeof d !== 'object' || !d.iasp) return;
+    ultimoMensaje = Date.now();
+    if (d.iasp === 'estado') {
+      const cambioDeck = !deck || deck.deck !== d.deck;
+      const cambioIndex = index !== d.index;
+      deck = d;
+      index = d.index;
+      if (cambioDeck) { carga(deck.deck); pinta(); }
+      else if (cambioIndex) pinta();
+      else { pintaCabecera(); pintaPendientes(); }
+      pon(true);
+    } else if (d.iasp === 'diapo' && deck) {
+      if (index !== d.index) { index = d.index; pinta(); }
+    }
+  });
+  function pon(ok) {
+    conectado = ok;
+    $('estado').textContent = ok ? 'Conectado' : 'Sin presentación';
+    $('estado').classList.toggle('off', !ok);
+    $('aviso').hidden = ok;
+  }
+  // Pide el estado al abrir y cada segundo: así sigue funcionando si el deck se recarga
+  // o si en la misma pestaña se pasa a otra unidad.
+  function saluda() {
+    if (!window.opener || window.opener.closed) { if (conectado) pon(false); return; }
+    envia({ iasp: 'hola' });
+    if (conectado && Date.now() - ultimoMensaje > 4000) pon(false);
+  }
+  saluda();
+  setInterval(saluda, 1000);
+
+  /* ---------- reloj ---------- */
+  function reloj() {
+    const d = new Date();
+    $('reloj').textContent = String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+  }
+  reloj();
+  setInterval(reloj, 15000);
+
+  /* ---------- exportar / importar ---------- */
+  const fechaCorta = () => new Date().toISOString().slice(0, 10);
+  $('exportar').addEventListener('click', () => {
+    if (!deck) return;
+    const guion = deck.diapos
+      .filter((d) => datos.guion[d.label])
+      .map((d) => ({ n: d.n, label: d.label, original: d.notas, nuevo: datos.guion[d.label].html, t: datos.guion[d.label].t }));
+    const diapos = deck.diapos
+      .filter((d) => datos.bitacora[d.label])
+      .map((d) => ({ n: d.n, label: d.label, html: datos.bitacora[d.label].html, texto: texto(datos.bitacora[d.label].html), t: datos.bitacora[d.label].t }));
+    const unidad = datos.bitacora[UNIDAD] || null;
+    const out = {
+      formato: 'iasp-notas/1',
+      deck: deck.deck,
+      titulo: deck.titulo,
+      fecha: new Date().toISOString(),
+      guion,
+      bitacora: { unidad: unidad ? { html: unidad.html, texto: texto(unidad.html), t: unidad.t } : null, diapos },
+    };
+    const blob = new Blob([JSON.stringify(out, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'notas-' + deck.deck + '-' + fechaCorta() + '.json';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+    datos.exportado = Date.now();
+    guarda();
+  });
+
+  $('importar').addEventListener('click', () => $('archivo').click());
+  $('archivo').addEventListener('change', () => {
+    const f = $('archivo').files[0];
+    $('archivo').value = '';
+    if (!f || !deck) return;
+    f.text().then((txt) => {
+      const j = JSON.parse(txt);
+      if (!j || j.formato !== 'iasp-notas/1') throw new Error('formato');
+      if (j.deck !== deck.deck && !confirm('El archivo es de "' + j.deck + '" y la presentación abierta es "' + deck.deck + '". ¿Importar igualmente?')) return;
+      let n = 0;
+      const masNuevo = (obj, clave, entrada) => {
+        if (!entrada || !entrada.html) return;
+        if (!obj[clave] || (entrada.t || 0) > (obj[clave].t || 0)) { obj[clave] = { n: entrada.n || 0, html: entrada.html, t: entrada.t || Date.now() }; n++; }
+      };
+      (j.guion || []).forEach((g) => masNuevo(datos.guion, g.label, { n: g.n, html: g.nuevo, t: g.t }));
+      ((j.bitacora || {}).diapos || []).forEach((b) => masNuevo(datos.bitacora, b.label, b));
+      if (j.bitacora && j.bitacora.unidad) masNuevo(datos.bitacora, UNIDAD, j.bitacora.unidad);
+      guarda();
+      pinta();
+      alert(n ? n + ' entradas importadas (se conserva la versión más reciente de cada una).' : 'Nada nuevo que importar.');
+    }).catch(() => alert('No se ha podido leer el archivo: no es un JSON de notas de IASP.'));
+  });
+})();
+</script>
+</body>
+</html>

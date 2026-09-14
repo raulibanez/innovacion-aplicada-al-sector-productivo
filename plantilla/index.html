@@ -12,7 +12,8 @@
 <deck-stage width="1920" height="1080">
 
 <!-- 01 Portada de módulo -->
-<section class="portada" data-label="Portada módulo" data-notas="Portada del módulo. Sustituir curso y subtítulo. La imagen es un WebP transparente en ut00/img/portada.webp; las manchas de color van en CSS." style="position:relative;padding:0;overflow:hidden;background:var(--bg)">
+<section class="portada" data-label="Portada módulo" style="position:relative;padding:0;overflow:hidden;background:var(--bg)">
+  <aside class="notas">Portada del módulo. Sustituir curso y subtítulo. La imagen es un WebP transparente en ut00/img/portada.webp; las manchas de color van en CSS.</aside>
   <img src="../assets/mancha-coral.svg" alt="" style="position:absolute;right:0;top:0;width:480px;height:auto">
   <img src="../assets/mancha-azul.svg" alt="" style="position:absolute;left:0;bottom:0;width:760px;height:auto">
   <img src="../ut00/img/portada.webp" alt="" style="position:absolute;right:-25px;bottom:-127px;height:1121px;width:auto">
@@ -32,7 +33,8 @@
 </section>
 
 <!-- 02 Portada de unidad -->
-<section data-label="Portada unidad" data-notas="Separador de unidad de trabajo. Cambiar número, título y subtítulo." style="display:flex;flex-direction:column;justify-content:flex-end;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);position:relative;overflow:hidden">
+<section data-label="Portada unidad" style="display:flex;flex-direction:column;justify-content:flex-end;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);position:relative;overflow:hidden">
+  <aside class="notas">Separador de unidad de trabajo. Cambiar número, título y subtítulo.</aside>
   <span class="mancha arriba-dcha" style="width:640px;color:var(--coral)"></span>
   <span class="mancha abajo-izq" style="width:720px;color:var(--teal)"></span>
   <span class="mancha abajo-izq volteada" style="width:420px;color:var(--yellow)"></span>
@@ -43,7 +45,8 @@
 </section>
 
 <!-- 03 Índice -->
-<section data-label="Índice" data-notas="Índice de contenidos de la unidad. Las sesiones de práctica van intercaladas entre los bloques." style="display:grid;grid-template-columns:1fr 1.4fr;gap:120px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+<section data-label="Índice" style="display:grid;grid-template-columns:1fr 1.4fr;gap:120px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+  <aside class="notas">Índice de contenidos de la unidad. Las sesiones de práctica van intercaladas entre los bloques.</aside>
   <div>
     <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Unidad 3</p>
     <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Contenidos de la unidad</h2>
@@ -61,7 +64,8 @@
 </section>
 
 <!-- 04 Objetivos -->
-<section data-label="Objetivos" data-notas="Criterios del RA3 en lenguaje de alumno." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+<section data-label="Objetivos" style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <aside class="notas">Criterios del RA3 en lenguaje de alumno.</aside>
   <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Resultado de aprendizaje 3</p>
   <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Qué vas a saber hacer</h2>
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:var(--gap-title)">
@@ -84,7 +88,8 @@
 </section>
 
 <!-- 05 Texto + imagen -->
-<section data-label="Texto + imagen" data-seccion="3.1" data-deck-id="design-thinking" data-deck-section="3.1" data-notas="Plantilla estándar de contenido con una figura a la derecha. La figura lleva crédito al pasar el ratón y se amplía con clic." style="display:grid;grid-template-columns:1fr 760px;gap:100px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+<section data-label="Texto + imagen" data-seccion="3.1" data-deck-id="design-thinking" data-deck-section="3.1" style="display:grid;grid-template-columns:1fr 760px;gap:100px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+  <aside class="notas">Plantilla estándar de contenido con una figura a la derecha. La figura lleva crédito al pasar el ratón y se amplía con clic.</aside>
   <div style="display:flex;flex-direction:column">
     <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Design Thinking</p>
     <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy);text-wrap:balance">Antes de la solución, el problema</h2>
@@ -105,7 +110,8 @@
 </section>
 
 <!-- 06 Definición -->
-<section data-label="Definición" data-seccion="3.1" data-notas="Concepto clave en grande. Definición de la RAE en una tarjeta tipo nota adhesiva; la fuente va debajo." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:grid;grid-template-columns:1fr 1fr;gap:120px;align-items:center;position:relative;overflow:hidden">
+<section data-label="Definición" data-seccion="3.1" style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:grid;grid-template-columns:1fr 1fr;gap:120px;align-items:center;position:relative;overflow:hidden">
+  <aside class="notas">Concepto clave en grande. Definición de la RAE en una tarjeta tipo nota adhesiva; la fuente va debajo.</aside>
   <span class="mancha abajo-izq volteada" style="width:520px;color:var(--teal)"></span>
   <div style="position:relative">
     <p style="font-size:var(--type-small);font-weight:600;color:var(--coral);text-transform:uppercase;letter-spacing:.06em">Concepto clave</p>
@@ -118,7 +124,8 @@
 </section>
 
 <!-- 07 Pasos -->
-<section data-label="Pasos" data-seccion="3.1" data-notas="Procedimiento en pasos numerados. Aquí, las cinco fases del Design Thinking." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+<section data-label="Pasos" data-seccion="3.1" style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <aside class="notas">Procedimiento en pasos numerados. Aquí, las cinco fases del Design Thinking.</aside>
   <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Design Thinking</p>
   <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Las cinco fases</h2>
   <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:32px;margin-top:var(--gap-title)">
@@ -151,7 +158,8 @@
 </section>
 
 <!-- 08 Tabla -->
-<section data-label="Tabla" data-seccion="3.1" data-notas="Plantilla de tabla. Los datos de la tabla se citan en el pie." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+<section data-label="Tabla" data-seccion="3.1" style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <aside class="notas">Plantilla de tabla. Los datos de la tabla se citan en el pie.</aside>
   <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Design Thinking</p>
   <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Técnicas de pensamiento creativo</h2>
   <table style="width:100%;border-collapse:collapse;margin-top:var(--gap-title);font-size:var(--type-small);background:var(--white);border-radius:20px;overflow:hidden">
@@ -173,7 +181,8 @@
 </section>
 
 <!-- 09 Comparativa -->
-<section data-label="Comparativa" data-seccion="3.1" data-notas="Dos columnas enfrentadas, una de color y otra blanca." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+<section data-label="Comparativa" data-seccion="3.1" style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <aside class="notas">Dos columnas enfrentadas, una de color y otra blanca.</aside>
   <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Design Thinking</p>
   <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Prototipo frente a producto mínimo viable</h2>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:var(--gap-title);flex:1">
@@ -197,7 +206,8 @@
 </section>
 
 <!-- 10 Código: plantilla de texto -->
-<section data-label="Código" data-seccion="3.1" data-notas="Bloque monoespaciado oscuro (como la pantalla del portátil de la portada) para fórmulas o plantillas de texto que se rellenan. Aquí, la frase de punto de vista de The Wallet Project." style="display:grid;grid-template-columns:1fr 1.25fr;gap:96px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+<section data-label="Código" data-seccion="3.1" style="display:grid;grid-template-columns:1fr 1.25fr;gap:96px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+  <aside class="notas">Bloque monoespaciado oscuro (como la pantalla del portátil de la portada) para fórmulas o plantillas de texto que se rellenan. Aquí, la frase de punto de vista de The Wallet Project.</aside>
   <div>
     <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Design Thinking</p>
     <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy);text-wrap:balance">La frase de punto de vista</h2>
@@ -222,7 +232,8 @@ porque odia notar la cartera en el bolsillo.</pre>
 </section>
 
 <!-- 11 Imagen completa -->
-<section data-label="Imagen completa" data-seccion="3.1" data-notas="Foto a sangre con título en placa. El crédito está en la figura, a la derecha para no quedar bajo la placa." style="position:relative;padding:0;overflow:hidden;background:var(--dark)">
+<section data-label="Imagen completa" data-seccion="3.1" style="position:relative;padding:0;overflow:hidden;background:var(--dark)">
+  <aside class="notas">Foto a sangre con título en placa. El crédito está en la figura, a la derecha para no quedar bajo la placa.</aside>
   <figure class="foto credito-dcha" style="position:absolute;inset:0;border-radius:0">
     <img src="img/sesion.jpg" alt="Sesión de prototipado en el aula" title="Imagen de muestra · elaboración propia">
     <figcaption class="credito"><b>Sesión de prototipado</b>. Imagen de muestra, elaboración propia.</figcaption>
@@ -234,7 +245,8 @@ porque odia notar la cartera en el bolsillo.</pre>
 </section>
 
 <!-- 12 Dos imágenes -->
-<section data-label="Dos imágenes" data-seccion="3.1" data-notas="Dos figuras con pie, cada una con su crédito." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+<section data-label="Dos imágenes" data-seccion="3.1" style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <aside class="notas">Dos figuras con pie, cada una con su crédito.</aside>
   <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Design Thinking</p>
   <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Baja y alta fidelidad</h2>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:var(--gap-title);flex:1;min-height:0">
@@ -256,7 +268,8 @@ porque odia notar la cartera en el bolsillo.</pre>
 </section>
 
 <!-- 13 Galería -->
-<section data-label="Galería" data-seccion="3.1" data-notas="Varias fotos en el mismo hueco. Cada elemento de la lista con data-ir salta a su foto." style="display:grid;grid-template-columns:1fr 760px;gap:96px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+<section data-label="Galería" data-seccion="3.1" style="display:grid;grid-template-columns:1fr 760px;gap:96px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+  <aside class="notas">Varias fotos en el mismo hueco. Cada elemento de la lista con data-ir salta a su foto.</aside>
   <div style="display:flex;flex-direction:column;min-width:0">
     <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Design Thinking</p>
     <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy);text-wrap:balance">Tres herramientas para conocer al usuario</h2>
@@ -293,7 +306,8 @@ porque odia notar la cartera en el bolsillo.</pre>
 </section>
 
 <!-- 14 Vídeo -->
-<section data-label="Vídeo" data-seccion="3.1" data-notas="Vídeo embebido. Sustituir la URL del iframe y anotar duración y hasta qué minuto se ve." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:grid;grid-template-columns:minmax(0,1fr) 560px;gap:80px">
+<section data-label="Vídeo" data-seccion="3.1" style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:grid;grid-template-columns:minmax(0,1fr) 560px;gap:80px">
+  <aside class="notas">Vídeo embebido. Sustituir la URL del iframe y anotar duración y hasta qué minuto se ve.</aside>
   <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
     <div style="flex:1;background:var(--dark);border-radius:20px;overflow:hidden;position:relative">
       <iframe src="https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ" title="Vídeo de la unidad" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
@@ -312,7 +326,8 @@ porque odia notar la cartera en el bolsillo.</pre>
 </section>
 
 <!-- 15 Quiz -->
-<section data-label="Quiz" data-seccion="3.1" data-notas="Pregunta de opción múltiple. data-correct es el índice de la opción correcta, empezando en 0." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:grid;grid-template-columns:1fr 1.2fr;gap:96px;align-items:center;position:relative;overflow:hidden">
+<section data-label="Quiz" data-seccion="3.1" style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:grid;grid-template-columns:1fr 1.2fr;gap:96px;align-items:center;position:relative;overflow:hidden">
+  <aside class="notas">Pregunta de opción múltiple. data-correct es el índice de la opción correcta, empezando en 0.</aside>
   <span class="mancha arriba-dcha" style="width:380px;color:var(--pink)"></span>
   <div class="quiz" data-correct="2" data-ok="Correcto. En la fase de prototipado se construye algo que el usuario pueda probar." data-ko="No. Piensa en qué fase se construye algo con las manos." style="display:contents">
     <div style="position:relative">
@@ -331,7 +346,8 @@ porque odia notar la cartera en el bolsillo.</pre>
 </section>
 
 <!-- 16 Pregunta a la clase (texto) -->
-<section data-label="Pregunta a la clase" data-seccion="3.1" data-notas="Lanzar la pregunta, dejar que respondan y revelar las ideas del profesor. Las ideas del panel son opiniones para el debate, no materia de examen." style="display:grid;grid-template-columns:1fr 1.1fr;gap:96px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);align-items:center">
+<section data-label="Pregunta a la clase" data-seccion="3.1" style="display:grid;grid-template-columns:1fr 1.1fr;gap:96px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);align-items:center">
+  <aside class="notas">Lanzar la pregunta, dejar que respondan y revelar las ideas del profesor. Las ideas del panel son opiniones para el debate, no materia de examen.</aside>
   <div>
     <img class="icono" src="../assets/question.png" alt="">
     <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;margin-top:var(--gap-item)">Pregunta a la clase</p>
@@ -353,7 +369,8 @@ porque odia notar la cartera en el bolsillo.</pre>
 </section>
 
 <!-- 17 Pregunta a la clase (imagen) -->
-<section data-label="Pregunta a la clase (imagen)" data-seccion="3.1" data-notas="Variante con una cifra o imagen como respuesta. Dato de la guía del facilitador de The Wallet Project (d.school, Stanford)." style="display:flex;flex-direction:column;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);gap:var(--gap-title)">
+<section data-label="Pregunta a la clase (imagen)" data-seccion="3.1" style="display:flex;flex-direction:column;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);gap:var(--gap-title)">
+  <aside class="notas">Variante con una cifra o imagen como respuesta. Dato de la guía del facilitador de The Wallet Project (d.school, Stanford).</aside>
   <div style="display:flex;align-items:center;gap:40px">
     <img class="icono" src="../assets/question.png" alt="" style="flex:none;width:120px;height:120px">
     <div>
@@ -377,7 +394,8 @@ porque odia notar la cartera en el bolsillo.</pre>
 </section>
 
 <!-- 18 Cifra destacada -->
-<section data-label="Cifra destacada" data-seccion="3.1" data-notas="Dato destacado en grande, con dos datos secundarios." style="display:grid;grid-template-columns:1fr 1fr;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);align-items:center;gap:120px">
+<section data-label="Cifra destacada" data-seccion="3.1" style="display:grid;grid-template-columns:1fr 1fr;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);align-items:center;gap:120px">
+  <aside class="notas">Dato destacado en grande, con dos datos secundarios.</aside>
   <div>
     <p style="font-size:220px;font-weight:800;line-height:1;color:var(--blue);letter-spacing:-.04em">9</p>
     <p style="font-size:var(--type-subtitle);font-weight:700;color:var(--navy);margin-top:16px">Bloques del Business Model Canvas</p>
@@ -392,7 +410,8 @@ porque odia notar la cartera en el bolsillo.</pre>
 </section>
 
 <!-- 19 Cita -->
-<section data-label="Cita" data-seccion="3.1" data-notas="Cita literal con su fuente. Aquí, las orientaciones metodológicas del currículo." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden">
+<section data-label="Cita" data-seccion="3.1" style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden">
+  <aside class="notas">Cita literal con su fuente. Aquí, las orientaciones metodológicas del currículo.</aside>
   <span class="mancha abajo-izq" style="width:560px;color:var(--yellow)"></span>
   <span class="mancha arriba-dcha" style="width:360px;color:var(--teal)"></span>
   <span style="position:relative;font-size:200px;line-height:.6;color:var(--coral);font-weight:800">“</span>
@@ -401,7 +420,8 @@ porque odia notar la cartera en el bolsillo.</pre>
 </section>
 
 <!-- 20 Ejercicio -->
-<section data-label="Ejercicio" data-seccion="3.2" data-practica="Práctica" data-deck-id="practica-3-2" data-deck-section="3.2" data-notas="Sesión de práctica. Enunciado para el alumno y ficha con duración, modalidad, entrega y material." style="display:grid;grid-template-columns:1fr 1fr;gap:96px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+<section data-label="Ejercicio" data-seccion="3.2" data-practica="Práctica" data-deck-id="practica-3-2" data-deck-section="3.2" style="display:grid;grid-template-columns:1fr 1fr;gap:96px;padding:var(--pad-top) var(--pad-x) var(--pad-bottom)">
+  <aside class="notas">Sesión de práctica. Enunciado para el alumno y ficha con duración, modalidad, entrega y material.</aside>
   <div>
     <span class="pill">Práctica</span>
     <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:32px;color:var(--navy);text-wrap:balance">Design Thinking, parte 1: empatizar y definir</h2>
@@ -424,14 +444,16 @@ porque odia notar la cartera en el bolsillo.</pre>
 </section>
 
 <!-- 21 Nota -->
-<section data-label="Nota" data-seccion="3.2" data-practica="Práctica" data-notas="Advertencia o norma importante." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
+<section data-label="Nota" data-seccion="3.2" data-practica="Práctica" style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
+  <aside class="notas">Advertencia o norma importante.</aside>
   <img class="icono" src="../assets/exclamation.png" alt="">
   <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:var(--gap-title);color:var(--navy);max-width:1300px;text-wrap:balance">En esta práctica las ideas las genera el equipo</h2>
   <p style="font-size:var(--type-body);line-height:1.5;color:var(--muted);margin-top:var(--gap-item);max-width:1200px;text-wrap:pretty">La inteligencia artificial no se usa en clase salvo que se indique expresamente. Si se pide, se dice en el enunciado y se entrega también el prompt.</p>
 </section>
 
 <!-- 22 Resumen -->
-<section data-label="Resumen" data-deck-id="cierre" data-deck-section="Fin" data-notas="Ideas clave de la unidad, una tarjeta por idea." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+<section data-label="Resumen" data-deck-id="cierre" data-deck-section="Fin" style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column">
+  <aside class="notas">Ideas clave de la unidad, una tarjeta por idea.</aside>
   <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Unidad 3</p>
   <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Resumen de la unidad</h2>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:var(--gap-title)">
@@ -443,7 +465,8 @@ porque odia notar la cartera en el bolsillo.</pre>
 </section>
 
 <!-- 23 Recursos -->
-<section data-label="Recursos" data-notas="Bibliografía y enlaces." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:grid;grid-template-columns:1fr 1.4fr;gap:120px">
+<section data-label="Recursos" style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:grid;grid-template-columns:1fr 1.4fr;gap:120px">
+  <aside class="notas">Bibliografía y enlaces.</aside>
   <div>
     <p style="font-size:var(--type-small);font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">Para ampliar</p>
     <h2 style="font-size:var(--type-title);font-weight:800;line-height:1.1;margin-top:20px;color:var(--navy)">Recursos y bibliografía</h2>
@@ -456,7 +479,8 @@ porque odia notar la cartera en el bolsillo.</pre>
 </section>
 
 <!-- 24 Cierre -->
-<section data-label="Cierre" data-notas="Cierre de sesión." style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden">
+<section data-label="Cierre" style="padding:var(--pad-top) var(--pad-x) var(--pad-bottom);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden">
+  <aside class="notas">Cierre de sesión.</aside>
   <span class="mancha arriba-dcha" style="width:560px;color:var(--coral)"></span>
   <span class="mancha abajo-izq" style="width:760px;color:var(--teal)"></span>
   <div style="display:flex;align-items:center;gap:20px;position:relative">
