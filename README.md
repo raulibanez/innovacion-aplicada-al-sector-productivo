@@ -7,7 +7,7 @@ Materiales del módulo en formato presentación 16:9 para web. Los alumnos sigue
 ```
 index.html          Portada con las cuatro unidades de trabajo
 assets/             Motor de diapositivas (deck-stage.js), estilos y ejercicios (iasp.css, iasp.js), iconos y manchas de color (SVG)
-plantilla/          Tipos de diapositiva disponibles y ejercicios interactivos de prueba
+plantilla/          Tipos de diapositiva disponibles y ejercicios interactivos de prueba (no se enlaza desde index.html; se abre en plantilla/)
 herramientas/       Scripts de mantenimiento (aplica-notas.py vuelca las notas editadas en clase)
 ut00/               Presentación del módulo (primera sesión)
 ut01/ ... ut04/     Una presentación por unidad (index.html + img/)
@@ -103,6 +103,8 @@ Las notas de guion cambiadas se escriben en su `<aside>` (localizado por `data-l
 ## Navegación
 
 Flechas o espacio para avanzar, Inicio y Fin para ir al principio o al final, R para volver a la primera. Ctrl+P imprime una página por diapositiva. N abre la ventana de notas del profesor.
+
+Para volver a la página principal del módulo hay tres caminos: el rótulo del módulo en la portada de cada unidad es un enlace; la barra flotante del motor (aparece al mover el ratón, se oculta en presentación y al imprimir) lleva un botón «Inicio»; y la diapositiva de cierre tiene los botones «Volver al índice del módulo» y «Siguiente unidad». La pastilla amarilla con el número de sección, arriba a la derecha, es un botón que salta al índice de la unidad. Todo esto lo monta `iasp.js` (`montaVolver`): en una unidad nueva basta con partir de la plantilla.
 
 ## Licencia
 

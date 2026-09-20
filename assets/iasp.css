@@ -143,10 +143,16 @@ section.portada [data-slide-num] { color: var(--navy); background: rgba(255, 247
 }
 
 /* Píldora con el número de sección arriba a la derecha de cada diapositiva
-   de contenido (atributo data-seccion en el <section>). Las diapositivas las
-   posiciona deck-stage en absoluto, así que el pseudo-elemento se ancla a ellas. */
-deck-stage section[data-seccion]::after {
-  content: attr(data-seccion);
+   de contenido (atributo data-seccion en el <section>). La crea iasp.js como botón
+   y al pulsarla salta al índice de la unidad. En las secciones de práctica y prueba
+   (data-practica="Práctica" o "Prueba") se lee «1.3 · Práctica». Las diapositivas las
+   posiciona deck-stage en absoluto, así que el botón se ancla a ellas.
+   La regla sin prefijo oculta el botón en las miniaturas del carril (ahí la pastilla
+   la pinta el motor a partir de data-deck-section); la regla con prefijo, más específica,
+   solo alcanza el escenario. */
+section > .seccion-pill { display: none; }
+deck-stage section > .seccion-pill {
+  display: inline-block;
   white-space: nowrap;
   position: absolute;
   top: 40px;
@@ -160,13 +166,13 @@ deck-stage section[data-seccion]::after {
   font-weight: 800;
   letter-spacing: .02em;
   line-height: 1.2;
-  pointer-events: none;
+  border: 0;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background .15s ease, transform .15s ease;
 }
-/* En las secciones de práctica y prueba la pastilla añade el tipo: data-practica="Práctica" o "Prueba"
-   en la <section>, y se lee «1.3 · Práctica». */
-deck-stage section[data-seccion][data-practica]::after {
-  content: attr(data-seccion) " · " attr(data-practica);
-}
+deck-stage section > .seccion-pill:hover { background: var(--teal); transform: translateY(-1px); }
+@media print { deck-stage section > .seccion-pill { background: var(--yellow); } }
 
 /* Las diapositivas de práctica y prueba (data-practica) van sobre fondo turquesa (--teal),
    para distinguirlas de la teoría también en el carril de miniaturas. Se consigue
@@ -183,7 +189,7 @@ section[data-practica] {
 }
 section[data-practica] .pill,
 section[data-practica] .pill-mini,
-section[data-practica]::after { color: #172433; }
+section[data-practica] .seccion-pill { color: var(--navy); }
 
 
 /* Píldora de sección en el carril de miniaturas (la pinta deck-stage.js
