@@ -489,7 +489,9 @@ deck-stage section:has(> .ej) { grid-template-rows: minmax(0, 1fr); }
   place-items: center;
   transition: opacity .25s;
 }
-.foto:hover .credito, .foto:focus-within .credito { opacity: 1; transform: none; pointer-events: auto; }
+/* El crédito visible no bloquea el clic de ampliar sobre la foto; solo sus enlaces reciben el ratón. */
+.foto:hover .credito, .foto:focus-within .credito { opacity: 1; transform: none; pointer-events: none; }
+.foto:hover .credito a, .foto:focus-within .credito a { pointer-events: auto; }
 @media print { .foto .credito { opacity: 1; transform: none; } }
 
 /* Tarjeta con imagen de fondo, velo claro, título y botón de ampliar (taller de ideas) */

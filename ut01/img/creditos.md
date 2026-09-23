@@ -107,3 +107,111 @@ Todas las fotografías proceden de Wikimedia Commons. Los datos de autor y licen
 - **exoesqueleto-marsi.jpg:** en Wikimedia Commons no hay ninguna foto del exoesqueleto; solo retratos de Elena García Armada (`File:Elena García Armada.jpg`, Jon Jauregi, CC BY-SA 4.0, sin el aparato). La sala de prensa de Marsi Bionics tiene fotos de niños usándolo (https://marsibionics.com/media-center/), descartadas por mostrar a menores identificables. Se usa la imagen de producto, como con el AI Pin.
 - **renault-valladolid.jpg:** la única imagen del interior de la factoría es un fotograma de vídeo de 1100×731 px (no llega a 1600 px). Para el exterior existe `File:Valladolid - Renault 2.jpg` (CC BY 4.0, Mirix202, 1505×541 px, acceso a la fábrica).
 - **hp-impresora.jpg:** también hay imágenes del Parque Tecnológico de León (CC BY-SA 4.0, autores Derwydd y Pablox) por si se prefiere el enfoque local.
+
+## europa.webp
+
+- **Origen:** Ilustración generada con IA por el profesor (archivo original `Misc/europa.png`, 1672×941 px). No procede de Wikimedia Commons.
+- **Tratamiento:** Fondo crema convertido en transparente, sin recortar (1672×941 px, 16:9) y guardada como WebP con transparencia (calidad 88). Se usa a pantalla completa con un degradado crema sobre la mitad derecha.
+- **Tamaño final:** 120 KB
+- **Descripción:** Mapa de Europa con las regiones coloreadas según su grupo de innovación (aproximación ilustrativa, no el mapa oficial del Regional Innovation Scoreboard): beige emergentes, amarillo moderados, teal fuertes, navy líderes; países no incluidos en gris. Versión mejorada del 23/09/2026. Fondo de la diapositiva 38 (cifra del European Innovation Scoreboard).
+
+## plaza-mayor-valladolid.webp
+
+- **Título original en Commons:** File:Plaza Mayor Valladolid1.jpg
+- **Autor:** Ángel (usuario de Flickr 8871696@N04)
+- **Página del archivo:** https://commons.wikimedia.org/wiki/File:Plaza_Mayor_Valladolid1.jpg
+- **Licencia:** CC BY 2.0 — https://creativecommons.org/licenses/by/2.0
+- **Tratamiento:** Adaptada por el profesor (retoque con IA a partir del original; 1672×941 px) y guardada como WebP (calidad 82). Obra derivada: se indica en la propia diapositiva.
+- **Tamaño final:** 264 KB
+- **Descripción:** Panorámica de la Plaza Mayor de Valladolid con el Ayuntamiento. Fondo de la diapositiva 13 (cifra de empresas innovadoras).
+
+## sri-mouse.jpg
+
+- **Título original en Commons:** File:SRI Computer Mouse.jpg
+- **Autor:** SRI International (fotografía de Mark Richards); permiso confirmado por el equipo de voluntarios de Wikimedia (ticket 2011111010014611).
+- **Página del archivo:** https://commons.wikimedia.org/wiki/File:SRI_Computer_Mouse.jpg
+- **Licencia:** CC BY-SA 3.0 — https://creativecommons.org/licenses/by-sa/3.0 (también GFDL 1.2+). Compartir igual: si la presentación se considera obra derivada, debe distribuirse con la misma licencia.
+- **Tratamiento:** No reducida ni recortada (600×360 px, la resolución disponible en Commons); solo recomprimida (JPEG calidad 88) y sin metadatos.
+- **Tamaño final:** 30 KB
+- **Descripción:** Primer prototipo de ratón, de madera y con una rueda, construido por Douglas Engelbart en el SRI (1964). Diapositiva 25 (prototipo y grupo focal).
+
+## grupo-focal.webp
+
+- **Origen:** Elaboración propia del profesor (archivo original `Misc/focus-group.png`, 1672×941 px). No procede de Wikimedia Commons.
+- **Tratamiento:** Guardada como WebP (calidad 82), sin recortar.
+- **Tamaño final:** 96 KB
+- **Descripción:** Grupo de personas alrededor de una mesa de reunión opinando. Diapositiva 25 (prototipo y grupo focal).
+
+## toyota-kaizen.webp
+
+- **Origen:** Toyota (GB) PLC, revista digital Toyota Magazine, artículo «What is kaizen and how does Toyota use it?» (Matt Burt, 14/05/2026): https://mag.toyota.co.uk/kaizen-toyota-production-system/ (archivo Kaizen.jpg, 590×394 px).
+- **Licencia:** © Toyota (GB) PLC, todos los derechos reservados. Uso educativo sin ánimo de lucro; no cubierta por la licencia de esta obra. No procede de Wikimedia Commons.
+- **Tratamiento:** Ampliada a 1920 px de ancho (Lanczos, con enfoque ligero) y guardada como WebP (calidad 80). Se usa a pantalla completa bajo un velo crema al 84-90 %.
+- **Tamaño final:** 126 KB
+- **Descripción:** Cadena de montaje de Toyota Motor Manufacturing UK con barrido de movimiento. Fondo de la diapositiva 18 (mejora continua, kaizen).
+
+## ciclo-pdca.webp
+
+- **Origen:** Elaboración propia del profesor (gráfico generado con IA; archivo original `Misc/kaizen.png`, 1254×1254 px con transparencia). No procede de Wikimedia Commons.
+- **Tratamiento:** Recortados los márgenes transparentes (1172×1133 px) y guardado como WebP con transparencia (calidad 86).
+- **Tamaño final:** 189 KB
+- **Descripción:** Ciclo PDCA en cuatro piezas (planificar, hacer, comprobar, actuar) con flechas, texto incluido en la imagen. Columna derecha de la diapositiva 18 (mejora continua).
+
+## jobs-iphone-2007.jpg
+
+- **Origen:** History.com (A+E Networks), artículo «Steve Jobs debuts the iPhone» (This Day in History, 9 de enero): https://www.history.com/this-day-in-history/january-9/steve-jobs-debuts-the-iphone . Crédito publicado en la página: Tony Avelar / AFP / Getty Images (id. de Getty 175852238).
+- **Licencia:** © Tony Avelar / AFP / Getty Images. Uso educativo sin ánimo de lucro; no cubierta por la licencia de esta obra. No procede de Wikimedia Commons.
+- **Tratamiento:** Reducida de 2169×1220 px a 1600×900 px (JPEG calidad 85); no recortada en el archivo (la diapositiva la encuadra con CSS).
+- **Tamaño final:** 189 KB
+- **Descripción:** Steve Jobs sostiene el primer iPhone en la Macworld de San Francisco, 9 de enero de 2007. Diapositiva 7 (invención, tecnología, innovación).
+
+## incibe-leon.jpg
+
+- **Título original en Commons:** File:Sede INCIBE, León.JPG
+- **Autor:** Rodelar (Rubén Ojeda)
+- **Página del archivo:** https://commons.wikimedia.org/wiki/File:Sede_INCIBE,_Le%C3%B3n.JPG
+- **Licencia:** CC BY-SA 4.0 — https://creativecommons.org/licenses/by-sa/4.0 . Compartir igual: si la presentación se considera obra derivada, debe distribuirse con la misma licencia.
+- **Tratamiento:** Reducida de 2816×2112 px a 1600×1200 px (JPEG calidad 85), sin recortar en el archivo (la diapositiva la encuadra con CSS) y sin metadatos.
+- **Tamaño final:** 279 KB
+- **Descripción:** Sede del Instituto Nacional de Ciberseguridad (INCIBE) en León (26/06/2015). Diapositiva 28 (cómo se empareja una fuente con un caso).
+
+## ods9.jpg
+
+- **Título original en Commons:** File:Sustainable Development Goal-es-09.jpg
+- **Autor:** Naciones Unidas (icono oficial de los ODS, versión en español)
+- **Página del archivo:** https://commons.wikimedia.org/wiki/File:Sustainable_Development_Goal-es-09.jpg
+- **Licencia:** Dominio público (publicación de la ONU difundida sin aviso de copyright, según la página del archivo). El uso de los iconos de los ODS sigue las directrices de la ONU: sin alterar el diseño ni sugerir respaldo institucional.
+- **Tratamiento:** Reducida de 3000×3000 px a 800×800 px (JPEG calidad 88), sin recortar.
+- **Tamaño final:** 57 KB
+- **Descripción:** Icono del ODS 9, «Industria, innovación e infraestructura». Diapositiva 36 (innovación y desarrollo sostenible).
+
+## logo-ice.png y logo-cdti.png
+
+- **Origen:** logotipos institucionales. ICE (Instituto para la Competitividad Empresarial de Castilla y León, Junta de Castilla y León), archivo tomado de https://www.grupointerclima.com/wp-content/uploads/2017/12/logo-ice-jcyl.png (931×353 px, PNG con transparencia). CDTI (Centro para el Desarrollo Tecnológico y la Innovación, Ministerio de Ciencia, Innovación y Universidades), archivo oficial https://www.cdti.es/sites/default/files/2024-09/logo_cdti_2024_sin_banderas_soportes_fisicos.jpg (8091×1601 px).
+- **Licencia:** marcas de organismos públicos. Uso identificativo y educativo, sin sugerir respaldo; no cubiertas por la licencia de esta obra. No proceden de Wikimedia Commons.
+- **Tratamiento:** ICE sin cambios. CDTI: versión de la marca con fondo transparente aportada por el profesor (`Misc/cdti.png`, 500×320 px), sin el escudo ni el nombre del ministerio.
+- **Descripción:** logotipos de las dos entidades de la diapositiva 39 (dónde se apoya la innovación), uno en cada tarjeta.
+
+## horse-35-millones.jpg
+
+- **Origen:** fotografía de prensa de Horse (Renault Group) publicada por La Razón el 24/01/2024: https://www.larazon.es/castilla-leon/factoria-valladolid-horse-fabrica-motor-35-millones_2024012465b125a4d8e3c30001d3d0e0.html (recorte de 1900×1069 px servido por el periódico).
+- **Licencia:** © Horse / Renault Group. Uso educativo sin ánimo de lucro; no cubierta por la licencia de esta obra. No procede de Wikimedia Commons.
+- **Tratamiento:** Reducida a 1600 px de ancho (JPEG calidad 85).
+- **Tamaño final:** 316 KB
+- **Descripción:** La plantilla de la factoría de motores de Valladolid celebra el motor 35 millones (24/01/2024). Diapositiva 35 (¿se innova igual en una fábrica que en una app?).
+
+## pld-space-oficina.jpg
+
+- **Origen:** web corporativa de PLD Space: https://www.pldspace.com/uploads/5be7997a-6b29-4924-9b57-fb8dedbff681/5be7997a-6b29-4924-9b57-fb8dedbff681.jpg (2500×1274 px).
+- **Licencia:** © PLD Space. Uso educativo sin ánimo de lucro; no cubierta por la licencia de esta obra. No procede de Wikimedia Commons.
+- **Tratamiento:** Reducida a 1600 px de ancho (JPEG calidad 85).
+- **Tamaño final:** 260 KB
+- **Descripción:** Oficina de ingeniería de PLD Space en Elche. Diapositiva 35.
+
+## manual-oslo-2018.jpg
+
+- **Origen:** portada de *Oslo Manual 2018. Guidelines for Collecting, Reporting and Using Data on Innovation* (4.ª ed., OCDE y Eurostat, 2018). Archivo tomado de la ficha del libro en Amazon (1125×1500 px).
+- **Licencia:** © OCDE y Eurostat. Reproducción de la portada para identificar la obra citada; uso educativo sin ánimo de lucro, no cubierta por la licencia de esta obra.
+- **Tratamiento:** Reducida a 600×800 px (JPEG calidad 88).
+- **Tamaño final:** 78 KB
+- **Descripción:** Portada del Manual de Oslo 2018. Diapositiva 6 (la definición oficial).
