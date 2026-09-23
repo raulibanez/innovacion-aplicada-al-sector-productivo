@@ -1,4 +1,4 @@
-/* Motor común de las presentaciones de Innovación Aplicada al Sector Productivo.
+/* Motor común de las presentaciones de Innovación Aplicada a los Sectores Productivos.
  *
  *  1. Numera las diapositivas ("03 / 51").
  *  2. Quiz de opción múltiple:
@@ -199,7 +199,7 @@
     { titulo: 'Los televisores 3D (2010-2014)', texto: 'Tras Avatar, los fabricantes lanzan televisores en 3D. Hacen falta gafas, dan dolor de cabeza, hay poco contenido y cuestan más. El público elige los televisores 2D y las smart TV.',
       pautas: [3], pista: 'Piensa en las gafas y en el contenido disponible.',
       razon: 'Se lanzó una tecnología sin resolver lo que molestaba al usuario ni asegurar contenido. Fracaso por poca orientación al mercado.', fuente: 'Elaboración propia a partir de la prensa de 2010-2014.' },
-    { titulo: 'Humane AI Pin (2024-2025)', texto: 'Una startup lanza un aparato con inteligencia artificial que se lleva en la ropa y pretende sustituir al móvil. Cuesta 499 dólares. En febrero de 2025 vende sus activos a HP y los dispositivos dejan de funcionar.',
+    { titulo: 'Humane AI Pin (2024-2025)', texto: 'Una startup lanza un aparato con inteligencia artificial que se lleva en la ropa y pretende sustituir al móvil. Cuesta 699 dólares. En febrero de 2025 vende sus activos a HP y los dispositivos dejan de funcionar.',
       pautas: [3, 4], pista: '¿Qué problema del usuario resolvía mejor que el móvil?',
       razon: 'Era una solución en busca de problema: no hacía nada mejor que el móvil que ya llevabas en el bolsillo. Fracaso por poca orientación al mercado.', fuente: 'TechCrunch y MuyComputerPro, febrero de 2025.' },
     { titulo: 'Netflix (1997-hoy)', texto: 'Empieza enviando DVD por correo, pasa al streaming cuando la conexión lo permite y después produce sus propias series a partir de lo que ve que gusta a sus usuarios.',

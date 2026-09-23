@@ -252,7 +252,7 @@ input[type=file] { display: none; }
 
   /* ---------- pintar ---------- */
   function pintaCabecera() {
-    $('titulo').textContent = deck ? deck.titulo.replace(/\s*·\s*(IASP|Innovación Aplicada al Sector Productivo)\s*$/, '') : 'Notas del profesor';
+    $('titulo').textContent = deck ? deck.titulo.replace(/\s*·\s*(IASP|Innovación Aplicada a los Sectores Productivos)\s*$/, '') : 'Notas del profesor';
     $('contador').textContent = deck ? (index + 1) + ' / ' + deck.diapos.length : '— / —';
     const d = actual();
     $('label').textContent = d ? d.label : '—';

@@ -1,4 +1,4 @@
-# Innovación Aplicada al Sector Productivo (CL32)
+# Innovación Aplicada a los Sectores Productivos (CL32)
 
 Materiales del módulo en formato presentación 16:9 para web. Los alumnos siguen las presentaciones en clase y estudian desde ellas. El módulo se trabaja por proyectos: las presentaciones son el apoyo teórico de las prácticas que se hacen y se defienden en el aula.
 
@@ -112,4 +112,4 @@ Para volver a la página principal del módulo hay tres caminos: el rótulo del 
 - **Código** (`assets/deck-stage.js`, `assets/iasp.js`, `assets/iasp.css`): [MIT](LICENSE-CODE) — ver `LICENSE-CODE`.
 - **Excepción: material de terceros.** Las fotografías e ilustraciones ajenas no están cubiertas por la licencia anterior. Cada una lleva su crédito y su licencia en el `figcaption` de la figura y se usan con fines educativos. Para reutilizarlas hay que acudir a la licencia original de cada una.
 
-Autoría: Raúl Ibáñez, 2026. Atribución sugerida: «Raúl Ibáñez, *Innovación Aplicada al Sector Productivo (CL32)*, CC BY-SA 4.0».
+Autoría: Raúl Ibáñez, 2026. Atribución sugerida: «Raúl Ibáñez, *Innovación Aplicada a los Sectores Productivos (CL32)*, CC BY-SA 4.0».
