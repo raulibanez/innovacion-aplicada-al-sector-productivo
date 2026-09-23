@@ -215,3 +215,9 @@ Todas las fotografías proceden de Wikimedia Commons. Los datos de autor y licen
 - **Tratamiento:** Reducida a 600×800 px (JPEG calidad 88).
 - **Tamaño final:** 78 KB
 - **Descripción:** Portada del Manual de Oslo 2018. Diapositiva 6 (la definición oficial).
+
+## iconos/*.webp (36 archivos)
+
+- **Origen:** elaboración propia del profesor (iconos generados con IA en estilo «clay 3D», hoja original `Misc/iconos.png`, 1086×1448 px con transparencia). No proceden de Wikimedia Commons.
+- **Tratamiento:** recortados automáticamente por sus huecos transparentes, centrados en un cuadrado con margen y guardados a 256×256 px como WebP con transparencia (calidad 90).
+- **Descripción:** iconos de las tarjetas de las diapositivas 11, 12, 15, 17, 19, 24, 26, 27, 30, 32 y 40.
