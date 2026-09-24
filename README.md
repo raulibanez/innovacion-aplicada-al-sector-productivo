@@ -37,6 +37,10 @@ Cada ejercicio tiene los botones Comprobar, Pista, Resolver y Otro ejercicio, y 
 
 Los bancos de casos están al principio de `assets/iasp.js` (`IASP.bancos`) y se amplían añadiendo entradas, sin tocar el resto del código. Los quiz de opción múltiple usan la clase `quiz` con `data-correct`.
 
+## Buscador dentro de la unidad
+
+Tecla B, o el botón «Buscar» de la barra flotante, abre un panel que busca en las diapositivas de la presentación abierta (rótulo y texto visible, sin las notas del profesor). No necesita servidor: el índice se construye en el navegador a partir del propio documento, así que funciona igual en GitHub Pages o abriendo el archivo. Se busca sin distinguir tildes ni mayúsculas; ↑ ↓ para moverse por los resultados, Enter para saltar a la diapositiva y Esc para cerrar. Está en `assets/iasp.js` (`montaBuscador`) y `assets/iasp.css` (`.buscador`).
+
 ## Pregunta a la clase
 
 Diapositiva con una pregunta y un panel de ideas que se revela al pulsar (texto, imágenes o una sola imagen):
