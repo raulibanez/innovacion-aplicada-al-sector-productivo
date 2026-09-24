@@ -12,8 +12,8 @@
  *  4. Galería de fotos en el mismo hueco, con flechas y pie que cambia:
  *       <div class="galeria"> <figure class="foto" data-pie="Figura 1.2. …">…</figure> … </div>
  *     Un elemento de la misma diapositiva con data-ir="2" salta a la segunda foto.
- *  5. Ejercicios interactivos con casos al azar, todos con Comprobar, Pista, Resolver y Otro ejercicio:
- *       <div class="ej" data-tipo="clasificar"></div>   un caso y tres desplegables (área, impacto, objetivo)
+ *  5. Ejercicios interactivos con casos en orden (sin repetir hasta dar la vuelta), todos con Comprobar, Pista, Resolver y Otro ejercicio:
+ *       <div class="ej" data-tipo="clasificar"></div>   un caso y tres filas de tarjetas (área, impacto, objetivo)
  *       <div class="ej" data-tipo="emparejar"></div>    siete casos y las siete fuentes de oportunidad de Drucker
  *       <div class="ej" data-tipo="caso"></div>         caso breve, elegir la pauta de éxito o fracaso; respuesta razonada oculta
  *     El de clasificar admite otro banco y otros campos (UT2: tecnología, efecto y área de la empresa):
@@ -33,11 +33,13 @@
   const rnd = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
   const baraja = (a) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = rnd(0, i); [b[i], b[j]] = [b[j], b[i]]; } return b; };
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-  // Elige un elemento distinto del último usado
-  function eligeOtro(lista, ultimo) {
-    if (lista.length < 2) return lista[0];
-    let x; do { x = lista[rnd(0, lista.length - 1)]; } while (x === ultimo);
-    return x;
+  // Recorre la lista en orden, sin repetir hasta llegar al final; entonces vuelve a empezar
+  const cursores = new WeakMap();
+  function eligeOtro(lista) {
+    if (!lista.length) return null;
+    const i = cursores.get(lista) || 0;
+    cursores.set(lista, (i + 1) % lista.length);
+    return lista[i];
   }
 
   /* ---------- bancos de casos ---------- */
@@ -128,25 +130,40 @@
       por: 'El firmware forma parte del producto que se vende; cada versión mejora la anterior; es innovación técnica.' },
     { texto: 'Humane lanza el AI Pin, un dispositivo con inteligencia artificial pensado para sustituir al móvil (2024). Deja de funcionar en 2025.',
       area: ['Producto o servicio'], impacto: ['Radical'], objetivo: ['Tecnológica'],
-      por: 'Es un producto nuevo que pretendía cambiar el mercado, aunque fracasara: radical no significa que tenga éxito.' },
+      por: 'Producto nuevo y distinto, un salto respecto al móvil: radical, aunque fracasara. No es disruptiva: disruptiva se sabe después, cuando el producto desplaza al anterior y otros lo copian, y el AI Pin no desplazó a nadie, nadie lo copió y era más caro y peor que el móvil.' },
     { texto: 'Google Stadia permite jugar a videojuegos en la nube sin consola ni ordenador potente (2019). Cierra en 2023.',
       area: ['Producto o servicio'], impacto: ['Disruptiva', 'Radical'], objetivo: ['Tecnológica'],
       por: 'Proponía un modelo distinto: jugar en la nube sin comprar consola ni ordenador potente. Tampoco tuvo éxito.' },
+    { texto: 'Amazon empieza a alquilar por horas servidores en la nube en vez de que cada empresa compre los suyos (Amazon Web Services, 2006). Hoy Microsoft y Google hacen lo mismo.',
+      area: ['Producto o servicio'], impacto: ['Disruptiva', 'Radical'], objetivo: ['Tecnológica'],
+      por: 'Un servicio nuevo con un modelo de negocio distinto, pagar por uso, que desplazó la compra de servidores y que los competidores copiaron: por eso es disruptiva y no solo radical.' },
     { texto: 'Una tienda de informática de barrio empieza a vender por WhatsApp, con catálogo y pago dentro del chat.',
       area: ['Marketing y canal'], impacto: ['Incremental'], objetivo: ['Tecnológica'],
       por: 'El producto es el mismo; cambia cómo se vende y por dónde; es una mejora pequeña apoyada en tecnología.' },
     { texto: 'Un servicio técnico ofrece un diagnóstico automático del equipo, a distancia, antes de enviar al técnico.',
       area: ['Proceso'], impacto: ['Incremental'], objetivo: ['Tecnológica'],
       por: 'Cambia cómo se presta el servicio por dentro; ahorra visitas; se apoya en software de diagnóstico.' },
+    { texto: 'Una farmacia de pueblo lleva a casa los medicamentos a los mayores que no pueden desplazarse y les avisa por WhatsApp cuando toca renovar la receta.',
+      area: ['Marketing y canal', 'Proceso'], impacto: ['Incremental'], objetivo: ['Social'],
+      por: 'El producto es el mismo; cambia cómo llega al cliente y cómo se le atiende; es una mejora pequeña; busca el bienestar de personas con dificultades.' },
     { texto: 'Una empresa reacondiciona ordenadores usados y los vende con garantía de dos años.',
       area: ['Producto o servicio', 'Proceso'], impacto: ['Incremental'], objetivo: ['Ambiental', 'Tecnológica'],
       por: 'Ofrece un producto nuevo (el reacondicionado) con un proceso propio; su objetivo principal es alargar la vida de los equipos.' },
+    { texto: 'Una marca de ropa pone en cada prenda una etiqueta con código QR que cuenta dónde se fabricó y cuánta agua se gastó en hacerla.',
+      area: ['Marketing y canal'], impacto: ['Incremental'], objetivo: ['Ambiental', 'Tecnológica'],
+      por: 'La prenda es la misma; cambia cómo se comunica al cliente; es un añadido pequeño; el fin es dar valor a lo sostenible.' },
     { texto: 'John Deere vende un pulverizador con cámaras e inteligencia artificial que solo fumiga donde detecta mala hierba: la mitad de herbicida (2025).',
       area: ['Producto o servicio'], impacto: ['Incremental', 'Radical'], objetivo: ['Ambiental', 'Tecnológica'],
       por: 'Es una función nueva de un producto que ya existía, el pulverizador; para el agricultor cambia mucho, por eso vale radical; su objetivo principal es gastar menos herbicida.' },
     { texto: 'Un centro de salud permite hacer la consulta por videollamada en vez de ir presencialmente.',
       area: ['Producto o servicio', 'Proceso'], impacto: ['Incremental'], objetivo: ['Social', 'Tecnológica'],
-      por: 'Cambia el servicio que recibe el paciente y cómo se organiza la consulta; busca el bienestar de las personas.' }
+      por: 'Cambia el servicio que recibe el paciente y cómo se organiza la consulta; busca el bienestar de las personas.' },
+    { texto: 'Marsi Bionics, de Madrid, crea el primer exoesqueleto para niños con enfermedades neuromusculares, que les permite andar durante la rehabilitación (ATLAS 2030, 2021).',
+      area: ['Producto o servicio'], impacto: ['Radical'], objetivo: ['Social', 'Tecnológica'],
+      por: 'Un producto que no existía, un salto y no una mejora; su fin principal es la vida de esos niños, aunque se apoye en tecnología nueva.' },
+    { texto: 'Buurtzorg, una empresa holandesa de cuidados a domicilio, quita los jefes: equipos de doce enfermeras se organizan solos y deciden sus turnos y sus pacientes (2006). Hoy son más de 10.000.',
+      area: ['Organización'], impacto: ['Radical'], objetivo: ['Social'],
+      por: 'Cambia cómo se organiza la gente, no el servicio; es un salto respecto a la empresa con jerarquía; busca cuidar mejor a las personas.' }
   ];
 
   IASP.fuentes = [
@@ -241,28 +258,51 @@
       opciones.map((o, i) => '<option value="' + i + '">' + esc(o) + '</option>').join('') + '</select>';
   }
 
-  /* ---------- 1. clasificar: un caso, tres desplegables ----------
+  /* ---------- 1. clasificar: un caso, una fila de tarjetas por campo ----------
      Por defecto usa el banco 'clasificar' y los campos área, impacto y objetivo (UT1).
      data-banco, data-campos (separados por comas), data-enunciado y data-consejo permiten otros. */
   function montaClasificar(el) {
-    const st = armazon(el, el.dataset.enunciado || 'Lee el caso y clasifica la innovación con los tres desplegables. Comprobar corrige cada uno; Pista resuelve uno y lo explica.');
+    // Sin enunciado por defecto: la diapositiva ya explica el ejercicio en su columna izquierda
+    const st = armazon(el, el.dataset.enunciado || '');
     const campos = (el.dataset.campos || 'area,impacto,objetivo').split(',').map((c) => c.trim()).filter((c) => IASP.campos[c]);
     const banco = IASP.bancos[el.dataset.banco || 'clasificar'] || [];
     const consejo = el.dataset.consejo || 'Piensa: qué cambia, cuánto cambia y para qué.';
+    // Con muchas tarjetas (UT2: doce tecnologías) la tarjeta entera se compacta para que quepan las tres filas
+    if (campos.some((c) => IASP.campos[c].opciones.length > 6)) el.classList.add('ej-compacta');
     let caso = null;
 
     function nuevo() {
       caso = eligeOtro(banco, caso);
       st.cuerpo.innerHTML =
         '<p class="ej-caso">' + esc(caso.texto) + '</p>' +
-        '<div class="ej-campos">' + campos.map((c) =>
-          '<label class="ej-campo"><span>' + esc(IASP.campos[c].etiqueta) + '</span>' + selectHtml(c, IASP.campos[c].opciones) + '</label>').join('') + '</div>';
+        '<div class="ej-campos ej-filas">' + campos.map((c) =>
+          '<div class="ej-campo ej-grupo ' + c + '"><span>' + esc(IASP.campos[c].etiqueta) + '</span>' +
+          '<div class="ej-opts" style="grid-template-columns:repeat(' + (IASP.campos[c].opciones.length > 6 ? 4 : IASP.campos[c].opciones.length) + ',1fr)">' +
+          IASP.campos[c].opciones.map((o, i) => '<button type="button" class="ej-opt" data-i="' + i + '">' + esc(o) + '</button>').join('') +
+          '</div></div>').join('') + '</div>';
+      // Elegir una tarjeta: se marca ella sola y se limpia la corrección anterior de su fila
+      st.cuerpo.querySelectorAll('.ej-opt').forEach((b) => b.addEventListener('click', () => {
+        const g = b.closest('.ej-grupo');
+        g.classList.remove('ko');
+        g.querySelectorAll('.ej-opt').forEach((x) => x.classList.remove('sel', 'ok', 'ko', 'pista'));
+        b.classList.add('sel');
+      }));
       st.nuevo();
     }
-    const sel = (c) => st.cuerpo.querySelector('select.' + c);
-    const valor = (c) => { const s = sel(c); return s.value === '' ? null : IASP.campos[c].opciones[+s.value]; };
-    const marca = (c, ok) => { const s = sel(c); s.classList.remove('ok', 'ko', 'pista'); s.classList.add(ok ? 'ok' : 'ko'); };
-    const pon = (c, txt, clase) => { const s = sel(c); s.value = String(IASP.campos[c].opciones.indexOf(txt)); s.classList.remove('ok', 'ko', 'pista'); s.classList.add(clase); };
+    const grupo = (c) => st.cuerpo.querySelector('.ej-grupo.' + c);
+    const elegida = (c) => grupo(c).querySelector('.ej-opt.sel');
+    const valor = (c) => { const b = elegida(c); return b ? IASP.campos[c].opciones[+b.dataset.i] : null; };
+    const marca = (c, ok) => {
+      const g = grupo(c), b = elegida(c);
+      g.classList.toggle('ko', !b);
+      if (b) { b.classList.remove('ok', 'ko', 'pista'); b.classList.add(ok ? 'ok' : 'ko'); }
+    };
+    const pon = (c, txt, clase) => {
+      const g = grupo(c); g.classList.remove('ko');
+      g.querySelectorAll('.ej-opt').forEach((x) => x.classList.remove('sel', 'ok', 'ko', 'pista'));
+      const b = g.querySelector('.ej-opt[data-i="' + IASP.campos[c].opciones.indexOf(txt) + '"]');
+      if (b) b.classList.add('sel', clase);
+    };
 
     function comprobar() {
       let mal = 0, vacios = 0;

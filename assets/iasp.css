@@ -26,6 +26,7 @@
   --dark: #0F2A3A;
   --coral: #FC6F6F;
   --teal: #53D2CE;
+  --teal-ink: #1A9E99;   /* turquesa oscurecido para texto sobre crema */
   --pink: #FC8D99;
   --orange: #FD9206;
   --ok: #1E8E5A;
@@ -334,6 +335,7 @@ deck-stage section:not(.dark) .quiz-fb { color: var(--muted); }
 /* La fila de la rejilla no debe crecer con el contenido de la tarjeta */
 deck-stage section:has(> .ej) { grid-template-rows: minmax(0, 1fr); }
 .ej-enunciado { font-size: var(--type-caption); color: var(--muted); line-height: 1.4; }
+.ej-enunciado:empty { display: none; }
 .ej-cuerpo { display: flex; flex-direction: column; gap: 20px; flex: 1; min-height: 0; overflow: auto; }
 .ej-caso-titulo { font-size: var(--type-small); font-weight: 800; color: var(--coral); }
 .ej-caso {
@@ -364,6 +366,45 @@ deck-stage section:has(> .ej) { grid-template-rows: minmax(0, 1fr); }
 .ej-select.ok, .ej-texto.ok { border-color: var(--ok); background: #E8F6EE; }
 .ej-select.ko, .ej-texto.ko { border-color: var(--ko); background: #FBEAEA; }
 .ej-select.pista { border-color: var(--yellow); background: #FFF6D1; }
+/* Clasificar: una fila de tarjetas por campo; se elige pulsando. Las tarjetas se reparten el ancho */
+.ej-filas { grid-template-columns: 1fr; gap: 26px; }
+.ej-grupo { gap: 10px; }
+/* Rótulo de cada fila en negrita y con un color por fila: coral, naranja y turquesa (el orden de la diapositiva de las tres preguntas) */
+.ej-grupo > span { font-weight: 800; font-size: 22px; }
+.ej-grupo:nth-child(1) > span { color: var(--coral); }
+.ej-grupo:nth-child(2) > span { color: var(--orange); }
+.ej-grupo:nth-child(3) > span { color: var(--teal-ink); }
+.ej-grupo.ko > span { color: var(--ko); }
+.ej-opts { display: grid; gap: 14px; }   /* las columnas las pone el JS: tantas como opciones, 4 si hay muchas */
+.ej-opt {
+  min-width: 0;
+  text-align: center;
+  font-family: inherit;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+  padding: 18px 14px;
+  border: 3px solid var(--line);
+  border-radius: 16px;
+  color: var(--navy);
+  background: var(--white);
+  cursor: pointer;
+  outline: none;
+  transition: border-color .12s, background .12s;
+}
+.ej-opt:hover, .ej-opt:focus-visible { border-color: var(--teal); }
+.ej-opt.sel { border-color: var(--navy); background: var(--bg); font-weight: 800; }
+.ej-opt.ok { border-color: var(--ok); background: #E8F6EE; color: var(--ok); }
+.ej-opt.ko { border-color: var(--ko); background: #FBEAEA; color: var(--ko); }
+/* Con muchas tarjetas (UT2: doce tecnologías) todo se compacta para que quepan las tres filas */
+.ej-compacta { gap: 14px; padding: 32px 48px; }
+.ej-compacta .ej-caso { font-size: var(--type-caption); padding: 14px 24px; }
+.ej-compacta .ej-cuerpo { gap: 14px; }
+.ej-compacta .ej-filas { gap: 14px; }
+.ej-compacta .ej-grupo { gap: 6px; }
+.ej-compacta .ej-opts { gap: 8px; }
+.ej-compacta .ej-opt { font-size: 19px; padding: 9px 10px; border-radius: 14px; }
+.ej-opt.pista { border-color: var(--yellow); background: #FFF6D1; color: var(--navy); }
 .ej[data-tipo="emparejar"] { padding: 28px 36px; gap: 14px; }
 .ej-pares { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
 .ej-par { display: grid; grid-template-columns: 40px minmax(0, 1fr) 340px; gap: 12px; align-items: center; }
