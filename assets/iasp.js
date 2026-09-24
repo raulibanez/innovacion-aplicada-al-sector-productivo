@@ -637,7 +637,7 @@
   function normaliza(s) {
     // Carácter a carácter para que las posiciones coincidan con el texto original (los fragmentos resaltados)
     return s.split('').map((c) => {
-      const d = c.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+      const d = c.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
       return d.length === 1 ? d : c;
     }).join('');
   }
