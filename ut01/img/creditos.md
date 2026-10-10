@@ -221,3 +221,9 @@ Todas las fotografías proceden de Wikimedia Commons. Los datos de autor y licen
 - **Origen:** elaboración propia del profesor (iconos generados con IA en estilo «clay 3D», hoja original `Misc/iconos.png`, 1086×1448 px con transparencia). No proceden de Wikimedia Commons.
 - **Tratamiento:** recortados automáticamente por sus huecos transparentes, centrados en un cuadrado con margen y guardados a 256×256 px como WebP con transparencia (calidad 90).
 - **Descripción:** iconos de las tarjetas de las diapositivas 11, 12, 15, 17, 19, 24, 26, 27, 30, 32 y 40.
+
+## iconos/ansoff-*.webp (4 archivos)
+
+- **Origen:** elaboración propia del profesor (10/10/2026). Generados con IA (Google nano-banana en Replicate) tomando como referencia de estilo cinco iconos de la hoja anterior (globo, caja, brújula, monedas y personas), recoloreados con el mismo modelo para que contrasten con el color de su tarjeta y recortados con Bria remove-background. Originales con transparencia en `Misc/iconos-ansoff/*.png`.
+- **Tratamiento:** recortados por su contorno, centrados en un cuadrado con margen y guardados a 256×256 px como WebP con transparencia (calidad 92).
+- **Descripción:** bolsa con «+» (penetración de mercado), mapa con chincheta (desarrollo de mercado), regalo (desarrollo de producto) y poste de señales (diversificación). Diapositiva 14, matriz de Ansoff.
