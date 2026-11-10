@@ -23,6 +23,13 @@
  *  6. Notas del profesor: cada sección lleva un <aside class="notas">…</aside> como primer hijo
  *     (HTML, oculto por CSS). La tecla N abre assets/notas.html en una ventana aparte con las
  *     notas de la diapositiva actual; se actualiza al cambiar de diapositiva.
+ *  7. Ventana emergente (para no gastar una diapositiva en una explicación de apoyo):
+ *       <button class="btn btn-ghost abre-ventana" data-ventana="cita">¿Cómo se escribe?</button>
+ *       <dialog class="ventana" id="cita"><div class="ventana-cuerpo">…<button class="btn btn-primary ventana-cerrar">Cerrar</button></div></dialog>
+ *     Se cierra con Esc, con .ventana-cerrar o pulsando fuera; mientras está abierta, las teclas no mueven el deck.
+ *  8. Generador de referencias APA 7: <div class="apa"></div> (mejor dentro de una ventana ancha). Se pega el enlace
+ *     y deduce el tipo (YouTube, red social, imagen, PDF, periódico conocido, web) y el medio, la red o el @usuario; autor y fecha en una casilla cada uno,
+ *     con «Lo leo como…»; referencia al momento con cursivas, lo que falta, cita en el texto y copia con formato.
  */
 (function () {
   'use strict';
@@ -466,6 +473,266 @@
     r.addEventListener('click', () => { if (!r.hasAttribute('data-revelado')) pon(true); });
   }
 
+  /* ---------- ventana emergente (<dialog class="ventana">, se abre con .abre-ventana[data-ventana]) ---------- */
+  function montaVentana(d) {
+    d.addEventListener('keydown', (e) => e.stopPropagation());
+    d.addEventListener('click', (e) => { e.stopPropagation(); if (e.target === d) d.close(); });
+    d.querySelectorAll('.ventana-cerrar').forEach((b) => b.addEventListener('click', () => d.close()));
+  }
+  function montaAbreVentana(b) {
+    b.addEventListener('click', (e) => {
+      e.preventDefault(); e.stopPropagation();
+      const d = document.getElementById(b.dataset.ventana);
+      if (d && typeof d.showModal === 'function' && !d.open) d.showModal();
+    });
+  }
+
+  /* ---------- generador de referencias APA 7 (<div class="apa"></div>, normalmente dentro de una ventana) ----------
+     Versión horizontal: a la izquierda los datos, a la derecha la referencia. Deduce el tipo y el nombre del medio
+     a partir del enlace; el autor y la fecha van en una casilla cada uno y se muestra cómo se han entendido.
+     Adaptación española de APA 7: «y» entre autores, «s. f.», «Recuperado el … de» en webs sin fecha,
+     sin autor (o con el propio periódico como autor) la referencia empieza por el título. */
+  const APA_MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  const APA_TIPOS = {
+    web:     { nombre: 'Página web', titulo: 'Título de la página', ej: 'Mochila de ciudad antirrobo', extra: ['sitio'] },
+    noticia: { nombre: 'Noticia de periódico', titulo: 'Título de la noticia', ej: 'Las mochilas se pasan al plástico reciclado', extra: ['medio'] },
+    imagen:  { nombre: 'Imagen o foto', titulo: 'Título o descripción de la foto', ej: 'Mochila de ciudad, vista de frente', extra: ['sitio'] },
+    video:   { nombre: 'Vídeo de YouTube', titulo: 'Título del vídeo', ej: 'Qué es la economía circular', extra: [] },
+    redes:   { nombre: 'Red social', titulo: 'Texto de la publicación (las primeras palabras)', ej: 'Presentamos nuestra mochila hecha con botellas recicladas', extra: ['usuario', 'plataforma', 'adjunto'] },
+    informe: { nombre: 'Informe o PDF', titulo: 'Título del informe', ej: 'Memoria de sostenibilidad 2025', extra: ['publica'] },
+    libro:   { nombre: 'Libro', titulo: 'Título del libro', ej: 'Innovación aplicada al sector productivo', extra: ['editorial', 'edicion'] },
+    revista: { nombre: 'Artículo de revista', titulo: 'Título del artículo', ej: 'Materiales reciclados en la industria textil', extra: ['revista', 'volumen', 'numero', 'paginas'] },
+  };
+  const APA_EXTRA = {
+    sitio: ['Nombre de la web', 'Decathlon'], medio: ['Periódico', 'El Norte de Castilla'], editorial: ['Editorial', 'Editex'],
+    edicion: ['Edición (si no es la 1.ª)', '2'], revista: ['Revista', 'Revista de Innovación'], volumen: ['Volumen', '12'],
+    numero: ['Número', '3'], paginas: ['Páginas', '45-58'],
+    usuario: ['Usuario', '@decathlon_es'], plataforma: ['Red social', 'Instagram'], adjunto: ['Lleva', ''],
+    publica: ['Quién lo publica (si no es el autor)', 'Junta de Castilla y León'],
+  };
+  const APA_REDES = { 'instagram.com': ['Instagram', 'Fotografía'], 'tiktok.com': ['TikTok', 'Vídeo'], 'x.com': ['X', ''], 'twitter.com': ['X', ''],
+    'facebook.com': ['Facebook', ''], 'linkedin.com': ['LinkedIn', ''], 'threads.net': ['Threads', ''] };
+  const APA_IMAGENES = { 'commons.wikimedia.org': 'Wikimedia Commons', 'upload.wikimedia.org': 'Wikimedia Commons', 'unsplash.com': 'Unsplash', 'pexels.com': 'Pexels', 'flickr.com': 'Flickr', 'pixabay.com': 'Pixabay' };
+  // Periódicos conocidos (dominio → nombre). El resto de dominios se tratan como página web.
+  const APA_PERIODICOS = {
+    'elnortedecastilla.es': 'El Norte de Castilla', 'diariodeleon.es': 'Diario de León', 'diariodevalladolid.es': 'Diario de Valladolid',
+    'eldiadevalladolid.com': 'El Día de Valladolid', 'leonoticias.com': 'leonoticias', 'diariodeburgos.es': 'Diario de Burgos',
+    'eladelantado.com': 'El Adelantado de Segovia', 'lagacetadesalamanca.es': 'La Gaceta de Salamanca', 'eldiario.es': 'elDiario.es',
+    'elpais.com': 'El País', 'elmundo.es': 'El Mundo', 'abc.es': 'ABC', 'lavanguardia.com': 'La Vanguardia', '20minutos.es': '20minutos',
+    'elespanol.com': 'El Español', 'elconfidencial.com': 'El Confidencial', 'larazon.es': 'La Razón', 'rtve.es': 'RTVE', 'europapress.es': 'Europa Press',
+    'expansion.com': 'Expansión', 'cincodias.elpais.com': 'Cinco Días', 'elperiodico.com': 'El Periódico', 'publico.es': 'Público', 'heraldo.es': 'Heraldo de Aragón',
+  };
+  const APA_WEBS = { 'jcyl.es': 'Junta de Castilla y León', 'ine.es': 'Instituto Nacional de Estadística', 'incibe.es': 'INCIBE', 'boe.es': 'BOE', 'europa.eu': 'Unión Europea' };
+  function apaDominio(url) {
+    try { return new URL(/^https?:\/\//i.test(url) ? url : 'https://' + url).hostname.replace(/^www\./, '').toLowerCase(); } catch (e) { return ''; }
+  }
+  function apaNombreDominio(d) {
+    const w = Object.keys(APA_WEBS).find((k) => d === k || d.endsWith('.' + k));
+    if (w) return APA_WEBS[w];
+    const partes = d.split('.'), base = partes.length > 1 ? partes[partes.length - 2] : partes[0];
+    return base.charAt(0).toUpperCase() + base.slice(1);
+  }
+  function apaDeduce(url) {
+    const d = apaDominio(url);
+    if (!d || !d.includes('.')) return null;
+    if (/(^|\.)(youtube\.com|youtu\.be)$/.test(d)) return { tipo: 'video' };
+    const busca = (mapa) => Object.keys(mapa).find((k) => d === k || d.endsWith('.' + k));
+    let ruta = '';
+    try { ruta = new URL(/^https?:\/\//i.test(url) ? url : 'https://' + url).pathname; } catch (e) {}
+    const rs = busca(APA_REDES);
+    if (rs) {
+      const [plataforma, adjunto] = APA_REDES[rs];
+      const seg = ruta.split('/').filter(Boolean);
+      let usuario = '';
+      const arroba = seg.find((x) => x.startsWith('@'));
+      if (arroba) usuario = arroba;
+      else if ((rs === 'x.com' || rs === 'twitter.com') && seg[0] && seg[0] !== 'i') usuario = '@' + seg[0];
+      return { tipo: 'redes', plataforma, adjunto, usuario };
+    }
+    const im = busca(APA_IMAGENES);
+    if (/\.(jpe?g|png|webp|gif|avif)$/i.test(ruta) || im) return { tipo: 'imagen', sitio: im ? APA_IMAGENES[im] : apaNombreDominio(d) };
+    if (/\.pdf$/i.test(ruta)) return { tipo: 'informe', publica: apaNombreDominio(d) };
+    const p = busca(APA_PERIODICOS);
+    if (p) return { tipo: 'noticia', medio: APA_PERIODICOS[p] };
+    const w = busca(APA_WEBS);
+    if (w) return { tipo: 'web', sitio: APA_WEBS[w] };
+    const partes = d.split('.'), base = partes.length > 1 ? partes[partes.length - 2] : partes[0];
+    return { tipo: 'web', sitio: base.charAt(0).toUpperCase() + base.slice(1) };
+  }
+  function apaFecha(t) {
+    t = String(t || '').trim().toLowerCase();
+    if (!t) return { ok: true, anio: '', mes: 0, dia: '' };
+    let m = t.match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/);
+    if (m && +m[2] >= 1 && +m[2] <= 12) return { ok: true, anio: m[3], mes: +m[2], dia: String(+m[1]) };
+    m = t.match(/^(\d{1,2})[\/\-.](\d{4})$/);
+    if (m && +m[1] >= 1 && +m[1] <= 12) return { ok: true, anio: m[2], mes: +m[1], dia: '' };
+    m = t.match(/^(\d{4})$/);
+    if (m) return { ok: true, anio: m[1], mes: 0, dia: '' };
+    m = t.match(/^(?:(\d{1,2})\s+(?:de\s+)?)?([a-záéíóú]+)\s+(?:de\s+|del\s+)?(\d{4})$/);
+    if (m) { const i = APA_MESES.indexOf(m[2]); if (i >= 0) return { ok: true, anio: m[3], mes: i + 1, dia: m[1] ? String(+m[1]) : '' }; }
+    return { ok: false };
+  }
+  function montaApa(caja) {
+    const v = {};
+    let tipo = 'web', tipoAuto = true;
+    const tocado = {};
+    const txt = (k) => String(v[k] || '').trim();
+    const punto = (s) => (/[.?!]$/.test(s) ? s : s + '.');
+    const inicial = (no) => no.trim().split(/\s+/).filter(Boolean).map((p) => p.split('-').map((q) => q.charAt(0).toUpperCase() + '.').join('-')).join(' ');
+    const une = (xs) => (xs.length < 2 ? xs.join('') : xs.slice(0, -1).join(', ') + ' y ' + xs[xs.length - 1]);
+    caja.innerHTML = `
+      <div class="apa-izq">
+        <label class="apa-campo apa-url"><span><b>1</b> Pega el enlace <em>(si es un libro en papel, déjalo vacío)</em></span>
+          <input data-k="url" type="url" placeholder="https://…" autocomplete="off"></label>
+        <div class="apa-paso"><span><b>2</b> ¿Qué es? <em class="apa-auto"></em></span><div class="apa-tipos"></div></div>
+        <div class="apa-paso"><span><b>3</b> Completa lo que falte</span><div class="apa-form"></div></div>
+      </div>
+      <div class="apa-der">
+        <p class="apa-etq">Tu referencia</p>
+        <div class="apa-ref" aria-live="polite"></div>
+        <p class="apa-falta"></p>
+        <p class="apa-cita"></p>
+        <div class="apa-botones"><button type="button" class="btn btn-primary apa-copia">Copiar la referencia</button><button type="button" class="btn btn-ghost apa-borra">Empezar otra</button></div>
+        <p class="apa-ok"></p>
+      </div>`;
+    const $ = (s) => caja.querySelector(s);
+    function campo(k, etq, ej, clase = '') {
+      return `<label class="apa-campo ${clase}"><span>${etq}</span><input data-k="${k}" type="text" placeholder="${esc(ej)}" value="${esc(v[k] || '')}" autocomplete="off"></label>`;
+    }
+    function pintaForm() {
+      const T = APA_TIPOS[tipo];
+      $('.apa-tipos').innerHTML = Object.entries(APA_TIPOS).map(([k, t]) => `<button type="button" class="apa-tipo${k === tipo ? ' sel' : ''}" data-tipo="${k}">${t.nombre}</button>`).join('');
+      const anioSolo = tipo === 'libro' || tipo === 'revista' || tipo === 'informe';
+      let h = campo('autor', tipo === 'video' ? 'Canal o autor' : 'Autor', tipo === 'video' ? 'Telefónica' : 'Decathlon  ·  o persona: García, María', 'apa-ancho-medio') +
+              campo('fecha', anioSolo ? 'Año' : 'Fecha', anioSolo ? '2025' : '13/04/2026  ·  o solo el año', 'apa-ancho-medio') +
+              `<p class="apa-lee apa-lee-autor"></p><p class="apa-lee apa-lee-fecha"></p>` +
+              campo('titulo', T.titulo + (tipo === 'redes' ? ' <em>(cópialo tal cual)</em>' : ' <em>(solo la primera letra en mayúscula)</em>'), T.ej, 'apa-ancho');
+      for (const k of T.extra) {
+        if (k === 'adjunto') {
+          h += `<label class="apa-campo apa-corto"><span>Lleva</span><select data-k="adjunto">${[['', 'Solo texto'], ['Fotografía', 'Foto'], ['Vídeo', 'Vídeo']].map(([val, et]) => `<option value="${val}"${(v.adjunto || '') === val ? ' selected' : ''}>${et}</option>`).join('')}</select></label>`;
+        } else h += campo(k, APA_EXTRA[k][0], APA_EXTRA[k][1], ['volumen', 'numero', 'paginas', 'edicion', 'usuario', 'plataforma'].includes(k) ? 'apa-corto' : 'apa-ancho-medio');
+      }
+      $('.apa-form').innerHTML = h;
+      $('.apa-form').dataset.tipo = tipo;
+      actualiza();
+    }
+    function autores() {
+      const a = txt('autor');
+      if (!a) return { lista: [], org: false };
+      const trozos = a.split(';').map((x) => x.trim()).filter(Boolean);
+      if (trozos.every((x) => !x.includes(','))) return { lista: [{ ref: a.replace(/;/g, ','), cita: a.replace(/;/g, ',') }], org: true };
+      return { org: false, lista: trozos.map((x) => { const [ap, ...no] = x.split(','); const n = no.join(' ').trim(); return { ref: ap.trim() + (n ? ', ' + inicial(n) : ''), cita: ap.trim() }; }) };
+    }
+    function actualiza() {
+      const T = APA_TIPOS[tipo], conDia = !(tipo === 'libro' || tipo === 'revista' || tipo === 'informe');
+      const au = autores();
+      let A = au.lista;
+      const F0 = apaFecha(v.fecha);
+      const lee = (sel, html) => { const p = $(sel); if (p) p.innerHTML = html; };
+      lee('.apa-lee-autor', !txt('autor') ? 'Sin autor: la referencia empieza por el título.' :
+        au.org ? `Lo leo como <b>empresa u organización</b>. Si es una persona: <i>Apellidos, Nombre</i>.` :
+        `Lo leo como <b>${A.length > 1 ? 'personas' : 'persona'}</b>: ${esc(une(A.map((x) => x.ref)))}${A.length < 6 ? ' <span class="apa-pista">(varias: sepáralas con <b>;</b>)</span>' : ''}`);
+      lee('.apa-lee-fecha', !F0.ok ? '<span class="apa-mal">No entiendo la fecha. Escribe 13/04/2026 o 2026.</span>' :
+        !F0.anio ? 'Sin fecha: se pone <b>s. f.</b>' : `Lo leo como <b>${F0.dia && F0.mes && conDia ? F0.dia + ' de ' : ''}${F0.mes && conDia ? APA_MESES[F0.mes - 1] + ' de ' : ''}${F0.anio}</b>`);
+      if (au.org && tipo === 'noticia' && txt('autor') === txt('medio')) A = [];
+      // En redes sociales el usuario va entre corchetes detrás del nombre; si solo se sabe el usuario, hace de autor
+      const usu = tipo === 'redes' && txt('usuario') ? (txt('usuario').startsWith('@') ? txt('usuario') : '@' + txt('usuario')) : '';
+      const anio = F0.ok ? F0.anio : '';
+      const fech = !anio ? 's. f.' : (conDia && F0.mes ? `${anio}, ${F0.dia ? F0.dia + ' de ' : ''}${APA_MESES[F0.mes - 1]}` : anio);
+      const falta = [];
+      if (!txt('titulo')) falta.push('el título');
+      if (tipo === 'noticia' && !txt('medio')) falta.push('el periódico');
+      if (tipo === 'libro' && !txt('editorial')) falta.push('la editorial');
+      if (tipo === 'revista' && !txt('revista')) falta.push('la revista');
+      if (tipo === 'redes' && !txt('plataforma')) falta.push('la red social');
+      if (['web', 'noticia', 'video', 'imagen', 'redes'].includes(tipo) && !txt('url')) falta.push('el enlace');
+      if (usu && !A.length) A = [{ ref: usu, cita: usu }];
+      const autorRef = A.length ? (usu && A[0].ref !== usu ? une(A.map((x) => esc(x.ref))) + ' [' + esc(usu) + '].' : punto(une(A.map((x) => esc(x.ref))))) : '';
+      const F = `(${esc(fech)}).`, tit = esc(txt('titulo')), url = esc(txt('url'));
+      let titulo = '', resto = '';
+      if (tipo === 'web') {
+        const sitio = txt('sitio') && !(au.org && txt('sitio').toLowerCase() === txt('autor').toLowerCase()) ? esc(punto(txt('sitio'))) + ' ' : '';
+        const hoy = new Date();
+        const rec = anio ? url : (url ? `Recuperado el ${hoy.getDate()} de ${APA_MESES[hoy.getMonth()]} de ${hoy.getFullYear()} de ${url}` : '');
+        titulo = tit ? `<i>${tit}</i>.` : ''; resto = sitio + rec;
+      } else if (tipo === 'noticia') {
+        titulo = tit ? esc(punto(txt('titulo'))) : ''; resto = `${txt('medio') ? '<i>' + esc(txt('medio')) + '</i>.' : ''} ${url}`;
+      } else if (tipo === 'libro') {
+        const ed = txt('edicion') && txt('edicion') !== '1' ? ` (${esc(txt('edicion').replace(/\D/g, '') || txt('edicion'))}.ª ed.)` : '';
+        titulo = tit ? `<i>${tit}</i>${ed}.` : ''; resto = `${txt('editorial') ? esc(punto(txt('editorial'))) : ''} ${url}`;
+      } else if (tipo === 'revista') {
+        const vol = txt('volumen') ? `, <i>${esc(txt('volumen'))}</i>` : '', num = txt('numero') ? `(${esc(txt('numero'))})` : '', pag = txt('paginas') ? `, ${esc(txt('paginas'))}` : '';
+        titulo = tit ? esc(punto(txt('titulo'))) : ''; resto = `${txt('revista') ? '<i>' + esc(txt('revista')) + '</i>' + vol + num + pag + '.' : ''} ${url}`;
+      } else if (tipo === 'video') {
+        titulo = tit ? `<i>${tit}</i> [Vídeo].` : ''; resto = `YouTube. ${url}`;
+      } else if (tipo === 'imagen') {
+        const sitio = txt('sitio') && !(au.org && txt('sitio').toLowerCase() === txt('autor').toLowerCase()) ? esc(punto(txt('sitio'))) + ' ' : '';
+        titulo = tit ? `<i>${tit}</i> [Fotografía].` : ''; resto = sitio + url;
+      } else if (tipo === 'redes') {
+        const pal = txt('titulo').split(/\s+/).filter(Boolean), corto = pal.slice(0, 20).join(' ') + (pal.length > 20 ? '…' : '');
+        const adj = txt('adjunto');
+        titulo = tit ? (adj ? `<i>${esc(corto)}</i> [${esc(adj)}].` : `<i>${esc(punto(corto))}</i>`) : '';
+        resto = `${txt('plataforma') ? esc(punto(txt('plataforma'))) : ''} ${url}`;
+      } else if (tipo === 'informe') {
+        const pub = txt('publica') && txt('publica').toLowerCase() !== txt('autor').toLowerCase() ? esc(punto(txt('publica'))) + ' ' : '';
+        titulo = tit ? `<i>${tit}</i>.` : ''; resto = pub + url;
+      }
+      const r = (A.length ? `${autorRef} ${F} ${titulo} ${resto}` : `${titulo} ${F} ${resto}`).replace(/\s+/g, ' ').trim();
+      const hay = A.length || tit || url;
+      $('.apa-ref').innerHTML = hay ? r : '<span class="apa-vacia">Pega el enlace y rellena los datos: la referencia aparece aquí.</span>';
+      $('.apa-falta').textContent = hay && falta.length ? 'Te falta: ' + une(falta) + '.' : '';
+      let c = '';
+      if (A.length) c = esc(A.length === 1 || au.org ? A[0].cita : A.length === 2 ? A[0].cita + ' y ' + A[1].cita : A[0].cita + ' et al.');
+      else if (tit) { const pal = txt('titulo').split(/\s+/), corto = esc(pal.slice(0, 4).join(' ') + (pal.length > 4 ? '…' : '')); c = ['web', 'libro', 'video', 'imagen', 'informe', 'redes'].includes(tipo) ? `<i>${corto}</i>` : `«${corto}»`; }
+      $('.apa-cita').innerHTML = c ? `Dentro del texto se cita así: <b>(${c}, ${esc(anio || 's. f.')})</b>` : '';
+      $('.apa-copia').disabled = !hay;
+      $('.apa-ok').textContent = '';
+    }
+    function deduce() {
+      const d = apaDeduce(txt('url'));
+      $('.apa-auto').textContent = '';
+      if (!d) return;
+      let cambia = false;
+      if (tipoAuto && d.tipo !== tipo) { tipo = d.tipo; cambia = true; }
+      if (tipoAuto) $('.apa-auto').textContent = '(lo he deducido del enlace; cámbialo si no es)';
+      if (d.medio && !tocado.medio) { v.medio = d.medio; cambia = true; }
+      if (d.sitio && !tocado.sitio) { v.sitio = d.sitio; cambia = true; }
+      for (const k of ['plataforma', 'usuario', 'adjunto', 'publica']) if (d[k] != null && !tocado[k] && (d[k] || k === 'adjunto') && v[k] !== d[k]) { v[k] = d[k]; cambia = true; }
+      if (cambia) pintaForm();
+    }
+    caja.addEventListener('input', (e) => {
+      const k = e.target.dataset.k;
+      if (!k) return;
+      v[k] = e.target.value;
+      tocado[k] = true;
+      if (k === 'url') deduce();
+      actualiza();
+    });
+    caja.addEventListener('click', async (e) => {
+      const b = e.target.closest('button');
+      if (!b) return;
+      e.stopPropagation();
+      if (b.dataset.tipo) { tipo = b.dataset.tipo; tipoAuto = false; $('.apa-auto').textContent = ''; pintaForm(); }
+      else if (b.classList.contains('apa-borra')) {
+        for (const k in v) delete v[k]; for (const k in tocado) delete tocado[k];
+        tipo = 'web'; tipoAuto = true; $('.apa-url input').value = ''; $('.apa-auto').textContent = ''; pintaForm(); $('.apa-url input').focus();
+      } else if (b.classList.contains('apa-copia')) {
+        const ref = $('.apa-ref'), ok = $('.apa-ok');
+        try {
+          if (window.ClipboardItem && navigator.clipboard && navigator.clipboard.write) {
+            await navigator.clipboard.write([new ClipboardItem({ 'text/html': new Blob([ref.innerHTML], { type: 'text/html' }), 'text/plain': new Blob([ref.textContent], { type: 'text/plain' }) })]);
+          } else { await navigator.clipboard.writeText(ref.textContent); }
+          ok.textContent = 'Copiada. Pégala al final de la ficha, en Referencias.';
+        } catch (err) {
+          const rg = document.createRange(); rg.selectNodeContents(ref);
+          const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(rg);
+          ok.textContent = 'Está seleccionada: pulsa Ctrl+C para copiarla.';
+        }
+      }
+    });
+    pintaForm();
+  }
+
   /* ---------- visor a pantalla completa para las fotos ---------- */
   function abreVisor(fig) {
     const img = fig.querySelector('img');
@@ -803,6 +1070,9 @@
     document.querySelectorAll('.revela').forEach(montaRevela);
     document.querySelectorAll('.galeria').forEach(montaGaleria);
     document.querySelectorAll('.foto').forEach(montaFoto);
+    document.querySelectorAll('.apa').forEach(montaApa);
+    document.querySelectorAll('dialog.ventana').forEach(montaVentana);
+    document.querySelectorAll('.abre-ventana[data-ventana]').forEach(montaAbreVentana);
     montaBuscador(stage);
     montaVolver(stage);
     montaNotas(stage);

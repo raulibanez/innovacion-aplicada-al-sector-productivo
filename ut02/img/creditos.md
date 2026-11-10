@@ -40,7 +40,13 @@ Todas las fotografías proceden de Wikimedia Commons. Los datos de autor y licen
 - **Licencia:** CC BY-SA 4.0 — https://creativecommons.org/licenses/by-sa/4.0
 - **Tratamiento:** Reducida de 6720×4480 px a 1600×1067 px; sin recortar; recomprimida (JPEG calidad 84).
 - **Tamaño final:** 174 KB
-- **Descripción:** Impresora Ultimaker 3 imprimiendo una pieza en PLA verde con material de soporte, 2017. Figura 2.4.
+- **Descripción:** Impresora Ultimaker 3 imprimiendo una pieza en PLA verde con material de soporte, 2017. Fue la figura 2.4 hasta el 10/11/2026; ya no se usa en la presentación (el ejemplo resuelto pasó a ser la mochila). Se conserva el archivo.
+
+## mochila.webp
+
+- **Autor:** elaboración propia, generada con IA (google/nano-banana en Replicate, con iconos de la UT1 como referencia de estilo), 10/11/2026.
+- **Tratamiento:** fondo quitado en local (blanco y sombra gris unidos al borde), recortada y reducida a 728×900 px; WebP calidad 90. Original con fondo blanco en `Misc/iconos-ut02/mochila.png`.
+- **Descripción:** Mochila de ciudad con portátil, tira reflectante, puerto USB y botella. Figura 2.4, ejemplo resuelto de la práctica «Mira un objeto».
 
 ## cobot-ur5.jpg
 
@@ -71,6 +77,12 @@ Todas las fotografías proceden de Wikimedia Commons. Los datos de autor y licen
 - **Tratamiento:** Sin reducir (769×357 px, es la única resolución disponible); sin recortar; recomprimida (JPEG calidad 90).
 - **Tamaño final:** 40 KB
 - **Descripción:** Imagen del supercomputador Caléndula del Centro de Supercomputación de Castilla y León (SCAYLE), León. Figura 2.6. Es de baja resolución; si la Junta o SCAYLE publican una foto mejor, sustituirla indicando © y uso educativo.
+
+## iconos/
+
+- **Autor:** elaboración propia, generada con IA (google/nano-banana en Replicate, estilo «clay 3D» de la hoja de iconos de la UT1), 10/11/2026. El icono del 5G lleva el fondo quitado con bria/remove-background; el resto, en local. 256×256 px, WebP calidad 92. Originales con fondo blanco en `Misc/iconos-ut02/`.
+- **Nuevos:** doce tecnologías (`tec-*`), indicadores (`ind-*`), cultura de innovación (`cul-*`), áreas (`area-*`), características de una tecnología emergente (`car-*`), revoluciones industriales (`rev-1` a `rev-5`) y las seis preguntas para mirar un objeto (`lupa-*`).
+- **Copiados de la UT1:** velocimetro, medalla, hoja, monedas, personas, brujula, lupa y fuente-fabrica, con el mismo significado.
 
 ## Observaciones
 

@@ -620,6 +620,69 @@ section:has(> .ej) { grid-template-rows: minmax(0, 1fr); }
   .galeria-nav { display: none; }
 }
 
+/* ---------- Ventana emergente (<dialog class="ventana">, iasp.js montaVentana) ----------
+   Va en la capa superior, fuera de la escala del lienzo de 1920: tamaños en px de pantalla con clamp.
+   Mismo aspecto que una diapositiva: fondo crema, tarjetas blancas, antetítulo coral. */
+dialog.ventana {
+  /* paleta crema fija: dentro de una práctica (fondo turquesa) el coral no se leería */
+  --bg: #FFF7EE; --muted: #5B6470; --line: #EAD9C8;
+  padding: 0;
+  border: 0;
+  border-radius: 24px;
+  background: var(--bg);
+  color: var(--navy);
+  width: min(880px, 92vw);
+  max-height: 90vh;
+  box-shadow: 0 30px 80px rgba(23,36,51,.35);
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+dialog.ventana::backdrop { background: rgba(23,36,51,.55); }
+dialog.ventana[open] { animation: visor-in .2s ease; }
+.ventana .ventana-cuerpo { padding: clamp(24px, 3vw, 44px); display: flex; flex-direction: column; gap: clamp(12px, 1.4vw, 20px); font-size: clamp(16px, 1.35vw, 22px); line-height: 1.45; }
+.ventana .ventana-ante { font-size: .8em; font-weight: 700; color: var(--coral); text-transform: uppercase; letter-spacing: .06em; }
+.ventana h3 { font-size: 1.6em; font-weight: 800; line-height: 1.15; margin: 0; }
+.ventana .ventana-cerrar { align-self: flex-end; font-size: .9em; padding: 10px 24px; }
+
+/* ---------- Generador de referencias APA 7 (.apa, iasp.js montaApa) ----------
+   Horizontal y sin scroll: datos a la izquierda, referencia a la derecha (se apila en pantallas estrechas). */
+dialog.ventana:has(.apa) { width: min(1560px, 96vw); }
+dialog.ventana { overflow: auto; }
+.apa { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(16px, 2vw, 32px); align-items: start; }
+@media (max-width: 900px) { .apa { grid-template-columns: 1fr; } }
+.apa .apa-izq { display: flex; flex-direction: column; gap: 12px; }
+.apa .apa-campo, .apa .apa-paso { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.apa .apa-campo > span, .apa .apa-paso > span, .apa .apa-etq { font-size: .78em; font-weight: 700; color: var(--muted); }
+.apa .apa-campo > span em, .apa .apa-paso > span em { font-style: normal; font-weight: 500; }
+.apa .apa-campo > span b, .apa .apa-paso > span b { display: inline-grid; place-items: center; width: 1.6em; height: 1.6em; border-radius: 50%; background: var(--navy); color: var(--yellow); margin-right: 6px; font-size: .9em; }
+.apa .apa-auto { color: var(--coral) !important; font-weight: 700 !important; }
+.apa .apa-url input { font-size: 1.05em; padding: 10px 14px; }
+.apa .apa-tipos { display: flex; flex-wrap: wrap; gap: 6px; }
+.apa button.apa-tipo { font: inherit; font-size: .82em; font-weight: 700; padding: 6px 12px; border-radius: 999px; border: 2px solid var(--line); background: var(--white); color: var(--navy); cursor: pointer; }
+.apa button.apa-tipo.sel { background: var(--coral); border-color: var(--coral); color: var(--white); }
+.apa .apa-form { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px 12px; background: var(--white); border-radius: 16px; padding: 12px 14px; box-shadow: 0 2px 0 var(--line); }
+.apa .apa-form .apa-ancho { grid-column: 1 / -1; }
+.apa .apa-form .apa-ancho-medio { grid-column: span 3; }
+.apa .apa-form .apa-corto { grid-column: span 2; }
+.apa .apa-form[data-tipo="libro"] .apa-corto { grid-column: span 3; }
+.apa .apa-lee { grid-column: span 3; font-size: .72em; line-height: 1.3; color: var(--muted); margin-top: -2px; min-height: 2.6em; }
+.apa .apa-lee b { color: var(--navy); }
+.apa .apa-mal { color: var(--coral); font-weight: 700; }
+.apa select { font: inherit; font-size: .9em; padding: 7px 10px; border: 2px solid var(--line); border-radius: 10px; background: var(--white); color: var(--navy); width: 100%; }
+.apa select:focus { outline: 3px solid var(--teal); outline-offset: 1px; }
+.apa input { font: inherit; font-size: .9em; padding: 7px 12px; border: 2px solid var(--line); border-radius: 10px; background: var(--white); color: var(--navy); min-width: 0; width: 100%; box-sizing: border-box; }
+.apa input:focus { outline: 3px solid var(--teal); outline-offset: 1px; }
+.apa .apa-der { display: flex; flex-direction: column; gap: 10px; background: var(--white); border-radius: 16px; padding: 16px 20px; box-shadow: 0 2px 0 var(--line); }
+.apa .apa-ref { padding-left: 2em; text-indent: -2em; min-height: 5em; overflow-wrap: anywhere; font-size: 1.02em; line-height: 1.5; }
+.apa .apa-vacia { color: var(--muted); }
+.apa .apa-falta { color: var(--coral); font-weight: 700; font-size: .85em; min-height: 1.2em; }
+.apa .apa-cita { font-size: .85em; min-height: 1.2em; }
+.apa .apa-botones { display: flex; flex-wrap: wrap; gap: 10px; }
+.apa .apa-botones .btn { font-size: .88em; padding: 9px 20px; }
+.apa .apa-botones .btn:disabled { opacity: .45; cursor: default; }
+.apa .apa-ok { font-weight: 700; font-size: .85em; min-height: 1.2em; }
+.ventana .ventana-cabecera { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
+.ventana .ventana-cabecera .ventana-cerrar { align-self: flex-start; }
+
 /* ---------- Visor de imagen a pantalla completa (clic en una .foto) ---------- */
 .visor {
   position: fixed;
