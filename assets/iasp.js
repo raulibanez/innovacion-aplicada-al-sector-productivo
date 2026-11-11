@@ -572,9 +572,12 @@
     if (m) { const i = APA_MESES.indexOf(m[2]); if (i >= 0) return { ok: true, anio: m[3], mes: i + 1, dia: m[1] ? String(+m[1]) : '' }; }
     return { ok: false };
   }
-  function montaApa(caja) {
+  function montaApa(caja, opts) {
+    // opts (opcional): { tipo: 'imagen', alAnadir({ html, texto }) } — con alAnadir aparece «Añadir a mis referencias»
+    opts = opts && typeof opts === 'object' ? opts : {};
     const v = {};
-    let tipo = 'web', tipoAuto = true;
+    const tipoIni = APA_TIPOS[opts.tipo] ? opts.tipo : 'web';
+    let tipo = tipoIni, tipoAuto = !APA_TIPOS[opts.tipo];
     const tocado = {};
     const txt = (k) => String(v[k] || '').trim();
     const punto = (s) => (/[.?!]$/.test(s) ? s : s + '.');
@@ -592,7 +595,7 @@
         <div class="apa-ref" aria-live="polite"></div>
         <p class="apa-falta"></p>
         <p class="apa-cita"></p>
-        <div class="apa-botones"><button type="button" class="btn btn-primary apa-copia">Copiar la referencia</button><button type="button" class="btn btn-ghost apa-borra">Empezar otra</button></div>
+        <div class="apa-botones">${opts.alAnadir ? '<button type="button" class="btn btn-primary apa-anade">Añadir a mis referencias</button><button type="button" class="btn btn-ghost apa-copia">Copiar</button>' : '<button type="button" class="btn btn-primary apa-copia">Copiar la referencia</button>'}<button type="button" class="btn btn-ghost apa-borra">Empezar otra</button></div>
         <p class="apa-ok"></p>
       </div>`;
     const $ = (s) => caja.querySelector(s);
@@ -686,6 +689,7 @@
       else if (tit) { const pal = txt('titulo').split(/\s+/), corto = esc(pal.slice(0, 4).join(' ') + (pal.length > 4 ? '…' : '')); c = ['web', 'libro', 'video', 'imagen', 'informe', 'redes'].includes(tipo) ? `<i>${corto}</i>` : `«${corto}»`; }
       $('.apa-cita').innerHTML = c ? `Dentro del texto se cita así: <b>(${c}, ${esc(anio || 's. f.')})</b>` : '';
       $('.apa-copia').disabled = !hay;
+      if ($('.apa-anade')) $('.apa-anade').disabled = !hay;
       $('.apa-ok').textContent = '';
     }
     function deduce() {
@@ -715,7 +719,11 @@
       if (b.dataset.tipo) { tipo = b.dataset.tipo; tipoAuto = false; $('.apa-auto').textContent = ''; pintaForm(); }
       else if (b.classList.contains('apa-borra')) {
         for (const k in v) delete v[k]; for (const k in tocado) delete tocado[k];
-        tipo = 'web'; tipoAuto = true; $('.apa-url input').value = ''; $('.apa-auto').textContent = ''; pintaForm(); $('.apa-url input').focus();
+        tipo = tipoIni; tipoAuto = !APA_TIPOS[opts.tipo]; $('.apa-url input').value = ''; $('.apa-auto').textContent = ''; pintaForm(); $('.apa-url input').focus();
+      } else if (b.classList.contains('apa-anade')) {
+        const ref = $('.apa-ref');
+        opts.alAnadir({ html: ref.innerHTML, texto: ref.textContent });
+        $('.apa-ok').textContent = 'Añadida a tus referencias.';
       } else if (b.classList.contains('apa-copia')) {
         const ref = $('.apa-ref'), ok = $('.apa-ok');
         try {
@@ -1059,6 +1067,7 @@
       abreBuscador(stage);
     });
   }
+  IASP.montaApa = montaApa;
   IASP.abreBuscador = () => { const s = document.querySelector('deck-stage'); if (s) abreBuscador(s); };
 
   function init() {

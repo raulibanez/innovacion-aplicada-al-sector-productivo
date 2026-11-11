@@ -48,6 +48,12 @@ Todas las fotografías proceden de Wikimedia Commons. Los datos de autor y licen
 - **Tratamiento:** fondo quitado en local (blanco y sombra gris unidos al borde), recortada y reducida a 728×900 px; WebP calidad 90. Original con fondo blanco en `Misc/iconos-ut02/mochila.png`.
 - **Descripción:** Mochila de ciudad con portátil, tira reflectante, puerto USB y botella. Figura 2.4, ejemplo resuelto de la práctica «Mira un objeto».
 
+## mochila-antigua.webp y mochila-boceto.webp
+
+- **Autor:** elaboración propia, generadas con IA (google/nano-banana en Replicate), 11/11/2026. La antigua usa como referencia de estilo `mochila.webp`; al boceto se le borraron con otra pasada dos rótulos en inglés que el modelo había escrito.
+- **Tratamiento:** la antigua, sin fondo (en local) y reducida a 794×900 px, WebP calidad 90; el boceto conserva el papel, recortado y reducido a 1000×682 px, WebP calidad 85. Originales en `Misc/iconos-ut02/`.
+- **Descripción:** la mochila de hace 20 años y el boceto a mano de la mochila dentro de 5 años (localizador y panel solar). Ficha modelo de la práctica (diapositiva «Así queda la ficha») y ejemplos de la ficha web `ut02/ficha/`.
+
 ## cobot-ur5.jpg
 
 - **Título original en Commons:** File:Cobot.jpg

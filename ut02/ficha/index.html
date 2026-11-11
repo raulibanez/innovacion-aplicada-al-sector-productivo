@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ficha · Mira un objeto · UT2 · IASP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/iasp.css">
+<style>
+  /* Ficha web de la práctica «Mira un objeto» (UT2). Misma paleta que las diapositivas.
+     Es una aplicación a pantalla completa, sin scroll: barra de pasos arriba, un paso en el centro y
+     Anterior / lo que falta / Siguiente abajo. Seis pasos, los mismos que la diapositiva de la práctica.
+     Todo se guarda en el navegador (localStorage); «Generar PDF» maqueta tres páginas A4 apaisadas y abre imprimir. */
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { background: var(--bg); color: var(--navy); font-size: 17px; line-height: 1.4; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; height: 100dvh; overflow: hidden; }
+  :root { --alto-foto: max(200px, calc(100dvh - 330px)); }
+  /* barra superior */
+  .barra { display: flex; align-items: center; gap: 20px; padding: 10px 24px; background: var(--white); border-bottom: 2px solid var(--line); }
+  .barra .volver { font-weight: 700; color: var(--muted); text-decoration: none; font-size: 14px; white-space: nowrap; }
+  .barra .volver:hover { color: var(--coral); }
+  .barra .titulo { font-weight: 800; font-size: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 0 1 auto; }
+  .barra .titulo span { font-weight: 600; color: var(--muted); }
+  .pasos { display: flex; gap: 6px; margin: 0 auto; }
+  .pasos button { font: inherit; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px; padding: 6px 12px 6px 6px; border-radius: 999px; border: 2px solid transparent; background: none; color: var(--muted); cursor: pointer; white-space: nowrap; }
+  .pasos button .n { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; background: var(--line); color: var(--navy); flex: none; }
+  .pasos button:hover { background: var(--bg); }
+  .pasos button.hecho .n { background: var(--teal); }
+  .pasos button.activo { border-color: var(--coral); color: var(--navy); background: var(--bg); }
+  .pasos button.activo .n { background: var(--coral); color: var(--white); }
+  .barra .guardado { font-size: 13px; color: var(--muted); white-space: nowrap; }
+  /* zona central */
+  main { overflow: auto; padding: 18px 24px 14px; }
+  .f-paso { max-width: 1320px; margin: 0 auto; height: 100%; display: flex; flex-direction: column; min-height: 0; }
+  .f-paso[hidden] { display: none !important; }
+  .f-cab { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
+  .f-cab h2 { font-size: 28px; font-weight: 800; line-height: 1.1; margin: 0; }
+  .f-ayuda { color: var(--muted); margin: 4px 0 0; }
+  .f-ayuda b { color: var(--navy); }
+  .f-cab-botones { display: flex; gap: 8px; flex: none; }
+  .f-dos { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; margin-top: 14px; flex: 1; min-height: 0; }
+  .f-col { display: flex; flex-direction: column; gap: 12px; min-height: 0; overflow: auto; padding: 2px 4px 4px 2px; }
+  label.f-q, .f-q { display: flex; flex-direction: column; gap: 5px; font-weight: 700; margin: 0; }
+  label.f-q small { font-weight: 500; color: var(--muted); font-size: 14px; }
+  input[type=text], textarea { font: inherit; font-size: 17px; color: var(--navy); background: var(--white); border: 2px solid var(--line); border-radius: 12px; padding: 9px 14px; width: 100%; }
+  textarea { resize: none; height: 76px; }
+  input[type=text]:focus, textarea:focus { outline: 3px solid var(--teal); outline-offset: 1px; }
+  .letra { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; font-weight: 800; margin-right: 8px; vertical-align: middle; }
+  .l-a { background: var(--coral); color: var(--white); } .l-b { background: var(--teal); } .l-c { background: var(--yellow); } .l-d { background: var(--pink); } .l-x { background: var(--navy); color: var(--white); }
+  .btn { padding: 12px 24px; font-size: 16px; border-radius: 12px; }
+  .btn-sm { padding: 8px 14px; font-size: 15px; }
+  .btn-ghost { border-width: 2px; background: var(--white); }
+  /* paso 1: equipo */
+  .f-equipo { max-width: 760px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; gap: 16px; justify-content: center; flex: 1; }
+  .f-equipo h2 { font-size: 40px; font-weight: 800; margin: 0; line-height: 1.05; }
+  .f-equipo .dos { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .f-tres { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 8px; }
+  .f-tres div { background: var(--white); border-radius: 14px; box-shadow: 0 2px 0 var(--line); padding: 12px 16px; font-size: 15px; color: var(--muted); }
+  .f-tres b { display: block; color: var(--navy); font-size: 17px; }
+  /* paso 1: galería de objetos */
+  .f-galeria { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); grid-template-rows: repeat(4, minmax(0, 1fr)); gap: 8px; min-height: 0; }
+  .f-previa { background: var(--white); border-radius: 18px; box-shadow: 0 2px 0 var(--line); padding: 14px 18px; display: flex; flex-direction: column; gap: 8px; min-height: 0; }
+  .f-previa .pv-img { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; }
+  .f-previa img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 12px; display: block; }
+  .f-previa .pv-nom { font-size: 26px; font-weight: 800; line-height: 1.1; margin: 0; display: flex; align-items: center; gap: 12px; }
+  .f-previa .pv-nom span { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: var(--yellow); display: grid; place-items: center; font-size: 20px; flex: none; }
+  .f-previa .pv-est { margin: 0; font-weight: 700; color: var(--muted); }
+  .f-previa .pv-est.ok { color: #1E8F8B; }
+  .f-previa .pv-vacio { margin: auto; text-align: center; color: var(--muted); font-size: 20px; font-weight: 700; }
+  .obj-card { font: inherit; position: relative; display: flex; flex-direction: column; min-height: 0; padding: 0; border-radius: 14px; border: 3px solid var(--line); background: var(--white); color: var(--navy); cursor: pointer; overflow: hidden; text-align: center; }
+  .obj-card img { flex: 1; min-height: 0; width: 100%; object-fit: cover; display: block; }
+  .obj-card .nom { padding: 3px 4px; font-size: 12.5px; font-weight: 700; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .obj-card .num { position: absolute; left: 5px; top: 5px; width: 26px; height: 26px; border-radius: 50%; background: var(--navy); color: var(--yellow); display: grid; place-items: center; font-weight: 800; font-size: 14px; }
+  .obj-card:hover { border-color: var(--teal); }
+  .obj-card.sel { border-color: var(--coral); box-shadow: 0 0 0 3px var(--coral); }
+  .obj-card.sel .num { background: var(--coral); color: var(--white); }
+  .f-credito { font-size: 12.5px; color: var(--muted); margin: 6px 0 0; }
+  .f-credito a { color: var(--muted); }
+  /* foto */
+  .f-foto { display: flex; flex-direction: column; min-height: 0; flex: 1; }
+  .f-foto-vacia { border: 3px dashed var(--line); border-radius: 18px; background: var(--white); flex: 1; min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; padding: 20px; color: var(--muted); }
+  .f-foto-vacia.encima { border-color: var(--teal); background: #EFFBFA; }
+  .f-foto-vacia .grande { font-size: 20px; font-weight: 700; color: var(--navy); margin: 0; }
+  kbd { font-family: 'JetBrains Mono', monospace; font-size: 15px; background: var(--bg); border: 2px solid var(--line); border-bottom-width: 3px; border-radius: 6px; padding: 1px 7px; color: var(--navy); }
+  .f-marco { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; background: var(--white); border-radius: 16px; box-shadow: 0 2px 0 var(--line); padding: 8px; }
+  .f-img-wrap { position: relative; display: inline-block; line-height: 0; border-radius: 10px; overflow: hidden; }
+  .f-img-wrap img { display: block; max-width: 100%; max-height: var(--alto-foto); width: auto; height: auto; object-fit: contain; }
+  .f-marco .f-img-wrap img { min-height: min(320px, var(--alto-foto)); } /* las fotos pequeñas se amplían */
+  .f-img-wrap.marcable { cursor: crosshair; }
+  .marca { position: absolute; transform: translate(-50%, -50%); width: 38px; height: 38px; border-radius: 50%; background: var(--coral); color: var(--white); border: 3px solid var(--white); box-shadow: 0 3px 8px rgba(23,36,51,.3); display: grid; place-items: center; font-weight: 800; font-size: 17px; line-height: 1; pointer-events: none; }
+  .f-foto-botones { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; align-items: center; }
+  .f-aviso { color: var(--coral); font-weight: 700; font-size: 14px; margin: 4px 0 0; min-height: 1.2em; }
+  .f-ref-ok { color: #1E8F8B; font-weight: 700; font-size: 15px; }
+  /* innovaciones */
+  .f-innov { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+  .f-innov li { display: grid; grid-template-columns: 34px 1fr auto; gap: 6px 10px; align-items: center; background: var(--white); border-radius: 14px; padding: 8px 10px; box-shadow: 0 2px 0 var(--line); }
+  .f-innov .nm { width: 32px; height: 32px; border-radius: 50%; background: var(--coral); color: var(--white); display: grid; place-items: center; font-weight: 800; }
+  .f-innov input[type=text] { padding: 6px 12px; font-size: 16px; }
+  .f-innov .quita { font: inherit; font-size: 22px; background: none; border: 0; color: var(--muted); cursor: pointer; }
+  .f-innov .ef { grid-column: 2 / 4; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; font-size: 13px; color: var(--muted); font-weight: 700; }
+  .chip { font: inherit; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; padding: 4px 11px; border-radius: 999px; border: 2px solid var(--line); background: var(--white); color: var(--navy); cursor: pointer; }
+  .chip.sel[data-v="Eficiencia"] { background: var(--coral); border-color: var(--coral); color: var(--white); }
+  .chip.sel[data-v="Calidad"] { background: var(--yellow); border-color: var(--yellow); }
+  .chip.sel[data-v="Sostenibilidad"] { background: var(--teal); border-color: var(--teal); }
+  .f-vacio { background: var(--white); border-radius: 16px; box-shadow: 0 2px 0 var(--line); padding: 16px 18px; color: var(--muted); }
+  .f-vacio p { margin: 0 0 10px; font-weight: 700; color: var(--navy); }
+  .f-seis { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .f-seis div { display: flex; align-items: center; gap: 10px; background: var(--bg); border-radius: 12px; padding: 6px 10px; font-weight: 700; font-size: 15px; color: var(--navy); }
+  .f-seis img { width: 40px; height: 40px; flex: none; }
+  /* paso 4: antes → ahora y opciones para marcar */
+  .f-comp { display: flex; align-items: center; justify-content: center; gap: 14px; background: var(--white); border-radius: 16px; box-shadow: 0 2px 0 var(--line); padding: 12px 16px; }
+  .f-comp figure { margin: 0; flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .f-comp figure > b { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--coral); }
+  .f-comp .f-img-wrap img { max-height: max(130px, calc(100dvh - 560px)); min-height: 130px; }
+  .f-comp .marca { width: 24px; height: 24px; font-size: 12px; border-width: 2px; }
+  .f-comp .flecha { font-size: 40px; font-weight: 800; color: var(--coral); flex: none; }
+  .f-comp .nada { color: var(--muted); font-size: 15px; text-align: center; padding: 30px 0; }
+  .f-mis { background: var(--white); border-radius: 16px; box-shadow: 0 2px 0 var(--line); padding: 12px 16px; font-size: 16px; }
+  .f-mis > b { display: block; margin-bottom: 4px; }
+  .f-mis ol { margin: 0; padding-left: 1.3em; } .f-mis li span { color: var(--muted); }
+  .f-ops { display: flex; flex-wrap: wrap; gap: 6px; }
+  .op { font: inherit; font-size: 14px; font-weight: 700; padding: 5px 12px; border-radius: 999px; border: 2px solid var(--line); background: var(--white); color: var(--navy); cursor: pointer; }
+  .op.sel { background: var(--navy); border-color: var(--navy); color: var(--white); }
+  .op.sel::before { content: '✓ '; }
+  #p-empresa textarea { height: 58px; }
+  .f-leyenda { font-size: 14px; color: var(--muted); font-weight: 500; margin: 0; }
+  .f-leyenda b { color: var(--navy); }
+  #tec-desc { font-size: 15px; margin: 0; min-height: 1.4em; color: var(--navy); }
+  /* dibujo */
+  .f-modo { display: flex; gap: 8px; }
+  .f-modo button, .f-herr button.h { font: inherit; font-size: 14px; font-weight: 700; padding: 6px 12px; border-radius: 10px; border: 2px solid var(--line); background: var(--white); color: var(--navy); cursor: pointer; }
+  .f-modo button.sel { background: var(--navy); border-color: var(--navy); color: var(--white); }
+  .f-lienzo { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; }
+  .f-lienzo canvas { display: block; max-width: 100%; max-height: calc(var(--alto-foto) - 6px); width: auto; height: auto; touch-action: none; cursor: crosshair; background: var(--white); border-radius: 14px; box-shadow: 0 2px 0 var(--line); }
+  .f-herr { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 8px; }
+  .f-herr .col { width: 30px; height: 30px; border-radius: 50%; border: 3px solid var(--white); box-shadow: 0 0 0 2px var(--line); cursor: pointer; }
+  .f-herr .col.sel { box-shadow: 0 0 0 3px var(--navy); }
+  .f-herr .sep { width: 2px; height: 24px; background: var(--line); margin: 0 4px; }
+  .f-herr button.h.sel { border-color: var(--navy); }
+  [data-zona] { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+  [data-zona][hidden] { display: none; }
+  /* tecnologías */
+  .f-tecs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .f-tecs button { font: inherit; font-size: 13px; font-weight: 700; line-height: 1.15; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 4px; border-radius: 12px; border: 2px solid var(--line); background: var(--white); color: var(--navy); cursor: pointer; text-align: center; }
+  .f-tecs button img { width: 38px; height: 38px; }
+  .f-tecs button.sel { border-color: var(--coral); background: #FFECEC; }
+  .f-falla { background: var(--white); border-left: 6px solid var(--navy); border-radius: 10px; padding: 8px 14px; font-size: 16px; }
+  /* referencias y PDF */
+  .f-refs { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+  .f-refs li { background: var(--white); border-radius: 14px; box-shadow: 0 2px 0 var(--line); padding: 10px 44px 10px calc(16px + 2em); text-indent: -2em; position: relative; overflow-wrap: anywhere; font-size: 16px; }
+  .f-refs li .quita { position: absolute; right: 8px; top: 6px; text-indent: 0; font: inherit; font-size: 22px; background: none; border: 0; color: var(--muted); cursor: pointer; }
+  .f-pdf { background: var(--white); border-radius: 18px; box-shadow: 0 2px 0 var(--line); padding: 18px 22px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+  .f-lista { list-style: none; padding: 0; margin: 0; width: 100%; display: flex; flex-direction: column; gap: 4px; }
+  .f-lista button { font: inherit; width: 100%; text-align: left; display: flex; gap: 10px; align-items: baseline; background: none; border: 0; padding: 4px 6px; border-radius: 8px; cursor: pointer; color: var(--navy); }
+  .f-lista button:hover { background: var(--bg); }
+  .f-lista .ok { color: #1E8F8B; font-weight: 800; width: 1.2em; }
+  .f-lista .no { color: var(--coral); font-weight: 800; width: 1.2em; }
+  .f-lista small { color: var(--coral); font-size: 14px; }
+  .f-pdf .btn-primary { font-size: 20px; padding: 14px 32px; }
+  .f-pdf .btn-primary.espera { background: var(--line); color: var(--muted); }
+  .f-borra-todo { font: inherit; font-size: 13px; color: var(--muted); background: none; border: 0; text-decoration: underline; cursor: pointer; padding: 0; }
+  .f-borra-todo.seguro { color: var(--coral); font-weight: 800; }
+  /* pie */
+  .pie { display: grid; grid-template-columns: auto 1fr auto; gap: 20px; align-items: center; padding: 10px 24px calc(10px + env(safe-area-inset-bottom, 0px)); background: var(--white); border-top: 2px solid var(--line); }
+  .pie #falta { text-align: center; font-weight: 700; color: var(--coral); font-size: 16px; margin: 0; }
+  .pie #falta.ok { color: #1E8F8B; }
+  /* ventanas */
+  dialog.ventana .ventana-cuerpo { font-size: clamp(16px, 1.2vw, 20px); }
+  dialog.ventana.estrecha { width: min(900px, 94vw); }
+  .ej { display: grid; grid-template-columns: 300px 1fr; gap: 24px; align-items: center; }
+  .ej .f-img-wrap img { max-height: 46vh; }
+  .ej p { margin: 0 0 10px; }
+  .ej .marca { width: 30px; height: 30px; font-size: 14px; border-width: 2px; }
+  /* pantallas bajas (portátil de 768 px): tecnologías en seis columnas */
+  @media (max-height: 820px) { .f-tecs { grid-template-columns: repeat(6, 1fr); } .f-tecs button { font-size: 11.5px; } .f-tecs button img { width: 32px; height: 32px; } main { padding-top: 12px; } #p-empresa textarea { height: 50px; } #p-empresa .f-col { gap: 9px; } }
+  /* pantallas estrechas: scroll normal */
+  @media (max-width: 900px) {
+    body { height: auto; overflow: auto; display: block; }
+    .barra { flex-wrap: wrap; position: sticky; top: 0; z-index: 2; } .pasos { order: 5; overflow-x: auto; width: 100%; margin: 0; } .pasos .t { display: none; }
+    .f-galeria { grid-template-columns: repeat(2, 1fr); grid-template-rows: none; grid-auto-rows: 130px; } .f-paso { height: auto; } .f-dos, .f-equipo .dos, .f-tres, .ej { grid-template-columns: 1fr; } .f-col { overflow: visible; }
+    .pie { position: sticky; bottom: 0; }
+  }
+  /* ---------- impresión ---------- */
+  #impresion { display: none; }
+  @page { size: A4 landscape; margin: 0; } /* sin margen: el navegador no pone fecha ni dirección */
+  @media print {
+    html, body { height: auto; }
+    body { display: block; overflow: visible; background: #fff; font-size: 16pt; line-height: 1.4; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body > *:not(#impresion) { display: none !important; }
+    #impresion { display: block; }
+    .i-pag { break-after: page; display: flex; flex-direction: column; gap: 5mm; padding: 12mm 13mm; }
+    .i-pag:last-child { break-after: auto; }
+    .i-cab { display: flex; justify-content: space-between; gap: 8mm; border-bottom: 2px solid #EAD9C8; padding-bottom: 2mm; font-size: 11pt; color: #5B6470; }
+    .i-cab b { color: #172433; }
+    .i-pag h2 { font-size: 24pt; margin: 0; color: #172433; display: flex; align-items: center; gap: 3mm; }
+    .i-pag h2 span { display: inline-grid; place-items: center; width: 10mm; height: 10mm; border-radius: 50%; background: #172433; color: #FCC908; font-size: 13pt; }
+    .i-dos { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 8mm; align-items: start; }
+    .i-img { position: relative; border: 1px solid #EAD9C8; border-radius: 3mm; overflow: hidden; display: inline-block; line-height: 0; justify-self: center; }
+    .i-img img { display: block; max-width: 100%; max-height: 105mm; min-height: 75mm; width: auto; height: auto; object-fit: contain; }
+    .i-img .marca { width: 8mm; height: 8mm; font-size: 11pt; border-width: 2px; box-shadow: none; }
+    .i-pag h3 { font-size: 16pt; margin: 5mm 0 1mm; color: #172433; }
+    .i-marcado { color: #5B6470; font-size: 13pt; }
+    .i-refs { font-size: 12.5pt; }
+    .i-pag p { margin: 0; }
+    .i-innov { list-style: none; padding: 0; margin: 0; }
+    .i-innov li { display: flex; align-items: center; gap: 3mm; padding: 1.5mm 0; border-bottom: 1px solid #EAD9C8; }
+    .i-innov .nm { display: inline-grid; place-items: center; width: 7mm; height: 7mm; border-radius: 50%; background: #FC6F6F; color: #fff; font-weight: 800; flex: none; }
+    .i-innov .ch { margin-left: auto; font-size: 10pt; font-weight: 800; text-transform: uppercase; padding: 1mm 3mm; border-radius: 99px; }
+    .i-tec { display: flex; align-items: center; gap: 4mm; font-weight: 800; font-size: 15pt; }
+    .i-tec img { width: 16mm; height: 16mm; }
+    .i-refs { padding: 0; margin: 0; list-style: none; }
+    .i-refs li { padding-left: 2em; text-indent: -2em; margin-bottom: 2mm; overflow-wrap: anywhere; }
+    .i-vacio { color: #FC6F6F; font-style: italic; }
+    .i-credito { font-size: 9.5pt; color: #5B6470; margin-top: 2mm !important; }
+  }
+</style>
+</head>
+<body>
+<header class="barra">
+  <a class="volver" href="../#practica-2-4">← Práctica</a>
+  <span class="titulo">Mira un objeto<span id="resumen"></span></span>
+  <nav class="pasos" aria-label="Pasos de la ficha">
+    <button type="button" data-ir="equipo"><span class="n">1</span><span class="t">Equipo</span></button>
+    <button type="button" data-ir="antes"><span class="n">2</span><span class="t">Antes</span></button>
+    <button type="button" data-ir="ahora"><span class="n">3</span><span class="t">Ahora</span></button>
+    <button type="button" data-ir="empresa"><span class="n">4</span><span class="t">La empresa</span></button>
+    <button type="button" data-ir="futuro"><span class="n">5</span><span class="t">En 5 años</span></button>
+    <button type="button" data-ir="refs"><span class="n">6</span><span class="t">PDF</span></button>
+  </nav>
+  <span class="guardado" id="guardado">Se guarda solo</span>
+</header>
+
+<main>
+  <!-- 1. Equipo -->
+  <section class="f-paso" id="p-equipo">
+    <div class="f-cab">
+      <div><h2>¿Quiénes sois y qué objeto os ha tocado?</h2><p class="f-ayuda">Escribid vuestros nombres y <b>pulsad vuestro objeto</b>.</p></div>
+    </div>
+    <label class="f-q" style="margin-top:12px;max-width:760px">Nombres del equipo<input type="text" data-k="nombre" placeholder="Lucía Martín, Hugo Sanz y Aiken Pérez" autocomplete="off"></label>
+    <div class="f-dos">
+      <div class="f-galeria" id="galeria"></div>
+      <div class="f-previa" id="previa"></div>
+    </div>
+  </section>
+
+  <!-- 2. Antes -->
+  <section class="f-paso" id="p-antes" hidden>
+    <div class="f-cab">
+      <div><h2>Antes: hace 15 o 20 años</h2><p class="f-ayuda" id="ayuda-antes"></p></div>
+      <div class="f-cab-botones"><button type="button" class="btn btn-ghost btn-sm" data-ej="antes">Ver el ejemplo</button></div>
+    </div>
+    <div class="f-dos">
+      <div class="f-foto" data-foto="antes"></div>
+      <div class="f-col">
+        <label class="f-q">¿Cómo era o cómo se hacía? ¿Qué tenía de malo?<small>Una o dos frases. Podéis preguntar en casa cómo era.</small><textarea data-k="antes.como" placeholder="Ejemplo: era de tela y solo tenía una cremallera. Se mojaba y se rompía pronto." style="height:140px"></textarea></label>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Ahora -->
+  <section class="f-paso" id="p-ahora" hidden>
+    <div class="f-cab">
+      <div><h2>Ahora: las innovaciones</h2><p class="f-ayuda">Esta es la foto de <b class="obj">vuestro objeto</b> hoy. <b>Pulsad encima de cada innovación</b> para ponerle un número: 3 o más.</p></div>
+      <div class="f-cab-botones"><button type="button" class="btn btn-ghost btn-sm" data-abre="seis-dlg">Las seis preguntas</button><button type="button" class="btn btn-ghost btn-sm" data-ej="ahora">Ver el ejemplo</button></div>
+    </div>
+    <div class="f-dos">
+      <div class="f-foto" data-foto="ahora"></div>
+      <div class="f-col">
+        <p class="f-q"><span><span class="letra l-a">a</span>Qué es cada innovación y qué mejora</span></p>
+        <p class="f-leyenda"><b>Eficiencia:</b> se hace más rápido o más barato. <b>Calidad:</b> funciona mejor o dura más. <b>Sostenibilidad:</b> contamina menos.</p>
+        <ol class="f-innov" id="innov"></ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. La empresa -->
+  <section class="f-paso" id="p-empresa" hidden>
+    <div class="f-cab">
+      <div><h2>Ahora: la empresa que lo hace</h2><p class="f-ayuda">Para pasar de lo de antes a lo de ahora, la empresa tuvo que cambiar. <b>No hace falta saberlo seguro:</b> pensad qué tuvo que pasar.</p></div>
+      <div class="f-cab-botones"><button type="button" class="btn btn-ghost btn-sm" data-ej="empresa">Ver el ejemplo</button></div>
+    </div>
+    <div class="f-dos">
+      <div class="f-col">
+        <div class="f-comp" id="minis"></div>
+        <div class="f-mis" id="mis-innov"></div>
+      </div>
+      <div class="f-col">
+        <div class="f-q"><span><span class="letra l-b">b</span>¿A quién le cambió el trabajo en la empresa?</span>
+          <div class="f-ops" data-grupo="areas"></div>
+          <textarea data-k="ahora.b" placeholder="¿Qué tuvieron que aprender o hacer distinto? Ejemplo: en la fábrica aprendieron a coser una tela nueva, hecha con botellas."></textarea></div>
+        <div class="f-q"><span><span class="letra l-c">c</span>¿Por qué cambió el objeto?</span>
+          <div class="f-ops" data-grupo="motivos"></div>
+          <textarea data-k="ahora.c" placeholder="Explicadlo. Ejemplo: ahora mucha gente lleva portátil a clase y va en bici."></textarea></div>
+        <label class="f-q"><span><span class="letra l-x">+</span>¿Qué le sigue fallando?</span>
+          <textarea data-k="ahora.falla" placeholder="Algo que todavía molesta, se rompe o le falta. Ejemplo: si la pierdes, no hay forma de encontrarla."></textarea></label>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. En 5 años -->
+  <section class="f-paso" id="p-futuro" hidden>
+    <div class="f-cab">
+      <div><h2>Dentro de 5 años</h2><p class="f-ayuda">Dibujad cómo será <b class="obj">vuestro objeto</b> y elegid una tecnología que arregle lo que le falla.</p></div>
+      <div class="f-cab-botones"><div class="f-modo"><button type="button" data-modo="dibujo" class="sel">Dibujar aquí</button><button type="button" data-modo="foto">Subir foto del dibujo</button></div><button type="button" class="btn btn-ghost btn-sm" data-ej="futuro">Ver el ejemplo</button></div>
+    </div>
+    <div class="f-dos">
+      <div style="display:flex;flex-direction:column;min-height:0">
+        <div data-zona="dibujo">
+          <div class="f-lienzo"><canvas id="lienzo" width="1200" height="760" aria-label="Zona de dibujo"></canvas></div>
+          <div class="f-herr">
+            <button type="button" class="col sel" data-color="#172433" style="background:#172433" aria-label="Azul marino"></button>
+            <button type="button" class="col" data-color="#FC6F6F" style="background:#FC6F6F" aria-label="Coral"></button>
+            <button type="button" class="col" data-color="#2FB3AE" style="background:#2FB3AE" aria-label="Turquesa"></button>
+            <span class="sep"></span>
+            <button type="button" class="h sel" data-grosor="5">Fino</button>
+            <button type="button" class="h" data-grosor="14">Grueso</button>
+            <button type="button" class="h" data-goma="1">Goma</button>
+            <span class="sep"></span>
+            <button type="button" class="h" data-accion="deshacer">Deshacer</button>
+            <button type="button" class="h" data-accion="borrar">Borrar el dibujo</button>
+          </div>
+        </div>
+        <div data-zona="foto" hidden><div class="f-foto" data-foto="futuro"></div></div>
+      </div>
+      <div class="f-col">
+        <div class="f-falla" id="falla-eco"></div>
+        <p class="f-q"><span><span class="letra l-d">d</span>¿Qué tecnología le pondríais para arreglarlo?</span></p>
+        <div class="f-tecs" id="tecs"></div>
+        <p id="tec-desc"></p>
+        <label class="f-q">¿Cómo sería el objeto con esa tecnología?<textarea data-k="futuro.cambio" placeholder="Ejemplo: llevaría un localizador para encontrarla con el móvil. La empresa tendría que hacer una app."></textarea></label>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Referencias y PDF -->
+  <section class="f-paso" id="p-refs" hidden>
+    <div class="f-cab">
+      <div><h2>Referencias y PDF</h2><p class="f-ayuda">Una referencia por cada foto y por cada web de la que saquéis datos.</p></div>
+      <div class="f-cab-botones"><button type="button" class="btn btn-primary btn-sm" id="ref-nueva">+ Añadir una referencia</button></div>
+    </div>
+    <div class="f-dos">
+      <div class="f-col"><ul class="f-refs" id="refs"></ul></div>
+      <div class="f-col">
+        <div class="f-pdf">
+          <ul class="f-lista" id="lista"></ul>
+          <button type="button" class="btn btn-primary" id="pdf">Generar PDF</button>
+          <p style="margin:0;font-size:15px;color:var(--muted)">Se abre la ventana de imprimir. En <b style="color:var(--navy)">Destino</b> elegid <b style="color:var(--navy)">Guardar como PDF</b> y pulsad <b style="color:var(--navy)">Guardar</b>. Después subid el PDF a Classroom.</p>
+          <button type="button" class="f-borra-todo" id="borra-todo">Borrar toda la ficha</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <button type="button" class="btn btn-ghost" id="ant">← Anterior</button>
+  <p id="falta" aria-live="polite"></p>
+  <button type="button" class="btn btn-primary" id="sig">Siguiente →</button>
+</footer>
+
+<dialog class="ventana" id="apa-dlg" aria-labelledby="apa-tit"><div class="ventana-cuerpo">
+  <div class="ventana-cabecera"><div><p class="ventana-ante" id="apa-ante">Referencia</p><h3 id="apa-tit">Generador de referencias APA 7</h3></div>
+  <button type="button" class="btn btn-primary ventana-cerrar">Cerrar</button></div>
+  <div id="apa-sitio"></div>
+</div></dialog>
+
+<dialog class="ventana estrecha" id="ej-dlg" aria-labelledby="ej-tit"><div class="ventana-cuerpo">
+  <div class="ventana-cabecera"><div><p class="ventana-ante">Ejemplo</p><h3 id="ej-tit">La mochila</h3></div>
+  <button type="button" class="btn btn-primary ventana-cerrar">Cerrar</button></div>
+  <div class="ej" id="ej-sitio"></div>
+</div></dialog>
+
+<dialog class="ventana estrecha" id="seis-dlg" aria-labelledby="seis-tit"><div class="ventana-cuerpo">
+  <div class="ventana-cabecera"><div><p class="ventana-ante">Para encontrar innovaciones</p><h3 id="seis-tit">Las seis preguntas</h3></div>
+  <button type="button" class="btn btn-primary ventana-cerrar">Cerrar</button></div>
+  <div class="f-seis" data-seis></div>
+</div></dialog>
+
+<div id="impresion"></div>
+
+<script src="../../assets/iasp.js"></script>
+<script>
+(function () {
+  'use strict';
+  const CLAVE = 'iasp-ut02-mira-un-objeto-v1';
+  const PASOS = ['equipo', 'antes', 'ahora', 'empresa', 'futuro', 'refs'];
+  const NOMBRE = { equipo: 'Equipo', antes: 'Antes', ahora: 'Ahora: las innovaciones', empresa: 'Ahora: la empresa que lo hace', futuro: 'En 5 años', refs: 'Referencias' };
+  const TECS = [['tec-ia', 'Inteligencia artificial', 'programas que aprenden y deciden solos, como un asistente que te entiende.'],
+    ['tec-iot', 'Internet de las cosas', 'objetos con sensores conectados a internet, como un reloj que avisa al móvil.'],
+    ['tec-nube', 'Nube', 'guardar los datos en internet y verlos desde cualquier sitio.'],
+    ['tec-datos', 'Big data', 'reunir muchísimos datos para descubrir qué pasa y decidir mejor.'],
+    ['tec-robot', 'Robótica', 'máquinas que hacen solas un trabajo físico.'],
+    ['tec-3d', 'Impresión 3D', 'fabricar una pieza capa a capa, a medida.'],
+    ['tec-gemelo', 'Gemelo digital', 'una copia del objeto en el ordenador para probar cambios sin romper nada.'],
+    ['tec-rv', 'Realidad virtual o aumentada', 'gafas o móvil que enseñan cosas que no están delante.'],
+    ['tec-blockchain', 'Blockchain', 'un registro que nadie puede borrar ni cambiar; sirve para saber de dónde viene algo.'],
+    ['tec-5g', '5G', 'conexión móvil muy rápida y sin cortes.'],
+    ['tec-cuantica', 'Computación cuántica', 'ordenadores muchísimo más potentes; todavía en laboratorios.'],
+    ['tec-ciber', 'Ciberseguridad', 'proteger los datos y el objeto de quien quiera entrar sin permiso.']];
+  const AREAS = ['A quienes lo diseñan', 'A la fábrica', 'A quienes lo venden', 'A quienes atienden al cliente'];
+  const MOTIVOS = ['Los clientes pedían otra cosa', 'Otra marca ya lo hacía', 'Salió una norma nueva', 'Apareció una tecnología nueva'];
+  const SEIS = [['lupa-material', '¿De qué está hecho?'], ['lupa-funcion', '¿Qué hace que antes no hacía?'], ['fuente-fabrica', '¿Cómo se fabrica?'],
+    ['lupa-compra', '¿Cómo se compra o se paga?'], ['lupa-uso', '¿Cómo se usa?'], ['lupa-tirar', '¿Qué pasa cuando se tira?']];
+  const EFECTOS = ['Eficiencia', 'Calidad', 'Sostenibilidad'];
+  // Objetos de la galería: foto real de Wikimedia Commons en objetos/<id>.jpg (créditos en objetos/creditos.md)
+  const OBJETOS = [{"id": "movil", "nombre": "Móvil", "marca": "Samsung", "busca": "teléfono móvil año 2005", "autor": "Hajoon0102", "anio": "2023", "lic": "CC BY-SA 4.0", "titulo": "Back of the Samsung Galaxy S23", "pagina": "https://commons.wikimedia.org/wiki/File:Back_of_the_Samsung_Galaxy_S23.jpg"}, {"id": "auriculares", "nombre": "Auriculares sin cable", "marca": "Apple", "busca": "walkman con auriculares", "autor": "Hajoon0102", "anio": "2023", "lic": "CC BY-SA 4.0", "titulo": "AirPods Pro (2nd generation)", "pagina": "https://commons.wikimedia.org/wiki/File:AirPods_Pro_(2nd_generation).jpg"}, {"id": "tele", "nombre": "Televisor", "marca": "LG", "busca": "televisor de tubo antiguo", "autor": "LG Electronics", "anio": "2014", "lic": "CC BY 2.0", "titulo": "LG OLED TV", "pagina": "https://commons.wikimedia.org/wiki/File:LG_OLED_TV.jpg"}, {"id": "portatil", "nombre": "Ordenador portátil", "marca": "Apple", "busca": "ordenador portátil año 2000", "autor": "Premeditated", "anio": "2021", "lic": "CC BY-SA 4.0", "titulo": "MacBook Pro 16 (M1 Pro, 2021) - Wikipedia", "pagina": "https://commons.wikimedia.org/wiki/File:MacBook_Pro_16_(M1_Pro,_2021)_-_Wikipedia.jpg"}, {"id": "consola", "nombre": "Videoconsola", "marca": "Nintendo", "busca": "Game Boy antigua", "autor": "Evan-Amos", "anio": "2017", "lic": "Public domain", "titulo": "Nintendo-Switch-Console-Docked-wJoyConRB", "pagina": "https://commons.wikimedia.org/wiki/File:Nintendo-Switch-Console-Docked-wJoyConRB.jpg"}, {"id": "patinete", "nombre": "Patinete eléctrico", "marca": "Xiaomi", "busca": "patinete antiguo", "autor": "Baldesteinemanuel326", "anio": "2019", "lic": "CC BY-SA 4.0", "titulo": "Xiaomi M365", "pagina": "https://commons.wikimedia.org/wiki/File:Xiaomi_M365.jpg"}, {"id": "coche", "nombre": "Coche eléctrico", "marca": "Tesla", "busca": "coche año 2000", "autor": "Alexander Migl", "anio": "2025", "lic": "CC BY-SA 4.0", "titulo": "Tesla Model 3 (2023) MYLE Festival 2025 DSC 9556", "pagina": "https://commons.wikimedia.org/wiki/File:Tesla_Model_3_(2023)_MYLE_Festival_2025_DSC_9556.jpg"}, {"id": "reloj", "nombre": "Reloj inteligente", "marca": "Apple", "busca": "reloj digital Casio antiguo", "autor": "Genetichazzard", "anio": "2025", "lic": "CC BY-SA 4.0", "titulo": "Apple Watch Ultra Series 3 Natural Titanium Case", "pagina": "https://commons.wikimedia.org/wiki/File:Apple_Watch_Ultra_Series_3_Natural_Titanium_Case.jpg"}, {"id": "camara", "nombre": "Cámara de fotos", "marca": "Sony", "busca": "cámara de fotos de carrete", "autor": "Franz van Duns", "anio": "2021", "lic": "CC BY-SA 4.0", "titulo": "Sony Alpha 7R IV body with Sony Zeiss 55mm lens", "pagina": "https://commons.wikimedia.org/wiki/File:Sony_Alpha_7R_IV_body_with_Sony_Zeiss_55mm_lens.jpg"}, {"id": "altavoz", "nombre": "Altavoz inteligente", "marca": "Amazon", "busca": "radiocasete antiguo", "autor": "Smart Home Perfected", "anio": "2021", "lic": "CC BY 2.0", "titulo": "Alexa Amazon Echo Dot 3rd Gen Smart Speaker - Sandstone Fabric (Creative Commons) (51048461088)", "pagina": "https://commons.wikimedia.org/wiki/File:Alexa_Amazon_Echo_Dot_3rd_Gen_Smart_Speaker_-_Sandstone_Fabric_(Creative_Commons)_(51048461088).jpg"}, {"id": "ebook", "nombre": "Libro electrónico", "marca": "Amazon", "busca": "enciclopedia en papel", "autor": "Jacek Halicki", "anio": "2023", "lic": "CC BY-SA 4.0", "titulo": "2023 Amazon Kindle Paperwhite (2)", "pagina": "https://commons.wikimedia.org/wiki/File:2023_Amazon_Kindle_Paperwhite_(2).jpg"}, {"id": "usb", "nombre": "Memoria USB", "marca": "Kingston", "busca": "disquete de ordenador", "autor": "Dmitry Makeev", "anio": "2018", "lic": "CC BY-SA 4.0", "titulo": "Kingston Technology DataTraveler G4 USB flash drive USB 3.0 32 Gb", "pagina": "https://commons.wikimedia.org/wiki/File:Kingston_Technology_DataTraveler_G4_USB_flash_drive_USB_3.0_32_Gb.jpg"}, {"id": "aspirador", "nombre": "Robot aspirador", "marca": "iRobot", "busca": "aspiradora antigua", "autor": "CEphoto, Uwe Aranas", "anio": "2016", "lic": "CC BY-SA 4.0", "titulo": "IRobot-Roomba-Top-view-01", "pagina": "https://commons.wikimedia.org/wiki/File:IRobot-Roomba-Top-view-01.jpg"}, {"id": "zapatillas", "nombre": "Zapatillas de correr", "marca": "Adidas", "busca": "zapatillas de deporte años 90", "autor": "Dough4872", "anio": "2021", "lic": "CC BY-SA 4.0", "titulo": "Adidas Ultra Boost 4 running shoes", "pagina": "https://commons.wikimedia.org/wiki/File:Adidas_Ultra_Boost_4_running_shoes.jpeg"}, {"id": "autopago", "nombre": "Caja de autopago", "marca": "", "busca": "caja registradora antigua", "autor": "Triplec85", "anio": "2023", "lic": "CC BY-SA 4.0", "titulo": "Supermarket self-checkout EDEKA E-Center Dürr Tauberbischofsheim 11", "pagina": "https://commons.wikimedia.org/wiki/File:Supermarket_self-checkout_EDEKA_E-Center_D%C3%BCrr_Tauberbischofsheim_11.jpg"}, {"id": "silla", "nombre": "Silla de ruedas eléctrica", "marca": "Pride", "busca": "silla de ruedas antigua", "autor": "Stephen B Calvert Clariosophic", "anio": "2010", "lic": "CC BY-SA 3.0", "titulo": "Pride Jazzy Select power chair 001", "pagina": "https://commons.wikimedia.org/wiki/File:Pride_Jazzy_Select_power_chair_001.JPG"}, {"id": "termometro", "nombre": "Termómetro sin contacto", "marca": "", "busca": "termómetro de mercurio", "autor": "Syced", "anio": "2022", "lic": "CC0", "titulo": "Infrared forehead thermometer, made in China", "pagina": "https://commons.wikimedia.org/wiki/File:Infrared_forehead_thermometer,_made_in_China.jpg"}, {"id": "andador", "nombre": "Andador con ruedas", "marca": "", "busca": "andador antiguo sin ruedas", "autor": "DirkvdM", "anio": "2008", "lic": "CC BY 3.0", "titulo": "Rollator", "pagina": "https://commons.wikimedia.org/wiki/File:Rollator.jpg"}, {"id": "tension", "nombre": "Tensiómetro digital", "marca": "Omron", "busca": "tensiómetro manual antiguo", "autor": "Mk2010", "anio": "2011", "lic": "CC BY-SA 3.0", "titulo": "Omron HEM-7000 20110121", "pagina": "https://commons.wikimedia.org/wiki/File:Omron_HEM-7000_20110121.jpg"}, {"id": "cama", "nombre": "Cama articulada eléctrica", "marca": "", "busca": "cama de hospital antigua con manivela", "autor": "Blogotron", "anio": "2011", "lic": "CC0", "titulo": "Hospital Bed 2011", "pagina": "https://commons.wikimedia.org/wiki/File:Hospital_Bed_2011.JPG"}];
+  const objeto = () => OBJETOS.find((o) => o.id === st.obj);
+  const MARCAS_EJ = '<span class="marca" style="left:42.9%;top:16%">1</span><span class="marca" style="left:83.3%;top:43.2%">2</span><span class="marca" style="left:34.9%;top:73.3%">3</span><span class="marca" style="left:30.2%;top:45.1%">4</span>';
+  const EJEMPLOS = {
+    antes: `<div class="f-img-wrap"><img src="../img/mochila-antigua.webp" alt="Mochila antigua de tela"></div><div><p><b>¿Cómo era? ¿Qué tenía de malo?</b></p><p>Era de tela y solo tenía una cremallera. Los tirantes eran finos y hacían daño en los hombros. Si llovía, se mojaba todo.</p></div>`,
+    ahora: `<div class="f-img-wrap"><img src="../img/mochila.webp" alt="Mochila actual con cuatro innovaciones numeradas">${MARCAS_EJ}</div><div><p><b>1</b> Hueco con relleno para el portátil · <b>Calidad</b></p><p><b>2</b> Enchufe USB para cargar el móvil · <b>Calidad</b></p><p><b>3</b> Tira que brilla con las luces de los coches · <b>Calidad</b></p><p><b>4</b> Tela hecha con botellas de plástico recicladas · <b>Sostenibilidad</b></p></div>`,
+    empresa: `<div class="f-img-wrap"><img src="../img/mochila.webp" alt="Mochila actual">${MARCAS_EJ}</div><div><p><b>b · ¿A quién le cambió el trabajo?</b><br>✓ A la fábrica. Aprendieron a coser una tela nueva, hecha con botellas.</p><p><b>c · ¿Por qué cambió el objeto?</b><br>✓ Los clientes pedían otra cosa. Ahora mucha gente lleva portátil a clase y va en bici.</p><p><b>¿Qué le sigue fallando?</b><br>Si la pierdes o te la roban, no hay forma de encontrarla.</p></div>`,
+    futuro: `<div class="f-img-wrap"><img src="../img/mochila-boceto.webp" alt="Dibujo de la mochila del futuro"></div><div><p><b>d · Tecnología:</b> Internet de las cosas (objetos conectados a internet).</p><p><b>¿Cómo sería?</b><br>Llevaría un localizador para encontrarla con el móvil. La empresa tendría que hacer una app.</p></div>`,
+  };
+  const vacio = () => ({ nombre: '', objeto: '', marca: '', obj: '', antes: { foto: '', como: '' }, ahora: { foto: '', marcas: [], b: '', c: '', falla: '', areas: [], motivos: [] },
+    futuro: { modo: 'dibujo', trazos: [], foto: '', tec: '', cambio: '' }, refs: [], paso: 'equipo' });
+  let st = vacio();
+  try { const g = JSON.parse(localStorage.getItem(CLAVE) || 'null'); if (g) st = Object.assign(vacio(), g); } catch (e) {}
+  st.ahora.areas = st.ahora.areas || []; st.ahora.motivos = st.ahora.motivos || [];
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const esc = (t) => String(t || '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const lee = (ruta) => ruta.split('.').reduce((o, k) => (o ? o[k] : ''), st);
+  const pon = (ruta, val) => { const p = ruta.split('.'); const u = p.pop(); p.reduce((o, k) => o[k], st)[u] = val; };
+  const seisHtml = SEIS.map(([ic, t]) => `<div><img src="../img/iconos/${ic}.webp" alt="">${t}</div>`).join('');
+  $('[data-seis]').innerHTML = seisHtml;
+
+  /* ---------- guardado ---------- */
+  let tGuarda = null;
+  function guarda() {
+    clearTimeout(tGuarda);
+    tGuarda = setTimeout(() => {
+      try { localStorage.setItem(CLAVE, JSON.stringify(st)); $('#guardado').textContent = '✓ Guardado ' + new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' }); }
+      catch (e) { $('#guardado').innerHTML = '<b style="color:var(--coral)">No cabe más: usad fotos más pequeñas</b>'; }
+    }, 300);
+    estado();
+  }
+
+  /* ---------- campos de texto ---------- */
+  $$('[data-k]').forEach((el) => { el.value = lee(el.dataset.k) || ''; });
+  document.addEventListener('input', (e) => {
+    const k = e.target.dataset && e.target.dataset.k;
+    if (k && !e.target.closest('#apa-sitio')) { pon(k, e.target.value); if (k === 'objeto') pintaObjeto(); guarda(); }
+  });
+  function pintaGaleria() {
+    $('#galeria').innerHTML = OBJETOS.map((o, i) => `<button type="button" class="obj-card${st.obj === o.id ? ' sel' : ''}" data-obj="${o.id}" title="Foto: ${esc(o.autor)}, ${o.lic}, Wikimedia Commons"><span class="num">${i + 1}</span><img src="objetos/${o.id}.jpg" alt="" loading="lazy"><span class="nom">${o.nombre}</span></button>`).join('');
+  }
+  function pintaPrevia(id) {
+    const o = OBJETOS.find((x) => x.id === (id || st.obj)), n = OBJETOS.indexOf(o) + 1;
+    $('#previa').innerHTML = o ? `<p class="pv-nom"><span>${n}</span>${o.nombre}</p><div class="pv-img"><img src="objetos/${o.id}.jpg" alt="${esc(o.nombre)}"></div>
+      <p class="pv-est${o.id === st.obj ? ' ok' : ''}">${o.id === st.obj ? '✓ Este es vuestro objeto.' : 'Pulsadlo si es el vuestro.'}</p><p class="f-credito" style="margin:0">Foto: ${esc(o.autor)}, Wikimedia Commons, ${o.lic}.</p>`
+      : '<p class="pv-vacio">Pasad el ratón por un objeto<br>para verlo en grande.</p>';
+  }
+  $('#galeria').addEventListener('pointerover', (e) => { const b = e.target.closest('[data-obj]'); if (b) pintaPrevia(b.dataset.obj); });
+  $('#galeria').addEventListener('pointerleave', () => pintaPrevia());
+  $('#galeria').addEventListener('focusin', (e) => { const b = e.target.closest('[data-obj]'); if (b) pintaPrevia(b.dataset.obj); });
+  $('#galeria').addEventListener('click', (e) => {
+    const b = e.target.closest('[data-obj]'); if (!b || b.dataset.obj === st.obj) return;
+    const o = OBJETOS.find((x) => x.id === b.dataset.obj);
+    st.obj = o.id; st.objeto = o.nombre; st.marca = o.marca;
+    st.ahora.foto = 'objetos/' + o.id + '.jpg'; st.ahora.marcas = [];
+    const ref = `${esc(o.autor)}. (${o.anio || 's. f.'}). <i>${esc(o.titulo)}</i> [Fotografía]. Wikimedia Commons. ${esc(o.pagina)}`;
+    st.refs = st.refs.filter((x) => !x.auto); st.refs.unshift({ html: ref, texto: ref.replace(/<[^>]+>/g, ''), de: 'ahora', auto: true });
+    pintaGaleria(); pintaPrevia(); pintaObjeto(); pintaFoto('ahora'); pintaInnov(); pintaRefs(); guarda();
+  });
+  function pintaObjeto() {
+    const ob = objeto();
+    $('#ayuda-antes').innerHTML = ob ? `¿Cómo era o cómo se hacía antes? Buscad en Google Imágenes «<b>${esc(ob.busca)}</b>» y pegad aquí una foto.` : 'Primero elegid vuestro objeto en el paso 1.';
+    const o = st.objeto.trim();
+    $$('.obj').forEach((b) => { b.textContent = o || 'vuestro objeto'; });
+    $('#resumen').textContent = o ? ' · ' + o : '';
+  }
+
+  /* ---------- fotos ---------- */
+  function leeArchivo(archivo) {
+    return new Promise((res, rej) => {
+      const url = URL.createObjectURL(archivo), img = new Image();
+      img.onload = () => {
+        const max = 1400, s = Math.min(1, max / Math.max(img.width, img.height));
+        const c = document.createElement('canvas'); c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+        const x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height); x.drawImage(img, 0, 0, c.width, c.height);
+        URL.revokeObjectURL(url); res(c.toDataURL('image/jpeg', 0.84));
+      };
+      img.onerror = () => { URL.revokeObjectURL(url); rej(new Error('no es una imagen')); };
+      img.src = url;
+    });
+  }
+  async function ponFoto(clave, archivo) {
+    const caja = $(`.f-foto[data-foto="${clave}"]`);
+    try { st[clave].foto = await leeArchivo(archivo); if (clave === 'ahora') st.ahora.marcas = []; pintaFoto(clave); pintaInnov(); guarda(); }
+    catch (e) { $('.f-aviso', caja).textContent = 'Eso no es una imagen. Probad con otra.'; }
+  }
+  const marcasHtml = () => st.ahora.marcas.map((m, i) => `<span class="marca" style="left:${m.x}%;top:${m.y}%">${i + 1}</span>`).join('');
+  function pintaFoto(clave) {
+    const caja = $(`.f-foto[data-foto="${clave}"]`), foto = st[clave].foto;
+    const refHecha = st.refs.some((r) => r.de === clave);
+    if (clave === 'ahora') {
+      const ob = objeto();
+      caja.innerHTML = foto && ob ? `<div class="f-marco"><div class="f-img-wrap marcable"><img src="${foto}" alt="${esc(ob.nombre)}">${marcasHtml()}</div></div>
+        <p class="f-credito">Foto: ${esc(ob.autor)}, <a href="${esc(ob.pagina)}" target="_blank" rel="noopener">Wikimedia Commons</a>, ${ob.lic}. Su referencia ya está en el paso 6.</p>`
+        : '<div class="f-foto-vacia"><p class="grande">Primero elegid vuestro objeto</p><button type="button" class="btn btn-primary btn-sm" data-ir="equipo">Ir al paso 1</button></div>';
+      const w = $('.f-img-wrap', caja);
+      if (w) w.addEventListener('click', (e) => {
+        const r = w.getBoundingClientRect();
+        st.ahora.marcas.push({ x: +(((e.clientX - r.left) / r.width) * 100).toFixed(1), y: +(((e.clientY - r.top) / r.height) * 100).toFixed(1), que: '', mejora: '' });
+        pintaFoto('ahora'); pintaInnov(); guarda();
+        const ins = $$('#innov input'); if (ins.length) { ins[ins.length - 1].focus(); ins[ins.length - 1].scrollIntoView({ block: 'nearest' }); }
+      });
+      return;
+    }
+    if (!foto) {
+      caja.innerHTML = `<div class="f-foto-vacia"><p class="grande">Pegad aquí la foto con <kbd>Ctrl</kbd> + <kbd>V</kbd></p>
+        <p style="margin:0">En la web: clic derecho en la foto → <b style="color:var(--navy)">Copiar imagen</b>.</p>
+        <button type="button" class="btn btn-ghost btn-sm" data-elige>o elegid una foto del ordenador</button><input type="file" accept="image/*" hidden></div><p class="f-aviso"></p>`;
+    } else {
+      caja.innerHTML = `<div class="f-marco"><div class="f-img-wrap${clave === 'ahora' ? ' marcable' : ''}"><img src="${foto}" alt="Foto ${clave}">${clave === 'ahora' ? marcasHtml() : ''}</div></div>
+        <div class="f-foto-botones">${refHecha ? '<span class="f-ref-ok">✓ Referencia de la foto añadida</span>' : '<button type="button" class="btn btn-primary btn-sm" data-ref-foto>Añadir la referencia de esta foto</button>'}
+        <button type="button" class="btn btn-ghost btn-sm" data-elige>Cambiar la foto</button><input type="file" accept="image/*" hidden><span class="f-aviso" style="margin:0"></span></div>`;
+    }
+    const inp = $('input[type=file]', caja);
+    $('[data-elige]', caja).onclick = () => inp.click();
+    inp.onchange = () => { if (inp.files[0]) ponFoto(clave, inp.files[0]); };
+    const rf = $('[data-ref-foto]', caja);
+    if (rf) rf.onclick = () => abreApa('imagen', clave);
+    const zona = $('.f-foto-vacia', caja) || $('.f-marco', caja);
+    zona.addEventListener('dragover', (e) => { e.preventDefault(); zona.classList.add('encima'); });
+    zona.addEventListener('dragleave', () => zona.classList.remove('encima'));
+    zona.addEventListener('drop', (e) => {
+      e.preventDefault(); zona.classList.remove('encima');
+      const f = [...e.dataTransfer.files].find((x) => x.type.startsWith('image/'));
+      if (f) ponFoto(clave, f);
+      else $('.f-aviso', caja).textContent = 'Desde una web no se puede arrastrar: clic derecho → Copiar imagen, y Ctrl + V aquí.';
+    });
+    if (clave === 'ahora' && foto) {
+      $('.f-img-wrap', caja).addEventListener('click', (e) => {
+        const r = e.currentTarget.getBoundingClientRect();
+        st.ahora.marcas.push({ x: +(((e.clientX - r.left) / r.width) * 100).toFixed(1), y: +(((e.clientY - r.top) / r.height) * 100).toFixed(1), que: '', mejora: '' });
+        pintaFoto('ahora'); pintaInnov(); guarda();
+        const ins = $$('#innov input'); if (ins.length) { ins[ins.length - 1].focus(); ins[ins.length - 1].scrollIntoView({ block: 'nearest' }); }
+      });
+    }
+  }
+  document.addEventListener('paste', (e) => {
+    const it = [...(e.clipboardData ? e.clipboardData.items : [])].find((i) => i.type && i.type.startsWith('image/'));
+    if (!it || document.querySelector('dialog[open]')) return;
+    const clave = st.paso;
+    if (!['antes', 'futuro'].includes(clave)) return;
+    e.preventDefault();
+    if (clave === 'futuro') { st.futuro.modo = 'foto'; pintaModo(); }
+    ponFoto(clave, it.getAsFile());
+  });
+
+  /* ---------- innovaciones ---------- */
+  function pintaInnov() {
+    const ol = $('#innov');
+    if (!st.ahora.marcas.length) {
+      ol.innerHTML = `<li style="display:block;padding:0;box-shadow:none;background:none"><div class="f-vacio"><p>${st.ahora.foto ? 'Pulsad encima de la foto, en la primera innovación que veáis.' : 'Primero elegid vuestro objeto en el paso 1.'} Para encontrarlas, haceos estas preguntas:</p><div class="f-seis">${seisHtml}</div></div></li>`;
+      return;
+    }
+    ol.innerHTML = st.ahora.marcas.map((m, i) => `<li><span class="nm">${i + 1}</span><input type="text" data-m="${i}" placeholder="¿Qué es? Ejemplo: hueco para el portátil" value="${esc(m.que)}">
+      <button type="button" class="quita" data-quita="${i}" aria-label="Quitar la innovación ${i + 1}">×</button>
+      <div class="ef">Mejora la… ${EFECTOS.map((ef) => `<button type="button" class="chip${m.mejora === ef ? ' sel' : ''}" data-chip="${i}" data-v="${ef}">${ef}</button>`).join('')}</div></li>`).join('');
+  }
+  $('#innov').addEventListener('input', (e) => { const i = e.target.dataset.m; if (i != null) { st.ahora.marcas[i].que = e.target.value; guarda(); } });
+  $('#innov').addEventListener('click', (e) => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.quita != null) { st.ahora.marcas.splice(+b.dataset.quita, 1); pintaFoto('ahora'); pintaInnov(); guarda(); }
+    if (b.dataset.chip != null) { st.ahora.marcas[+b.dataset.chip].mejora = b.dataset.v; pintaInnov(); guarda(); }
+  });
+
+  /* ---------- paso 4: antes → ahora, sus innovaciones y opciones para marcar ---------- */
+  function pintaMinis() {
+    const fig = (tit, foto, extra) => `<figure><b>${tit}</b>${foto ? `<div class="f-img-wrap"><img src="${foto}" alt="">${extra || ''}</div>` : '<p class="nada">Falta la foto.</p>'}</figure>`;
+    $('#minis').innerHTML = fig('Antes', st.antes.foto) + '<span class="flecha" aria-hidden="true">→</span>' + fig('Ahora', st.ahora.foto, marcasHtml());
+    const ms = st.ahora.marcas.filter((m) => m.que.trim());
+    $('#mis-innov').innerHTML = '<b>Vuestras innovaciones</b>' + (ms.length ? '<ol>' + ms.map((m) => `<li>${esc(m.que)}${m.mejora ? ` <span>· ${m.mejora}</span>` : ''}</li>`).join('') + '</ol>' : '<span style="color:var(--muted)">Todavía no habéis puesto ninguna en el paso 3.</span>');
+    pintaOps();
+  }
+  function pintaOps() {
+    for (const [g, lista] of [['areas', AREAS], ['motivos', MOTIVOS]])
+      $(`.f-ops[data-grupo="${g}"]`).innerHTML = lista.map((t) => `<button type="button" class="op${st.ahora[g].includes(t) ? ' sel' : ''}" data-op="${esc(t)}">${t}</button>`).join('');
+  }
+  $('#p-empresa').addEventListener('click', (e) => {
+    const b = e.target.closest('[data-op]'); if (!b) return;
+    const l = st.ahora[b.parentElement.dataset.grupo], k = l.indexOf(b.dataset.op);
+    if (k >= 0) l.splice(k, 1); else l.push(b.dataset.op);
+    pintaOps(); guarda();
+  });
+
+  /* ---------- dibujo ---------- */
+  const lienzo = $('#lienzo'), cx = lienzo.getContext('2d');
+  let color = '#172433', grosor = 5, goma = false, trazo = null;
+  function redibuja() {
+    cx.fillStyle = '#fff'; cx.fillRect(0, 0, lienzo.width, lienzo.height);
+    cx.lineCap = 'round'; cx.lineJoin = 'round';
+    for (const t of st.futuro.trazos) {
+      cx.strokeStyle = t.c; cx.lineWidth = t.w; cx.beginPath();
+      t.p.forEach(([x, y], i) => (i ? cx.lineTo(x, y) : cx.moveTo(x, y)));
+      if (t.p.length === 1) cx.lineTo(t.p[0][0] + 0.1, t.p[0][1]);
+      cx.stroke();
+    }
+  }
+  const punto = (e) => { const r = lienzo.getBoundingClientRect(); return [Math.round(((e.clientX - r.left) / r.width) * lienzo.width), Math.round(((e.clientY - r.top) / r.height) * lienzo.height)]; };
+  lienzo.addEventListener('pointerdown', (e) => { e.preventDefault(); lienzo.setPointerCapture(e.pointerId); trazo = { c: goma ? '#FFFFFF' : color, w: goma ? 34 : grosor, p: [punto(e)] }; st.futuro.trazos.push(trazo); redibuja(); });
+  lienzo.addEventListener('pointermove', (e) => { if (!trazo) return; trazo.p.push(punto(e)); redibuja(); });
+  const fin = () => { if (trazo) { trazo = null; guarda(); } };
+  lienzo.addEventListener('pointerup', fin); lienzo.addEventListener('pointercancel', fin);
+  $('.f-herr').addEventListener('click', (e) => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.color) { color = b.dataset.color; goma = false; $$('.f-herr .col').forEach((x) => x.classList.toggle('sel', x === b)); $('[data-goma]').classList.remove('sel'); }
+    if (b.dataset.grosor) { grosor = +b.dataset.grosor; goma = false; $$('[data-grosor]').forEach((x) => x.classList.toggle('sel', x === b)); $('[data-goma]').classList.remove('sel'); }
+    if (b.dataset.goma) { goma = !goma; b.classList.toggle('sel', goma); }
+    if (b.dataset.accion === 'deshacer') { st.futuro.trazos.pop(); redibuja(); guarda(); }
+    if (b.dataset.accion === 'borrar') {
+      if (b.dataset.seguro) { st.futuro.trazos = []; redibuja(); guarda(); b.textContent = 'Borrar el dibujo'; delete b.dataset.seguro; }
+      else { b.dataset.seguro = '1'; b.textContent = '¿Seguro? Pulsad otra vez'; setTimeout(() => { b.textContent = 'Borrar el dibujo'; delete b.dataset.seguro; }, 3000); }
+    }
+  });
+  function pintaModo() {
+    $$('.f-modo button').forEach((b) => b.classList.toggle('sel', b.dataset.modo === st.futuro.modo));
+    $('[data-zona="dibujo"]').hidden = st.futuro.modo !== 'dibujo';
+    $('[data-zona="foto"]').hidden = st.futuro.modo !== 'foto';
+  }
+  $('.f-modo').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) { st.futuro.modo = b.dataset.modo; pintaModo(); guarda(); } });
+
+  /* ---------- tecnologías ---------- */
+  function pintaTecs() {
+    const el = TECS.find(([, n]) => n === st.futuro.tec);
+    $('#tec-desc').innerHTML = el ? `<b>${el[1]}:</b> ${el[2]}` : '<span style="color:var(--muted)">Pulsad una para ver qué es.</span>';
+    $('#tecs').innerHTML = TECS.map(([ic, n]) => `<button type="button" class="${st.futuro.tec === n ? 'sel' : ''}" data-tec="${esc(n)}"><img src="../img/iconos/${ic}.webp" alt="">${n}</button>`).join('');
+  }
+  $('#tecs').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) { st.futuro.tec = b.dataset.tec; pintaTecs(); guarda(); } });
+  function pintaFalla() {
+    const f = st.ahora.falla.trim();
+    $('#falla-eco').innerHTML = 'Lo que le falla ahora: ' + (f ? '<b>' + esc(f) + '</b>' : '<i>todavía no lo habéis escrito en el paso 4.</i>');
+  }
+
+  /* ---------- ventanas ---------- */
+  $$('dialog.ventana').forEach((d) => {
+    $('.ventana-cerrar', d).onclick = () => d.close();
+    d.addEventListener('click', (e) => { if (e.target === d) d.close(); });
+  });
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-ej], [data-abre]'); if (!b) return;
+    if (b.dataset.abre) { $('#' + b.dataset.abre).showModal(); return; }
+    $('#ej-tit').textContent = 'La mochila · ' + NOMBRE[b.dataset.ej];
+    $('#ej-sitio').innerHTML = EJEMPLOS[b.dataset.ej];
+    $('#ej-dlg').showModal();
+  });
+
+  /* ---------- referencias ---------- */
+  let refDe = '';
+  function abreApa(tipo, de) {
+    refDe = de || '';
+    $('#apa-ante').textContent = de ? 'Referencia de la foto de ' + ({ antes: 'antes', ahora: 'ahora', futuro: 'vuestro dibujo' }[de]) : 'Referencia';
+    const sitio = $('#apa-sitio'); sitio.innerHTML = '<div class="apa"></div>';
+    IASP.montaApa($('.apa', sitio), { tipo, alAnadir: ({ html, texto }) => {
+      st.refs.push({ html, texto, de: refDe }); pintaRefs(); ['antes', 'ahora', 'futuro'].forEach(pintaFoto); guarda();
+      setTimeout(() => $('#apa-dlg').close(), 700);
+    } });
+    $('#apa-dlg').showModal();
+  }
+  $('#ref-nueva').onclick = () => abreApa('web', '');
+  function pintaRefs() {
+    $('#refs').innerHTML = st.refs.length ? st.refs.map((r, i) => `<li>${r.html}${r.auto ? '' : `<button type="button" class="quita" data-quita="${i}" aria-label="Quitar referencia">×</button>`}</li>`).join('')
+      : '<li style="text-indent:0;padding-left:16px;color:var(--muted)">Todavía no hay referencias. Podéis añadirlas desde cada foto o con el botón de arriba.</li>';
+  }
+  $('#refs').addEventListener('click', (e) => { const b = e.target.closest('[data-quita]'); if (b) { st.refs.splice(+b.dataset.quita, 1); pintaRefs(); ['antes', 'ahora', 'futuro'].forEach(pintaFoto); guarda(); } });
+
+  /* ---------- lo que falta y navegación ---------- */
+  const une = (xs) => (xs.length < 2 ? xs.join('') : xs.slice(0, -1).join(', ') + ' y ' + xs[xs.length - 1]);
+  function faltas() {
+    const a = st.ahora, f = st.futuro, F = { equipo: [], antes: [], ahora: [], empresa: [], futuro: [], refs: [] };
+    if (!st.nombre.trim()) F.equipo.push('los nombres del equipo');
+    if (!st.obj) F.equipo.push('elegir el objeto');
+    if (!st.antes.foto) F.antes.push('la foto de antes');
+    if (!st.antes.como.trim()) F.antes.push('cómo era');
+    if (!a.foto) F.ahora.push('elegir el objeto en el paso 1');
+    else if (a.marcas.length < 3) F.ahora.push(`${3 - a.marcas.length} innovación${3 - a.marcas.length > 1 ? 'es' : ''} más en la foto`);
+    if (a.marcas.some((m) => !m.que.trim())) F.ahora.push('qué es cada innovación');
+    if (a.marcas.some((m) => !m.mejora)) F.ahora.push('qué mejora cada innovación');
+    if (!a.areas.length) F.empresa.push('marcar a quién le cambió el trabajo');
+    if (!a.b.trim()) F.empresa.push('explicar la b');
+    if (!a.motivos.length) F.empresa.push('marcar por qué cambió');
+    if (!a.c.trim()) F.empresa.push('explicar la c');
+    if (!a.falla.trim()) F.empresa.push('qué le sigue fallando');
+    if (!(f.modo === 'dibujo' ? f.trazos.length : f.foto)) F.futuro.push('el dibujo');
+    if (!f.tec) F.futuro.push('la tecnología');
+    if (!f.cambio.trim()) F.futuro.push('cómo sería');
+    if (st.refs.length < 2) F.refs.push('una referencia por cada foto');
+    return F;
+  }
+  function estado() {
+    const F = faltas();
+    PASOS.forEach((p, i) => {
+      const b = $(`.pasos [data-ir="${p}"]`), hecho = !F[p].length;
+      b.classList.toggle('hecho', hecho); b.classList.toggle('activo', st.paso === p);
+      $('.n', b).textContent = hecho && st.paso !== p ? '✓' : i + 1;
+      b.title = hecho ? 'Hecho' : 'Os falta: ' + une(F[p]);
+    });
+    const pendientes = PASOS.filter((p) => F[p].length);
+    const pf = $('#falta');
+    if (st.paso === 'refs') {
+      pf.textContent = pendientes.length ? 'Todavía os faltan cosas: miradlas en la lista.' : '✓ Todo listo. Ya podéis generar el PDF.';
+      pf.classList.toggle('ok', !pendientes.length);
+    } else {
+      const l = F[st.paso];
+      pf.textContent = l.length ? 'Os falta: ' + une(l) + '.' : '✓ Paso completo. Pulsad Siguiente.';
+      pf.classList.toggle('ok', !l.length);
+    }
+    $('#lista').innerHTML = PASOS.map((p, i) => `<li><button type="button" data-ir="${p}"><span class="${F[p].length ? 'no' : 'ok'}">${F[p].length ? '✗' : '✓'}</span><span><b>${i + 1}. ${NOMBRE[p]}</b>${F[p].length ? ` <small>Falta: ${esc(une(F[p]))}</small>` : ''}</span></button></li>`).join('');
+    $('#pdf').classList.toggle('espera', !!pendientes.length);
+  }
+  function irA(p) {
+    st.paso = p;
+    PASOS.forEach((x) => { $('#p-' + x).hidden = x !== p; });
+    const i = PASOS.indexOf(p);
+    $('#ant').style.visibility = i ? 'visible' : 'hidden';
+    $('#sig').style.visibility = i < PASOS.length - 1 ? 'visible' : 'hidden';
+    if (p === 'empresa') pintaMinis();
+    if (p === 'futuro') { pintaFalla(); redibuja(); }
+    estado(); guarda(); $('main').scrollTop = 0;
+  }
+  document.addEventListener('click', (e) => { const b = e.target.closest('[data-ir]'); if (b) irA(b.dataset.ir); });
+  $('#ant').onclick = () => irA(PASOS[Math.max(0, PASOS.indexOf(st.paso) - 1)]);
+  $('#sig').onclick = () => irA(PASOS[Math.min(PASOS.length - 1, PASOS.indexOf(st.paso) + 1)]);
+
+  /* ---------- borrar todo ---------- */
+  $('#borra-todo').onclick = (e) => {
+    const b = e.currentTarget;
+    if (!b.classList.contains('seguro')) { b.classList.add('seguro'); b.textContent = '¿Seguro? Se borra todo. Pulsad otra vez'; setTimeout(() => { b.classList.remove('seguro'); b.textContent = 'Borrar toda la ficha'; }, 4000); return; }
+    try { localStorage.removeItem(CLAVE); } catch (err) {}
+    location.reload();
+  };
+
+  /* ---------- PDF ---------- */
+  const chipColor = { Eficiencia: 'background:#FC6F6F;color:#fff', Calidad: 'background:#FCC908;color:#172433', Sostenibilidad: 'background:#53D2CE;color:#172433' };
+  const texto = (t) => (t && t.trim() ? esc(t).replace(/\n/g, '<br>') : '<span class="i-vacio">Sin contestar</span>');
+  function construyeImpresion() {
+    const cab = `<div class="i-cab"><span><b>Mira un objeto</b> · UT2 · Innovación Aplicada a los Sectores Productivos</span><span><b>${esc(st.nombre) || 'Sin nombres'}</b> · ${esc(st.objeto) || 'Sin objeto'}${st.marca ? ' (' + esc(st.marca) + ')' : ''}</span></div>`;
+    const img = (src, marcas) => (src ? `<div class="i-img"><img src="${src}" alt="">${marcas || ''}</div>` : '<p class="i-vacio">Sin foto</p>');
+    const dibujo = st.futuro.modo === 'dibujo' ? (st.futuro.trazos.length ? (redibuja(), lienzo.toDataURL('image/png')) : '') : st.futuro.foto;
+    const tec = TECS.find(([, n]) => n === st.futuro.tec);
+    $('#impresion').innerHTML = `
+      <div class="i-pag">${cab}<h2><span>1</span>Antes</h2><div class="i-dos">${img(st.antes.foto)}<div><h3>¿Cómo era o cómo se hacía? ¿Qué tenía de malo?</h3><p>${texto(st.antes.como)}</p></div></div></div>
+      <div class="i-pag">${cab}<h2><span>2</span>Ahora</h2><div class="i-dos"><div>${img(st.ahora.foto, marcasHtml())}${objeto() ? `<p class="i-credito">Foto: ${esc(objeto().autor)}, Wikimedia Commons, ${objeto().lic}.</p>` : ''}</div><div>
+        <h3>a · Las innovaciones y qué mejoran</h3><ul class="i-innov">${st.ahora.marcas.map((m, i) => `<li><span class="nm">${i + 1}</span><span>${texto(m.que)}</span>${m.mejora ? `<span class="ch" style="${chipColor[m.mejora]}">${m.mejora}</span>` : ''}</li>`).join('') || '<li class="i-vacio">Sin innovaciones</li>'}</ul>
+        <h3>b · ¿A quién le cambió el trabajo en la empresa?</h3>${st.ahora.areas.length ? `<p class="i-marcado">✓ ${st.ahora.areas.map(esc).join(' · ')}</p>` : ''}<p>${texto(st.ahora.b)}</p>
+        <h3>c · ¿Por qué cambió el objeto?</h3>${st.ahora.motivos.length ? `<p class="i-marcado">✓ ${st.ahora.motivos.map(esc).join(' · ')}</p>` : ''}<p>${texto(st.ahora.c)}</p>
+        <h3>¿Qué le sigue fallando?</h3><p>${texto(st.ahora.falla)}</p></div></div></div>
+      <div class="i-pag">${cab}<h2><span>3</span>Dentro de 5 años</h2><div class="i-dos">${img(dibujo)}<div>
+        <h3>d · La tecnología que le pondríamos</h3>${tec ? `<p class="i-tec"><img src="../img/iconos/${tec[0]}.webp" alt="">${tec[1]}</p><p class="i-marcado">${tec[2]}</p>` : '<p class="i-vacio">Sin elegir</p>'}
+        <h3>¿Cómo sería el objeto con esa tecnología?</h3><p>${texto(st.futuro.cambio)}</p></div></div>
+        <h3>Referencias</h3><ul class="i-refs">${st.refs.map((r) => `<li>${r.html}</li>`).join('') || '<li class="i-vacio">Sin referencias</li>'}</ul></div>`;
+  }
+  $('#pdf').onclick = () => {
+    construyeImpresion();
+    const t = document.title;
+    document.title = 'Mira un objeto - ' + (st.nombre.trim() || 'ficha');
+    const imgs = $$('#impresion img');
+    Promise.all(imgs.map((im) => (im.complete ? Promise.resolve() : new Promise((r) => { im.onload = im.onerror = r; })))).then(() => {
+      window.print();
+      setTimeout(() => { document.title = t; }, 1000);
+    });
+  };
+  IASP.fichaImpresion = construyeImpresion; // para las pruebas
+
+  /* ---------- arranque ---------- */
+  if (!objeto()) { st.obj = ''; if (!/^objetos\//.test(st.ahora.foto)) { st.ahora.foto = ''; st.ahora.marcas = []; } }
+  pintaGaleria(); pintaPrevia(); pintaObjeto(); ['antes', 'ahora', 'futuro'].forEach(pintaFoto); pintaInnov(); pintaModo(); pintaTecs(); pintaFalla(); pintaRefs(); redibuja();
+  irA(PASOS.includes(st.paso) ? st.paso : 'equipo');
+})();
+</script>
+</body>
+</html>
