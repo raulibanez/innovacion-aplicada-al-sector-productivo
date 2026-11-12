@@ -82,6 +82,36 @@ Varias fotos en el mismo hueco, con flechas para pasar y un pie que cambia con c
 
 Por defecto la galería ocupa toda la altura del hueco; con `style="--galeria-alto:560px;--galeria-flex:none"` se fija la altura del marco.
 
+### Pasador de fichas
+
+Para un catálogo (las doce tecnologías de la UT2) en vez de una tabla: pestañas con icono arriba, una foto grande y, al lado, una ficha corta que cambia con la foto. Va sobre la galería: cada pestaña y cada ficha llevan `data-ir="n"`, la posición de su foto. Con `data-pasos` en la galería, las flechas del teclado y el mando pasan de ficha en ficha y solo cambian de diapositiva en la primera y en la última.
+
+```html
+<div class="pasador">
+  <div class="pasador-tabs">
+    <div class="pasador-tab" data-ir="1"><img src="img/iconos/tec-ia.webp" alt=""><span>Inteligencia artificial</span></div>
+    …
+  </div>
+  <div class="pasador-cuerpo">
+    <div class="galeria" data-pasos>
+      <figure class="foto" data-pie="Una conversación con ChatGPT en un móvil.">…</figure>
+      …
+    </div>
+    <div class="pasador-fichas">
+      <article class="pasador-ficha" data-ir="1">
+        <h3><img src="img/iconos/tec-ia.webp" alt="">Inteligencia artificial</h3>
+        <p class="pasador-que">Qué es, en una o dos frases cortas.</p>
+        <div class="pasador-uso conoces"><span>Lo conoces por</span><p>Algo que el alumno ya usa.</p></div>
+        <div class="pasador-uso"><span>En el trabajo</span><ul><li><b>Un caso</b> de empresa.</li><li><b>Otro</b> de cuidados.</li></ul></div>
+      </article>
+      …
+    </div>
+  </div>
+</div>
+```
+
+Cada ficha tiene que caber sin desbordar: unas 45 palabras entre las tres partes.
+
 ## Ver las presentaciones en local
 
 Las miniaturas del carril lateral toman los estilos de `assets/iasp.css`; abriendo el HTML directamente desde disco (`file://`) el navegador no se los pasa y las miniaturas salen sin estilo. En GitHub Pages funciona sin más. Para verlo igual en local, sirve la carpeta con un servidor sencillo:

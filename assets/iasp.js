@@ -794,6 +794,28 @@
     ant.addEventListener('click', (e) => { e.stopPropagation(); muestra(i - 1); });
     sig.addEventListener('click', (e) => { e.stopPropagation(); muestra(i + 1); });
     saltos.forEach((s) => s.addEventListener('click', (e) => { e.stopPropagation(); muestra(Number(s.dataset.ir) - 1); }));
+    // data-pasos: las flechas del teclado recorren las fotos antes de cambiar de diapositiva (pasador de fichas).
+    // En la primera y en la última foto la tecla sigue su camino y el motor cambia de diapositiva.
+    if (g.hasAttribute('data-pasos') && sec) {
+      window.addEventListener('keydown', (e) => {
+        if (!sec.hasAttribute('data-deck-active') || e.ctrlKey || e.metaKey || e.altKey) return;
+        if (document.querySelector('.visor, dialog[open]')) return;
+        const t = e.composedPath ? e.composedPath()[0] : e.target;
+        if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT|BUTTON|A)$/.test(t.tagName))) return;
+        const k = e.key;
+        const enDiapo = !t || t === document.body || t === document.documentElement || sec.contains(t);
+        let d = 0;
+        if (k === 'ArrowRight' || k === 'PageDown' || k === ' ' || k === 'Spacebar') d = 1;
+        else if (k === 'ArrowLeft' || k === 'PageUp') d = -1;
+        else if (k === 'ArrowDown' && enDiapo) d = 1;      // en el carril, ↑ y ↓ siguen moviendo las miniaturas
+        else if (k === 'ArrowUp' && enDiapo) d = -1;
+        if (!d || i + d < 0 || i + d >= figs.length) return;
+        e.preventDefault(); e.stopImmediatePropagation();
+        muestra(i + d);
+      }, true);
+      // tras pulsar una flecha de la galería el foco vuelve a la página, para que el teclado siga pasando fichas
+      [ant, sig].forEach((b) => b.addEventListener('click', () => b.blur()));
+    }
     muestra(0);
   }
 
