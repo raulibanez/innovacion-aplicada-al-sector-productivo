@@ -11,7 +11,8 @@
   /* Ficha web de la práctica «Mira un objeto» (UT2). Misma paleta que las diapositivas.
      Es una aplicación a pantalla completa, sin scroll: barra de pasos arriba, un paso en el centro y
      Anterior / lo que falta / Siguiente abajo. Seis pasos, los mismos que la diapositiva de la práctica.
-     Todo se guarda en el navegador (localStorage); «Generar PDF» maqueta tres páginas A4 apaisadas y abre imprimir. */
+     Todo se guarda en el navegador (localStorage); «Generar PDF» maqueta las páginas A4 apaisadas (seis con tres innovaciones) y abre imprimir.
+     Pide lo mismo que la ficha en Word de ../plantillas/, que es la otra forma de entregar la práctica. */
   * { box-sizing: border-box; }
   html, body { height: 100%; }
   body { background: var(--bg); color: var(--navy); font-size: 17px; line-height: 1.4; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; height: 100dvh; overflow: hidden; }
@@ -27,8 +28,8 @@
   .pasos button .n { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; background: var(--line); color: var(--navy); flex: none; }
   .pasos button:hover { background: var(--bg); }
   .pasos button.hecho .n { background: var(--teal); }
-  .pasos button.activo { border-color: var(--coral); color: var(--navy); background: var(--bg); }
-  .pasos button.activo .n { background: var(--coral); color: var(--white); }
+  .pasos button.activo { border-color: var(--c, var(--coral)); color: var(--navy); background: var(--bg); }
+  .pasos button.activo .n { background: var(--c, var(--coral)); color: var(--navy); }
   .barra .guardado { font-size: 13px; color: var(--muted); white-space: nowrap; }
   /* zona central */
   main { overflow: auto; padding: 18px 24px 14px; }
@@ -58,6 +59,21 @@
   .f-tres { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 8px; }
   .f-tres div { background: var(--white); border-radius: 14px; box-shadow: 0 2px 0 var(--line); padding: 12px 16px; font-size: 15px; color: var(--muted); }
   .f-tres b { display: block; color: var(--navy); font-size: 17px; }
+  /* filas de campos, listas numeradas y líneas con rótulo a la izquierda */
+  .f-fila { display: flex; gap: 12px; align-items: flex-end; }
+  .f-fila > * { flex: 1; min-width: 0; }
+  .f-fila > .corto { flex: 0 0 150px; }
+  .f-nums { display: flex; flex-direction: column; gap: 6px; }
+  .f-nums label { display: grid; grid-template-columns: 30px 1fr; gap: 8px; align-items: center; margin: 0; }
+  .f-nums .nm { width: 30px; height: 30px; border-radius: 50%; background: var(--navy); color: var(--white); display: grid; place-items: center; font-weight: 800; font-size: 15px; }
+  .f-lineas { display: flex; flex-direction: column; gap: 6px; }
+  .f-lineas label { display: grid; grid-template-columns: 218px 1fr; gap: 10px; align-items: center; margin: 0; font-size: 15px; font-weight: 700; line-height: 1.15; }
+  .f-nums input[type=text], .f-lineas input[type=text] { padding: 6px 12px; font-size: 16px; }
+  .f-opcional { flex: none; max-width: 400px; margin: 0; background: var(--white); border-radius: 14px; box-shadow: 0 2px 0 var(--line); padding: 8px 16px; font-size: 14.5px; color: var(--muted); }
+  .f-opcional b { color: var(--navy); }
+  .f-opcional a { color: var(--navy); font-weight: 800; text-decoration: underline; text-decoration-color: var(--coral); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  .f-col-previa { display: flex; flex-direction: column; gap: 10px; min-height: 0; }
+  .f-col-previa .f-previa { flex: 1; }
   /* paso 1: galería de objetos */
   .f-galeria { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); grid-template-rows: repeat(4, minmax(0, 1fr)); gap: 8px; min-height: 0; }
   .f-previa { background: var(--white); border-radius: 18px; box-shadow: 0 2px 0 var(--line); padding: 14px 18px; display: flex; flex-direction: column; gap: 8px; min-height: 0; }
@@ -92,13 +108,18 @@
   .f-foto-botones { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; align-items: center; }
   .f-aviso { color: var(--coral); font-weight: 700; font-size: 14px; margin: 4px 0 0; min-height: 1.2em; }
   .f-ref-ok { color: #1E8F8B; font-weight: 700; font-size: 15px; }
-  /* innovaciones */
-  .f-innov { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
-  .f-innov li { display: grid; grid-template-columns: 34px 1fr auto; gap: 6px 10px; align-items: center; background: var(--white); border-radius: 14px; padding: 8px 10px; box-shadow: 0 2px 0 var(--line); }
-  .f-innov .nm { width: 32px; height: 32px; border-radius: 50%; background: var(--coral); color: var(--white); display: grid; place-items: center; font-weight: 800; }
-  .f-innov input[type=text] { padding: 6px 12px; font-size: 16px; }
-  .f-innov .quita { font: inherit; font-size: 22px; background: none; border: 0; color: var(--muted); cursor: pointer; }
-  .f-innov .ef { grid-column: 2 / 4; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; font-size: 13px; color: var(--muted); font-weight: 700; }
+  /* innovaciones: una pestaña para el modelo y otra por cada número de la foto */
+  .f-panel { display: flex; flex-direction: column; gap: 10px; }
+  .f-panel[hidden] { display: none; }
+  .f-inn-cab { display: grid; grid-template-columns: 34px 1fr auto; gap: 10px; align-items: center; }
+  .f-inn-cab .nm { width: 34px; height: 34px; border-radius: 50%; background: var(--coral); color: var(--white); display: grid; place-items: center; font-weight: 800; }
+  .f-inn-cab input[type=text] { padding: 6px 12px; font-weight: 700; }
+  .f-inn-cab .quita { font: inherit; font-size: 13px; font-weight: 700; background: none; border: 0; color: var(--muted); cursor: pointer; text-decoration: underline; }
+  .f-panel .ef { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; font-size: 13px; color: var(--muted); font-weight: 700; }
+  .f-resp { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; }
+  .f-resp label { display: flex; flex-direction: column; gap: 3px; font-size: 14.5px; font-weight: 700; margin: 0; line-height: 1.2; }
+  #innov-pista .f-seis { grid-template-columns: repeat(3, 1fr); }
+  #innov-pista .f-seis div { font-size: 13.5px; line-height: 1.15; padding: 5px 8px; gap: 8px; }
   .chip { font: inherit; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; padding: 4px 11px; border-radius: 999px; border: 2px solid var(--line); background: var(--white); color: var(--navy); cursor: pointer; }
   .chip.sel[data-v="Eficiencia"] { background: var(--coral); border-color: var(--coral); color: var(--white); }
   .chip.sel[data-v="Calidad"] { background: var(--yellow); border-color: var(--yellow); }
@@ -123,14 +144,33 @@
   .op { font: inherit; font-size: 14px; font-weight: 700; padding: 5px 12px; border-radius: 999px; border: 2px solid var(--line); background: var(--white); color: var(--navy); cursor: pointer; }
   .op.sel { background: var(--navy); border-color: var(--navy); color: var(--white); }
   .op.sel::before { content: '✓ '; }
-  #p-empresa textarea { height: 58px; }
-  .f-leyenda { font-size: 14px; color: var(--muted); font-weight: 500; margin: 0; }
+  .f-leyenda { font-size: 13.5px; color: var(--muted); font-weight: 500; margin: 0; line-height: 1.3; }
   .f-leyenda b { color: var(--navy); }
   #tec-desc { font-size: 15px; margin: 0; min-height: 1.4em; color: var(--navy); }
+  /* paso 5: el problema que se arregla y las dos explicaciones */
+  .f-ops.prob { gap: 5px; }
+  .f-ops.prob .op { max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: left; font-size: 13.5px; padding: 4px 12px; }
+  #p-futuro { --alto-foto: max(200px, calc(100dvh - 384px)); }
+  .f-ops .nada { font-size: 15px; color: var(--muted); font-style: italic; margin: 0; }
+  #p-futuro .f-lineas label { grid-template-columns: 200px 1fr; }
+  /* paso 6: casillas y rúbrica */
+  .f-lista .casilla { font-weight: 600; }
+  .f-lista .caja { width: 1.2em; font-weight: 800; color: var(--muted); }
+  .f-lista .marcada .caja { color: #1E8F8B; }
+  .f-enlaces { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+  .f-rubrica { width: 100%; border-collapse: separate; border-spacing: 0; font-size: .82em; line-height: 1.3; }
+  .f-rubrica th, .f-rubrica td { padding: 9px 12px; text-align: left; vertical-align: top; border-bottom: 2px solid var(--line); }
+  .f-rubrica thead th { background: var(--navy); color: var(--white); font-weight: 800; }
+  .f-rubrica thead th:first-child { border-radius: 12px 0 0 0; } .f-rubrica thead th:last-child { border-radius: 0 12px 0 0; }
+  .f-rubrica thead th.top { background: var(--yellow); color: var(--navy); }
+  .f-rubrica tbody th { font-weight: 800; color: var(--navy); width: 21%; }
+  .f-rubrica td { color: var(--muted); }
+  .f-rubrica td.top { background: rgba(252,201,8,.16); color: var(--navy); font-weight: 600; }
+  dialog.ventana.ancha { width: min(1180px, 95vw); }
   /* dibujo */
   .f-modo { display: flex; gap: 8px; }
   .f-modo button, .f-herr button.h { font: inherit; font-size: 14px; font-weight: 700; padding: 6px 12px; border-radius: 10px; border: 2px solid var(--line); background: var(--white); color: var(--navy); cursor: pointer; }
-  .f-modo button.sel { background: var(--navy); border-color: var(--navy); color: var(--white); }
+  .f-modo button.sel { background: var(--yellow); border-color: var(--yellow); color: var(--navy); }
   .f-lienzo { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; }
   .f-lienzo canvas { display: block; max-width: 100%; max-height: calc(var(--alto-foto) - 6px); width: auto; height: auto; touch-action: none; cursor: crosshair; background: var(--white); border-radius: 14px; box-shadow: 0 2px 0 var(--line); }
   .f-herr { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 8px; }
@@ -145,7 +185,6 @@
   .f-tecs button { font: inherit; font-size: 13px; font-weight: 700; line-height: 1.15; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 4px; border-radius: 12px; border: 2px solid var(--line); background: var(--white); color: var(--navy); cursor: pointer; text-align: center; }
   .f-tecs button img { width: 38px; height: 38px; }
   .f-tecs button.sel { border-color: var(--coral); background: #FFECEC; }
-  .f-falla { background: var(--white); border-left: 6px solid var(--navy); border-radius: 10px; padding: 8px 14px; font-size: 16px; }
   /* referencias y PDF */
   .f-refs { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
   .f-refs li { background: var(--white); border-radius: 14px; box-shadow: 0 2px 0 var(--line); padding: 10px 44px 10px calc(16px + 2em); text-indent: -2em; position: relative; overflow-wrap: anywhere; font-size: 16px; }
@@ -163,7 +202,9 @@
   .f-borra-todo.seguro { color: var(--coral); font-weight: 800; }
   /* pie */
   .pie { display: grid; grid-template-columns: auto 1fr auto; gap: 20px; align-items: center; padding: 10px 24px calc(10px + env(safe-area-inset-bottom, 0px)); background: var(--white); border-top: 2px solid var(--line); }
-  .pie #falta { text-align: center; font-weight: 700; color: var(--coral); font-size: 16px; margin: 0; }
+  .pie #falta { text-align: center; font-weight: 700; color: var(--coral); font-size: 16px; margin: 0; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .f-lista button > span:last-child { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .f-lista .casilla > span:last-child { white-space: normal; }
   .pie #falta.ok { color: #1E8F8B; }
   /* ventanas */
   dialog.ventana .ventana-cuerpo { font-size: clamp(16px, 1.2vw, 20px); }
@@ -171,9 +212,82 @@
   .ej { display: grid; grid-template-columns: 300px 1fr; gap: 24px; align-items: center; }
   .ej .f-img-wrap img { max-height: 46vh; }
   .ej p { margin: 0 0 10px; }
+  .ej.tres { grid-template-columns: 250px 1fr 1fr; align-items: start; }
   .ej .marca { width: 30px; height: 30px; font-size: 14px; border-width: 2px; }
   /* pantallas bajas (portátil de 768 px): tecnologías en seis columnas */
-  @media (max-height: 820px) { .f-tecs { grid-template-columns: repeat(6, 1fr); } .f-tecs button { font-size: 11.5px; } .f-tecs button img { width: 32px; height: 32px; } main { padding-top: 12px; } #p-empresa textarea { height: 50px; } #p-empresa .f-col { gap: 9px; } }
+  @media (max-height: 820px) { .f-tecs { grid-template-columns: repeat(6, 1fr); } .f-tecs button { font-size: 11.5px; } .f-tecs button img { width: 32px; height: 32px; } main { padding-top: 12px; } }
+  /* ---------- rediseño: cada paso con su color, banda de paso y tablas pregunta | respuesta (como la ficha en PDF) ---------- */
+  [data-ir="equipo"], #p-equipo { --c: var(--coral); } [data-ir="antes"], #p-antes { --c: var(--orange); } [data-ir="ahora"], #p-ahora { --c: var(--yellow); }
+  [data-ir="empresa"], #p-empresa { --c: var(--teal); } [data-ir="futuro"], #p-futuro { --c: var(--pink); } [data-ir="refs"], #p-refs { --c: var(--yellow); }
+  .f-banda { display: flex; align-items: center; gap: 14px; background: var(--navy); color: var(--white); border-radius: 16px; padding: 9px 12px; flex: none; }
+  .f-banda-n { width: 42px; height: 42px; border-radius: 50%; background: var(--c); color: var(--navy); display: grid; place-items: center; font-weight: 800; font-size: 21px; flex: none; }
+  .f-banda-t { flex: 1; min-width: 0; }
+  .f-banda h2 { font-size: 23px; font-weight: 800; line-height: 1.1; margin: 0; color: var(--white); }
+  .f-banda h2 .obj-t { color: var(--c); }
+  .f-banda p { margin: 3px 0 0; font-size: 15px; line-height: 1.25; color: #CDD5DE; }
+  .f-banda p b { color: var(--white); }
+  .f-banda .btn-ghost { border-color: var(--white); }
+  .f-banda .f-opcional { flex: none; max-width: 300px; background: none; box-shadow: none; padding: 0 4px; font-size: 13.5px; color: #CDD5DE; text-align: right; }
+  .f-banda .f-opcional b, .f-banda .f-opcional a { color: var(--white); }
+  ::placeholder { color: #A7AEB8; font-weight: 400; font-style: italic; opacity: 1; }
+  textarea { scrollbar-width: thin; }
+  .t-card { background: var(--white); border-radius: 16px; box-shadow: 0 2px 0 var(--line); overflow: hidden; display: flex; flex-direction: column; min-height: 0; flex: none; }
+  .t-card[hidden] { display: none; }
+  .t-card.crece { flex: 1 1 auto; }
+  .t-head { display: flex; align-items: center; gap: 10px; flex: none; min-height: 38px; padding: 6px 14px; font-weight: 800; font-size: 16px; line-height: 1.15; background: color-mix(in srgb, var(--k, var(--teal)) 26%, white); border-bottom: 1px solid var(--line); }
+  .t-head small { font-weight: 500; font-size: 13.5px; color: var(--muted); }
+  .t-head .letra { margin: 0; flex: none; }
+  .t-row { display: grid; grid-template-columns: var(--col, 200px) minmax(0, 1fr); border-top: 1px solid var(--line); min-height: 40px; flex: 1 1 40px; margin: 0; }
+  .t-head + .t-row, .t-row:first-child { border-top: 0; }
+  .t-row.fija { flex: none; }
+  .t-row.uno { grid-template-columns: minmax(0, 1fr); }
+  .t-row.cuatro { grid-template-columns: var(--col, 200px) minmax(0, 1fr) auto 86px; }
+  .t-q { background: #FBF1E6; border-right: 1px solid var(--line); padding: 6px 12px; display: flex; flex-direction: column; justify-content: center; gap: 2px; font-weight: 700; font-size: 14.5px; line-height: 1.2; color: var(--navy); }
+  .t-q small { font-weight: 500; font-size: 12.5px; line-height: 1.2; color: var(--muted); }
+  .t-q.num { align-items: center; padding: 6px 0; }
+  .t-q.num b { width: 28px; height: 28px; border-radius: 50%; background: var(--navy); color: var(--white); display: grid; place-items: center; font-size: 14px; }
+  .t-row.cuatro .t-q + * + .t-q { border-left: 1px solid var(--line); }
+  .t-row > input[type=text], .t-row > textarea { border: 0; border-radius: 0; background: transparent; width: 100%; height: 100%; min-height: 38px; padding: 9px 14px; font-size: 16px; line-height: 1.3; resize: none; }
+  .t-row > input[type=text]:focus, .t-row > textarea:focus { outline: none; background: #F1FBFA; box-shadow: inset 0 0 0 3px var(--teal); }
+  .t-cuerpo { padding: 8px 10px; display: flex; flex-direction: column; gap: 6px; }
+  .t-card .f-ops { padding: 8px 12px; border-bottom: 1px solid var(--line); flex: none; }
+  .t-card .f-ops .op { font-size: 13px; padding: 4px 10px; }
+  /* pestañas del paso 3, pegadas a su tabla */
+  .f-pest { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+  .f-tabs { display: flex; align-items: flex-end; gap: 4px; padding: 0 0 0 10px; flex: none; min-height: 42px; }
+  .f-tabs button { font: inherit; font-size: 14px; font-weight: 800; display: flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; border: 0; border-radius: 12px 12px 0 0; background: #F0E2D2; color: var(--muted); cursor: pointer; }
+  .f-tabs button:hover { background: #F7EBDD; }
+  .f-tabs button .nm { width: 24px; height: 24px; border-radius: 50%; background: var(--coral); color: var(--white); display: grid; place-items: center; font-size: 13px; }
+  .f-tabs button .ok { color: #1E8F8B; font-size: 14px; }
+  .f-tabs button.sel { height: 42px; background: var(--white); color: var(--navy); box-shadow: inset 0 4px 0 var(--coral); }
+  .f-tabs .pista { align-self: center; margin-left: 8px; font-size: 13.5px; font-weight: 600; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+  .f-pest .t-card { border-top-left-radius: 0; }
+  .t-head.inn { --k: var(--coral); gap: 10px; padding: 7px 12px; }
+  .t-head.inn .nm { width: 30px; height: 30px; border-radius: 50%; background: var(--coral); color: var(--white); display: grid; place-items: center; font-size: 15px; flex: none; }
+  .t-head.inn input[type=text] { flex: 1; min-width: 0; padding: 5px 12px; font-size: 17px; font-weight: 800; border: 2px solid transparent; border-radius: 10px; background: rgba(255,255,255,.75); }
+  .t-head.inn .quita { font: inherit; font-size: 13px; font-weight: 700; background: none; border: 0; color: var(--navy); cursor: pointer; text-decoration: underline; flex: none; }
+  .t-ef { padding: 6px 12px; display: flex; flex-direction: column; justify-content: center; gap: 4px; min-width: 0; }
+  .t-ef .ef { display: flex; gap: 6px; flex-wrap: wrap; }
+  .t-pista { border-top: 1px solid var(--line); padding: 10px 14px 12px; font-size: 14.5px; flex: none; }
+  .t-pista p { margin: 0 0 8px; font-weight: 700; }
+  .t-pista p:last-child { margin: 0; }
+  /* paso 5: el problema se elige como en una lista de opciones */
+  .t-radios { display: flex; flex-direction: column; }
+  .t-radios .op { position: relative; font-size: 14.5px; font-weight: 600; text-align: left; border: 0; border-top: 1px solid var(--line); border-radius: 0; background: var(--white); color: var(--navy); padding: 6px 14px 6px 42px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .t-radios .op:first-child { border-top: 0; }
+  .t-radios .op::before { content: ''; position: absolute; left: 14px; top: 50%; width: 16px; height: 16px; margin-top: -10px; border-radius: 50%; border: 2px solid var(--navy); background: var(--white); }
+  .t-radios .op.sel { background: #FFF6D1; color: var(--navy); font-weight: 800; }
+  .t-radios .op.sel::before { content: ''; background: var(--navy); box-shadow: inset 0 0 0 3px var(--white); }
+  .t-radios .nada { padding: 8px 14px; }
+  #p-futuro .f-col { gap: 9px; }
+  #tec-desc { font-size: 13.5px; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .f-comp { flex: 1; min-height: 0; }
+  #p-empresa .f-dos { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+  .t-card .f-ops .op.sel::before { content: none; }
+  .f-comp .f-img-wrap img { max-height: max(130px, calc(100dvh - 500px)); }
+  @media (max-height: 820px) { .f-tecs button { padding: 3px; font-size: 11px; gap: 1px; } .f-tecs button img { width: 24px; height: 24px; } .t-row > input[type=text], .t-row > textarea { padding: 6px 12px; font-size: 15.5px; }
+    .t-head { min-height: 34px; padding: 4px 14px; font-size: 15.5px; } .t-radios .op { padding-top: 4px; padding-bottom: 4px; } #p-futuro .t-q small { display: none; } .f-col { gap: 9px; } .t-cuerpo { padding: 6px 8px; gap: 4px; } }
+  @media (max-width: 900px) { .t-row, .t-row.cuatro { grid-template-columns: 1fr; } .t-q { border-right: 0; } .f-banda { flex-wrap: wrap; } }
   /* pantallas estrechas: scroll normal */
   @media (max-width: 900px) {
     body { height: auto; overflow: auto; display: block; }
@@ -186,33 +300,45 @@
   @page { size: A4 landscape; margin: 0; } /* sin margen: el navegador no pone fecha ni dirección */
   @media print {
     html, body { height: auto; }
-    body { display: block; overflow: visible; background: #fff; font-size: 16pt; line-height: 1.4; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { display: block; overflow: visible; background: #fff; font-size: 15pt; line-height: 1.38; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     body > *:not(#impresion) { display: none !important; }
     #impresion { display: block; }
-    .i-pag { break-after: page; display: flex; flex-direction: column; gap: 5mm; padding: 12mm 13mm; }
+    .i-pag { break-after: page; display: flex; flex-direction: column; gap: 4mm; padding: 11mm 13mm; }
     .i-pag:last-child { break-after: auto; }
     .i-cab { display: flex; justify-content: space-between; gap: 8mm; border-bottom: 2px solid #EAD9C8; padding-bottom: 2mm; font-size: 11pt; color: #5B6470; }
     .i-cab b { color: #172433; }
-    .i-pag h2 { font-size: 24pt; margin: 0; color: #172433; display: flex; align-items: center; gap: 3mm; }
-    .i-pag h2 span { display: inline-grid; place-items: center; width: 10mm; height: 10mm; border-radius: 50%; background: #172433; color: #FCC908; font-size: 13pt; }
+    .i-pag h2 { font-size: 22pt; margin: 0; color: #172433; display: flex; align-items: center; gap: 3mm; }
+    .i-pag h2 span { display: inline-grid; place-items: center; width: 10mm; height: 10mm; border-radius: 50%; background: #172433; color: #FCC908; font-size: 13pt; flex: none; }
+    .i-equipo { background: #FFF7EE; border-radius: 3mm; padding: 3mm 5mm; display: flex; flex-direction: column; gap: 1mm; font-size: 13pt; }
     .i-dos { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 8mm; align-items: start; }
-    .i-img { position: relative; border: 1px solid #EAD9C8; border-radius: 3mm; overflow: hidden; display: inline-block; line-height: 0; justify-self: center; }
-    .i-img img { display: block; max-width: 100%; max-height: 105mm; min-height: 75mm; width: auto; height: auto; object-fit: contain; }
+    .i-dos > div { min-width: 0; }
+    .i-img { position: relative; border: 1px solid #EAD9C8; border-radius: 3mm; overflow: hidden; display: block; width: fit-content; max-width: 100%; margin: 0 auto; line-height: 0; }
+    .i-img img { display: block; max-width: 100%; max-height: 86mm; min-height: 62mm; width: auto; height: auto; object-fit: contain; }
     .i-img .marca { width: 8mm; height: 8mm; font-size: 11pt; border-width: 2px; box-shadow: none; }
-    .i-pag h3 { font-size: 16pt; margin: 5mm 0 1mm; color: #172433; }
+    .i-pie { font-size: 13pt; margin-top: 2mm !important; text-align: center; }
+    .i-pag h3 { font-size: 15pt; margin: 3.5mm 0 1mm; color: #172433; break-after: avoid; }
+    .i-pag h3:first-child { margin-top: 0; }
     .i-marcado { color: #5B6470; font-size: 13pt; }
-    .i-refs { font-size: 12.5pt; }
-    .i-pag p { margin: 0; }
+    .i-pag p { margin: 0; overflow-wrap: anywhere; }
+    .i-lista { margin: 0; padding-left: 1.4em; }
+    .i-lista li, .i-lineas li { overflow-wrap: anywhere; margin-bottom: 1mm; }
+    .i-lineas { list-style: none; padding: 0; margin: 0; }
     .i-innov { list-style: none; padding: 0; margin: 0; }
     .i-innov li { display: flex; align-items: center; gap: 3mm; padding: 1.5mm 0; border-bottom: 1px solid #EAD9C8; }
-    .i-innov .nm { display: inline-grid; place-items: center; width: 7mm; height: 7mm; border-radius: 50%; background: #FC6F6F; color: #fff; font-weight: 800; flex: none; }
-    .i-innov .ch { margin-left: auto; font-size: 10pt; font-weight: 800; text-transform: uppercase; padding: 1mm 3mm; border-radius: 99px; }
+    .i-innov .nm, .i-inn .nm { display: inline-grid; place-items: center; width: 7mm; height: 7mm; border-radius: 50%; background: #FC6F6F; color: #fff; font-weight: 800; flex: none; }
+    .ch { margin-left: auto; font-size: 9.5pt; font-weight: 800; text-transform: uppercase; padding: 1mm 3mm; border-radius: 99px; flex: none; }
+    .i-tres { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5mm; align-items: start; }
+    .i-inn { border: 1px solid #EAD9C8; border-radius: 3mm; padding: 3mm 4mm; font-size: 11pt; line-height: 1.3; break-inside: avoid; }
+    .i-inn-t { display: flex; align-items: center; gap: 2.5mm; font-size: 12.5pt; padding-bottom: 2mm; border-bottom: 1px solid #EAD9C8; }
+    .i-inn dl { margin: 2mm 0 0; }
+    .i-inn dt { font-weight: 800; color: #172433; margin-top: 2mm; }
+    .i-inn dd { margin: 0; overflow-wrap: anywhere; }
     .i-tec { display: flex; align-items: center; gap: 4mm; font-weight: 800; font-size: 15pt; }
-    .i-tec img { width: 16mm; height: 16mm; }
-    .i-refs { padding: 0; margin: 0; list-style: none; }
+    .i-tec img { width: 14mm; height: 14mm; }
+    .i-refs { padding: 0; margin: 0; list-style: none; font-size: 13.5pt; }
     .i-refs li { padding-left: 2em; text-indent: -2em; margin-bottom: 2mm; overflow-wrap: anywhere; }
-    .i-vacio { color: #FC6F6F; font-style: italic; }
-    .i-credito { font-size: 9.5pt; color: #5B6470; margin-top: 2mm !important; }
+    .i-vacio { color: #FC6F6F; font-style: italic; font-weight: 400; }
+    .i-credito { font-size: 9.5pt; color: #5B6470; margin-top: 2mm !important; text-align: center; }
   }
 </style>
 </head>
@@ -234,76 +360,124 @@
 <main>
   <!-- 1. Equipo -->
   <section class="f-paso" id="p-equipo">
-    <div class="f-cab">
-      <div><h2>¿Quiénes sois y qué objeto os ha tocado?</h2><p class="f-ayuda">Escribid vuestros nombres y <b>pulsad vuestro objeto</b>.</p></div>
+    <header class="f-banda">
+      <span class="f-banda-n">1</span>
+      <div class="f-banda-t"><h2>¿Quiénes sois y cuál es vuestro objeto?</h2><p>Escribid vuestro equipo y <b>pulsad vuestro objeto</b>.</p></div>
+      <p class="f-opcional"><b>Opcional:</b> en vez de esta web, podéis rellenar la ficha en <a href="../plantillas/mira-un-objeto.docx" download>Word</a> o en <a href="../plantillas/mira-un-objeto.pdf" target="_blank" rel="noopener">PDF</a>. Pide lo mismo.</p>
+    </header>
+    <div class="t-card" style="margin-top:12px">
+      <div class="t-row" style="grid-template-columns:auto 84px auto minmax(0,1fr)">
+        <label class="t-q" for="c-equipo">Equipo n.º</label><input type="text" id="c-equipo" inputmode="numeric" maxlength="2" data-k="equipo" placeholder="3" autocomplete="off" style="text-align:center;font-weight:800">
+        <label class="t-q" for="c-nombre" style="border-left:1px solid var(--line)">Nombre y apellidos de cada persona</label><input type="text" id="c-nombre" data-k="nombre" placeholder="Lucía Martín Gil, Hugo Sanz Rey y Aiken Pérez Ruiz" autocomplete="off">
+      </div>
     </div>
-    <label class="f-q" style="margin-top:12px;max-width:760px">Nombres del equipo<input type="text" data-k="nombre" placeholder="Lucía Martín, Hugo Sanz y Aiken Pérez" autocomplete="off"></label>
     <div class="f-dos">
       <div class="f-galeria" id="galeria"></div>
-      <div class="f-previa" id="previa"></div>
+      <div class="f-col-previa">
+        <div class="f-previa" id="previa"></div>
+        <div class="t-card">
+          <div class="t-head" style="--k:var(--coral)">¿Por qué es interesante ver cómo ha cambiado este objeto?</div>
+          <label class="t-row uno fija" style="min-height:66px"><textarea data-k="motivo" placeholder="Dos o tres líneas. Ej.: la usamos todos los días y la de nuestros padres era muy distinta."></textarea></label>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- 2. Antes -->
   <section class="f-paso" id="p-antes" hidden>
-    <div class="f-cab">
-      <div><h2>Antes: hace 15 o 20 años</h2><p class="f-ayuda" id="ayuda-antes"></p></div>
+    <header class="f-banda">
+      <span class="f-banda-n">2</span>
+      <div class="f-banda-t"><h2>Antes: hace 15 o 20 años</h2><p id="ayuda-antes"></p></div>
       <div class="f-cab-botones"><button type="button" class="btn btn-ghost btn-sm" data-ej="antes">Ver el ejemplo</button></div>
-    </div>
+    </header>
     <div class="f-dos">
       <div class="f-foto" data-foto="antes"></div>
       <div class="f-col">
-        <label class="f-q">¿Cómo era o cómo se hacía? ¿Qué tenía de malo?<small>Una o dos frases. Podéis preguntar en casa cómo era.</small><textarea data-k="antes.como" placeholder="Ejemplo: era de tela y solo tenía una cremallera. Se mojaba y se rompía pronto." style="height:140px"></textarea></label>
+        <div class="t-card crece">
+          <div class="t-head" style="--k:var(--orange)">Cómo era el objeto de la foto</div>
+          <div class="t-row cuatro fija">
+            <label class="t-q" for="c-amodelo">Marca y modelo</label><input type="text" id="c-amodelo" data-k="antes.modelo" placeholder="Ej.: Nokia 1110" autocomplete="off">
+            <label class="t-q" for="c-aanio">Año aprox.</label><input type="text" id="c-aanio" inputmode="numeric" maxlength="12" data-k="antes.anio" placeholder="2006" autocomplete="off">
+          </div>
+          <label class="t-row"><span class="t-q">¿Cómo era?<small>Materiales, tamaño, peso, botones o piezas. Podéis preguntar en casa.</small></span><textarea data-k="antes.como" placeholder="Ej.: era de tela y solo tenía una cremallera."></textarea></label>
+          <label class="t-row"><span class="t-q">¿Para qué servía y cómo se usaba?</span><textarea data-k="antes.uso" placeholder="Ej.: para llevar los libros a clase, todo junto en un solo hueco."></textarea></label>
+        </div>
+        <div class="t-card crece">
+          <div class="t-head" style="--k:var(--coral)">¿Qué tenía de malo? <small>Tres problemas</small></div>
+          <label class="t-row" style="--col:46px"><span class="t-q num"><b>1</b></span><textarea data-k="antes.problemas.0" placeholder="Ej.: si llovía, se mojaba todo."></textarea></label>
+          <label class="t-row" style="--col:46px"><span class="t-q num"><b>2</b></span><textarea data-k="antes.problemas.1"></textarea></label>
+          <label class="t-row" style="--col:46px"><span class="t-q num"><b>3</b></span><textarea data-k="antes.problemas.2"></textarea></label>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- 3. Ahora -->
   <section class="f-paso" id="p-ahora" hidden>
-    <div class="f-cab">
-      <div><h2>Ahora: las innovaciones</h2><p class="f-ayuda">Esta es la foto de <b class="obj">vuestro objeto</b> hoy. <b>Pulsad encima de cada innovación</b> para ponerle un número: 3 o más.</p></div>
-      <div class="f-cab-botones"><button type="button" class="btn btn-ghost btn-sm" data-abre="seis-dlg">Las seis preguntas</button><button type="button" class="btn btn-ghost btn-sm" data-ej="ahora">Ver el ejemplo</button></div>
-    </div>
+    <header class="f-banda">
+      <span class="f-banda-n">3</span>
+      <div class="f-banda-t"><h2>Ahora: las innovaciones</h2><p>Esta es la foto de <b class="obj">vuestro objeto</b> hoy. <b>Pulsad encima de cada innovación</b> (3 o más) y explicadla.</p></div>
+      <div class="f-cab-botones"><button type="button" class="btn btn-ghost btn-sm" data-abre="seis-dlg">Pistas para encontrarlas</button><button type="button" class="btn btn-ghost btn-sm" data-ej="ahora">Ver el ejemplo</button></div>
+    </header>
     <div class="f-dos">
       <div class="f-foto" data-foto="ahora"></div>
-      <div class="f-col">
-        <p class="f-q"><span><span class="letra l-a">a</span>Qué es cada innovación y qué mejora</span></p>
-        <p class="f-leyenda"><b>Eficiencia:</b> se hace más rápido o más barato. <b>Calidad:</b> funciona mejor o dura más. <b>Sostenibilidad:</b> contamina menos.</p>
-        <ol class="f-innov" id="innov"></ol>
+      <div class="f-pest">
+        <div class="f-tabs" id="innov-tabs"></div>
+        <div class="t-card crece" id="innov-modelo">
+          <div class="t-head" style="--k:var(--yellow)">El modelo de la foto</div>
+          <div class="t-row cuatro fija">
+            <label class="t-q" for="c-hmodelo">Marca y modelo<small>Si la foto no lo dice, buscad uno parecido de hoy.</small></label><input type="text" id="c-hmodelo" data-k="ahora.modelo" placeholder="Ej.: Samsung Galaxy S23" autocomplete="off">
+            <label class="t-q" for="c-hanio">Año</label><input type="text" id="c-hanio" inputmode="numeric" maxlength="12" data-k="ahora.anio" placeholder="2023" autocomplete="off">
+          </div>
+          <label class="t-row"><span class="t-q">¿Cómo es hoy?<small>Cómo es por fuera y qué hace.</small></span><textarea data-k="ahora.resumen" placeholder="Ej.: es de tela que no se moja, con muchos bolsillos. Sirve para llevar el portátil."></textarea></label>
+          <div class="t-pista" id="innov-pista"></div>
+        </div>
+        <div class="t-card crece" id="innov" hidden></div>
       </div>
     </div>
   </section>
 
   <!-- 4. La empresa -->
   <section class="f-paso" id="p-empresa" hidden>
-    <div class="f-cab">
-      <div><h2>Ahora: la empresa que lo hace</h2><p class="f-ayuda">Para pasar de lo de antes a lo de ahora, la empresa tuvo que cambiar. <b>No hace falta saberlo seguro:</b> pensad qué tuvo que pasar.</p></div>
+    <header class="f-banda">
+      <span class="f-banda-n">4</span>
+      <div class="f-banda-t"><h2>Ahora: la empresa que lo hace</h2><p>Para pasar de lo de antes a lo de ahora, la empresa tuvo que cambiar. <b>No hace falta saberlo seguro:</b> pensad qué tuvo que pasar.</p></div>
       <div class="f-cab-botones"><button type="button" class="btn btn-ghost btn-sm" data-ej="empresa">Ver el ejemplo</button></div>
-    </div>
+    </header>
     <div class="f-dos">
       <div class="f-col">
         <div class="f-comp" id="minis"></div>
         <div class="f-mis" id="mis-innov"></div>
       </div>
       <div class="f-col">
-        <div class="f-q"><span><span class="letra l-b">b</span>¿A quién le cambió el trabajo en la empresa?</span>
-          <div class="f-ops" data-grupo="areas"></div>
-          <textarea data-k="ahora.b" placeholder="¿Qué tuvieron que aprender o hacer distinto? Ejemplo: en la fábrica aprendieron a coser una tela nueva, hecha con botellas."></textarea></div>
-        <div class="f-q"><span><span class="letra l-c">c</span>¿Por qué cambió el objeto?</span>
+        <div class="t-card crece" style="flex-grow:2">
+          <div class="t-head" style="--k:var(--teal)"><span class="letra l-b">b</span>¿A quién le cambió el trabajo? <small>¿Qué hacen distinto?</small></div>
+          <label class="t-row"><span class="t-q">A quienes lo fabrican</span><textarea data-k="ahora.trabajo.fabrica" placeholder="Ej.: aprendieron a coser una tela nueva, hecha con botellas."></textarea></label>
+          <label class="t-row"><span class="t-q">A quienes lo venden o lo reparten</span><textarea data-k="ahora.trabajo.vende" placeholder="Ej.: ahora la venden también por internet."></textarea></label>
+          <label class="t-row"><span class="t-q">A quienes lo usan para trabajar o lo arreglan</span><textarea data-k="ahora.trabajo.usa"></textarea></label>
+        </div>
+        <div class="t-card crece">
+          <div class="t-head" style="--k:var(--yellow)"><span class="letra l-c">c</span>¿Por qué cambió el objeto? <small>Marcad y explicadlo</small></div>
           <div class="f-ops" data-grupo="motivos"></div>
-          <textarea data-k="ahora.c" placeholder="Explicadlo. Ejemplo: ahora mucha gente lleva portátil a clase y va en bici."></textarea></div>
-        <label class="f-q"><span><span class="letra l-x">+</span>¿Qué le sigue fallando?</span>
-          <textarea data-k="ahora.falla" placeholder="Algo que todavía molesta, se rompe o le falta. Ejemplo: si la pierdes, no hay forma de encontrarla."></textarea></label>
+          <label class="t-row uno"><textarea data-k="ahora.c" placeholder="Ej.: ahora mucha gente lleva portátil a clase y va en bici."></textarea></label>
+        </div>
+        <div class="t-card crece">
+          <div class="t-head" style="--k:var(--navy)"><span class="letra l-x">+</span>¿Qué le sigue fallando? <small>Dos problemas o más</small></div>
+          <label class="t-row" style="--col:46px"><span class="t-q num"><b>1</b></span><textarea data-k="ahora.fallos.0" placeholder="Ej.: si la pierdes, no hay forma de encontrarla."></textarea></label>
+          <label class="t-row" style="--col:46px"><span class="t-q num"><b>2</b></span><textarea data-k="ahora.fallos.1"></textarea></label>
+          <label class="t-row" style="--col:46px"><span class="t-q num"><b>3</b></span><textarea data-k="ahora.fallos.2" placeholder="Si veis otro. Este no es obligatorio."></textarea></label>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- 5. En 5 años -->
   <section class="f-paso" id="p-futuro" hidden>
-    <div class="f-cab">
-      <div><h2>Dentro de 5 años</h2><p class="f-ayuda">Dibujad cómo será <b class="obj">vuestro objeto</b> y elegid una tecnología que arregle lo que le falla.</p></div>
+    <header class="f-banda">
+      <span class="f-banda-n">5</span>
+      <div class="f-banda-t"><h2>Dentro de 5 años</h2><p>Dibujadlo con <b>flechas a lo nuevo</b> y arreglad uno de sus problemas con una tecnología.</p></div>
       <div class="f-cab-botones"><div class="f-modo"><button type="button" data-modo="dibujo" class="sel">Dibujar aquí</button><button type="button" data-modo="foto">Subir foto del dibujo</button></div><button type="button" class="btn btn-ghost btn-sm" data-ej="futuro">Ver el ejemplo</button></div>
-    </div>
+    </header>
     <div class="f-dos">
       <div style="display:flex;flex-direction:column;min-height:0">
         <div data-zona="dibujo">
@@ -322,31 +496,45 @@
           </div>
         </div>
         <div data-zona="foto" hidden><div class="f-foto" data-foto="futuro"></div></div>
+        <div class="t-card" style="margin-top:8px"><label class="t-row fija" style="--col:auto"><span class="t-q">Quién teclea en este paso</span><input type="text" data-k="futuro.redacta" placeholder="Nombre y apellidos. Que sea alguien distinto." autocomplete="off"></label></div>
       </div>
       <div class="f-col">
-        <div class="f-falla" id="falla-eco"></div>
-        <p class="f-q"><span><span class="letra l-d">d</span>¿Qué tecnología le pondríais para arreglarlo?</span></p>
-        <div class="f-tecs" id="tecs"></div>
-        <p id="tec-desc"></p>
-        <label class="f-q">¿Cómo sería el objeto con esa tecnología?<textarea data-k="futuro.cambio" placeholder="Ejemplo: llevaría un localizador para encontrarla con el móvil. La empresa tendría que hacer una app."></textarea></label>
+        <div class="t-card">
+          <div class="t-head" style="--k:var(--navy)">¿Qué problema de ahora vais a arreglar? <small>Pulsad uno</small></div>
+          <div class="t-radios" id="prob-ops"></div>
+        </div>
+        <div class="t-card">
+          <div class="t-head" style="--k:var(--pink)"><span class="letra l-d">d</span>¿Qué tecnología le pondríais para arreglarlo?</div>
+          <div class="t-cuerpo"><div class="f-tecs" id="tecs"></div><p id="tec-desc"></p></div>
+          <label class="t-row fija" style="--col:auto"><span class="t-q">¿Es otra? Escribidla</span><input type="text" data-k="futuro.tecOtra" placeholder="Ej.: placas solares, un material que se arregla solo…" autocomplete="off"></label>
+        </div>
+        <div class="t-card crece">
+          <label class="t-row"><span class="t-q">¿Cómo arregla ese problema?</span><textarea data-k="futuro.cambio" placeholder="Ej.: llevaría un localizador para encontrarla con el móvil."></textarea></label>
+          <label class="t-row"><span class="t-q">¿Qué más mejorará?<small>Para quien lo usa y para los demás.</small></span><textarea data-k="futuro.mejoras" placeholder="Ej.: menos robos y menos mochilas perdidas."></textarea></label>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- 6. Referencias y PDF -->
   <section class="f-paso" id="p-refs" hidden>
-    <div class="f-cab">
-      <div><h2>Referencias y PDF</h2><p class="f-ayuda">Una referencia por cada foto y por cada web de la que saquéis datos.</p></div>
-      <div class="f-cab-botones"><button type="button" class="btn btn-primary btn-sm" id="ref-nueva">+ Añadir una referencia</button></div>
-    </div>
+    <header class="f-banda">
+      <span class="f-banda-n">6</span>
+      <div class="f-banda-t"><h2>Referencias y PDF</h2><p><b>Tres referencias o más:</b> una por cada foto y otra por cada web de la que saquéis datos.</p></div>
+      <div class="f-cab-botones"><button type="button" class="btn btn-ghost btn-sm" data-abre="rubrica-dlg">Cómo se puntúa</button><button type="button" class="btn btn-primary btn-sm" id="ref-nueva">+ Añadir una referencia</button></div>
+    </header>
     <div class="f-dos">
       <div class="f-col"><ul class="f-refs" id="refs"></ul></div>
       <div class="f-col">
-        <div class="f-pdf">
-          <ul class="f-lista" id="lista"></ul>
-          <button type="button" class="btn btn-primary" id="pdf">Generar PDF</button>
-          <p style="margin:0;font-size:15px;color:var(--muted)">Se abre la ventana de imprimir. En <b style="color:var(--navy)">Destino</b> elegid <b style="color:var(--navy)">Guardar como PDF</b> y pulsad <b style="color:var(--navy)">Guardar</b>. Después subid el PDF a Classroom.</p>
-          <button type="button" class="f-borra-todo" id="borra-todo">Borrar toda la ficha</button>
+        <div class="t-card">
+          <div class="t-head" style="--k:var(--teal)">Antes de entregar <small>Pulsad una línea para ir a ese paso</small></div>
+          <div class="f-pdf" style="box-shadow:none;border-radius:0">
+            <ul class="f-lista" id="lista"></ul>
+            <ul class="f-lista" id="casillas"></ul>
+            <button type="button" class="btn btn-primary" id="pdf">Generar PDF</button>
+            <p style="margin:0;font-size:15px;color:var(--muted)">En <b style="color:var(--navy)">Destino</b> elegid <b style="color:var(--navy)">Guardar como PDF</b>. Se llamará <b style="color:var(--navy)" id="pdf-nombre">Equipo_Objeto.pdf</b>: subidlo a Classroom.</p>
+            <button type="button" class="f-borra-todo" id="borra-todo">Borrar toda la ficha</button>
+          </div>
         </div>
       </div>
     </div>
@@ -377,6 +565,20 @@
   <div class="f-seis" data-seis></div>
 </div></dialog>
 
+<dialog class="ventana ancha" id="rubrica-dlg" aria-labelledby="rubrica-tit"><div class="ventana-cuerpo">
+  <div class="ventana-cabecera"><div><p class="ventana-ante">La nota de la práctica, sobre 10</p><h3 id="rubrica-tit">Cómo se puntúa</h3></div>
+  <button type="button" class="btn btn-primary ventana-cerrar">Cerrar</button></div>
+  <table class="f-rubrica">
+    <thead><tr><th>Qué se mira</th><th class="top">Excelente · 2,5 puntos</th><th>Bien · 1,75 puntos</th><th>Mejorable · 1 punto</th></tr></thead>
+    <tbody>
+      <tr><th>1. Antes y ahora<br><span style="font-weight:500;color:var(--muted)">Pasos 2 y 3</span></th><td class="top">Las dos fotos se ven bien. El objeto antiguo está bien explicado. Hay 3 innovaciones o más, con las 6 preguntas completas.</td><td>Están las fotos y las 3 innovaciones, pero algunas respuestas son cortas o están a medias.</td><td>Falta alguna foto, o faltan innovaciones o respuestas.</td></tr>
+      <tr><th>2. El cambio y los problemas de ahora<br><span style="font-weight:500;color:var(--muted)">Paso 4</span></th><td class="top">Explica con ejemplos claros a quién le cambió el trabajo y por qué cambió el objeto. Los problemas de ahora son reales.</td><td>Contesta a todo, pero de forma general y con pocos ejemplos.</td><td>Respuestas muy cortas, o los problemas de ahora no son reales.</td></tr>
+      <tr><th>3. El objeto dentro de 5 años<br><span style="font-weight:500;color:var(--muted)">Paso 5</span></th><td class="top">El dibujo es vuestro y se entiende. La tecnología arregla de verdad uno de los problemas de ahora.</td><td>Hay dibujo y tecnología, pero no queda claro qué problema arregla.</td><td>El dibujo es muy simple, o no se explica qué tecnología mejora el objeto.</td></tr>
+      <tr><th>4. Equipo, referencias y PDF<br><span style="font-weight:500;color:var(--muted)">Pasos 1 y 6</span></th><td class="top">Todo el equipo participa y se turna. Referencias en APA 7 sin errores. Sin inteligencia artificial. PDF subido a Classroom.</td><td>El equipo participa y entrega el PDF, pero alguna referencia tiene errores.</td><td>No participa todo el equipo, faltan las referencias o no se entrega el PDF.</td></tr>
+    </tbody>
+  </table>
+</div></dialog>
+
 <div id="impresion"></div>
 
 <script src="../../assets/iasp.js"></script>
@@ -398,8 +600,17 @@
     ['tec-5g', '5G', 'conexión móvil muy rápida y sin cortes.'],
     ['tec-cuantica', 'Computación cuántica', 'ordenadores muchísimo más potentes; todavía en laboratorios.'],
     ['tec-ciber', 'Ciberseguridad', 'proteger los datos y el objeto de quien quiera entrar sin permiso.']];
-  const AREAS = ['A quienes lo diseñan', 'A la fábrica', 'A quienes lo venden', 'A quienes atienden al cliente'];
+  const TRABAJO = [['fabrica', 'A quienes lo fabrican'], ['vende', 'A quienes lo venden o lo reparten'], ['usa', 'A quienes lo usan para trabajar o lo arreglan']];
+  // Las seis preguntas de cada innovación (las mismas de la ficha en Word), con su ejemplo de la mochila
+  const PREGUNTAS = [['¿Qué ha cambiado?', 'Qué pieza, material o función es nueva. Ej.: ahora tiene un hueco con relleno.'],
+    ['¿Para qué sirve?', 'Ej.: para llevar el portátil sin que se golpee.'],
+    ['¿Qué mejora o qué problema arregla?', 'Ej.: antes el portátil iba suelto y se rayaba.'],
+    ['¿Qué tecnología o material lo hace posible?', 'Ej.: una espuma que frena los golpes.'],
+    ['¿A quién beneficia?', 'Ej.: a estudiantes y a quien trabaja con portátil.'],
+    ['¿Qué cambia en el día a día?', 'Ej.: ya no hace falta una funda aparte.']];
+  const CASILLAS = [['turnos', 'Todo el equipo ha participado y nos hemos turnado para escribir.'], ['ia', 'No hemos usado inteligencia artificial para escribir los textos.']];
   const MOTIVOS = ['Los clientes pedían otra cosa', 'Otra marca ya lo hacía', 'Salió una norma nueva', 'Apareció una tecnología nueva'];
+  const MOTIVO_CORTO = { 'Los clientes pedían otra cosa': 'Lo pedían los clientes', 'Salió una norma nueva': 'Una norma nueva', 'Apareció una tecnología nueva': 'Una tecnología nueva' };
   const SEIS = [['lupa-material', '¿De qué está hecho?'], ['lupa-funcion', '¿Qué hace que antes no hacía?'], ['fuente-fabrica', '¿Cómo se fabrica?'],
     ['lupa-compra', '¿Cómo se compra o se paga?'], ['lupa-uso', '¿Cómo se usa?'], ['lupa-tirar', '¿Qué pasa cuando se tira?']];
   const EFECTOS = ['Eficiencia', 'Calidad', 'Sostenibilidad'];
@@ -408,16 +619,31 @@
   const objeto = () => OBJETOS.find((o) => o.id === st.obj);
   const MARCAS_EJ = '<span class="marca" style="left:42.9%;top:16%">1</span><span class="marca" style="left:83.3%;top:43.2%">2</span><span class="marca" style="left:34.9%;top:73.3%">3</span><span class="marca" style="left:30.2%;top:45.1%">4</span>';
   const EJEMPLOS = {
-    antes: `<div class="f-img-wrap"><img src="../img/mochila-antigua.webp" alt="Mochila antigua de tela"></div><div><p><b>¿Cómo era? ¿Qué tenía de malo?</b></p><p>Era de tela y solo tenía una cremallera. Los tirantes eran finos y hacían daño en los hombros. Si llovía, se mojaba todo.</p></div>`,
-    ahora: `<div class="f-img-wrap"><img src="../img/mochila.webp" alt="Mochila actual con cuatro innovaciones numeradas">${MARCAS_EJ}</div><div><p><b>1</b> Hueco con relleno para el portátil · <b>Calidad</b></p><p><b>2</b> Enchufe USB para cargar el móvil · <b>Calidad</b></p><p><b>3</b> Tira que brilla con las luces de los coches · <b>Calidad</b></p><p><b>4</b> Tela hecha con botellas de plástico recicladas · <b>Sostenibilidad</b></p></div>`,
-    empresa: `<div class="f-img-wrap"><img src="../img/mochila.webp" alt="Mochila actual">${MARCAS_EJ}</div><div><p><b>b · ¿A quién le cambió el trabajo?</b><br>✓ A la fábrica. Aprendieron a coser una tela nueva, hecha con botellas.</p><p><b>c · ¿Por qué cambió el objeto?</b><br>✓ Los clientes pedían otra cosa. Ahora mucha gente lleva portátil a clase y va en bici.</p><p><b>¿Qué le sigue fallando?</b><br>Si la pierdes o te la roban, no hay forma de encontrarla.</p></div>`,
-    futuro: `<div class="f-img-wrap"><img src="../img/mochila-boceto.webp" alt="Dibujo de la mochila del futuro"></div><div><p><b>d · Tecnología:</b> Internet de las cosas (objetos conectados a internet).</p><p><b>¿Cómo sería?</b><br>Llevaría un localizador para encontrarla con el móvil. La empresa tendría que hacer una app.</p></div>`,
+    antes: `<div class="f-img-wrap"><img src="../img/mochila-antigua.webp" alt="Mochila antigua de tela"></div><div><p><b>Marca, modelo y año:</b> mochila escolar de lona, sin marca, hacia 2006.</p><p><b>¿Cómo era?</b><br>Era de tela y solo tenía una cremallera. Los tirantes eran finos.</p><p><b>¿Para qué servía y cómo se usaba?</b><br>Para llevar los libros a clase. Todo iba junto en un solo hueco.</p><p><b>Tres problemas</b><br>1. Si llovía, se mojaba todo.<br>2. Los tirantes hacían daño en los hombros.<br>3. Se rompía pronto.</p></div>`,
+    ahora: `<div class="f-img-wrap"><img src="../img/mochila.webp" alt="Mochila actual con cuatro innovaciones numeradas">${MARCAS_EJ}</div><div><p><b>El modelo:</b> mochila de ciudad antirrobo, de 2024. Es de tela que no se moja y tiene muchos bolsillos. Sirve para llevar el portátil y cargar el móvil.</p><p><b>1</b> Hueco con relleno para el portátil · <b>Calidad</b><br><b>2</b> Enchufe USB para cargar el móvil · <b>Calidad</b><br><b>3</b> Tira que brilla con las luces de los coches · <b>Calidad</b><br><b>4</b> Tela hecha con botellas de plástico recicladas · <b>Sostenibilidad</b></p></div><div><p><b>Las 6 preguntas de la innovación 1</b><br>1. ¿Qué ha cambiado? Ahora tiene un hueco con relleno.<br>2. ¿Para qué sirve? Para llevar el portátil sin que se golpee.<br>3. ¿Qué problema arregla? Antes el portátil iba suelto y se rayaba.<br>4. ¿Qué tecnología o material? Una espuma que frena los golpes.<br>5. ¿A quién beneficia? A estudiantes y a quien trabaja con portátil.<br>6. ¿Qué cambia en el día a día? Ya no hace falta una funda aparte.</p></div>`,
+    empresa: `<div class="f-img-wrap"><img src="../img/mochila.webp" alt="Mochila actual">${MARCAS_EJ}</div><div><p><b>b · ¿A quién le cambió el trabajo?</b><br><b>A quienes la fabrican:</b> aprendieron a coser una tela nueva, hecha con botellas.<br><b>A quienes la venden:</b> ahora la venden también por internet.<br><b>A quienes la usan para trabajar:</b> quien reparte en bici lleva el portátil sin miedo.</p><p><b>c · ¿Por qué cambió el objeto?</b><br>✓ Los clientes pedían otra cosa. Ahora mucha gente lleva portátil a clase y va en bici.</p><p><b>¿Qué le sigue fallando?</b><br>1. Si la pierdes o te la roban, no hay forma de encontrarla.<br>2. El enchufe USB no carga si no llevas una batería.</p></div>`,
+    futuro: `<div class="f-img-wrap"><img src="../img/mochila-boceto.webp" alt="Dibujo de la mochila del futuro"></div><div><p><b>Teclea:</b> Aiken Pérez Ruiz</p><p><b>Problema que arreglamos:</b> si la pierdes o te la roban, no hay forma de encontrarla.</p><p><b>d · Tecnología:</b> Internet de las cosas (objetos conectados a internet).</p><p><b>¿Cómo lo arregla?</b><br>Llevaría un localizador para encontrarla con el móvil. La empresa tendría que hacer una app.</p><p><b>¿Qué más mejorará?</b><br>Habrá menos robos y menos mochilas perdidas en el autobús.</p></div>`,
   };
-  const vacio = () => ({ nombre: '', objeto: '', marca: '', obj: '', antes: { foto: '', como: '' }, ahora: { foto: '', marcas: [], b: '', c: '', falla: '', areas: [], motivos: [] },
-    futuro: { modo: 'dibujo', trazos: [], foto: '', tec: '', cambio: '' }, refs: [], paso: 'equipo' });
+  const vacio = () => ({ equipo: '', nombre: '', objeto: '', marca: '', obj: '', motivo: '',
+    antes: { foto: '', modelo: '', anio: '', como: '', uso: '', problemas: ['', '', ''] },
+    ahora: { foto: '', modelo: '', anio: '', resumen: '', marcas: [], trabajo: { fabrica: '', vende: '', usa: '' }, c: '', motivos: [], fallos: ['', '', ''] },
+    futuro: { modo: 'dibujo', trazos: [], foto: '', redacta: '', problema: '', tec: '', tecOtra: '', cambio: '', mejoras: '' },
+    refs: [], checks: { turnos: false, ia: false }, paso: 'equipo', innov: 'modelo' });
+  // Lo guardado se mezcla sobre la ficha vacía, para que una ficha empezada con la versión anterior siga valiendo
+  const esObj = (x) => x && typeof x === 'object' && !Array.isArray(x);
+  const mezcla = (base, g) => { for (const k in g) { if (esObj(g[k]) && esObj(base[k])) mezcla(base[k], g[k]); else base[k] = g[k]; } return base; };
   let st = vacio();
-  try { const g = JSON.parse(localStorage.getItem(CLAVE) || 'null'); if (g) st = Object.assign(vacio(), g); } catch (e) {}
-  st.ahora.areas = st.ahora.areas || []; st.ahora.motivos = st.ahora.motivos || [];
+  try { const g = JSON.parse(localStorage.getItem(CLAVE) || 'null'); if (esObj(g)) st = mezcla(vacio(), g); } catch (e) { st = vacio(); }
+  (function ponAlDia() {
+    const a = st.ahora, tres = (l) => { l = Array.isArray(l) ? l.map((x) => String(x || '')) : []; while (l.length < 3) l.push(''); return l.slice(0, 3); };
+    st.antes.problemas = tres(st.antes.problemas); a.fallos = tres(a.fallos);
+    if (!Array.isArray(a.motivos)) a.motivos = [];
+    if (!Array.isArray(a.marcas)) a.marcas = [];
+    if (a.falla) { if (!a.fallos[0]) a.fallos[0] = a.falla; }                       // antes era un solo hueco
+    if (a.b) { const k = (a.areas || []).some((x) => /venden|cliente/.test(x)) ? 'vende' : 'fabrica'; if (!a.trabajo[k]) a.trabajo[k] = a.b; }
+    delete a.falla; delete a.b; delete a.areas;
+    a.marcas.forEach((m) => { m.que = m.que || ''; m.mejora = m.mejora || ''; m.r = Array.from({ length: 6 }, (_, i) => String((m.r || [])[i] || '')); });
+  })();
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const esc = (t) => String(t || '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const lee = (ruta) => ruta.split('.').reduce((o, k) => (o ? o[k] : ''), st);
@@ -442,6 +668,7 @@
     const k = e.target.dataset && e.target.dataset.k;
     if (k && !e.target.closest('#apa-sitio')) { pon(k, e.target.value); if (k === 'objeto') pintaObjeto(); guarda(); }
   });
+  let cambioPend = '';
   function pintaGaleria() {
     $('#galeria').innerHTML = OBJETOS.map((o, i) => `<button type="button" class="obj-card${st.obj === o.id ? ' sel' : ''}" data-obj="${o.id}" title="Foto: ${esc(o.autor)}, ${o.lic}, Wikimedia Commons"><span class="num">${i + 1}</span><img src="objetos/${o.id}.jpg" alt="" loading="lazy"><span class="nom">${o.nombre}</span></button>`).join('');
   }
@@ -451,21 +678,28 @@
       <p class="pv-est${o.id === st.obj ? ' ok' : ''}">${o.id === st.obj ? '✓ Este es vuestro objeto.' : 'Pulsadlo si es el vuestro.'}</p><p class="f-credito" style="margin:0">Foto: ${esc(o.autor)}, Wikimedia Commons, ${o.lic}.</p>`
       : '<p class="pv-vacio">Pasad el ratón por un objeto<br>para verlo en grande.</p>';
   }
-  $('#galeria').addEventListener('pointerover', (e) => { const b = e.target.closest('[data-obj]'); if (b) pintaPrevia(b.dataset.obj); });
-  $('#galeria').addEventListener('pointerleave', () => pintaPrevia());
+  $('#galeria').addEventListener('pointerover', (e) => { const b = e.target.closest('[data-obj]'); if (b && !cambioPend) pintaPrevia(b.dataset.obj); });
+  $('#galeria').addEventListener('pointerleave', () => { if (!cambioPend) pintaPrevia(); });
   $('#galeria').addEventListener('focusin', (e) => { const b = e.target.closest('[data-obj]'); if (b) pintaPrevia(b.dataset.obj); });
   $('#galeria').addEventListener('click', (e) => {
     const b = e.target.closest('[data-obj]'); if (!b || b.dataset.obj === st.obj) return;
     const o = OBJETOS.find((x) => x.id === b.dataset.obj);
+    if (st.ahora.marcas.length && cambioPend !== o.id) {   // ya hay innovaciones: se borrarían
+      cambioPend = o.id; pintaPrevia(o.id);
+      $('#previa .pv-est').innerHTML = '<span style="color:var(--coral)">Si cambiáis de objeto se borran vuestras innovaciones. Pulsadlo otra vez para cambiar.</span>';
+      setTimeout(() => { if (cambioPend === o.id) cambioPend = ''; }, 5000);
+      return;
+    }
+    cambioPend = '';
     st.obj = o.id; st.objeto = o.nombre; st.marca = o.marca;
-    st.ahora.foto = 'objetos/' + o.id + '.jpg'; st.ahora.marcas = [];
+    st.ahora.foto = 'objetos/' + o.id + '.jpg'; st.ahora.marcas = []; st.innov = 'modelo';
     const ref = `${esc(o.autor)}. (${o.anio || 's. f.'}). <i>${esc(o.titulo)}</i> [Fotografía]. Wikimedia Commons. ${esc(o.pagina)}`;
     st.refs = st.refs.filter((x) => !x.auto); st.refs.unshift({ html: ref, texto: ref.replace(/<[^>]+>/g, ''), de: 'ahora', auto: true });
     pintaGaleria(); pintaPrevia(); pintaObjeto(); pintaFoto('ahora'); pintaInnov(); pintaRefs(); guarda();
   });
   function pintaObjeto() {
     const ob = objeto();
-    $('#ayuda-antes').innerHTML = ob ? `¿Cómo era o cómo se hacía antes? Buscad en Google Imágenes «<b>${esc(ob.busca)}</b>» y pegad aquí una foto.` : 'Primero elegid vuestro objeto en el paso 1.';
+    $('#ayuda-antes').innerHTML = ob ? `¿Cómo era o cómo se hacía antes? Buscad en Google Imágenes «<b>${esc(ob.busca)}</b>» y pegad una foto.` : 'Primero elegid vuestro objeto en el paso 1.';
     const o = st.objeto.trim();
     $$('.obj').forEach((b) => { b.textContent = o || 'vuestro objeto'; });
     $('#resumen').textContent = o ? ' · ' + o : '';
@@ -502,9 +736,10 @@
       const w = $('.f-img-wrap', caja);
       if (w) w.addEventListener('click', (e) => {
         const r = w.getBoundingClientRect();
-        st.ahora.marcas.push({ x: +(((e.clientX - r.left) / r.width) * 100).toFixed(1), y: +(((e.clientY - r.top) / r.height) * 100).toFixed(1), que: '', mejora: '' });
+        st.ahora.marcas.push({ x: +(((e.clientX - r.left) / r.width) * 100).toFixed(1), y: +(((e.clientY - r.top) / r.height) * 100).toFixed(1), que: '', mejora: '', r: ['', '', '', '', '', ''] });
+        st.innov = String(st.ahora.marcas.length - 1);
         pintaFoto('ahora'); pintaInnov(); guarda();
-        const ins = $$('#innov input'); if (ins.length) { ins[ins.length - 1].focus(); ins[ins.length - 1].scrollIntoView({ block: 'nearest' }); }
+        const inp = $('#innov input'); if (inp) inp.focus();
       });
       return;
     }
@@ -513,7 +748,7 @@
         <p style="margin:0">En la web: clic derecho en la foto → <b style="color:var(--navy)">Copiar imagen</b>.</p>
         <button type="button" class="btn btn-ghost btn-sm" data-elige>o elegid una foto del ordenador</button><input type="file" accept="image/*" hidden></div><p class="f-aviso"></p>`;
     } else {
-      caja.innerHTML = `<div class="f-marco"><div class="f-img-wrap${clave === 'ahora' ? ' marcable' : ''}"><img src="${foto}" alt="Foto ${clave}">${clave === 'ahora' ? marcasHtml() : ''}</div></div>
+      caja.innerHTML = `<div class="f-marco"><div class="f-img-wrap"><img src="${foto}" alt="Foto ${clave}"></div></div>
         <div class="f-foto-botones">${refHecha ? '<span class="f-ref-ok">✓ Referencia de la foto añadida</span>' : '<button type="button" class="btn btn-primary btn-sm" data-ref-foto>Añadir la referencia de esta foto</button>'}
         <button type="button" class="btn btn-ghost btn-sm" data-elige>Cambiar la foto</button><input type="file" accept="image/*" hidden><span class="f-aviso" style="margin:0"></span></div>`;
     }
@@ -531,14 +766,6 @@
       if (f) ponFoto(clave, f);
       else $('.f-aviso', caja).textContent = 'Desde una web no se puede arrastrar: clic derecho → Copiar imagen, y Ctrl + V aquí.';
     });
-    if (clave === 'ahora' && foto) {
-      $('.f-img-wrap', caja).addEventListener('click', (e) => {
-        const r = e.currentTarget.getBoundingClientRect();
-        st.ahora.marcas.push({ x: +(((e.clientX - r.left) / r.width) * 100).toFixed(1), y: +(((e.clientY - r.top) / r.height) * 100).toFixed(1), que: '', mejora: '' });
-        pintaFoto('ahora'); pintaInnov(); guarda();
-        const ins = $$('#innov input'); if (ins.length) { ins[ins.length - 1].focus(); ins[ins.length - 1].scrollIntoView({ block: 'nearest' }); }
-      });
-    }
   }
   document.addEventListener('paste', (e) => {
     const it = [...(e.clipboardData ? e.clipboardData.items : [])].find((i) => i.type && i.type.startsWith('image/'));
@@ -550,21 +777,53 @@
     ponFoto(clave, it.getAsFile());
   });
 
-  /* ---------- innovaciones ---------- */
-  function pintaInnov() {
-    const ol = $('#innov');
-    if (!st.ahora.marcas.length) {
-      ol.innerHTML = `<li style="display:block;padding:0;box-shadow:none;background:none"><div class="f-vacio"><p>${st.ahora.foto ? 'Pulsad encima de la foto, en la primera innovación que veáis.' : 'Primero elegid vuestro objeto en el paso 1.'} Para encontrarlas, haceos estas preguntas:</p><div class="f-seis">${seisHtml}</div></div></li>`;
-      return;
-    }
-    ol.innerHTML = st.ahora.marcas.map((m, i) => `<li><span class="nm">${i + 1}</span><input type="text" data-m="${i}" placeholder="¿Qué es? Ejemplo: hueco para el portátil" value="${esc(m.que)}">
-      <button type="button" class="quita" data-quita="${i}" aria-label="Quitar la innovación ${i + 1}">×</button>
-      <div class="ef">Mejora la… ${EFECTOS.map((ef) => `<button type="button" class="chip${m.mejora === ef ? ' sel' : ''}" data-chip="${i}" data-v="${ef}">${ef}</button>`).join('')}</div></li>`).join('');
+  /* ---------- innovaciones: pestaña «El modelo» y una por cada número de la foto ---------- */
+  const modeloHecho = () => !!(st.ahora.modelo.trim() && st.ahora.anio.trim() && st.ahora.resumen.trim());
+  const innovHecha = (m) => !!(m.que.trim() && m.mejora && m.r.every((x) => x.trim()));
+  function innovSel() {
+    const n = st.ahora.marcas.length;
+    if (st.innov !== 'modelo' && !(+st.innov >= 0 && +st.innov < n)) st.innov = n ? String(n - 1) : 'modelo';
+    return st.innov;
   }
-  $('#innov').addEventListener('input', (e) => { const i = e.target.dataset.m; if (i != null) { st.ahora.marcas[i].que = e.target.value; guarda(); } });
+  function pintaTabs() {
+    const sel = innovSel(), ms = st.ahora.marcas, ok = '<span class="ok" aria-label="completo">✓</span>';
+    $('#innov-tabs').innerHTML = `<button type="button" data-tab="modelo" class="${sel === 'modelo' ? 'sel' : ''}">El modelo${modeloHecho() ? ok : ''}</button>`
+      + ms.map((m, i) => `<button type="button" data-tab="${i}" class="${sel === String(i) ? 'sel' : ''}" aria-label="Innovación ${i + 1}" title="${esc(m.que.trim() || 'Innovación ' + (i + 1))}"><span class="nm">${i + 1}</span>${innovHecha(m) ? ok : ''}</button>`).join('')
+      + `<span class="pista">${!ms.length ? 'Cada número de la foto abre aquí su pestaña.' : ms.length < 3 ? 'Pulsad en la foto para añadir otra.' : ''}</span>`;
+  }
+  function pintaInnov() {
+    const sel = innovSel(), ms = st.ahora.marcas;
+    pintaTabs();
+    $('#innov-modelo').hidden = sel !== 'modelo'; $('#innov').hidden = sel === 'modelo';
+    $('#innov-pista').innerHTML = ms.length
+      ? `<p>Lleváis ${ms.length} ${ms.length > 1 ? 'innovaciones' : 'innovación'}. Pulsad su número, arriba, para explicarla.</p>`
+      : `<p>${st.ahora.foto ? 'Después, pulsad encima de la foto, en la primera innovación que veáis.' : 'Primero elegid vuestro objeto en el paso 1.'} Para encontrarlas, haceos estas preguntas:</p><div class="f-seis">${seisHtml}</div>`;
+    if (sel === 'modelo') return;
+    const i = +sel, m = ms[i];
+    $('#innov').innerHTML = `<div class="t-head inn"><span class="nm">${i + 1}</span><input type="text" data-m="${i}" placeholder="¿Qué es? Ej.: hueco para el portátil" value="${esc(m.que)}" autocomplete="off" aria-label="Nombre de la innovación ${i + 1}"><button type="button" class="quita" data-quita="${i}">Quitar</button></div>
+      <div class="t-row fija"><span class="t-q"><span><span class="letra l-a" style="margin:0 6px 0 0">a</span>Mejora la…</span></span><div class="t-ef"><div class="ef">${EFECTOS.map((ef) => `<button type="button" class="chip${m.mejora === ef ? ' sel' : ''}" data-chip="${i}" data-v="${ef}">${ef}</button>`).join('')}</div>
+        <p class="f-leyenda"><b>Eficiencia:</b> más rápido o más barato. <b>Calidad:</b> funciona mejor o dura más. <b>Sostenibilidad:</b> contamina menos.</p></div></div>
+      ${PREGUNTAS.map(([p, ej], k) => `<label class="t-row"><span class="t-q">${k + 1}. ${p}</span><textarea data-r="${k}" placeholder="${esc(ej)}">${esc(m.r[k])}</textarea></label>`).join('')}`;
+  }
+  $('#innov-tabs').addEventListener('click', (e) => { const b = e.target.closest('[data-tab]'); if (b) { st.innov = b.dataset.tab; pintaInnov(); guarda(); } });
+  $('#innov').addEventListener('input', (e) => {
+    const m = st.ahora.marcas[+innovSel()], d = e.target.dataset; if (!m) return;
+    if (d.m != null) m.que = e.target.value; else if (d.r != null) m.r[+d.r] = e.target.value; else return;
+    guarda();
+  });
   $('#innov').addEventListener('click', (e) => {
     const b = e.target.closest('button'); if (!b) return;
-    if (b.dataset.quita != null) { st.ahora.marcas.splice(+b.dataset.quita, 1); pintaFoto('ahora'); pintaInnov(); guarda(); }
+    if (b.dataset.quita != null) {
+      const i = +b.dataset.quita, m = st.ahora.marcas[i];
+      if ((m.que.trim() || m.r.some((x) => x.trim())) && !b.dataset.seguro) {   // con texto escrito, pide confirmar
+        b.dataset.seguro = '1'; b.textContent = '¿Seguro? Pulsad otra vez'; b.style.color = 'var(--coral)';
+        setTimeout(() => { if (b.isConnected) { delete b.dataset.seguro; b.textContent = 'Quitar'; b.style.color = ''; } }, 3000);
+        return;
+      }
+      st.ahora.marcas.splice(i, 1);
+      st.innov = st.ahora.marcas.length ? String(Math.min(i, st.ahora.marcas.length - 1)) : 'modelo';
+      pintaFoto('ahora'); pintaInnov(); guarda();
+    }
     if (b.dataset.chip != null) { st.ahora.marcas[+b.dataset.chip].mejora = b.dataset.v; pintaInnov(); guarda(); }
   });
 
@@ -572,13 +831,12 @@
   function pintaMinis() {
     const fig = (tit, foto, extra) => `<figure><b>${tit}</b>${foto ? `<div class="f-img-wrap"><img src="${foto}" alt="">${extra || ''}</div>` : '<p class="nada">Falta la foto.</p>'}</figure>`;
     $('#minis').innerHTML = fig('Antes', st.antes.foto) + '<span class="flecha" aria-hidden="true">→</span>' + fig('Ahora', st.ahora.foto, marcasHtml());
-    const ms = st.ahora.marcas.filter((m) => m.que.trim());
-    $('#mis-innov').innerHTML = '<b>Vuestras innovaciones</b>' + (ms.length ? '<ol>' + ms.map((m) => `<li>${esc(m.que)}${m.mejora ? ` <span>· ${m.mejora}</span>` : ''}</li>`).join('') + '</ol>' : '<span style="color:var(--muted)">Todavía no habéis puesto ninguna en el paso 3.</span>');
+    const ms = st.ahora.marcas;
+    $('#mis-innov').innerHTML = '<b>Vuestras innovaciones</b>' + (ms.length ? '<ol>' + ms.map((m) => `<li>${m.que.trim() ? esc(m.que) : '<span>sin nombre todavía (paso 3)</span>'}${m.mejora ? ` <span>· ${m.mejora}</span>` : ''}</li>`).join('') + '</ol>' : '<span style="color:var(--muted)">Todavía no habéis marcado ninguna en la foto del paso 3.</span>');
     pintaOps();
   }
   function pintaOps() {
-    for (const [g, lista] of [['areas', AREAS], ['motivos', MOTIVOS]])
-      $(`.f-ops[data-grupo="${g}"]`).innerHTML = lista.map((t) => `<button type="button" class="op${st.ahora[g].includes(t) ? ' sel' : ''}" data-op="${esc(t)}">${t}</button>`).join('');
+    $('.f-ops[data-grupo="motivos"]').innerHTML = MOTIVOS.map((t) => `<button type="button" class="op${st.ahora.motivos.includes(t) ? ' sel' : ''}" data-op="${esc(t)}" title="${esc(t)}">${MOTIVO_CORTO[t] || t}</button>`).join('');
   }
   $('#p-empresa').addEventListener('click', (e) => {
     const b = e.target.closest('[data-op]'); if (!b) return;
@@ -629,11 +887,16 @@
     $('#tec-desc').innerHTML = el ? `<b>${el[1]}:</b> ${el[2]}` : '<span style="color:var(--muted)">Pulsad una para ver qué es.</span>';
     $('#tecs').innerHTML = TECS.map(([ic, n]) => `<button type="button" class="${st.futuro.tec === n ? 'sel' : ''}" data-tec="${esc(n)}"><img src="../img/iconos/${ic}.webp" alt="">${n}</button>`).join('');
   }
-  $('#tecs').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) { st.futuro.tec = b.dataset.tec; pintaTecs(); guarda(); } });
-  function pintaFalla() {
-    const f = st.ahora.falla.trim();
-    $('#falla-eco').innerHTML = 'Lo que le falla ahora: ' + (f ? '<b>' + esc(f) + '</b>' : '<i>todavía no lo habéis escrito en el paso 4.</i>');
+  $('#tecs').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) { st.futuro.tec = st.futuro.tec === b.dataset.tec ? '' : b.dataset.tec; pintaTecs(); guarda(); } });
+  const problemaElegido = () => (st.futuro.problema === '' ? '' : (st.ahora.fallos[+st.futuro.problema] || '').trim());
+  function pintaProblemas() {
+    if (!problemaElegido()) st.futuro.problema = '';
+    const fs = st.ahora.fallos.map((t, i) => [t.trim(), i]).filter(([t]) => t);
+    $('#prob-ops').innerHTML = fs.length
+      ? fs.map(([t, i]) => `<button type="button" class="op${st.futuro.problema === String(i) ? ' sel' : ''}" data-prob="${i}" title="${esc(t)}">${esc(t)}</button>`).join('')
+      : '<p class="nada">Todavía no habéis escrito los problemas en el paso 4.</p>';
   }
+  $('#prob-ops').addEventListener('click', (e) => { const b = e.target.closest('[data-prob]'); if (b) { st.futuro.problema = b.dataset.prob; pintaProblemas(); guarda(); } });
 
   /* ---------- ventanas ---------- */
   $$('dialog.ventana').forEach((d) => {
@@ -645,6 +908,8 @@
     if (b.dataset.abre) { $('#' + b.dataset.abre).showModal(); return; }
     $('#ej-tit').textContent = 'La mochila · ' + NOMBRE[b.dataset.ej];
     $('#ej-sitio').innerHTML = EJEMPLOS[b.dataset.ej];
+    const tres = $('#ej-sitio').children.length > 2;
+    $('#ej-sitio').classList.toggle('tres', tres); $('#ej-dlg').classList.toggle('ancha', tres); $('#ej-dlg').classList.toggle('estrecha', !tres);
     $('#ej-dlg').showModal();
   });
 
@@ -671,25 +936,41 @@
   const une = (xs) => (xs.length < 2 ? xs.join('') : xs.slice(0, -1).join(', ') + ' y ' + xs[xs.length - 1]);
   function faltas() {
     const a = st.ahora, f = st.futuro, F = { equipo: [], antes: [], ahora: [], empresa: [], futuro: [], refs: [] };
-    if (!st.nombre.trim()) F.equipo.push('los nombres del equipo');
+    const mas = (n, uno, varios) => (n > 1 ? `${n} ${varios}` : `1 ${uno}`), llenos = (l) => l.filter((x) => x.trim()).length;
+    if (!st.equipo.trim()) F.equipo.push('el número de equipo');
+    if (!st.nombre.trim()) F.equipo.push('los nombres');
     if (!st.obj) F.equipo.push('elegir el objeto');
+    if (!st.motivo.trim()) F.equipo.push('por qué es interesante');
     if (!st.antes.foto) F.antes.push('la foto de antes');
+    if (!st.antes.modelo.trim() || !st.antes.anio.trim()) F.antes.push('la marca, el modelo y el año');
     if (!st.antes.como.trim()) F.antes.push('cómo era');
+    if (!st.antes.uso.trim()) F.antes.push('para qué servía');
+    if (llenos(st.antes.problemas) < 3) F.antes.push(mas(3 - llenos(st.antes.problemas), 'problema más', 'problemas más'));
     if (!a.foto) F.ahora.push('elegir el objeto en el paso 1');
-    else if (a.marcas.length < 3) F.ahora.push(`${3 - a.marcas.length} innovación${3 - a.marcas.length > 1 ? 'es' : ''} más en la foto`);
-    if (a.marcas.some((m) => !m.que.trim())) F.ahora.push('qué es cada innovación');
-    if (a.marcas.some((m) => !m.mejora)) F.ahora.push('qué mejora cada innovación');
-    if (!a.areas.length) F.empresa.push('marcar a quién le cambió el trabajo');
-    if (!a.b.trim()) F.empresa.push('explicar la b');
+    else {
+      if (!modeloHecho()) F.ahora.push('los datos del modelo');
+      if (a.marcas.length < 3) F.ahora.push(mas(3 - a.marcas.length, 'innovación más en la foto', 'innovaciones más en la foto'));
+      const sin = a.marcas.map((m, i) => (innovHecha(m) ? 0 : i + 1)).filter(Boolean);
+      if (sin.length) F.ahora.push((sin.length > 1 ? 'explicar las innovaciones ' : 'explicar la innovación ') + une(sin.map(String)));
+    }
+    const lineas = TRABAJO.filter(([k]) => !a.trabajo[k].trim()).length;
+    if (lineas) F.empresa.push(mas(lineas, 'línea de la b', 'líneas de la b'));
     if (!a.motivos.length) F.empresa.push('marcar por qué cambió');
     if (!a.c.trim()) F.empresa.push('explicar la c');
-    if (!a.falla.trim()) F.empresa.push('qué le sigue fallando');
+    if (llenos(a.fallos) < 2) F.empresa.push(mas(2 - llenos(a.fallos), 'problema de ahora', 'problemas de ahora'));
     if (!(f.modo === 'dibujo' ? f.trazos.length : f.foto)) F.futuro.push('el dibujo');
-    if (!f.tec) F.futuro.push('la tecnología');
-    if (!f.cambio.trim()) F.futuro.push('cómo sería');
-    if (st.refs.length < 2) F.refs.push('una referencia por cada foto');
+    if (!f.redacta.trim()) F.futuro.push('quién teclea');
+    if (!problemaElegido()) F.futuro.push('elegir el problema');
+    if (!f.tec && !f.tecOtra.trim()) F.futuro.push('la tecnología');
+    if (!f.cambio.trim()) F.futuro.push('cómo lo arregla');
+    if (!f.mejoras.trim()) F.futuro.push('qué más mejorará');
+    if (st.refs.length < 3) F.refs.push(mas(3 - st.refs.length, 'referencia más', 'referencias más'));
+    if (CASILLAS.some(([k]) => !st.checks[k])) F.refs.push('marcar las dos casillas');
     return F;
   }
+  // nombre del PDF, como pide la ficha: Equipo3_Movil
+  const nombrePdf = () => 'Equipo' + (st.equipo.trim() || 'X') + '_' + ((st.objeto.trim() || 'Objeto').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^A-Za-z0-9]+(.)?/g, (_, c) => (c ? c.toUpperCase() : '')) || 'Objeto');
+  const corta = (l, n) => (l.length > n ? une(l.slice(0, n - 1).concat([`${l.length - n + 1} cosas más`])) : une(l));
   function estado() {
     const F = faltas();
     PASOS.forEach((p, i) => {
@@ -705,12 +986,19 @@
       pf.classList.toggle('ok', !pendientes.length);
     } else {
       const l = F[st.paso];
-      pf.textContent = l.length ? 'Os falta: ' + une(l) + '.' : '✓ Paso completo. Pulsad Siguiente.';
+      pf.textContent = l.length ? 'Os falta: ' + corta(l, 3) + '.' : '✓ Paso completo. Pulsad Siguiente.';
+      pf.title = l.length > 3 ? 'Os falta: ' + une(l) + '.' : '';
       pf.classList.toggle('ok', !l.length);
     }
-    $('#lista').innerHTML = PASOS.map((p, i) => `<li><button type="button" data-ir="${p}"><span class="${F[p].length ? 'no' : 'ok'}">${F[p].length ? '✗' : '✓'}</span><span><b>${i + 1}. ${NOMBRE[p]}</b>${F[p].length ? ` <small>Falta: ${esc(une(F[p]))}</small>` : ''}</span></button></li>`).join('');
+    $('#lista').innerHTML = PASOS.filter((p) => p !== 'refs').map((p, i) => `<li><button type="button" data-ir="${p}" title="${F[p].length ? 'Falta: ' + esc(une(F[p])) : 'Hecho'}"><span class="${F[p].length ? 'no' : 'ok'}">${F[p].length ? '✗' : '✓'}</span><span><b>${i + 1}. ${NOMBRE[p]}</b>${F[p].length ? ` <small>Falta: ${esc(corta(F[p], 2))}</small>` : ''}</span></button></li>`).join('')
+      + `<li><button type="button" id="ref-lista"><span class="${st.refs.length < 3 ? 'no' : 'ok'}">${st.refs.length < 3 ? '✗' : '✓'}</span><span><b>6. Referencias</b>${st.refs.length < 3 ? ` <small>Falta: ${esc(F.refs[0])}</small>` : ''}</span></button></li>`;
+    $('#casillas').innerHTML = CASILLAS.map(([k, t]) => `<li><button type="button" class="casilla${st.checks[k] ? ' marcada' : ''}" data-casilla="${k}" aria-pressed="${!!st.checks[k]}"><span class="caja">${st.checks[k] ? '☑' : '☐'}</span><span>${t}</span></button></li>`).join('');
     $('#pdf').classList.toggle('espera', !!pendientes.length);
+    $('#pdf-nombre').textContent = nombrePdf() + '.pdf';
+    pintaTabs();
   }
+  $('#casillas').addEventListener('click', (e) => { const b = e.target.closest('[data-casilla]'); if (b) { st.checks[b.dataset.casilla] = !st.checks[b.dataset.casilla]; guarda(); } });
+  $('#lista').addEventListener('click', (e) => { if (e.target.closest('#ref-lista')) abreApa('web', ''); });
   function irA(p) {
     st.paso = p;
     PASOS.forEach((x) => { $('#p-' + x).hidden = x !== p; });
@@ -718,7 +1006,7 @@
     $('#ant').style.visibility = i ? 'visible' : 'hidden';
     $('#sig').style.visibility = i < PASOS.length - 1 ? 'visible' : 'hidden';
     if (p === 'empresa') pintaMinis();
-    if (p === 'futuro') { pintaFalla(); redibuja(); }
+    if (p === 'futuro') { pintaProblemas(); redibuja(); }
     estado(); guarda(); $('main').scrollTop = 0;
   }
   document.addEventListener('click', (e) => { const b = e.target.closest('[data-ir]'); if (b) irA(b.dataset.ir); });
@@ -737,26 +1025,54 @@
   const chipColor = { Eficiencia: 'background:#FC6F6F;color:#fff', Calidad: 'background:#FCC908;color:#172433', Sostenibilidad: 'background:#53D2CE;color:#172433' };
   const texto = (t) => (t && t.trim() ? esc(t).replace(/\n/g, '<br>') : '<span class="i-vacio">Sin contestar</span>');
   function construyeImpresion() {
-    const cab = `<div class="i-cab"><span><b>Mira un objeto</b> · UT2 · Innovación Aplicada a los Sectores Productivos</span><span><b>${esc(st.nombre) || 'Sin nombres'}</b> · ${esc(st.objeto) || 'Sin objeto'}${st.marca ? ' (' + esc(st.marca) + ')' : ''}</span></div>`;
+    const a = st.ahora, f = st.futuro;
+    const cab = `<div class="i-cab"><span><b>Mira un objeto</b> · UT2 · Innovación Aplicada a los Sectores Productivos</span><span><b>Equipo ${esc(st.equipo.trim()) || '—'}</b> · ${esc(st.objeto) || 'Sin objeto'}</span></div>`;
     const img = (src, marcas) => (src ? `<div class="i-img"><img src="${src}" alt="">${marcas || ''}</div>` : '<p class="i-vacio">Sin foto</p>');
-    const dibujo = st.futuro.modo === 'dibujo' ? (st.futuro.trazos.length ? (redibuja(), lienzo.toDataURL('image/png')) : '') : st.futuro.foto;
-    const tec = TECS.find(([, n]) => n === st.futuro.tec);
-    $('#impresion').innerHTML = `
-      <div class="i-pag">${cab}<h2><span>1</span>Antes</h2><div class="i-dos">${img(st.antes.foto)}<div><h3>¿Cómo era o cómo se hacía? ¿Qué tenía de malo?</h3><p>${texto(st.antes.como)}</p></div></div></div>
-      <div class="i-pag">${cab}<h2><span>2</span>Ahora</h2><div class="i-dos"><div>${img(st.ahora.foto, marcasHtml())}${objeto() ? `<p class="i-credito">Foto: ${esc(objeto().autor)}, Wikimedia Commons, ${objeto().lic}.</p>` : ''}</div><div>
-        <h3>a · Las innovaciones y qué mejoran</h3><ul class="i-innov">${st.ahora.marcas.map((m, i) => `<li><span class="nm">${i + 1}</span><span>${texto(m.que)}</span>${m.mejora ? `<span class="ch" style="${chipColor[m.mejora]}">${m.mejora}</span>` : ''}</li>`).join('') || '<li class="i-vacio">Sin innovaciones</li>'}</ul>
-        <h3>b · ¿A quién le cambió el trabajo en la empresa?</h3>${st.ahora.areas.length ? `<p class="i-marcado">✓ ${st.ahora.areas.map(esc).join(' · ')}</p>` : ''}<p>${texto(st.ahora.b)}</p>
-        <h3>c · ¿Por qué cambió el objeto?</h3>${st.ahora.motivos.length ? `<p class="i-marcado">✓ ${st.ahora.motivos.map(esc).join(' · ')}</p>` : ''}<p>${texto(st.ahora.c)}</p>
-        <h3>¿Qué le sigue fallando?</h3><p>${texto(st.ahora.falla)}</p></div></div></div>
-      <div class="i-pag">${cab}<h2><span>3</span>Dentro de 5 años</h2><div class="i-dos">${img(dibujo)}<div>
-        <h3>d · La tecnología que le pondríamos</h3>${tec ? `<p class="i-tec"><img src="../img/iconos/${tec[0]}.webp" alt="">${tec[1]}</p><p class="i-marcado">${tec[2]}</p>` : '<p class="i-vacio">Sin elegir</p>'}
-        <h3>¿Cómo sería el objeto con esa tecnología?</h3><p>${texto(st.futuro.cambio)}</p></div></div>
-        <h3>Referencias</h3><ul class="i-refs">${st.refs.map((r) => `<li>${r.html}</li>`).join('') || '<li class="i-vacio">Sin referencias</li>'}</ul></div>`;
+    const lista = (l) => { const v = l.filter((x) => x.trim()); return v.length ? '<ol class="i-lista">' + v.map((x) => `<li>${esc(x)}</li>`).join('') + '</ol>' : '<p class="i-vacio">Sin contestar</p>'; };
+    const pag = (n, tit, cuerpo, clase) => `<div class="i-pag${clase ? ' ' + clase : ''}">${cab}<h2><span>${n}</span>${tit}</h2>${cuerpo}</div>`;
+    const dibujo = f.modo === 'dibujo' ? (f.trazos.length ? (redibuja(), lienzo.toDataURL('image/png')) : '') : f.foto;
+    const tec = TECS.find(([, n]) => n === f.tec);
+    const chip = (m) => (m.mejora ? `<span class="ch" style="${chipColor[m.mejora]}">${m.mejora}</span>` : '');
+    const ob = objeto();
+    const pags = [];
+    // 1 y 2: equipo y antes
+    pags.push(`<div class="i-pag">${cab}
+      <div class="i-equipo"><p><b>Equipo ${esc(st.equipo.trim()) || '—'}:</b> ${texto(st.nombre)}</p><p><b>Objeto:</b> ${esc(st.objeto) || '<span class="i-vacio">Sin elegir</span>'}. <b>¿Por qué es interesante ver cómo ha cambiado?</b> ${texto(st.motivo)}</p></div>
+      <h2><span>2</span>Antes: hace 15 o 20 años</h2>
+      <div class="i-dos"><div>${img(st.antes.foto)}<p class="i-pie"><b>Marca, modelo y año:</b> ${texto([st.antes.modelo.trim(), st.antes.anio.trim()].filter(Boolean).join(' · '))}</p></div><div>
+        <h3>¿Cómo era?</h3><p>${texto(st.antes.como)}</p>
+        <h3>¿Para qué servía y cómo se usaba?</h3><p>${texto(st.antes.uso)}</p>
+        <h3>¿Qué tenía de malo?</h3>${lista(st.antes.problemas)}</div></div></div>`);
+    // 3: ahora, la foto con los números
+    pags.push(pag(3, 'Ahora: las innovaciones', `<div class="i-dos"><div>${img(a.foto, marcasHtml())}${ob ? `<p class="i-credito">Foto: ${esc(ob.autor)}, Wikimedia Commons, ${ob.lic}.</p>` : ''}</div><div>
+        <h3>El modelo de ahora</h3><p><b>${texto([a.modelo.trim(), a.anio.trim()].filter(Boolean).join(' · '))}</b></p><p>${texto(a.resumen)}</p>
+        <h3>a · Las innovaciones y qué mejoran</h3><ul class="i-innov">${a.marcas.map((m, i) => `<li><span class="nm">${i + 1}</span><span>${texto(m.que)}</span>${chip(m)}</li>`).join('') || '<li class="i-vacio">Sin innovaciones</li>'}</ul></div></div>`));
+    // 3: cada innovación con sus seis preguntas, de tres en tres por página
+    for (let k = 0; k < a.marcas.length; k += 3) {
+      pags.push(pag(3, 'Ahora: cada innovación, en seis preguntas', `<div class="i-tres">${a.marcas.slice(k, k + 3).map((m, j) => `<div class="i-inn">
+        <p class="i-inn-t"><span class="nm">${k + j + 1}</span><b>${texto(m.que)}</b>${chip(m)}</p>
+        <dl>${PREGUNTAS.map(([p], q) => `<dt>${q + 1}. ${p}</dt><dd>${texto(m.r[q])}</dd>`).join('')}</dl></div>`).join('')}</div>`, 'i-densa'));
+    }
+    // 4: la empresa
+    pags.push(pag(4, 'Ahora: la empresa que lo hace', `
+        <h3>b · ¿A quién le cambió el trabajo? ¿Qué hacen distinto?</h3><ul class="i-lineas">${TRABAJO.map(([k, t]) => `<li><b>${t}:</b> ${texto(a.trabajo[k])}</li>`).join('')}</ul>
+        <h3>c · ¿Por qué cambió el objeto?</h3>${a.motivos.length ? `<p class="i-marcado">✓ ${a.motivos.map(esc).join(' · ')}</p>` : ''}<p>${texto(a.c)}</p>
+        <h3>¿Qué le sigue fallando?</h3>${lista(a.fallos)}`));
+    // 5: dentro de 5 años
+    pags.push(pag(5, 'Dentro de 5 años', `<div class="i-dos"><div>${img(dibujo)}<p class="i-pie"><b>Teclea en este paso:</b> ${texto(f.redacta)}</p></div><div>
+        <h3>El problema de ahora que arreglamos</h3><p>${texto(problemaElegido())}</p>
+        <h3>d · La tecnología que le pondríamos</h3>${tec ? `<p class="i-tec"><img src="../img/iconos/${tec[0]}.webp" alt="">${tec[1]}</p><p class="i-marcado">${tec[2]}</p>` : ''}${f.tecOtra.trim() ? `<p><b>${tec ? 'Y también: ' : ''}${esc(f.tecOtra.trim())}</b></p>` : ''}${!tec && !f.tecOtra.trim() ? '<p class="i-vacio">Sin elegir</p>' : ''}
+        <h3>¿Cómo arregla ese problema?</h3><p>${texto(f.cambio)}</p>
+        <h3>¿Qué más mejorará?</h3><p>${texto(f.mejoras)}</p></div></div>`));
+    // 6: referencias y comprobación
+    pags.push(pag(6, 'Referencias', `<ul class="i-refs">${st.refs.map((r) => `<li>${r.html}</li>`).join('') || '<li class="i-vacio">Sin referencias</li>'}</ul>
+        <h3>Antes de entregar</h3><ul class="i-lineas">${CASILLAS.map(([k, t]) => `<li>${st.checks[k] ? '☑' : '☐'} ${t}</li>`).join('')}</ul>`));
+    $('#impresion').innerHTML = pags.join('');
   }
   $('#pdf').onclick = () => {
     construyeImpresion();
     const t = document.title;
-    document.title = 'Mira un objeto - ' + (st.nombre.trim() || 'ficha');
+    document.title = nombrePdf();
     const imgs = $$('#impresion img');
     Promise.all(imgs.map((im) => (im.complete ? Promise.resolve() : new Promise((r) => { im.onload = im.onerror = r; })))).then(() => {
       window.print();
@@ -767,7 +1083,7 @@
 
   /* ---------- arranque ---------- */
   if (!objeto()) { st.obj = ''; if (!/^objetos\//.test(st.ahora.foto)) { st.ahora.foto = ''; st.ahora.marcas = []; } }
-  pintaGaleria(); pintaPrevia(); pintaObjeto(); ['antes', 'ahora', 'futuro'].forEach(pintaFoto); pintaInnov(); pintaModo(); pintaTecs(); pintaFalla(); pintaRefs(); redibuja();
+  pintaGaleria(); pintaPrevia(); pintaObjeto(); ['antes', 'ahora', 'futuro'].forEach(pintaFoto); pintaInnov(); pintaModo(); pintaTecs(); pintaProblemas(); pintaRefs(); redibuja();
   irA(PASOS.includes(st.paso) ? st.paso : 'equipo');
 })();
 </script>
