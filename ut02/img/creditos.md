@@ -219,3 +219,12 @@ Doce fotos, una por ficha del pasador de las diapositivas «Catálogo de tecnolo
 - **Tratamiento:** Reducida de 4592×3448 px a 1600×1202 px; sin recortar; recomprimida (JPEG calidad 84).
 - **Tamaño final:** 243 KB
 - **Descripción:** Pantalla con una casilla de usuario y otra de contraseña. 2017. Ficha «Ciberseguridad» del catálogo de tecnologías (2.3).
+
+## iconos/ods-08.webp, iconos/ods-09.webp, iconos/ods-12.webp
+
+- **Título original en Commons:** File:Sustainable Development Goal-es-10.jpg (objetivo 8), File:Sustainable Development Goal-es-09.jpg (objetivo 9) y File:Sustainable Development Goal-es-06.jpg (objetivo 12). Ojo: en Commons la numeración de los archivos en español va al revés (el archivo NN contiene el objetivo 18 − NN).
+- **Autor:** Naciones Unidas
+- **Página del archivo:** https://commons.wikimedia.org/wiki/File:Sustainable_Development_Goal-es-10.jpg · https://commons.wikimedia.org/wiki/File:Sustainable_Development_Goal-es-09.jpg · https://commons.wikimedia.org/wiki/File:Sustainable_Development_Goal-es-06.jpg
+- **Licencia:** dominio público según Commons. Las directrices de Naciones Unidas permiten el uso informativo de los iconos sin pedir permiso y sin modificarlos.
+- **Tratamiento:** miniatura de 500×500 px convertida de CMYK a sRGB con su perfil de color, reducida a 320×320 px y guardada como WebP (calidad 90).
+- **Descripción:** iconos oficiales en español de los ODS 8, 9 y 12. Diapositiva «Sostenibilidad: ODS y economía circular».
